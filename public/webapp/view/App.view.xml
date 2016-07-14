@@ -1,38 +1,8 @@
 
     <mvc:View
     	xmlns:mvc="sap.ui.core.mvc"
-    	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
       controllerName="meteor-model-demo.controller.App"
     	xmlns="sap.m">
-    	<SplitApp id="SplitAppDemo" initialDetail="Welcome" initialMaster="master" orientationChange="onOrientationChange">
-    		<detailPages>
-          <Page id="Welcome" title="Welcome" class="sapUiStdPage">
-            <Text text="Welcome"></Text>
-          </Page>
-          <mvc:XMLView viewName="meteor-model-demo.view.CategoriesJson"></mvc:XMLView>
-          <mvc:XMLView viewName="meteor-model-demo.view.CategoriesMeteor"></mvc:XMLView>
-    		</detailPages>
-    		<masterPages>
-    			<Page id="master" title="Menu" icon="sap-icon://action" class="sapUiStdPage">
-    				<content>
-    					<List itemPress="onMasterLevel1ItemPress">
-    						<items>
-    							<StandardListItem title="Categories" type="Navigation" custom:to="masterCategories"/>
-    						</items>
-    					</List>
-    				</content>
-    			</Page>
-    			<Page id="masterCategories" title="Categories" icon="sap-icon://action" class="sapUiStdPage" showNavButton="true"
-    				  navButtonPress="onPressMasterBack">
-    				<content>
-    					<List itemPress="onMasterLevel2ItemPress">
-    						<items>
-    							<StandardListItem title="JSONModel" type="Active" custom:to="CategoriesJson"/>
-    							<StandardListItem title="MeteorModel" type="Active" custom:to="CategoriesMeteor"/>
-    						</items>
-    					</List>
-    				</content>
-    			</Page>
-    		</masterPages>
+    	<SplitApp id="SplitApp">
     	</SplitApp>
     </mvc:View>

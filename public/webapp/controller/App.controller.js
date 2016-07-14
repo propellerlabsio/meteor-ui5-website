@@ -54,7 +54,7 @@
 				},
 
 				getSplitAppObj : function() {
-					var result = this.byId("SplitAppDemo");
+					var result = this.byId("SplitApp");
 					if (!result) {
 						jQuery.sap.log.info("SplitApp object can't be found");
 					}

@@ -1,0 +1,17 @@
+
+    <mvc:View
+    	xmlns:mvc="sap.ui.core.mvc"
+    	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    	xmlns="sap.m">
+    			<Page id="masterCategories" title="Categories" icon="sap-icon://action" class="sapUiStdPage" showNavButton="true"
+    				  navButtonPress="onPressMasterBack">
+    				<content>
+    					<List itemPress="onMasterLevel2ItemPress">
+    						<items>
+    							<StandardListItem title="JSONModel" type="Active" custom:to="CategoriesJson"/>
+    							<StandardListItem title="MeteorModel" type="Active" custom:to="CategoriesMeteor"/>
+    						</items>
+    					</List>
+    				</content>
+    			</Page>
+    </mvc:View>

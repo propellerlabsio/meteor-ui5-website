@@ -29,6 +29,47 @@
             "libs": {
                 "sap.m": {}
             }
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "viewPath": "meteor-model-demo.view",
+                "controlId": "SplitApp",
+                "clearTarget": false
+            },
+            "routes": [{
+                "pattern": "",
+                "name": "home",
+                "target": ["master", "welcome"]
+            },{
+                "pattern": "categories",
+                "name": "categories",
+                "target": ["masterCategories", "CategoriesMeteor"]
+            }
+          ],
+            "targets": {
+                "master": {
+                    "viewName": "Master",
+                    "controlAggregation": "masterPages"
+                },
+                "masterCategories": {
+                    "viewName": "MasterCategories",
+                    "controlAggregation": "masterPages"
+                },
+                "welcome": {
+                    "viewName": "Welcome",
+                    "controlAggregation": "detailPages"
+                },
+                "CategoriesJson": {
+                    "viewName": "CategoriesJson",
+                    "controlAggregation": "detailPages"
+                },
+                "CategoriesMeteor": {
+                    "viewName": "CategoriesMeteor",
+                    "controlAggregation": "detailPages"
+                }
+            }
         }
     }
 }

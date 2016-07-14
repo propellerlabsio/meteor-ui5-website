@@ -1,0 +1,15 @@
+
+    <mvc:View
+    	xmlns:mvc="sap.ui.core.mvc"
+    	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    	xmlns="sap.m">
+    			<Page id="master" title="Menu" icon="sap-icon://action" class="sapUiStdPage">
+    				<content>
+    					<List itemPress="onMasterLevel1ItemPress">
+    						<items>
+    							<StandardListItem title="Categories" type="Navigation" custom:to="masterCategories"/>
+    						</items>
+    					</List>
+    				</content>
+    			</Page>
+    </mvc:View>
