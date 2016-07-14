@@ -1,0 +1,32 @@
+
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta charset="UTF-8">
+	<title>meteor-ui5 Demo App</title>
+
+	<script
+			id="sap-ui-bootstrap"
+			src="https://openui5.hana.ondemand.com/resources/sap-ui-core.js"
+			data-sap-ui-bindingSyntax="complex"
+			data-sap-ui-theme="sap_bluecrystal"
+			data-sap-ui-libs="sap.m,sap.ui.core"
+			data-sap-ui-compatVersion="edge"
+			data-sap-ui-preload="async"
+			data-sap-ui-resourceroots='{
+			  "meteor-model-demo": "/webapp/"
+		   	}'>
+		</script>
+
+	<!-- UI5 App -->
+	<script>
+		sap.ui.getCore().attachInit(function() {
+			new sap.ui.core.ComponentContainer({
+				name: "meteor-model-demo"
+			}).placeAt("content");
+		});
+	</script>
+</head>
+
+<body>
+  <div class="sapUiBody" id="content"></div>
+</body>

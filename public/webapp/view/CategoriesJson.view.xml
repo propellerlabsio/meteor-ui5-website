@@ -1,0 +1,11 @@
+<mvc:View
+    	xmlns:mvc="sap.ui.core.mvc"
+    	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    	xmlns="sap.m">
+
+		<Page id="CategoriesJson" title="Categories (JSON Model)" class="sapUiStdPage">
+			<content>
+				<Label text="Categories JSONmodel Page..." />
+			</content>
+		</Page>
+</mvc:View>
