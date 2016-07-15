@@ -1,8 +1,6 @@
 sap.ui.define([
-  "sap/ui/core/UIComponent",
-  "sap/ui/model/json/JSONModel",
-  "sap/ui/model/resource/ResourceModel"
-], function(UIComponent, JSONModel, ResourceModel) {
+  "sap/ui/core/UIComponent"
+], function(UIComponent) {
   "use strict";
   return UIComponent.extend("meteor-model-demo.Component", {
     metadata: {
