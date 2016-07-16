@@ -23,50 +23,17 @@ function loadFileIntoCollection(file, collection) {
     const jsonFile = JSON.parse(Assets.getText(file));
 
     // Clean up data
-    jsonFile.forEach((doc) => {
-      if (doc.hasOwnProperty("_id")){
-        // Convert id's to strings
-        if (typeof doc._id !== "string"){
-          doc._id = doc._id.toString();
-        }
+    jsonFile.forEach((doc, index) => {
+      if (index === 1) {
+        // Insert converted document
+        const converted = Meteor.call('fixtures.cleanDocument', doc, (error, cleaned) => {
+          if (error) {
+            console.error(error);
+          } else {
+            collection.insert(cleaned);
+          }
+        });
       }
-
-      // Delete metadata property
-      delete doc.__metadata;
-
-      // Sub-object Property sepecific conversions
-      Object.getOwnPropertyNames(doc).forEach((propName) => {
-        var prop = doc[propName];
-
-        // Ignore nulls
-        if (prop) {
-          // Convert dates
-          if (looksLikeMSDate(prop)){
-            doc[propName] = parseMSDate(prop);
-          }
-
-          // Remove navigation properties
-          if (typeof prop === "object"){
-            if (prop.hasOwnProperty('__deferred')) {
-              delete doc[propName];
-            }
-          }
-        }
-
-      });
-
-      // Insert converted document
-      collection.insert(doc);
     });
   }
-}
-
-// Handling of Microsoft AJAX Dates, formatted like '/Date(01238329348239)/'
-function looksLikeMSDate(s) {
-    return /^\/Date\(/.test(s);
-}
-
-function parseMSDate(s) {
-    // Jump forward past the /Date(, parseInt handles the rest
-    return new Date(parseInt(s.substr(6)));
 }

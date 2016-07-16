@@ -43,31 +43,43 @@
                 "name": "home",
                 "target": ["master", "welcome"]
             },{
-                "pattern": "categories",
-                "name": "categories",
-                "target": ["masterCategories", "CategoriesMeteor"]
+                "pattern": "carousel",
+                "name": "carousel",
+                "target": ["masterCarousel", "carouselMeteor"]
+            },{
+                "pattern": "carouselJson",
+                "name": "carouselJson",
+                "target": ["masterCarousel", "carouselJson"]
             }
           ],
             "targets": {
                 "master": {
                     "viewName": "Master",
-                    "controlAggregation": "masterPages"
+                    "controlAggregation": "masterPages",
+                    "viewLevel": "1"
                 },
-                "masterCategories": {
-                    "viewName": "MasterCategories",
-                    "controlAggregation": "masterPages"
+                "masterCarousel": {
+                    "viewName": "MasterCarousel",
+                    "controlAggregation": "masterPages",
+                    "viewLevel": "2"
                 },
                 "welcome": {
                     "viewName": "Welcome",
-                    "controlAggregation": "detailPages"
+                    "controlAggregation": "detailPages",
+                    "viewLevel": "1",
+                    "transition": "flip"
                 },
-                "CategoriesJson": {
-                    "viewName": "CategoriesJson",
-                    "controlAggregation": "detailPages"
+                "carouselMeteor": {
+                    "viewName": "CarouselMeteor",
+                    "controlAggregation": "detailPages",
+                    "viewLevel": "2",
+                    "transition": "flip"
                 },
-                "CategoriesMeteor": {
-                    "viewName": "CategoriesMeteor",
-                    "controlAggregation": "detailPages"
+                "carouselJson": {
+                    "viewName": "CarouselJson",
+                    "controlAggregation": "detailPages",
+                    "viewLevel": "2",
+                    "transition": "flip"
                 }
             }
         }

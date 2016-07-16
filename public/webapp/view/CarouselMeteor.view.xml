@@ -3,9 +3,9 @@
     	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     	xmlns="sap.m">
 
-		<Page id="CategoriesJson" title="Categories (JSON Model)" class="sapUiStdPage">
+		<Page id="CarouselMeteor" title="Carousel (Meteor Model)" class="sapUiStdPage">
 			<content>
-				<Label text="Categories JSONmodel Page..." />
+				<Label text="Carousel Meteor Model Page..." />
 			</content>
 		</Page>
 </mvc:View>

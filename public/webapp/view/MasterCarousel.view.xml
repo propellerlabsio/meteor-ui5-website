@@ -1,0 +1,12 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns="sap.m" controllerName="meteor-model-demo.controller.MasterCarousel">
+    <Page id="masterCarousel" title="Carousel" icon="sap-icon://action" class="sapUiStdPage" showNavButton="true" navButtonPress="onPressBack">
+        <content>
+            <List itemPress="onItemPress">
+                <items>
+                    <StandardListItem title="MeteorModel" type="Active" custom:to="carousel"/>
+                    <StandardListItem title="JSONModel" type="Active" custom:to="carouselJson"/>
+                </items>
+            </List>
+        </content>
+    </Page>
+</mvc:View>

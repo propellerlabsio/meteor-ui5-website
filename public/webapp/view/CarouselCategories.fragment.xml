@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
+    <Table items="{/Categories}" visible="true">
+        <columns>
+            <Column>
+            </Column>
+            <Column>
+                <Text text="Category"/>
+            </Column>
+            <Column>
+                <Text text="Description"/>
+            </Column>
+        </columns>
+        <ColumnListItem>
+            <cells>
+                <Image src="data:image/bmp;base64,{Picture}"/>
+                <ObjectIdentifier title="{CategoryName}" text="{_id}" icon="{= 'data:image/png;base64' + ${Picture}}"/>
+                <Text text="{Description}"/>
+            </cells>
+        </ColumnListItem>
+    </Table>
+</core:FragmentDefinition>
