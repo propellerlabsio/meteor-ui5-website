@@ -7,7 +7,6 @@
 		<Page id="CarouselJson" title="Carousel (JSON Model)" class="sapUiStdPage">
 			<content>
         <core:Fragment fragmentName="meteor-model-demo.view.CarouselCategories" type="XML" />
-
 			</content>
 		</Page>
 </mvc:View>

@@ -1,5 +1,16 @@
-import { Meteor } from 'meteor/meteor';
-import { categories, customers, employees, orderDetails, orders, products, shippers, suppliers } from '../../api/collections/collections.js';
+import {
+  Meteor
+} from 'meteor/meteor';
+import {
+  categories,
+  customers,
+  employees,
+  orderDetails,
+  orders,
+  products,
+  shippers,
+  suppliers
+} from '../../api/collections/collections.js';
 
 
 Meteor.startup(() => {
@@ -24,16 +35,14 @@ function loadFileIntoCollection(file, collection) {
 
     // Clean up data
     jsonFile.forEach((doc, index) => {
-      if (index === 1) {
-        // Insert converted document
-        const converted = Meteor.call('fixtures.cleanDocument', doc, (error, cleaned) => {
-          if (error) {
-            console.error(error);
-          } else {
-            collection.insert(cleaned);
-          }
-        });
-      }
+      // Insert converted document
+      const converted = Meteor.call('fixtures.cleanDocument', doc, (error, cleaned) => {
+        if (error) {
+          console.error(error);
+        } else {
+          collection.insert(cleaned);
+        }
+      });
     });
   }
 }
