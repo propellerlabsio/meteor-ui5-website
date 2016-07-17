@@ -1,20 +1,26 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
-    <Table items="{/Categories}" visible="true">
+    <Table items="{/Categories}" visible="true" fixedLayout="false">
+        <headerToolbar>
+            <OverflowToolbar>
+                <Title text="Categories" level="H2"/>
+                <ToolbarSpacer />
+                <Button press="onDebugPress" icon="sap-icon://source-code"></Button>
+            </OverflowToolbar>
+        </headerToolbar>
         <columns>
-            <Column>
-            </Column>
             <Column>
                 <Text text="Category"/>
             </Column>
             <Column>
                 <Text text="Description"/>
             </Column>
+            <Column></Column>
         </columns>
-        <ColumnListItem>
+        <ColumnListItem >
             <cells>
-                <Image src="data:image/bmp;base64,{Picture}"/>
                 <ObjectIdentifier title="{CategoryName}" text="{_id}" icon="{= 'data:image/png;base64' + ${Picture}}"/>
                 <Text text="{Description}"/>
+                <Image src="data:image/bmp;base64,{Picture}"/>
             </cells>
         </ColumnListItem>
     </Table>

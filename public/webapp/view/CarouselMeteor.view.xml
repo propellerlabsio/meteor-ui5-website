@@ -6,7 +6,7 @@
 
 		<Page id="CarouselMeteor" title="Carousel (Meteor Model)" class="sapUiStdPage">
 			<content>
-        <!-- <core:Fragment fragmentName="meteor-model-demo.view.CarouselCategories" type="XML" /> -->
+        <core:Fragment fragmentName="meteor-model-demo.view.CarouselCategories" type="XML" />
 			</content>
 		</Page>
 </mvc:View>

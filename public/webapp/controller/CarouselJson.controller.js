@@ -25,6 +25,9 @@ sap.ui.define([
 			});
     },
 
+    onDebugPress: function(){
+        debugger;
+    }
   });
 
   return CController;
