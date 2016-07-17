@@ -1,1 +1,0 @@
-CarouselMeteor.controller.js

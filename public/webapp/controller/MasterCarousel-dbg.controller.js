@@ -1,1 +1,0 @@
-MasterCarousel.controller.js

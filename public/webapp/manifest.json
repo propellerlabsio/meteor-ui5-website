@@ -43,13 +43,13 @@
                 "name": "home",
                 "target": ["master", "welcome"]
             },{
-                "pattern": "carousel",
-                "name": "carousel",
-                "target": ["masterCarousel", "carouselMeteor"]
+                "pattern": "categories",
+                "name": "categories",
+                "target": ["masterCategories", "categoriesMeteor"]
             },{
-                "pattern": "carouselJson",
-                "name": "carouselJson",
-                "target": ["masterCarousel", "carouselJson"]
+                "pattern": "categoriesJson",
+                "name": "categoriesJson",
+                "target": ["masterCategories", "categoriesJson"]
             }
           ],
             "targets": {
@@ -58,8 +58,8 @@
                     "controlAggregation": "masterPages",
                     "viewLevel": "1"
                 },
-                "masterCarousel": {
-                    "viewName": "MasterCarousel",
+                "masterCategories": {
+                    "viewName": "MasterCategories",
                     "controlAggregation": "masterPages",
                     "viewLevel": "2"
                 },
@@ -69,14 +69,14 @@
                     "viewLevel": "1",
                     "transition": "flip"
                 },
-                "carouselMeteor": {
-                    "viewName": "CarouselMeteor",
+                "categoriesMeteor": {
+                    "viewName": "CategoriesMeteor",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"
                 },
-                "carouselJson": {
-                    "viewName": "CarouselJson",
+                "categoriesJson": {
+                    "viewName": "CategoriesJson",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"

@@ -8,7 +8,7 @@
     				<content>
     					<List itemPress="onMasterLevel1ItemPress">
     						<items>
-    							<StandardListItem title="Carousel" type="Navigation" custom:to="carousel"/>
+    							<StandardListItem title="Categories" type="Navigation" custom:to="categories"/>
     						</items>
     					</List>
     				</content>
