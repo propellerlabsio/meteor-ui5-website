@@ -12,8 +12,11 @@ sap.ui.define([
 			var oJsonData = [];
 			var oModel = new MeteorModel();
 			this.getView().setModel(oModel);
+    },
+
+    onDebugPress: function() {
+      debugger;
     }
-    
   });
 
   return CController;

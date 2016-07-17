@@ -163,9 +163,6 @@ sap.ui.define([
 	 */
 
 	/**
-	 * Implement in inheriting classes
-	 * @abstract
-	 *
 	 * @name meteor-model-demo.model.MeteorModel.prototype.getProperty
 	 * @function
 	 * @param {string}
@@ -174,6 +171,9 @@ sap.ui.define([
 	 *		   [oContext=null] the context with which the path should be resolved
 	 * @public
 	 */
+	 MeteorModel.prototype.getProperty = function(sPath,oContext){
+	 		debugger;
+	 };
 
 	/**
 	 * Implement in inheriting classes
@@ -186,13 +186,13 @@ sap.ui.define([
 	 * @public
 	 */
 	MeteorModel.prototype.getObject = function(sPath, oContext) {
+		debugger;
 		return this.getProperty(sPath, oContext);
 	};
 
 
 	/**
 	 * Create ContextBinding
-	 * @abstract
 	 *
 	 * @name meteor-model-demo.model.MeteorModel.prototype.bindContext
 	 * @function
@@ -209,6 +209,9 @@ sap.ui.define([
 	 *
 	 * @public
 	 */
+	 MeteorModel.prototype.bindContext = function(sPath, oContext, mParameters, oEvents) {
+		 	debugger;
+	 };
 
 	/**
 	 * Gets a binding context. If context already exists, return it from the map,

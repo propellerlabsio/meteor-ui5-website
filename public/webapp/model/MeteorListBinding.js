@@ -30,6 +30,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ListBinding', 'sap/ui/model/Fi
     var MeteorListBinding = ListBinding.extend("meteor-model-demo.model.MeteorListBinding", /** @lends meteor-model-demo.model.MeteorListBinding.prototype */ {
 
       constructor: function(oModel, sPath, oContext, aSorters, aFilters, mParameters) {
+        debugger;
         ListBinding.call(this, oModel, sPath, oContext, mParameters);
       },
 
@@ -131,6 +132,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ListBinding', 'sap/ui/model/Fi
      */
     MeteorListBinding.prototype.getLength = function() {
       return 0;
+
     };
 
     /**

@@ -20,13 +20,27 @@ sap.ui.define([
 				(error, result) => {
 					oModel.setData(
             {
-              Categories: result
+              Categories: result.slice(0, 2) // TODO remove slice - debugging
             });
 			});
     },
 
-    onDebugPress: function(){
-        debugger;
+    onDebugPress: function() {
+      var oModel = this.getView().getModel();
+      var aOutput = [];
+      oModel.aBindings.forEach((oBinding) => {
+        var oOutput = {};
+        oOutput.bRelative = oBinding.bRelative;
+        oOutput.sPath = oBinding.sPath;
+        if (oBinding.oContext) {
+          oOutput['oContext.sPath'] = oBinding.oContext.sPath;
+        }
+        aOutput.push(oOutput);
+      });
+
+      console.table(oModel.aBindings);
+      console.table(aOutput);
+      debugger;
     }
   });
 

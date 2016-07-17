@@ -1,10 +1,10 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core">
-    <Table items="{/Categories}" visible="true" fixedLayout="false">
+    <Table id="CategoriesTable" items="{/Categories}" visible="true" fixedLayout="false">
         <headerToolbar>
             <OverflowToolbar>
                 <Title text="Categories" level="H2"/>
                 <ToolbarSpacer />
-                <Button press="onDebugPress" icon="sap-icon://source-code"></Button>
+                <Button press="onDebugPress" icon="sap-icon://it-system"></Button>
             </OverflowToolbar>
         </headerToolbar>
         <columns>
@@ -18,7 +18,7 @@
         </columns>
         <ColumnListItem >
             <cells>
-                <ObjectIdentifier title="{CategoryName}" text="{_id}" icon="{= 'data:image/png;base64' + ${Picture}}"/>
+                <ObjectIdentifier title="{CategoryName}" text="{_id}"/>
                 <Text text="{Description}"/>
                 <Image src="data:image/bmp;base64,{Picture}"/>
             </cells>
