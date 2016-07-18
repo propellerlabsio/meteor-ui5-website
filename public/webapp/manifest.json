@@ -50,6 +50,10 @@
                 "pattern": "categoriesJson",
                 "name": "categoriesJson",
                 "target": ["masterCategories", "categoriesJson"]
+            },{
+                "pattern": "categoriesFlatJson",
+                "name": "categoriesFlatJson",
+                "target": ["masterCategories", "categoriesFlatJson"]
             }
           ],
             "targets": {
@@ -77,6 +81,12 @@
                 },
                 "categoriesJson": {
                     "viewName": "CategoriesJson",
+                    "controlAggregation": "detailPages",
+                    "viewLevel": "2",
+                    "transition": "flip"
+                },
+                "categoriesFlatJson": {
+                    "viewName": "CategoriesFlatJson",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"

@@ -1,7 +1,7 @@
 
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
-  'meteor-model-demo/model/MeteorModel'
+  'meteor-model-demo/model/meteor/mongo/MeteorModel'
 ], function(Controller, MeteorModel) {
   "use strict";
 

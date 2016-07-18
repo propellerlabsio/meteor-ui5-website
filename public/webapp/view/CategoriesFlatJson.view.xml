@@ -1,0 +1,12 @@
+<mvc:View
+    	xmlns:core="sap.ui.core"
+    	xmlns:mvc="sap.ui.core.mvc"
+    	xmlns="sap.m"
+      controllerName="meteor-model-demo.controller.CategoriesFlatJson">
+
+		<Page id="CategoriesJson" title="Categories (Flat JSON Model - debug purposes only)" class="sapUiStdPage">
+			<content>
+        <core:Fragment fragmentName="meteor-model-demo.view.Categories-dbg" type="XML" />
+			</content>
+		</Page>
+</mvc:View>
