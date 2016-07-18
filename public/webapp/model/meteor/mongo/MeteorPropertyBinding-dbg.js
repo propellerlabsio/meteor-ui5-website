@@ -1,1 +1,0 @@
-MeteorPropertyBinding.js

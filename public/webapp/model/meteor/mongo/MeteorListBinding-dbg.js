@@ -1,1 +1,0 @@
-MeteorListBinding.js

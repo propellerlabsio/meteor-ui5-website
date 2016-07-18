@@ -3,8 +3,16 @@
  */
 
 // Provides the JSON model implementation of a list binding
-sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/ListBinding'],
-	function(jQuery, ChangeReason, ListBinding) {
+sap.ui.define([
+	'jquery.sap.global',
+	'sap/ui/model/ListBinding',
+	'sap/ui/model/ChangeReason',
+	'sap/ui/model/Filter',
+	'sap/ui/model/FilterType',
+	'sap/ui/model/FilterProcessor',
+	'sap/ui/model/Sorter',
+	'sap/ui/model/SorterProcessor'],
+	function(jQuery, ListBinding, ChangeReason, Filter, FilterType, FilterProcessor, Sorter, SorterProcessor) {
 	"use strict";
 
 
@@ -20,10 +28,10 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
 	 * @param {sap.ui.model.Sorter|sap.ui.model.Sorter[]} [aSorters] initial sort order (can be either a sorter or an array of sorters)
 	 * @param {sap.ui.model|sap.ui.model.Filter[]} [aFilters] predefined filter/s (can be either a filter or an array of filters)
 	 * @param {object} [mParameters]
-	 * @alias meteor-model-demo.model.MeteorListBinding
+	 * @alias meteor-model-demo.model.MeteorMongoListBinding
 	 * @extends sap.ui.model.ListBinding
 	 */
-	var MeteorListBinding = ListBinding.extend("meteor-model-demo.model.MeteorListBinding", {
+	var MeteorMongoListBinding = ListBinding.extend("meteor-model-demo.model.MeteorMongoListBinding", {
 
 
   		constructor : function(oModel, sPath, oContext, aSorters, aFilters, mParameters){
@@ -54,7 +62,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
   	 *
   	 * @public
   	 */
-  	MeteorListBinding.prototype.filter = function(aFilters, sFilterType){
+  	MeteorMongoListBinding.prototype.filter = function(aFilters, sFilterType){
   		if (this.bSuspended) {
   			this.checkUpdate(true);
   		}
@@ -104,7 +112,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
   	 *
   	 * @private
   	 */
-  	MeteorListBinding.prototype.applyFilter = function(){
+  	MeteorMongoListBinding.prototype.applyFilter = function(){
   		if (!this.aFilters) {
   			return;
   		}
@@ -126,7 +134,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
   	 *
   	 * @protected
   	 */
-  	MeteorListBinding.prototype.getDistinctValues = function(sPath){
+  	MeteorMongoListBinding.prototype.getDistinctValues = function(sPath){
   		var aResult = [],
   			oMap = {},
   			sValue,
@@ -144,7 +152,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
     /**
   	 * @see sap.ui.model.ListBinding.prototype.sort
   	 */
-  	MeteorListBinding.prototype.sort = function(aSorters){
+  	MeteorMongoListBinding.prototype.sort = function(aSorters){
   		if (this.bSuspended) {
   			this.checkUpdate(true);
   		}
@@ -174,7 +182,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
   	 * Sorts the list
   	 * @private
   	 */
-  	MeteorListBinding.prototype.applySort = function(){
+  	MeteorMongoListBinding.prototype.applySort = function(){
   		var that = this;
 
   		if (!this.aSorters || this.aSorters.length == 0) {
@@ -190,7 +198,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
   	 * @see sap.ui.model.ListBinding.prototype.getLength
   	 *
   	 */
-  	MeteorListBinding.prototype.getLength = function() {
+  	MeteorMongoListBinding.prototype.getLength = function() {
   		return this.iLength;
   	};
 
@@ -199,7 +207,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
   	 *
   	 * @return {int} the length
   	 */
-  	MeteorListBinding.prototype._getLength = function() {
+  	MeteorMongoListBinding.prototype._getLength = function() {
   		return this.aIndices.length;
   	};
 
@@ -213,7 +221,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
 	 * @return {Array} the contexts array
 	 * @protected
 	 */
-	MeteorListBinding.prototype.getContexts = function(iStartIndex, iLength) {
+	MeteorMongoListBinding.prototype.getContexts = function(iStartIndex, iLength) {
 		this.iLastStartIndex = iStartIndex;
 		this.iLastLength = iLength;
 
@@ -245,14 +253,14 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
 				this.aLastContextData = aContextData.slice(0);
 			} catch (oError) {
 				this.bUseExtendedChangeDetection = false;
-				jQuery.sap.log.warning("MeteorListBinding: Extended change detection has been disabled as JSON data could not be serialized.");
+				jQuery.sap.log.warning("MeteorMongoListBinding: Extended change detection has been disabled as JSON data could not be serialized.");
 			}
 		}
 
 		return aContexts;
 	};
 
-	MeteorListBinding.prototype.getCurrentContexts = function() {
+	MeteorMongoListBinding.prototype.getCurrentContexts = function() {
 		if (this.bUseExtendedChangeDetection) {
 			return this.aLastContexts || [];
 		} else {
@@ -266,7 +274,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
 	 *
 	 * @private
 	 */
-	MeteorListBinding.prototype.getContextData = function(oContext) {
+	MeteorMongoListBinding.prototype.getContextData = function(oContext) {
 		if (this.fnGetEntryKey && !this.bDetectUpdates) {
 			return this.fnGetEntryKey(oContext);
 		} else {
@@ -277,7 +285,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
 	/**
 	 * Get indices of the list
 	 */
-	MeteorListBinding.prototype.updateIndices = function() {
+	MeteorMongoListBinding.prototype.updateIndices = function() {
 		var i;
 
 		this.aIndices = [];
@@ -296,7 +304,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
 	 * Update the list, indices array and apply sorting and filtering
 	 * @private
 	 */
-	MeteorListBinding.prototype.update = function(){
+	MeteorMongoListBinding.prototype.update = function(){
 		var oList = this.oModel._getObject(this.sPath, this.oContext);
 		if (oList) {
 			if (jQuery.isArray(oList)) {
@@ -328,7 +336,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
 	 * @return {Array} the contexts array
 	 * @private
 	 */
-	MeteorListBinding.prototype._getContexts = function(iStartIndex, iLength) {
+	MeteorMongoListBinding.prototype._getContexts = function(iStartIndex, iLength) {
 		if (!iStartIndex) {
 			iStartIndex = 0;
 		}
@@ -357,7 +365,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
 	 * Setter for context
 	 * @param {Object} oContext the new context object
 	 */
-	MeteorListBinding.prototype.setContext = function(oContext) {
+	MeteorMongoListBinding.prototype.setContext = function(oContext) {
 		if (this.oContext != oContext) {
 			this.oContext = oContext;
 			if (this.isRelative()) {
@@ -375,7 +383,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
 	 * @param {boolean} bForceupdate
 	 *
 	 */
-	MeteorListBinding.prototype.checkUpdate = function(bForceupdate){
+	MeteorMongoListBinding.prototype.checkUpdate = function(bForceupdate){
 
 		if (this.bSuspended && !this.bIgnoreSuspend && !bForceupdate) {
 			return;
@@ -424,6 +432,6 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/L
 	};
 
 
-	return MeteorListBinding;
+	return MeteorMongoListBinding;
 
 });

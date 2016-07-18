@@ -33,10 +33,10 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
      *         Of course this will only happen if all parent-nodes up to the top-level are also included.
      *         If you do NOT specify this parameter: by default all nested objects/arrays will be used to build the trees hierarchy.
      *
-     * @alias meteor-model-demo.model.MeteorTreeBinding
+     * @alias meteor-model-demo.model.MeteorMongoTreeBinding
      * @extends sap.ui.model.TreeBinding
      */
-    var MeteorTreeBinding = TreeBinding.extend("meteor-model-demo.model.MeteorTreeBinding", {
+    var MeteorMongoTreeBinding = TreeBinding.extend("meteor-model-demo.model.MeteorMongoTreeBinding", {
 
       constructor: function(oModel, sPath, oContext, aApplicationFilters, mParameters, aSorters) {
         TreeBinding.apply(this, arguments);
@@ -66,7 +66,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
      * @param {int} iStartIndex the startIndex where to start the retrieval of contexts
      * @param {int} iLength determines how many contexts to retrieve beginning from the start index.
      */
-    MeteorTreeBinding.prototype.getRootContexts = function(iStartIndex, iLength) {
+    MeteorMongoTreeBinding.prototype.getRootContexts = function(iStartIndex, iLength) {
       if (!iStartIndex) {
         iStartIndex = 0;
       }
@@ -105,7 +105,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
      * Sets the length cache.
      * Called by get*Contexts() to keep track of the child count (after filtering)
      */
-    MeteorTreeBinding.prototype._setLengthCache = function(sKey, iLength) {
+    MeteorMongoTreeBinding.prototype._setLengthCache = function(sKey, iLength) {
       // keep track of the child count for each context (after filtering)
       this._mLengthsCache[sKey] = iLength;
     };
@@ -117,7 +117,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
      * @param {boolean} bForceupdate
      *
      */
-    MeteorTreeBinding.prototype.checkUpdate = function(bForceupdate) {
+    MeteorMongoTreeBinding.prototype.checkUpdate = function(bForceupdate) {
       // apply filter again
       this.applyFilter();
       this._mLengthsCache = {};
@@ -128,7 +128,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
      * internal function to apply the defined this.aSorters for the given array
      * @param {array} aContexts the context array which should be sorted (inplace)
      */
-    MeteorTreeBinding.prototype._applySorter = function(aContexts) {
+    MeteorMongoTreeBinding.prototype._applySorter = function(aContexts) {
       var that = this;
       SorterProcessor.apply(aContexts, this.aSorters, function(oContext, sPath) {
           return that.oModel.getProperty(sPath, oContext);
@@ -147,7 +147,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
      * @return {object[]} the contexts array
      * @protected
      */
-    MeteorTreeBinding.prototype.getNodeContexts = function(oContext, iStartIndex, iLength) {
+    MeteorMongoTreeBinding.prototype.getNodeContexts = function(oContext, iStartIndex, iLength) {
       if (!iStartIndex) {
         iStartIndex = 0;
       }
@@ -201,7 +201,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
      *
      * @public
      */
-    MeteorTreeBinding.prototype.hasChildren = function(oContext) {
+    MeteorMongoTreeBinding.prototype.hasChildren = function(oContext) {
       if (oContext == undefined) {
         return false;
       }
@@ -212,7 +212,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
      * Makes sure the path is prepended and appended with a "/" if necessary.
      * @param {string} sContextPath the path to be checked
      */
-    MeteorTreeBinding.prototype._sanitizePath = function(sContextPath) {
+    MeteorMongoTreeBinding.prototype._sanitizePath = function(sContextPath) {
       if (!jQuery.sap.endsWith(sContextPath, "/")) {
         sContextPath = sContextPath + "/";
       }
@@ -233,7 +233,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
      * @public
      * @override
      */
-    MeteorTreeBinding.prototype.getChildCount = function(oContext) {
+    MeteorMongoTreeBinding.prototype.getChildCount = function(oContext) {
       //if oContext is null or empty -> root level count is requested
       var sPath = oContext ? oContext.sPath : this.getPath();
       sPath = this._sanitizePath(sPath);
@@ -264,7 +264,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
      * @return {sap.ui.model.ClientTreeBinding} returns <code>this</code> to facilitate method chaining
      * @public
      */
-    MeteorTreeBinding.prototype.filter = function(aFilters, sFilterType) {
+    MeteorMongoTreeBinding.prototype.filter = function(aFilters, sFilterType) {
       // The filtering is applied recursively through the tree and stores all filtered contexts and its parent contexts in an array.
 
       // wrap single filters in an array
@@ -306,7 +306,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
      * Apply the current defined filters on the existing dataset.
      * @private
      */
-    MeteorTreeBinding.prototype.applyFilter = function() {
+    MeteorMongoTreeBinding.prototype.applyFilter = function() {
       // reset previous stored filter contexts
       this.filterInfo.aFilteredContexts = [];
       this.filterInfo.oParentContext = {};
@@ -315,7 +315,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
       this._applyFilterRecursive(oContext);
     };
 
-    MeteorTreeBinding.prototype._saveSubContext = function(oNode, aContexts, sContextPath, sName) {
+    MeteorMongoTreeBinding.prototype._saveSubContext = function(oNode, aContexts, sContextPath, sName) {
       // only collect node if it is defined (and not null), because typeof null == "object"!
       if (oNode && typeof oNode == "object") {
         var oNodeContext = this.oModel.getContext(sContextPath + sName);
@@ -339,7 +339,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
      * @return {sap.ui.model.ClientTreeBinding} returns <code>this</code> to facilitate method chaining
      * @public
      */
-    MeteorTreeBinding.prototype.sort = function(aSorters) {
+    MeteorMongoTreeBinding.prototype.sort = function(aSorters) {
       aSorters = aSorters || [];
       this.aSorters = jQuery.isArray(aSorters) ? aSorters : [aSorters];
 
@@ -357,7 +357,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
      * @param {object} oParentContext the context where to start. The children of this node context are then filtered recursively.
      * @private
      */
-    MeteorTreeBinding.prototype._applyFilterRecursive = function(oParentContext) {
+    MeteorMongoTreeBinding.prototype._applyFilterRecursive = function(oParentContext) {
 
       var that = this,
         aFilteredContexts = [];
@@ -394,6 +394,6 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
     };
 
 
-    return MeteorTreeBinding;
+    return MeteorMongoTreeBinding;
 
   });

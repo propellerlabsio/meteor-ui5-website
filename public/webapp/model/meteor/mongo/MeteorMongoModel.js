@@ -11,13 +11,13 @@
  */
 
 // Provides the JSON object based model implementation
-sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context', './MeteorListBinding', './MeteorPropertyBinding', './MeteorTreeBinding'],
-	function(jQuery, Model, Context, MeteorListBinding, MeteorPropertyBinding, MeteorTreeBinding) {
+sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context', './MeteorMongoListBinding', './MeteorMongoPropertyBinding', './MeteorMongoTreeBinding'],
+	function(jQuery, Model, Context, MeteorMongoListBinding, MeteorMongoPropertyBinding, MeteorMongoTreeBinding) {
 	"use strict";
 
 
 	/**
-	 * Constructor for a new MeteorModel.
+	 * Constructor for a new MeteorMongoModel.
 	 *
 	 * @class
 	 * Model implementation for JSON format
@@ -35,9 +35,9 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 * @param {boolean} bObserve whether to observe the JSON data for property changes (experimental)
 	 * @constructor
 	 * @public
-	 * @alias meteor-model-demo.model.MeteorModel
+	 * @alias meteor-model-demo.model.MeteorMongoModel
 	 */
-	var MeteorModel = Model.extend("meteor-model-demo.model.MeteorModel", /** @lends meteor-model-demo.model.MeteorModel.prototype */ {
+	var MeteorMongoModel = Model.extend("meteor-model-demo.model.MeteorMongoModel", /** @lends meteor-model-demo.model.MeteorMongoModel.prototype */ {
 
 		constructor : function(oData, bObserve) {
 			this.pSequentialImportCompleted = Promise.resolve();
@@ -69,7 +69,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 * @return the data object
 	 * @public
 	 */
-	MeteorModel.prototype.getData = function(){
+	MeteorMongoModel.prototype.getData = function(){
 		return this.oData;
 	};
 
@@ -81,7 +81,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 * @see sap.ui.model.Model.prototype.createBindingContext
 	 *
 	 */
-	MeteorModel.prototype.createBindingContext = function(sPath, oContext, mParameters, fnCallBack) {
+	MeteorMongoModel.prototype.createBindingContext = function(sPath, oContext, mParameters, fnCallBack) {
 		// optional parameter handling
 		if (typeof oContext == "function") {
 			fnCallBack = oContext;
@@ -111,7 +111,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 *
 	 * @public
 	 */
-	MeteorModel.prototype.setData = function(oData, bMerge){
+	MeteorMongoModel.prototype.setData = function(oData, bMerge){
 		if (bMerge) {
 			// do a deep copy
 			this.oData = jQuery.extend(true, jQuery.isArray(this.oData) ? [] : {}, this.oData, oData);
@@ -129,7 +129,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 *
 	 * @private
 	 */
-	MeteorModel.prototype.observeData = function(){
+	MeteorMongoModel.prototype.observeData = function(){
 		var that = this;
 		function createGetter(vValue) {
 			return function() {
@@ -179,7 +179,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 *
 	 * @public
 	 */
-	MeteorModel.prototype.setJSON = function(sJSONText, bMerge){
+	MeteorMongoModel.prototype.setJSON = function(sJSONText, bMerge){
 		var oJSONData;
 		try {
 			oJSONData = jQuery.parseJSON(sJSONText);
@@ -198,7 +198,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 * @return {string} sJSON the JSON data serialized as string
 	 * @public
 	 */
-	MeteorModel.prototype.getJSON = function(){
+	MeteorMongoModel.prototype.getJSON = function(){
 		return JSON.stringify(this.oData);
 	};
 
@@ -207,11 +207,11 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 * @param {boolean} [bForceNoCache=false] whether to force not to cache
 	 * @public
 	 */
-	MeteorModel.prototype.forceNoCache = function(bForceNoCache) {
+	MeteorMongoModel.prototype.forceNoCache = function(bForceNoCache) {
 		this.bCache = !bForceNoCache;
 	};
 
-	MeteorModel.prototype._ajax = function(oParameters){
+	MeteorMongoModel.prototype._ajax = function(oParameters){
 		var that = this;
 
 		if (this.bDestroyed) {
@@ -249,7 +249,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 * @see sap.ui.model.Model.prototype.destroy
 	 * @public
 	 */
-	MeteorModel.prototype.destroy = function() {
+	MeteorMongoModel.prototype.destroy = function() {
 		Model.prototype.destroy.apply(this, arguments);
 		// Abort pending requests
 		if (this.aPendingRequestHandles) {
@@ -268,7 +268,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 * @see sap.ui.model.Model.prototype.destroyBindingContext
 	 *
 	 */
-	MeteorModel.prototype.destroyBindingContext = function(oContext) {
+	MeteorMongoModel.prototype.destroyBindingContext = function(oContext) {
 		// TODO: what todo here?
 	};
 
@@ -278,14 +278,14 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 * 					will only be done when the value of a binding changed.
 	 * @public
 	 */
-	MeteorModel.prototype.updateBindings = function(bForceUpdate) {
+	MeteorMongoModel.prototype.updateBindings = function(bForceUpdate) {
 		this.checkUpdate(bForceUpdate);
 	};
 
 		/**
 		 * @see sap.ui.model.Model.prototype.bindContext
 		 */
-		MeteorModel.prototype.bindContext = function(sPath, oContext, mParameters) {
+		MeteorMongoModel.prototype.bindContext = function(sPath, oContext, mParameters) {
 			var oBinding = new ClientContextBinding(this, sPath, oContext, mParameters);
 			return oBinding;
 		};
@@ -313,7 +313,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 *
 	 * @public
 	 */
-	MeteorModel.prototype.loadData = function(sURL, oParameters, bAsync, sType, bMerge, bCache, mHeaders){
+	MeteorMongoModel.prototype.loadData = function(sURL, oParameters, bAsync, sType, bMerge, bCache, mHeaders){
 		var pImportCompleted;
 
 		bAsync = (bAsync !== false);
@@ -376,8 +376,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 * @see sap.ui.model.Model.prototype.bindProperty
 	 *
 	 */
-	MeteorModel.prototype.bindProperty = function(sPath, oContext, mParameters) {
-		var oBinding = new MeteorPropertyBinding(this, sPath, oContext, mParameters);
+	MeteorMongoModel.prototype.bindProperty = function(sPath, oContext, mParameters) {
+		var oBinding = new MeteorMongoPropertyBinding(this, sPath, oContext, mParameters);
 		return oBinding;
 	};
 
@@ -385,8 +385,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 * @see sap.ui.model.Model.prototype.bindList
 	 *
 	 */
-	MeteorModel.prototype.bindList = function(sPath, oContext, aSorters, aFilters, mParameters) {
-		var oBinding = new MeteorListBinding(this, sPath, oContext, aSorters, aFilters, mParameters);
+	MeteorMongoModel.prototype.bindList = function(sPath, oContext, aSorters, aFilters, mParameters) {
+		var oBinding = new MeteorMongoListBinding(this, sPath, oContext, aSorters, aFilters, mParameters);
 		return oBinding;
 	};
 
@@ -401,8 +401,8 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 *         If the tree data structure doesn't contain an array you don't have to specify this parameter.
 	 *
 	 */
-	MeteorModel.prototype.bindTree = function(sPath, oContext, aFilters, mParameters, aSorters) {
-		var oBinding = new MeteorTreeBinding(this, sPath, oContext, aFilters, mParameters, aSorters);
+	MeteorMongoModel.prototype.bindTree = function(sPath, oContext, aFilters, mParameters, aSorters) {
+		var oBinding = new MeteorMongoTreeBinding(this, sPath, oContext, aFilters, mParameters, aSorters);
 		return oBinding;
 	};
 
@@ -417,7 +417,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 * @return {boolean} true if the value was set correctly and false if errors occurred like the entry was not found.
 	 * @public
 	 */
-	MeteorModel.prototype.setProperty = function(sPath, oValue, oContext, bAsyncUpdate) {
+	MeteorMongoModel.prototype.setProperty = function(sPath, oValue, oContext, bAsyncUpdate) {
 		var sResolvedPath = this.resolve(sPath, oContext),
 			iLastSlash, sObjectPath, sProperty;
 
@@ -455,7 +455,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	* @return the value of the property
 	* @public
 	*/
-	MeteorModel.prototype.getProperty = function(sPath, oContext) {
+	MeteorMongoModel.prototype.getProperty = function(sPath, oContext) {
 		return this._getObject(sPath, oContext);
 
 	};
@@ -465,7 +465,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 * @param {object} [oContext]
 	 * @returns {any} the node of the specified path/context
 	 */
-	MeteorModel.prototype._getObject = function (sPath, oContext) {
+	MeteorMongoModel.prototype._getObject = function (sPath, oContext) {
 		var oNode = this.isLegacySyntax() ? this.oData : null;
 		if (oContext instanceof Context) {
 			oNode = this._getObject(oContext.getPath());
@@ -489,12 +489,12 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 		return oNode;
 	};
 
-	MeteorModel.prototype.isList = function(sPath, oContext) {
+	MeteorMongoModel.prototype.isList = function(sPath, oContext) {
 		var sAbsolutePath = this.resolve(sPath, oContext);
 		return jQuery.isArray(this._getObject(sAbsolutePath));
 	};
 
 
-	return MeteorModel;
+	return MeteorMongoModel;
 
 });

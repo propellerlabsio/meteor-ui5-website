@@ -17,10 +17,10 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/P
      * @param {string} sPath
      * @param {sap.ui.model.Context} oContext
      * @param {object} [mParameters]
-     * @alias meteor-model-demo.model.MeteorPropertyBinding
+     * @alias meteor-model-demo.model.MeteorMongoPropertyBinding
      * @extends sap.ui.model.PropertyBinding
      */
-    var MeteorPropertyBinding = PropertyBinding.extend("meteor-model-demo.model.MeteorPropertyBinding", {
+    var MeteorMongoPropertyBinding = PropertyBinding.extend("meteor-model-demo.model.MeteorMongoPropertyBinding", {
 
 
       constructor: function(oModel, sPath, oContext, mParameters) {
@@ -35,7 +35,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/P
     /**
      * @see sap.ui.model.PropertyBinding.prototype.getValue
      */
-    MeteorPropertyBinding.prototype.getValue = function() {
+    MeteorMongoPropertyBinding.prototype.getValue = function() {
       return this.oValue;
     };
 
@@ -43,7 +43,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/P
      * Returns the current value of the bound target (incl. re-evaluation)
      * @return {object} the current value of the bound target
      */
-    MeteorPropertyBinding.prototype._getValue = function() {
+    MeteorMongoPropertyBinding.prototype._getValue = function() {
       var sProperty = this.sPath.substr(this.sPath.lastIndexOf("/") + 1);
       if (sProperty == "__name__") {
         var aPath = this.oContext.split("/");
@@ -56,7 +56,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/P
     /**
      * Setter for context
      */
-    MeteorPropertyBinding.prototype.setContext = function(oContext) {
+    MeteorMongoPropertyBinding.prototype.setContext = function(oContext) {
       if (this.oContext != oContext) {
         sap.ui.getCore().getMessageManager().removeMessages(this.getDataState().getControlMessages(), true);
         this.oContext = oContext;
@@ -69,7 +69,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/P
     /**
      * @see sap.ui.model.PropertyBinding.prototype.setValue
      */
-    MeteorPropertyBinding.prototype.setValue = function(oValue) {
+    MeteorMongoPropertyBinding.prototype.setValue = function(oValue) {
       if (this.bSuspended) {
         return;
       }
@@ -94,7 +94,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/P
      * @param {boolean} bForceupdate
      *
      */
-    MeteorPropertyBinding.prototype.checkUpdate = function(bForceupdate) {
+    MeteorMongoPropertyBinding.prototype.checkUpdate = function(bForceupdate) {
       if (this.bSuspended && !bForceupdate) {
         return;
       }
@@ -110,6 +110,6 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/P
       }
     };
 
-    return MeteorPropertyBinding;
+    return MeteorMongoPropertyBinding;
 
   });
