@@ -6,7 +6,7 @@
 
 		<Page id="CategoriesMeteor" title="Categories (Meteor Model)" class="sapUiStdPage">
 			<content>
-        <core:Fragment fragmentName="meteor-model-demo.view.Categories" type="XML" />
+        <core:Fragment fragmentName="meteor-model-demo.view.Categories-dbg" type="XML" />
 			</content>
 		</Page>
 </mvc:View>

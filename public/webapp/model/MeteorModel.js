@@ -220,6 +220,7 @@ sap.ui.define([
 	 * @param {string} sPath the path
 	 */
 	MeteorModel.prototype.getContext = function(sPath) {
+		debugger;
 		if (!jQuery.sap.startsWith(sPath, "/")) {
 			throw new Error("Path " + sPath + " must start with a / ");
 		}
@@ -246,6 +247,7 @@ sap.ui.define([
 	 * @return {string} resolved path or undefined
 	 */
 	MeteorModel.prototype.resolve = function(sPath, oContext) {
+		debugger;
 		var bIsRelative = typeof sPath == "string" && !jQuery.sap.startsWith(sPath, "/"),
 			sResolvedPath = sPath,
 			sContextPath;
@@ -275,6 +277,7 @@ sap.ui.define([
 	 * @public
 	 */
 	MeteorModel.prototype.getDefaultBindingMode = function() {
+		debugger;
 		return this.sDefaultBindingMode;
 	};
 
@@ -288,6 +291,7 @@ sap.ui.define([
 	 * @public
 	 */
 	MeteorModel.prototype.setDefaultBindingMode = function(sMode) {
+		debugger;
 		if (this.isBindingModeSupported(sMode)) {
 			this.sDefaultBindingMode = sMode;
 			return this;
@@ -304,6 +308,7 @@ sap.ui.define([
 	 * @public
 	 */
 	MeteorModel.prototype.isBindingModeSupported = function(sMode) {
+		debugger;
 		return (sMode in this.mSupportedBindingModes);
 	};
 
@@ -324,6 +329,7 @@ sap.ui.define([
 	 * @public
 	 */
 	MeteorModel.prototype.refresh = function(bForceUpdate) {
+		debugger;
 		this.checkUpdate(bForceUpdate);
 		if (bForceUpdate) {
 			this.fireMessageChange({oldMessages: this.mMessages});
@@ -352,6 +358,7 @@ sap.ui.define([
 	 * @public
 	 */
 	MeteorModel.prototype.getOriginalProperty = function(sPath, oContext) {
+		debugger;
 		return this.getProperty(sPath, oContext);
 	};
 

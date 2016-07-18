@@ -32,6 +32,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ListBinding', 'sap/ui/model/Fi
       constructor: function(oModel, sPath, oContext, aSorters, aFilters, mParameters) {
         debugger;
         ListBinding.call(this, oModel, sPath, oContext, mParameters);
+        this.getContexts();
       },
 
       metadata: {
@@ -59,6 +60,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ListBinding', 'sap/ui/model/Fi
      * @protected
      */
     MeteorListBinding.prototype.getContexts = function(iStartIndex, iLength) {
+      debugger;
       if (!iStartIndex) {
         iStartIndex = 0;
       }
@@ -119,6 +121,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ListBinding', 'sap/ui/model/Fi
      * @public
      */
     MeteorListBinding.prototype.getCurrentContexts = function() {
+      debugger;
       return this.getContexts();
     };
 
@@ -131,7 +134,9 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ListBinding', 'sap/ui/model/Fi
      * @public
      */
     MeteorListBinding.prototype.getLength = function() {
-      return 0;
+      debugger;
+      // TODO fix!
+      return 2;
 
     };
 
@@ -144,6 +149,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ListBinding', 'sap/ui/model/Fi
      * @public
      */
     MeteorListBinding.prototype.isLengthFinal = function() {
+      debugger;
       return true;
     };
 
@@ -157,6 +163,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ListBinding', 'sap/ui/model/Fi
      * @public
      */
     MeteorListBinding.prototype.getDistinctValues = function(sPath) {
+      debugger;
       return null;
     };
 
@@ -257,6 +264,7 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ListBinding', 'sap/ui/model/Fi
      * @private
      */
     MeteorListBinding.prototype.enableExtendedChangeDetection = function(bDetectUpdates, vKey) {
+      debugger;
       this.bUseExtendedChangeDetection = true;
       this.bDetectUpdates = bDetectUpdates;
       if (typeof vKey === "string") {
