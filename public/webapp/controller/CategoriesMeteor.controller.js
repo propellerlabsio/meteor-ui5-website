@@ -1,6 +1,6 @@
 
 sap.ui.define([
-  'sap/ui/core/mvc/Controller',
+  'meteor-model-demo/controller/ModelDebugController',
   'meteor-model-demo/model/meteor/mongo/MeteorMongoModel'
 ], function(Controller, MeteorModel) {
   "use strict";
@@ -12,10 +12,6 @@ sap.ui.define([
 			var oJsonData = [];
 			var oModel = new MeteorModel();
 			this.getView().setModel(oModel);
-    },
-
-    onDebugPress: function() {
-      debugger;
     }
   });
 

@@ -1,6 +1,6 @@
 
 sap.ui.define([
-  'sap/ui/core/mvc/Controller',
+  'meteor-model-demo/controller/ModelDebugController',
   'meteor-model-demo/model/json/FlatJSONModel'
 ], function(Controller, JSONModel) {
   "use strict";
@@ -23,25 +23,8 @@ sap.ui.define([
               Categories: result.slice(0, 2) // TODO remove slice - debugging
             });
 			});
-    },
-
-    onDebugPress: function() {
-      var oModel = this.getView().getModel();
-      var aOutput = [];
-      oModel.aBindings.forEach((oBinding) => {
-        var oOutput = {};
-        oOutput.bRelative = oBinding.bRelative;
-        oOutput.sPath = oBinding.sPath;
-        if (oBinding.oContext) {
-          oOutput['oContext.sPath'] = oBinding.oContext.sPath;
-        }
-        aOutput.push(oOutput);
-      });
-
-      console.table(oModel.aBindings);
-      console.table(aOutput);
-      debugger;
     }
+
   });
 
   return CController;
