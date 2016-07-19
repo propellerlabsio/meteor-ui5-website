@@ -2,11 +2,12 @@
     	xmlns:core="sap.ui.core"
     	xmlns:mvc="sap.ui.core.mvc"
     	xmlns="sap.m"
-      controllerName="meteor-model-demo.controller.CategoriesMeteor">
+      controllerName="meteor-model-demo.controller.CategoriesOData">
 
-		<Page id="CategoriesMeteor" title="Categories (Meteor Model)" class="sapUiStdPage">
+		<Page id="CategoriesMeteor" title="Categories (OData Model)" class="sapUiStdPage">
 			<content>
         <core:Fragment fragmentName="meteor-model-demo.view.Categories" type="XML" />
 			</content>
 		</Page>
 </mvc:View>
+ 

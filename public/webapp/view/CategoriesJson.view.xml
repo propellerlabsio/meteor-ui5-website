@@ -6,7 +6,7 @@
 
 		<Page id="CategoriesJson" title="Categories (JSON Model)" class="sapUiStdPage">
 			<content>
-        <core:Fragment fragmentName="meteor-model-demo.view.Categories-dbg" type="XML" />
+        <core:Fragment fragmentName="meteor-model-demo.view.Categories" type="XML" />
 			</content>
 		</Page>
 </mvc:View>

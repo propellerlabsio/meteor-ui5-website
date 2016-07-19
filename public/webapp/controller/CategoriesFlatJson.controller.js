@@ -20,7 +20,8 @@ sap.ui.define([
 				(error, result) => {
 					oModel.setData(
             {
-              Categories: result.slice(0, 2) // TODO remove slice - debugging
+              Categories: result
+              // Categories: result.slice(0, 2) // TODO remove slice - debugging
             });
 			});
     }
