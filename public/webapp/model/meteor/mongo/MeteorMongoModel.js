@@ -2,551 +2,938 @@
  * ${copyright}
  */
 
-/**
- * JSON-based DataBinding
- *
- * @namespace
- * @name meteor-model-demo.model
- * @public
- */
-
-// Provides the JSON object based model implementation
-sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context', './MeteorMongoListBinding', './MeteorMongoPropertyBinding', './MeteorMongoTreeBinding'],
-  function(jQuery, Model, Context, MeteorMongoListBinding, MeteorMongoPropertyBinding, MeteorMongoTreeBinding) {
-    "use strict";
+// Provides the base implementation for all model implementations
+sap.ui.define([
+	'jquery.sap.global',
+	'sap/ui/model/Model',
+	'sap/ui/model/BindingMode',
+	'sap/ui/model/Context',
+	'meteor-model-demo/model/meteor/mongo/MeteorMongoListBinding'
+], function(jQuery, Model, BindingMode, Context, MeteorMongoListBinding) {
+	"use strict";
 
 
-    /**
-     * Constructor for a new MeteorMongoModel.
-     *
-     * @class
-     * Model implementation for JSON format
-     *
-     * The observation feature is experimental! When observation is activated, the application can directly change the
-     * JS objects without the need to call setData, setProperty or refresh. Observation does only work for existing
-     * properties in the JSON, it can not detect new properties or new array entries.
-     *
-     * @extends sap.ui.model.Model
-     *
-     * @author SAP SE
-     * @version ${version}
-     *
-     * @param {object} oData either the URL where to load the JSON from or a JS object
-     * @param {boolean} bObserve whether to observe the JSON data for property changes (experimental)
-     * @constructor
-     * @public
-     * @alias meteor-model-demo.model.MeteorMongoModel
-     */
-    var MeteorMongoModel = Model.extend("meteor-model-demo.model.mongo.MeteorMongoModel", /** @lends meteor-model-demo.model.MeteorMongoModel.prototype */ {
+	/**
+	 * The SAPUI5 Data Binding API.
+	 *
+	 * The default binding mode for model implementations (if not implemented otherwise) is two way and the supported binding modes by the model
+	 * are one way, two way and one time. The default binding mode can be changed by the application for each model instance.
+	 * A model implementation should specify its supported binding modes and set the default binding mode accordingly
+	 * (e.g. if the model supports only one way binding the default binding mode should also be set to one way).
+	 *
+	 * The default size limit for models is 100. The size limit determines the number of entries used for the list bindings.
+	 *
+	 *
+	 * @namespace
+	 * @name sap.ui.model
+	 * @public
+	 */
 
-      constructor: function(oData, bObserve) {
-        this.pSequentialImportCompleted = Promise.resolve();
-        Model.apply(this, arguments);
+	/**
+	 * Constructor for a new MeteorMongoModel.
+	 *
+	 * Every MeteorMongoModel is a MessageProcessor that is able to handle Messages with the normal binding path syntax in the target.
+	 *
+	 * @class
+	 * This is an abstract base class for model objects.
+	 * @abstract
+	 *
+	 * @extends sap.ui.core.message.MessageProcessor
+	 *
+	 * @author SAP SE
+	 * @version ${version}
+	 *
+	 * @constructor
+	 * @public
+	 * @alias meteor-model-demo.model.meteor.mongo.MeteorMongoModel
+	 */
+	var MeteorMongoModel = Model.extend("meteor-model-demo.model.meteor.mongo.MeteorMongoModel", /** @lends meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype */ {
 
-        this.bCache = true;
-        this.aPendingRequestHandles = [];
+		constructor : function () {
+			Model.apply(this, arguments);
 
-        if (typeof oData == "string") {
-          debugger;
-          this.loadData(oData);
-        }
+			this.oData = {};
+			this.bDestroyed = false;
+			this.aBindings = [];
+			this.mContexts = {};
+			this.iSizeLimit = 100;
+			this.sDefaultBindingMode = BindingMode.TwoWay;
+			this.mSupportedBindingModes = {"OneWay": true, "TwoWay": true, "OneTime": true};
+			this.bLegacySyntax = false;
+			this.sUpdateTimer = null;
+		},
 
-        this.bObserve = bObserve;
-        if (oData && typeof oData == "object") {
-          this.setData(oData);
-        }
-      },
+		metadata : {
 
-      metadata: {
-        publicMethods: ["setJSON", "getJSON", "loadData", "setData", "getData", "setProperty", "forceNoCache"]
-      }
+			"abstract" : true,
+			publicMethods : [
+				// methods
+				"bindProperty", "bindList", "bindTree", "bindContext", "createBindingContext", "destroyBindingContext", "getProperty",
+				"getDefaultBindingMode", "setDefaultBindingMode", "isBindingModeSupported", "attachParseError", "detachParseError",
+				"attachRequestCompleted", "detachRequestCompleted", "attachRequestFailed", "detachRequestFailed", "attachRequestSent",
+				"detachRequestSent", "setSizeLimit", "refresh", "isList", "getObject"
+		  ]
 
-    });
-    /**
+		  /* the following would save code, but requires the new ManagedObject (1.9.1)
+		  , events : {
+				"parseError" : {},
+				"requestFailed" : {},
+				"requestSent" : {},
+				"requestCompleted" ; {}
+		  }
+		  */
 
-     * Returns the current data of the model.
-     * Be aware that the returned object is a reference to the model data so all changes to that data will also change the model data.
-     *
-     * @return the data object
-     * @public
-     */
-    MeteorMongoModel.prototype.getData = function() {
-      return this.oData;
-    };
+		}
 
-    /**
-     * @see sap.ui.model.Model.prototype.bindElement
-     *
-     */
-    /**
-     * @see sap.ui.model.Model.prototype.createBindingContext
-     *
-     */
-    MeteorMongoModel.prototype.createBindingContext = function(sPath, oContext, mParameters, fnCallBack) {
-			
-      // optional parameter handling
-      if (typeof oContext == "function") {
-        fnCallBack = oContext;
-        oContext = null;
-      }
-      if (typeof mParameters == "function") {
-        fnCallBack = mParameters;
-        mParameters = null;
-      }
-      // resolve path and create context
-      var sContextPath = this.resolve(sPath, oContext),
-        oNewContext = (sContextPath == undefined) ? undefined : this.getContext(sContextPath ? sContextPath : "/");
-      if (!oNewContext) {
-        oNewContext = null;
-      }
-      if (fnCallBack) {
-        fnCallBack(oNewContext);
-      }
-      return oNewContext;
-    };
-
-    /**
-     * Sets the JSON encoded data to the model.
-     *
-     * @param {object} oData the data to set on the model
-     * @param {boolean} [bMerge=false] whether to merge the data instead of replacing it
-     *
-     * @public
-     */
-    MeteorMongoModel.prototype.setData = function(oData, bMerge) {
-      if (bMerge) {
-        // do a deep copy
-        this.oData = jQuery.extend(true, jQuery.isArray(this.oData) ? [] : {}, this.oData, oData);
-      } else {
-        this.oData = oData;
-      }
-      if (this.bObserve) {
-        this.observeData();
-      }
-      this.checkUpdate();
-    };
-
-    /**
-     * Recursively iterates the JSON data and adds setter functions for the properties
-     *
-     * @private
-     */
-    MeteorMongoModel.prototype.observeData = function() {
-      var that = this;
-
-      function createGetter(vValue) {
-        return function() {
-          return vValue;
-        };
-      }
-
-      function createSetter(oObject, sName) {
-        return function(vValue) {
-          // Newly added data needs to be observed to be included
-          observeRecursive(vValue, oObject, sName);
-          that.checkUpdate();
-        };
-      }
-
-      function createProperty(oObject, sName, vValue) {
-        // Do not create getter/setter for function references
-        if (typeof vValue == "function") {
-          oObject[sName] = vValue;
-        } else {
-          Object.defineProperty(oObject, sName, {
-            get: createGetter(vValue),
-            set: createSetter(oObject, sName)
-          });
-        }
-      }
-
-      function observeRecursive(oObject, oParentObject, sName) {
-        if (jQuery.isArray(oObject)) {
-          for (var i = 0; i < oObject.length; i++) {
-            observeRecursive(oObject[i], oObject, i);
-          }
-        } else if (jQuery.isPlainObject(oObject)) {
-          for (var i in oObject) {
-            observeRecursive(oObject[i], oObject, i);
-          }
-        }
-        if (oParentObject) {
-          createProperty(oParentObject, sName, oObject);
-        }
-      }
-      observeRecursive(this.oData);
-    };
-
-    /**
-     * Sets the JSON encoded string data to the model.
-     *
-     * @param {string} sJSONText the string data to set on the model
-     * @param {boolean} [bMerge=false] whether to merge the data instead of replacing it
-     *
-     * @public
-     */
-    MeteorMongoModel.prototype.setJSON = function(sJSONText, bMerge) {
-      var oJSONData;
-      try {
-        oJSONData = jQuery.parseJSON(sJSONText);
-        this.setData(oJSONData, bMerge);
-      } catch (e) {
-        jQuery.sap.log.fatal("The following problem occurred: JSON parse Error: " + e);
-        this.fireParseError({
-          url: "",
-          errorCode: -1,
-          reason: "",
-          srcText: e,
-          line: -1,
-          linepos: -1,
-          filepos: -1
-        });
-      }
-    };
-
-    /**
-     * Serializes the current JSON data of the model into a string.
-     * Note: May not work in Internet Explorer 8 because of lacking JSON support (works only if IE 8 mode is enabled)
-     *
-     * @return {string} sJSON the JSON data serialized as string
-     * @public
-     */
-    MeteorMongoModel.prototype.getJSON = function() {
-      return JSON.stringify(this.oData);
-    };
-
-    /**
-     * Force no caching.
-     * @param {boolean} [bForceNoCache=false] whether to force not to cache
-     * @public
-     */
-    MeteorMongoModel.prototype.forceNoCache = function(bForceNoCache) {
-      this.bCache = !bForceNoCache;
-    };
-
-    MeteorMongoModel.prototype._ajax = function(oParameters) {
-      var that = this;
-
-      if (this.bDestroyed) {
-        return;
-      }
-
-      function wrapHandler(fn) {
-        return function() {
-          // request finished, remove request handle from pending request array
-          var iIndex = jQuery.inArray(oRequestHandle, that.aPendingRequestHandles);
-          if (iIndex > -1) {
-            that.aPendingRequestHandles.splice(iIndex, 1);
-          }
-
-          // call original handler method
-          if (!(oRequestHandle && oRequestHandle.bSuppressErrorHandlerCall)) {
-            fn.apply(this, arguments);
-          }
-        };
-      }
-
-      oParameters.success = wrapHandler(oParameters.success);
-      oParameters.error = wrapHandler(oParameters.error);
-
-      var oRequestHandle = jQuery.ajax(oParameters);
-
-      // add request handle to array and return it (only for async requests)
-      if (oParameters.async) {
-        this.aPendingRequestHandles.push(oRequestHandle);
-      }
-
-    };
-
-    /**
-     * @see sap.ui.model.Model.prototype.destroy
-     * @public
-     */
-    MeteorMongoModel.prototype.destroy = function() {
-      Model.prototype.destroy.apply(this, arguments);
-      // Abort pending requests
-      if (this.aPendingRequestHandles) {
-        for (var i = this.aPendingRequestHandles.length - 1; i >= 0; i--) {
-          var oRequestHandle = this.aPendingRequestHandles[i];
-          if (oRequestHandle && oRequestHandle.abort) {
-            oRequestHandle.bSuppressErrorHandlerCall = true;
-            oRequestHandle.abort();
-          }
-        }
-        delete this.aPendingRequestHandles;
-      }
-    };
-
-    /**
-     * @see sap.ui.model.Model.prototype.destroyBindingContext
-     *
-     */
-    MeteorMongoModel.prototype.destroyBindingContext = function(oContext) {
-      // TODO: what todo here?
-    };
-
-    /**
-     * update all bindings
-     * @param {boolean} bForceUpdate true/false: Default = false. If set to false an update
-     * 					will only be done when the value of a binding changed.
-     * @public
-     */
-    MeteorMongoModel.prototype.updateBindings = function(bForceUpdate) {
-      this.checkUpdate(bForceUpdate);
-    };
-
-    /**
-     * @see sap.ui.model.Model.prototype.bindContext
-     */
-    MeteorMongoModel.prototype.bindContext = function(sPath, oContext, mParameters) {
-      var oBinding = new MeteorMongoContextBinding(this, sPath, oContext, mParameters);
-      return oBinding;
-    };
-
-    /**
-     * Load JSON-encoded data from the server using a GET HTTP request and store the resulting JSON data in the model.
-     * Note: Due to browser security restrictions, most "Ajax" requests are subject to the same origin policy,
-     * the request can not successfully retrieve data from a different domain, subdomain, or protocol.
-     *
-     * @param {string} sURL A string containing the URL to which the request is sent.
-     * @param {object | string} [oParameters] A map or string that is sent to the server with the request.
-     * Data that is sent to the server is appended to the URL as a query string.
-     * If the value of the data parameter is an object (map), it is converted to a string and
-     * url-encoded before it is appended to the URL.
-     * @param {boolean} [bAsync=true] By default, all requests are sent asynchronous
-     * (i.e. this is set to true by default). If you need synchronous requests, set this option to false.
-     * Cross-domain requests do not support synchronous operation. Note that synchronous requests may
-     * temporarily lock the browser, disabling any actions while the request is active.
-     * @param {string} [sType=GET] The type of request to make ("POST" or "GET"), default is "GET".
-     * Note: Other HTTP request methods, such as PUT and DELETE, can also be used here, but
-     * they are not supported by all browsers.
-     * @param {boolean} [bMerge=false] whether the data should be merged instead of replaced
-     * @param {string} [bCache=false] force no caching if false. Default is false
-     * @param {object} [mHeaders] An object of additional header key/value pairs to send along with the request
-     *
-     * @public
-     */
-    MeteorMongoModel.prototype.loadData = function(sURL, oParameters, bAsync, sType, bMerge, bCache, mHeaders) {
-      var pImportCompleted;
-
-      bAsync = (bAsync !== false);
-      sType = sType || "GET";
-      bCache = bCache === undefined ? this.bCache : bCache;
-
-      this.fireRequestSent({
-        url: sURL,
-        type: sType,
-        async: bAsync,
-        headers: mHeaders,
-        info: "cache=" + bCache + ";bMerge=" + bMerge,
-        infoObject: {
-          cache: bCache,
-          merge: bMerge
-        }
-      });
-
-      var fnSuccess = function(oData) {
-        if (!oData) {
-          jQuery.sap.log.fatal("The following problem occurred: No data was retrieved by service: " + sURL);
-        }
-        this.setData(oData, bMerge);
-        this.fireRequestCompleted({
-          url: sURL,
-          type: sType,
-          async: bAsync,
-          headers: mHeaders,
-          info: "cache=" + bCache + ";bMerge=" + bMerge,
-          infoObject: {
-            cache: bCache,
-            merge: bMerge
-          },
-          success: true
-        });
-      }.bind(this);
-
-      var fnError = function(oParams) {
-        var oError = {
-          message: oParams.textStatus,
-          statusCode: oParams.request.status,
-          statusText: oParams.request.statusText,
-          responseText: oParams.request.responseText
-        };
-        jQuery.sap.log.fatal("The following problem occurred: " + oParams.textStatus, oParams.request.responseText + "," +
-          oParams.request.status + "," + oParams.request.statusText);
-
-        this.fireRequestCompleted({
-          url: sURL,
-          type: sType,
-          async: bAsync,
-          headers: mHeaders,
-          info: "cache=" + bCache + ";bMerge=" + bMerge,
-          infoObject: {
-            cache: bCache,
-            merge: bMerge
-          },
-          success: false,
-          errorobject: oError
-        });
-        this.fireRequestFailed(oError);
-      }.bind(this);
-
-      var _loadData = function(fnSuccess, fnError) {
-        this._ajax({
-          url: sURL,
-          async: bAsync,
-          dataType: 'json',
-          cache: bCache,
-          data: oParameters,
-          headers: mHeaders,
-          type: sType,
-          success: fnSuccess,
-          error: fnError
-        });
-      }.bind(this);
-
-      if (bAsync) {
-        pImportCompleted = new Promise(function(resolve, reject) {
-          var fnReject = function(oXMLHttpRequest, sTextStatus, oError) {
-            reject({
-              request: oXMLHttpRequest,
-              textStatus: sTextStatus,
-              error: oError
-            });
-          };
-          _loadData(resolve, fnReject);
-        });
-
-        this.pSequentialImportCompleted = this.pSequentialImportCompleted.then(function() {
-          return pImportCompleted.then(fnSuccess, fnError);
-        });
-      } else {
-        _loadData(fnSuccess, fnError);
-      }
-    };
-
-    /**
-     * @see sap.ui.model.Model.prototype.bindProperty
-     *
-     */
-    MeteorMongoModel.prototype.bindProperty = function(sPath, oContext, mParameters) {
-      var oBinding = new MeteorMongoPropertyBinding(this, sPath, oContext, mParameters);
-      return oBinding;
-    };
-
-    /**
-     * @see sap.ui.model.Model.prototype.bindList
-     *
-     */
-    MeteorMongoModel.prototype.bindList = function(sPath, oContext, aSorters, aFilters, mParameters) {
-      var oBinding = new MeteorMongoListBinding(this, sPath, oContext, aSorters, aFilters, mParameters);
-      return oBinding;
-    };
-
-    /**
-     * @see sap.ui.model.Model.prototype.bindTree
-     *
-     * @param {object}
-     *         [mParameters=null] additional model specific parameters (optional)
-     *         If the mParameter <code>arrayNames</code> is specified with an array of string names this names will be checked against the tree data structure
-     *         and the found data in this array is included in the tree but only if also the parent array is included.
-     *         If this parameter is not specified then all found arrays in the data structure are bound.
-     *         If the tree data structure doesn't contain an array you don't have to specify this parameter.
-     *
-     */
-    MeteorMongoModel.prototype.bindTree = function(sPath, oContext, aFilters, mParameters, aSorters) {
-      var oBinding = new MeteorMongoTreeBinding(this, sPath, oContext, aFilters, mParameters, aSorters);
-      return oBinding;
-    };
-
-    /**
-     * Sets a new value for the given property <code>sPropertyName</code> in the model.
-     * If the model value changed all interested parties are informed.
-     *
-     * @param {string}  sPath path of the property to set
-     * @param {any}     oValue value to set the property to
-     * @param {object} [oContext=null] the context which will be used to set the property
-     * @param {boolean} [bAsyncUpdate] whether to update other bindings dependent on this property asynchronously
-     * @return {boolean} true if the value was set correctly and false if errors occurred like the entry was not found.
-     * @public
-     */
-    MeteorMongoModel.prototype.setProperty = function(sPath, oValue, oContext, bAsyncUpdate) {
-      var sResolvedPath = this.resolve(sPath, oContext),
-        iLastSlash, sObjectPath, sProperty;
-
-      // return if path / context is invalid
-      if (!sResolvedPath) {
-        return false;
-      }
-
-      // If data is set on root, call setData instead
-      if (sResolvedPath == "/") {
-        this.setData(oValue);
-        return true;
-      }
-
-      iLastSlash = sResolvedPath.lastIndexOf("/");
-      // In case there is only one slash at the beginning, sObjectPath must contain this slash
-      sObjectPath = sResolvedPath.substring(0, iLastSlash || 1);
-      sProperty = sResolvedPath.substr(iLastSlash + 1);
-
-      var oObject = this._getObject(sObjectPath);
-      if (oObject) {
-        oObject[sProperty] = oValue;
-        this.checkUpdate(false, bAsyncUpdate);
-        return true;
-      }
-      return false;
-    };
-
-    /**
-     * Returns the value for the property with the given <code>sPropertyName</code>
-     *
-     * @param {string} sPath the path to the property
-     * @param {object} [oContext=null] the context which will be used to retrieve the property
-     * @type any
-     * @return the value of the property
-     * @public
-     */
-    MeteorMongoModel.prototype.getProperty = function(sPath, oContext) {
-      return this._getObject(sPath, oContext);
-
-    };
-
-    /**
-     * @param {string} sPath
-     * @param {object} [oContext]
-     * @returns {any} the node of the specified path/context
-     */
-    MeteorMongoModel.prototype._getObject = function(sPath, oContext) {
-      var oNode = this.isLegacySyntax() ? this.oData : null;
-      if (oContext instanceof Context) {
-        oNode = this._getObject(oContext.getPath());
-      } else if (oContext) {
-        oNode = oContext;
-      }
-      if (!sPath) {
-        return oNode;
-      }
-      var aParts = sPath.split("/"),
-        iIndex = 0;
-      if (!aParts[0]) {
-        // absolute path starting with slash
-        oNode = this.oData;
-        iIndex++;
-      }
-      while (oNode && aParts[iIndex]) {
-        oNode = oNode[aParts[iIndex]];
-        iIndex++;
-      }
-      return oNode;
-    };
-
-    MeteorMongoModel.prototype.isList = function(sPath, oContext) {
-      var sAbsolutePath = this.resolve(sPath, oContext);
-      return jQuery.isArray(this._getObject(sAbsolutePath));
-    };
+	});
 
 
-    return MeteorMongoModel;
+	/**
+	 * Map of event names, that are provided by the model.
+	 */
+	MeteorMongoModel.M_EVENTS = {
+		/**
+		 * Depending on the model implementation a ParseError should be fired if a parse error occurred.
+		 * Contains the parameters:
+		 * errorCode, url, reason, srcText, line, linepos, filepos
+		 */
+		ParseError : "parseError",
 
-  });
+		/**
+		 * Depending on the model implementation a RequestFailed should be fired if a request to a backend failed.
+		 * Contains the parameters:
+		 * message, statusCode, statusText and responseText
+		 *
+		 */
+		RequestFailed : "requestFailed",
+
+		/**
+		 * Depending on the model implementation a RequestSent should be fired when a request to a backend is sent.
+		 * Contains Parameters: url, type, async, info (<strong>deprecated</strong>), infoObject
+		 *
+		 */
+		RequestSent : "requestSent",
+
+		/**
+		 * Depending on the model implementation a RequestCompleted should be fired when a request to a backend is completed regardless if the request failed or succeeded.
+		 * Contains Parameters: url, type, async, info (<strong>deprecated</strong>), infoObject, success, errorobject
+		 *
+		 */
+		RequestCompleted : "requestCompleted",
+
+		/**
+		 * Event is fired when changes occur to a property value in the model. The event contains a reason parameter which describes the cause of the property value change.
+		 * Currently the event is only fired with reason <code>sap.ui.model.ChangeReason.Binding</code> which is fired when two way changes occur to a value of a property binding.
+		 * Contains the parameters:
+		 * reason, path, context, value
+		 *
+		 */
+		PropertyChange : "propertyChange"
+	};
+
+	/**
+	 * The 'requestFailed' event is fired, when data retrieval from a backend failed.
+	 *
+	 * Note: Subclasses might add additional parameters to the event object. Optional parameters can be omitted.
+	 *
+	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel#requestFailed
+	 * @event
+	 * @param {sap.ui.base.Event} oEvent
+	 * @param {sap.ui.base.EventProvider} oEvent.getSource
+	 * @param {object} oEvent.getParameters
+
+	 * @param {string} oEvent.getParameters.message A text that describes the failure.
+	 * @param {string} oEvent.getParameters.statusCode HTTP status code returned by the request (if available)
+	 * @param {string} oEvent.getParameters.statusText The status as a text, details not specified, intended only for diagnosis output
+	 * @param {string} [oEvent.getParameters.responseText] Response that has been received for the request, as a text string
+	 * @public
+	 */
+
+	/**
+	 * Attach event-handler <code>fnFunction</code> to the 'requestFailed' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.<br/>
+	 *
+	 *
+	 * @param {object}
+	 *            [oData] The object, that should be passed along with the event-object when firing the event.
+	 * @param {function}
+	 *            fnFunction The function to call, when the event occurs. This function will be called on the
+	 *            oListener-instance (if present) or in a 'static way'.
+	 * @param {object}
+	 *            [oListener] Object on which to call the given function. If empty, this MeteorMongoModel is used.
+	 *
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @public
+	 */
+	MeteorMongoModel.prototype.attachRequestFailed = function(oData, fnFunction, oListener) {
+		this.attachEvent("requestFailed", oData, fnFunction, oListener);
+		return this;
+	};
+
+	/**
+	 * Detach event-handler <code>fnFunction</code> from the 'requestFailed' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.<br/>
+	 *
+	 * The passed function and listener object must match the ones previously used for event registration.
+	 *
+	 * @param {function}
+	 *            fnFunction The function to call, when the event occurs.
+	 * @param {object}
+	 *            oListener Object on which the given function had to be called.
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @public
+	 */
+	MeteorMongoModel.prototype.detachRequestFailed = function(fnFunction, oListener) {
+		this.detachEvent("requestFailed", fnFunction, oListener);
+		return this;
+	};
+
+	/**
+	 * Fire event requestFailed to attached listeners.
+	 *
+	 * @param {object} [mArguments] the arguments to pass along with the event.
+	 * @param {string} [mArguments.message]  A text that describes the failure.
+	 * @param {string} [mArguments.statusCode]  HTTP status code returned by the request (if available)
+	 * @param {string} [mArguments.statusText] The status as a text, details not specified, intended only for diagnosis output
+	 * @param {string} [mArguments.responseText] Response that has been received for the request ,as a text string
+	 *
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @protected
+	 */
+	MeteorMongoModel.prototype.fireRequestFailed = function(mArguments) {
+		this.fireEvent("requestFailed", mArguments);
+		return this;
+	};
+
+
+	/**
+	 * The 'parseError' event is fired when parsing of a model document (e.g. XML response) fails.
+	 *
+	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel#parseError
+	 * @event
+	 * @param {sap.ui.base.Event} oEvent
+	 * @param {sap.ui.base.EventProvider} oEvent.getSource
+	 * @param {object} oEvent.getParameters
+
+	 * @param {int} oEvent.getParameters.errorCode
+	 * @param {string} oEvent.getParameters.url
+	 * @param {string} oEvent.getParameters.reason
+	 * @param {string} oEvent.getParameters.srcText
+	 * @param {int} oEvent.getParameters.line
+	 * @param {int} oEvent.getParameters.linepos
+	 * @param {int} oEvent.getParameters.filepos
+	 * @public
+	 */
+
+	/**
+	 * Attach event-handler <code>fnFunction</code> to the 'parseError' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.<br/>
+	 *
+	 *
+	 * @param {object}
+	 *            [oData] The object, that should be passed along with the event-object when firing the event.
+	 * @param {function}
+	 *            fnFunction The function to call, when the event occurs. This function will be called on the
+	 *            oListener-instance (if present) or in a 'static way'.
+	 * @param {object}
+	 *            [oListener] Object on which to call the given function. If empty, the global context (window) is used.
+	 *
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @public
+	 */
+	MeteorMongoModel.prototype.attachParseError = function(oData, fnFunction, oListener) {
+		this.attachEvent("parseError", oData, fnFunction, oListener);
+		return this;
+	};
+
+	/**
+	 * Detach event-handler <code>fnFunction</code> from the 'parseError' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.<br/>
+	 *
+	 * The passed function and listener object must match the ones previously used for event registration.
+	 *
+	 * @param {function}
+	 *            fnFunction The function to call, when the event occurs.
+	 * @param {object}
+	 *            oListener Object on which the given function had to be called.
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @public
+	 */
+	MeteorMongoModel.prototype.detachParseError = function(fnFunction, oListener) {
+		this.detachEvent("parseError", fnFunction, oListener);
+		return this;
+	};
+
+	/**
+	 * Fire event parseError to attached listeners.
+	 *
+	 * @param {object} [mArguments] the arguments to pass along with the event.
+	 * @param {int} [mArguments.errorCode]
+	 * @param {string} [mArguments.url]
+	 * @param {string} [mArguments.reason]
+	 * @param {string} [mArguments.srcText]
+	 * @param {int} [mArguments.line]
+	 * @param {int} [mArguments.linepos]
+	 * @param {int} [mArguments.filepos]
+	 *
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @protected
+	 */
+	MeteorMongoModel.prototype.fireParseError = function(mArguments) {
+		this.fireEvent("parseError", mArguments);
+		return this;
+	};
+
+	/**
+	 * The 'requestSent' event is fired, after a request has been sent to a backend.
+	 *
+	 * Note: Subclasses might add additional parameters to the event object. Optional parameters can be omitted.
+	 *
+	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel#requestSent
+	 * @event
+	 * @param {sap.ui.base.Event} oEvent
+	 * @param {sap.ui.base.EventProvider} oEvent.getSource
+	 * @param {object} oEvent.getParameters
+	 * @param {string} oEvent.getParameters.url The url which is sent to the backend
+	 * @param {string} [oEvent.getParameters.type] The type of the request (if available)
+	 * @param {boolean} [oEvent.getParameters.async] If the request is synchronous or asynchronous (if available)
+	 * @param {string} [oEvent.getParameters.info] Additional information for the request (if available) <strong>deprecated</strong>
+	 * @param {object} [oEvent.getParameters.infoObject] Additional information for the request (if available)
+	 * @public
+	 */
+
+	/**
+	 * Attach event-handler <code>fnFunction</code> to the 'requestSent' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.
+	 *
+	 *
+	 * @param {object}
+	 *            [oData] The object, that should be passed along with the event-object when firing the event.
+	 * @param {function}
+	 *            fnFunction The function to call, when the event occurs. This function will be called on the
+	 *            oListener-instance (if present) or in a 'static way'.
+	 * @param {object}
+	 *            [oListener] Object on which to call the given function. If empty, the global context (window) is used.
+	 *
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @public
+	 */
+	MeteorMongoModel.prototype.attachRequestSent = function(oData, fnFunction, oListener) {
+		this.attachEvent("requestSent", oData, fnFunction, oListener);
+		return this;
+	};
+
+	/**
+	 * Detach event-handler <code>fnFunction</code> from the 'requestSent' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.
+	 *
+	 * The passed function and listener object must match the ones previously used for event registration.
+	 *
+	 * @param {function}
+	 *            fnFunction The function to call, when the event occurs.
+	 * @param {object}
+	 *            oListener Object on which the given function had to be called.
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @public
+	 */
+	MeteorMongoModel.prototype.detachRequestSent = function(fnFunction, oListener) {
+		this.detachEvent("requestSent", fnFunction, oListener);
+		return this;
+	};
+
+	/**
+	 * Fire event requestSent to attached listeners.
+	 *
+	 * @param {object} [mArguments] the arguments to pass along with the event.
+	 * @param {string} [mArguments.url] The url which is sent to the backend.
+	 * @param {string} [mArguments.type] The type of the request (if available)
+	 * @param {boolean} [mArguments.async] If the request is synchronous or asynchronous (if available)
+	 * @param {string} [mArguments.info] additional information for the request (if available) <strong>deprecated</strong>
+	 * @param {object} [mArguments.infoObject] Additional information for the request (if available)
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @protected
+	 */
+	MeteorMongoModel.prototype.fireRequestSent = function(mArguments) {
+		this.fireEvent("requestSent", mArguments);
+		return this;
+	};
+
+	/**
+	 * The 'requestCompleted' event is fired, after a request has been completed (includes receiving a response),
+	 * no matter whether the request succeeded or not.
+	 *
+	 * Note: Subclasses might add additional parameters to the event object. Optional parameters can be omitted.
+	 *
+	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel#requestCompleted
+	 * @event
+	 * @param {sap.ui.base.Event} oEvent
+	 * @param {sap.ui.base.EventProvider} oEvent.getSource
+	 * @param {object} oEvent.getParameters
+	 * @param {string} oEvent.getParameters.url The url which was sent to the backend
+	 * @param {string} [oEvent.getParameters.type] The type of the request (if available)
+	 * @param {boolean} oEvent.getParameters.success if the request has been successful or not. In case of errors consult the optional errorobject parameter.
+	 * @param {object} [oEvent.getParameters.errorobject] If the request failed the error if any can be accessed in this property.
+	 * @param {boolean} [oEvent.getParameters.async] If the request is synchronous or asynchronous (if available)
+	 * @param {string} [oEvent.getParameters.info] Additional information for the request (if available) <strong>deprecated</strong>
+	 * @param {object} [oEvent.getParameters.infoObject] Additional information for the request (if available)
+	 * @public
+	 */
+
+	/**
+	 * Attach event-handler <code>fnFunction</code> to the 'requestCompleted' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.
+	 *
+	 *
+	 * @param {object}
+	 *            [oData] The object, that should be passed along with the event-object when firing the event.
+	 * @param {function}
+	 *            fnFunction The function to call, when the event occurs. This function will be called on the
+	 *            oListener-instance (if present) or in a 'static way'.
+	 * @param {object}
+	 *            [oListener] Object on which to call the given function. If empty, the global context (window) is used.
+	 *
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @public
+	 */
+	MeteorMongoModel.prototype.attachRequestCompleted = function(oData, fnFunction, oListener) {
+		this.attachEvent("requestCompleted", oData, fnFunction, oListener);
+		return this;
+	};
+
+	/**
+	 * Detach event-handler <code>fnFunction</code> from the 'requestCompleted' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.
+	 *
+	 * The passed function and listener object must match the ones previously used for event registration.
+	 *
+	 * @param {function}
+	 *            fnFunction The function to call, when the event occurs.
+	 * @param {object}
+	 *            oListener Object on which the given function had to be called.
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @public
+	 */
+	MeteorMongoModel.prototype.detachRequestCompleted = function(fnFunction, oListener) {
+		this.detachEvent("requestCompleted", fnFunction, oListener);
+		return this;
+	};
+
+	/**
+	 * Fire event requestCompleted to attached listeners.
+	 *
+	 * @param {object} [mArguments] the arguments to pass along with the event.
+	 * @param {string} [mArguments.url] The url which was sent to the backend.
+	 * @param {string} [mArguments.type] The type of the request (if available)
+	 * @param {boolean} [mArguments.async] If the request was synchronous or asynchronous (if available)
+	 * @param {string} [mArguments.info] additional information for the request (if available) <strong>deprecated</strong>
+	 * @param {object} [mArguments.infoObject] Additional information for the request (if available)
+	 *
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @protected
+	 */
+	MeteorMongoModel.prototype.fireRequestCompleted = function(mArguments) {
+		this.fireEvent("requestCompleted", mArguments);
+		return this;
+	};
+
+	MeteorMongoModel.prototype.attachMessageChange = function(oData, fnFunction, oListener) {
+		this.attachEvent("messageChange", oData, fnFunction, oListener);
+		return this;
+	};
+
+	MeteorMongoModel.prototype.detachMessageChange = function(fnFunction, oListener) {
+		this.detachEvent("messageChange", fnFunction, oListener);
+		return this;
+	};
+
+	/**
+	 * Fire event propertyChange to attached listeners.
+	 *
+	 * @param {object} [mArguments] the arguments to pass along with the event.
+	 * @param {sap.ui.model.ChangeReason} [mArguments.reason] The reason of the property change
+	 * @param {string} [mArguments.path] The path of the property
+	 * @param {object} [mArguments.context] the context of the property
+	 * @param {object} [mArguments.value] the value of the property
+	 *
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @protected
+	 */
+	MeteorMongoModel.prototype.firePropertyChange = function(mArguments) {
+		this.fireEvent("propertyChange", mArguments);
+		return this;
+	};
+
+	/**
+	 * Attach event-handler <code>fnFunction</code> to the 'propertyChange' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.
+	 *
+	 *
+	 * @param {object}
+	 *            [oData] The object, that should be passed along with the event-object when firing the event.
+	 * @param {function}
+	 *            fnFunction The function to call, when the event occurs. This function will be called on the
+	 *            oListener-instance (if present) or in a 'static way'.
+	 * @param {object}
+	 *            [oListener] Object on which to call the given function. If empty, the global context (window) is used.
+	 *
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @public
+	 */
+	MeteorMongoModel.prototype.attachPropertyChange = function(oData, fnFunction, oListener) {
+		this.attachEvent("propertyChange", oData, fnFunction, oListener);
+		return this;
+	};
+
+	/**
+	 * Detach event-handler <code>fnFunction</code> from the 'propertyChange' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.
+	 *
+	 * The passed function and listener object must match the ones previously used for event registration.
+	 *
+	 * @param {function}
+	 *            fnFunction The function to call, when the event occurs.
+	 * @param {object}
+	 *            oListener Object on which the given function had to be called.
+	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @public
+	 */
+	MeteorMongoModel.prototype.detachPropertyChange = function(fnFunction, oListener) {
+		this.detachEvent("propertyChange", fnFunction, oListener);
+		return this;
+	};
+
+	// the 'abstract methods' to be implemented by child classes
+
+	/**
+	 * Implement in inheriting classes
+	 * @abstract
+	 *
+	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype.bindProperty
+	 * @function
+	 * @param {string}
+	 *         sPath the path pointing to the property that should be bound
+	 * @param {object}
+	 *         [oContext=null] the context object for this databinding (optional)
+	 * @param {object}
+	 *         [mParameters=null] additional model specific parameters (optional)
+	 * @return {sap.ui.model.PropertyBinding}
+	 *
+	 * @public
+	 */
+
+	/**
+	 * Implement in inheriting classes
+	 * @abstract
+	 *
+	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype.bindList
+	 * @function
+	 * @param {string}
+	 *         sPath the path pointing to the list / array that should be bound
+	 * @param {object}
+	 *         [oContext=null] the context object for this databinding (optional)
+	 * @param {sap.ui.model.Sorter}
+	 *         [aSorters=null] initial sort order (can be either a sorter or an array of sorters) (optional)
+	 * @param {array}
+	 *         [aFilters=null] predefined filter/s (can be either a filter or an array of filters) (optional)
+	 * @param {object}
+	 *         [mParameters=null] additional model specific parameters (optional)
+	 * @return {sap.ui.model.ListBinding}
+
+	 * @public
+	 */
+	 MeteorMongoModel.prototype.bindList = function(sPath, oContext, aSorters, aFilters, mParameters){
+		 var oBinding = new MeteorMongoListBinding(this, sPath, oContext, aSorters, aFilters, mParameters);
+		 return oBinding;
+	 }
+
+	/**
+	 * Implement in inheriting classes
+	 * @abstract
+	 *
+	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype.bindTree
+	 * @function
+	 * @param {string}
+	 *         sPath the path pointing to the tree / array that should be bound
+	 * @param {object}
+	 *         [oContext=null] the context object for this databinding (optional)
+	 * @param {array}
+	 *         [aFilters=null] predefined filter/s contained in an array (optional)
+	 * @param {object}
+	 *         [mParameters=null] additional model specific parameters (optional)
+	 * @param {array}
+	 *         [aSorters=null] predefined sap.ui.model.sorter/s contained in an array (optional)
+	 * @return {sap.ui.model.TreeBinding}
+
+	 * @public
+	 */
+
+	/**
+	 * Implement in inheriting classes
+	 * @abstract
+	 *
+	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype.createBindingContext
+	 * @function
+	 * @param {string}
+	 *         sPath the path to create the new context from
+	 * @param {object}
+	 *		   [oContext=null] the context which should be used to create the new binding context
+	 * @param {object}
+	 *		   [mParameters=null] the parameters used to create the new binding context
+	 * @param {function}
+	 *         [fnCallBack] the function which should be called after the binding context has been created
+	 * @param {boolean}
+	 *         [bReload] force reload even if data is already available. For server side models this should
+	 *                   refetch the data from the server
+	 * @return {sap.ui.model.Context} the binding context, if it could be created synchronously
+	 *
+	 * @public
+	 */
+
+	/**
+	 * Implement in inheriting classes
+	 * @abstract
+	 *
+	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype.destroyBindingContext
+	 * @function
+	 * @param {object}
+	 *         oContext to destroy
+
+	 * @public
+	 */
+
+	/**
+	 * Implement in inheriting classes
+	 * @abstract
+	 *
+	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype.getProperty
+	 * @function
+	 * @param {string}
+	 *         sPath the path to where to read the attribute value
+	 * @param {object}
+	 *		   [oContext=null] the context with which the path should be resolved
+	 * @public
+	 */
+
+	/**
+	 * Implement in inheriting classes
+	 * @abstract
+	 *
+	 * @param {string}
+	 *         sPath the path to where to read the object
+	 * @param {object}
+	 *		   [oContext=null] the context with which the path should be resolved
+	 * @public
+	 */
+	MeteorMongoModel.prototype.getObject = function(sPath, oContext) {
+		return this.getProperty(sPath, oContext);
+	};
+
+
+	/**
+	 * Create ContextBinding
+	 * @abstract
+	 *
+	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype.bindContext
+	 * @function
+	 * @param {string | object}
+	 *         sPath the path pointing to the property that should be bound or an object
+	 *         which contains the following parameter properties: path, context, parameters
+	 * @param {object}
+	 *         [oContext=null] the context object for this databinding (optional)
+	 * @param {object}
+	 *         [mParameters=null] additional model specific parameters (optional)
+	 * @param {object}
+	 *         [oEvents=null] event handlers can be passed to the binding ({change:myHandler})
+	 * @return {sap.ui.model.ContextBinding}
+	 *
+	 * @public
+	 */
+
+	/**
+	 * Gets a binding context. If context already exists, return it from the map,
+	 * otherwise create one using the context constructor.
+	 *
+	 * @param {string} sPath the path
+	 */
+	MeteorMongoModel.prototype.getContext = function(sPath) {
+		if (!jQuery.sap.startsWith(sPath, "/")) {
+			throw new Error("Path " + sPath + " must start with a / ");
+		}
+		var oContext = this.mContexts[sPath];
+		if (!oContext) {
+			oContext = new Context(this, sPath);
+			this.mContexts[sPath] = oContext;
+		}
+		return oContext;
+	};
+
+	/**
+	 * Resolve the path relative to the given context.
+	 *
+	 * If a relative path is given (not starting with a '/') but no context,
+	 * then the path can't be resolved and undefined is returned.
+	 *
+	 * For backward compatibility, the behavior of this method can be changed by
+	 * setting the 'legacySyntax' property. Then an unresolvable, relative path
+	 * is automatically converted into an absolute path.
+	 *
+	 * @param {string} sPath path to resolve
+	 * @param {sap.ui.core.Context} [oContext] context to resolve a relative path against
+	 * @return {string} resolved path or undefined
+	 */
+	MeteorMongoModel.prototype.resolve = function(sPath, oContext) {
+		var bIsRelative = typeof sPath == "string" && !jQuery.sap.startsWith(sPath, "/"),
+			sResolvedPath = sPath,
+			sContextPath;
+		if (bIsRelative) {
+			if (oContext) {
+				sContextPath = oContext.getPath();
+				sResolvedPath = sContextPath + (jQuery.sap.endsWith(sContextPath, "/") ? "" : "/") + sPath;
+			} else {
+				sResolvedPath = this.isLegacySyntax() ? "/" + sPath : undefined;
+			}
+		}
+		if (!sPath && oContext) {
+			sResolvedPath = oContext.getPath();
+		}
+		// invariant: path never ends with a slash ... if root is requested we return /
+		if (sResolvedPath && sResolvedPath !== "/" && jQuery.sap.endsWith(sResolvedPath, "/")) {
+			sResolvedPath = sResolvedPath.substr(0, sResolvedPath.length - 1);
+		}
+		return sResolvedPath;
+	};
+
+	/**
+	 * Add a binding to this model
+	 *
+	 * @param {sap.ui.model.Binding} oBinding the binding to be added
+	 */
+	MeteorMongoModel.prototype.addBinding = function(oBinding) {
+		this.aBindings.push(oBinding);
+	};
+
+	/**
+	 * Remove a binding from the model
+	 *
+	 * @param {sap.ui.model.Binding} oBinding the binding to be removed
+	 */
+	MeteorMongoModel.prototype.removeBinding = function(oBinding) {
+		for (var i = 0; i < this.aBindings.length; i++) {
+			if (this.aBindings[i] == oBinding) {
+				this.aBindings.splice(i, 1);
+				break;
+			}
+		}
+	};
+
+	/**
+	 * Get the default binding mode for the model
+	 *
+	 * @return {sap.ui.model.BindingMode} default binding mode of the model
+	 *
+	 * @public
+	 */
+	MeteorMongoModel.prototype.getDefaultBindingMode = function() {
+		return this.sDefaultBindingMode;
+	};
+
+	/**
+	 * Set the default binding mode for the model. If the default binding mode should be changed,
+	 * this method should be called directly after model instance creation and before any binding creation.
+	 * Otherwise it is not guaranteed that the existing bindings will be updated with the new binding mode.
+	 *
+	 * @param {sap.ui.model.BindingMode} sMode the default binding mode to set for the model
+	 * @returns {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} this pointer for chaining
+	 * @public
+	 */
+	MeteorMongoModel.prototype.setDefaultBindingMode = function(sMode) {
+		if (this.isBindingModeSupported(sMode)) {
+			this.sDefaultBindingMode = sMode;
+			return this;
+		}
+
+		throw new Error("Binding mode " + sMode + " is not supported by this model.", this);
+	};
+
+	/**
+	 * Check if the specified binding mode is supported by the model.
+	 *
+	 * @param {sap.ui.model.BindingMode} sMode the binding mode to check
+	 *
+	 * @public
+	 */
+	MeteorMongoModel.prototype.isBindingModeSupported = function(sMode) {
+		return (sMode in this.mSupportedBindingModes);
+	};
+
+	/**
+	 * Enables legacy path syntax handling
+	 *
+	 * This defines, whether relative bindings, which do not have a defined
+	 * binding context, should be compatible to earlier releases which means
+	 * they are resolved relative to the root element or handled strict and
+	 * stay unresolved until a binding context is set
+	 *
+	 * @param {boolean} bLegacySyntax the path syntax to use
+	 *
+	 * @public
+	 */
+	MeteorMongoModel.prototype.setLegacySyntax = function(bLegacySyntax) {
+		this.bLegacySyntax = bLegacySyntax;
+	};
+
+	/**
+	 * Returns whether legacy path syntax is used
+	 *
+	 * @return {boolean}
+	 *
+	 * @public
+	 */
+	MeteorMongoModel.prototype.isLegacySyntax = function() {
+		return this.bLegacySyntax;
+	};
+
+	/**
+	 * Set the maximum number of entries which are used for list bindings.
+	 * @param {int} iSizeLimit collection size limit
+	 * @public
+	 */
+	MeteorMongoModel.prototype.setSizeLimit = function(iSizeLimit) {
+		this.iSizeLimit = iSizeLimit;
+	};
+
+	/**
+	 * Override getInterface method to avoid creating an Interface object for models
+	 */
+	MeteorMongoModel.prototype.getInterface = function() {
+		return this;
+	};
+
+	/**
+	 * Refresh the model.
+	 * This will check all bindings for updated data and update the controls if data has been changed.
+	 *
+	 * @param {boolean} bForceUpdate Update controls even if data has not been changed
+	 * @public
+	 */
+	MeteorMongoModel.prototype.refresh = function(bForceUpdate) {
+		this.checkUpdate(bForceUpdate);
+		if (bForceUpdate) {
+			this.fireMessageChange({oldMessages: this.mMessages});
+		}
+	};
+
+	/**
+	 * Private method iterating the registered bindings of this model instance and initiating their check for update
+	 * @param {boolean} bForceUpdate
+	 * @param {boolean} bAsync
+	 * @private
+	 */
+	MeteorMongoModel.prototype.checkUpdate = function(bForceUpdate, bAsync) {
+		if (bAsync) {
+			if (!this.sUpdateTimer) {
+				this.sUpdateTimer = jQuery.sap.delayedCall(0, this, function() {
+					this.checkUpdate(bForceUpdate);
+				});
+			}
+			return;
+		}
+		if (this.sUpdateTimer) {
+			jQuery.sap.clearDelayedCall(this.sUpdateTimer);
+			this.sUpdateTimer = null;
+		}
+		var aBindings = this.aBindings.slice(0);
+		jQuery.each(aBindings, function(iIndex, oBinding) {
+			oBinding.checkUpdate(bForceUpdate);
+		});
+	};
+
+	/**
+	 * Sets messages
+	 *
+	 * @param {object} mMessages Messages for this model
+	 * @public
+	 */
+	MeteorMongoModel.prototype.setMessages = function(mMessages) {
+		//jQuery.sap.assert(!jQuery.isEmptyObject(mMessages), this + ": mMessages passed as emptyObject( {} ). Use null instead!");
+
+		this.mMessages = mMessages || {};
+		if (mMessages !== null || !jQuery.sap.equal(this.mMessages, mMessages)) {
+			this.checkMessages();
+		}
+	};
+
+	/**
+	 * Get messages for path
+	 *
+	 * @param {string} sPath The binding path
+	 * @protected
+	 */
+	MeteorMongoModel.prototype.getMessagesByPath = function(sPath) {
+		if (this.mMessages) {
+			return this.mMessages[sPath] || [];
+		}
+		return null;
+	};
+
+	/**
+	 * Private method iterating the registered bindings of this model instance and initiating their check for messages
+	 * @private
+	 */
+	MeteorMongoModel.prototype.checkMessages = function() {
+		jQuery.each(this.aBindings, function(iIndex, oBinding) {
+			if (oBinding.checkDataState) {
+				oBinding.checkDataState();
+			}
+		});
+	};
+
+	/**
+	 * Destroys the model and clears the model data.
+	 * A model implementation may override this function and perform model specific cleanup tasks e.g.
+	 * abort requests, prevent new requests, etc.
+	 *
+	 * @see sap.ui.base.Object.prototype.destroy
+	 * @public
+	 */
+	MeteorMongoModel.prototype.destroy = function() {
+		MessageProcessor.prototype.destroy.apply(this, arguments);
+
+		this.oData = {};
+		this.aBindings = [];
+		this.mContexts = {};
+		if (this.sUpdateTimer) {
+			jQuery.sap.clearDelayedCall(this.sUpdateTimer);
+		}
+		this.bDestroyed = true;
+	};
+
+	/**
+	 * Returns the meta model associated with this model if it is available for the concrete
+	 * model type.
+	 * @abstract
+	 * @public
+	 * @returns {sap.ui.model.MetaModel} The meta model or undefined if no meta model exists.
+	 */
+	MeteorMongoModel.prototype.getMetaModel = function() {
+		return undefined;
+	};
+
+	/**
+	 * Returns the original value for the property with the given path and context.
+	 * The original value is the value that was last responded by a server if using a server model implementation.
+	 *
+	 * @param {string} sPath the path/name of the property
+	 * @param {object} [oContext] the context if available to access the property value
+	 * @returns {any} vValue the value of the property
+	 * @public
+	 */
+	MeteorMongoModel.prototype.getOriginalProperty = function(sPath, oContext) {
+		return this.getProperty(sPath, oContext);
+	};
+
+	/**
+	 * Returns whether a given path relative to the given contexts is in laundering state.
+	 * If data is send to the server the data state becomes laundering until the
+	 * data was accepted or rejected
+	 *
+	 * @param {string} sPath path to resolve
+	 * @param {sap.ui.core.Context} [oContext] context to resolve a relative path against
+	 * @returns {boolean} true if the data in this path is laundering
+	 */
+	MeteorMongoModel.prototype.isLaundering = function(sPath, oContext) {
+		return false;
+	};
+	return MeteorMongoModel;
+
+});

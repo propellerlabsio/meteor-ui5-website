@@ -1,437 +1,287 @@
 /*!
+
  * ${copyright}
  */
 
-// Provides the JSON model implementation of a list binding
+
+// Provides an abstraction for list bindings
 sap.ui.define([
-	'jquery.sap.global',
-	'sap/ui/model/ListBinding',
-	'sap/ui/model/ChangeReason',
-	'sap/ui/model/Filter',
-	'sap/ui/model/FilterType',
-	'sap/ui/model/FilterProcessor',
-	'sap/ui/model/Sorter',
-	'sap/ui/model/SorterProcessor'],
-	function(jQuery, ListBinding, ChangeReason, Filter, FilterType, FilterProcessor, Sorter, SorterProcessor) {
-	"use strict";
+  'jquery.sap.global',
+  'sap/ui/model/ListBinding',
+  'sap/ui/model/Filter',
+  'sap/ui/model/Sorter',
+  'sap/ui/model/Context'
+], function(jQuery, ListBinding, Filter, Sorter, Context) {
+  "use strict";
 
 
+  var meteor = require('meteor/meteor');
+  /**
+   * Constructor for MeteorMongoListBinding
+   *
+   * @class
+   * The MeteorMongoListBinding is a specific binding for lists in the model, which can be used
+   * to populate Tables or ItemLists.
+   *
+   * @param {sap.ui.model.Model} oModel
+   * @param {string} sPath
+   * @param {sap.ui.model.Context} oContext
+   * @param {array} [aSorters] initial sort order (can be either a sorter or an array of sorters)
+   * @param {array} [aFilters] predefined filter/s (can be either a filter or an array of filters)
+   * @param {object} [mParameters]
+   *
+   * @public
+   * @alias meteor-model-demo.model.meteor.mongo.MeteorMongoListBinding
+   * @extends sap.ui.model.Binding
+   */
+  var MeteorMongoListBinding = ListBinding.extend("meteor-model-demo.model.meteor.mongo.MeteorMongoListBinding", {
 
-	/**
-	 *
-	 * @class
-	 * List binding implementation for JSON format
-	 *
-	 * @param {meteor-model-demo.model.JSONModel} oModel
-	 * @param {string} sPath
-	 * @param {sap.ui.model.Context} oContext
-	 * @param {sap.ui.model.Sorter|sap.ui.model.Sorter[]} [aSorters] initial sort order (can be either a sorter or an array of sorters)
-	 * @param {sap.ui.model|sap.ui.model.Filter[]} [aFilters] predefined filter/s (can be either a filter or an array of filters)
-	 * @param {object} [mParameters]
-	 * @alias meteor-model-demo.model.MeteorMongoListBinding
-	 * @extends sap.ui.model.ListBinding
-	 */
-	var MeteorMongoListBinding = ListBinding.extend("meteor-model-demo.model.MeteorMongoListBinding", {
+    constructor: function(oModel, sPath, oContext, aSorters, aFilters, mParameters) {
+      ListBinding.call(this, oModel, sPath, oContext, mParameters);
+      // Super:
+      // this.aSorters = aSorters;
+      // if (!jQuery.isArray(this.aSorters) && this.aSorters instanceof Sorter) {
+      // 	this.aSorters = [this.aSorters];
+      // } else if (!jQuery.isArray(this.aSorters)) {
+      // 	this.aSorters = [];
+      // }
+      // this.aFilters = [];
+      // if (!jQuery.isArray(aFilters) && aFilters instanceof Filter) {
+      // 	aFilters = [aFilters];
+      // } else if (!jQuery.isArray(aFilters)) {
+      // 	aFilters = [];
+      // }
+      // this.aApplicationFilters = aFilters;
+      // this.bUseExtendedChangeDetection = false;
+      // this.bDetectUpdates = true;
 
+      // Get query
+      debugger;
+      if (sPath.charAt(0) !== "/"){
+        console.error("Binding lists to anyother other than root element (Mongo Collection) not implemented yet");
+      }
+      else {
+        var connection = DDP.connect('http://localhost:3005');
+      	var components = sPath.split("/");
+        this._oCollection = Mongo.Collection.get(components[1], { connection: Meteor.connection });
+        this._oCursor = this._oCollection.find();
+      }
+    }
 
-  		constructor : function(oModel, sPath, oContext, aSorters, aFilters, mParameters){
-  			ListBinding.apply(this, arguments);
-  			this.bIgnoreSuspend = false;
-  			this.update();
-  		},
+  });
 
-  		metadata : {
-  			publicMethods : [
-  				"getLength"
-  			]
-  		}
-    });
-
-    /**
-  	 * Filters the list.
-  	 *
-  	 * Filters are first grouped according to their binding path.
-  	 * All filters belonging to a group are ORed and after that the
-  	 * results of all groups are ANDed.
-  	 * Usually this means, all filters applied to a single table column
-  	 * are ORed, while filters on different table columns are ANDed.
-  	 *
-  	 * @param {sap.ui.model.Filter[]} aFilters Array of filter objects
-  	 * @param {sap.ui.model.FilterType} sFilterType Type of the filter which should be adjusted, if it is not given, the standard behaviour applies
-  	 * @return {sap.ui.model.ListBinding} returns <code>this</code> to facilitate method chaining
-  	 *
-  	 * @public
-  	 */
-  	MeteorMongoListBinding.prototype.filter = function(aFilters, sFilterType){
-  		if (this.bSuspended) {
-  			this.checkUpdate(true);
-  		}
-  		this.updateIndices();
-  		if (aFilters instanceof Filter) {
-  			aFilters = [aFilters];
-  		}
-  		if (sFilterType == FilterType.Application) {
-  			this.aApplicationFilters = aFilters || [];
-  		} else if (sFilterType == FilterType.Control) {
-  			this.aFilters = aFilters || [];
-  		} else {
-  			//Previous behaviour
-  			this.aFilters = aFilters || [];
-  			this.aApplicationFilters = [];
-  		}
-  		aFilters = this.aFilters.concat(this.aApplicationFilters);
-  		if (aFilters.length == 0) {
-  			this.iLength = this._getLength();
-  		} else {
-  			this.applyFilter();
-  		}
-  		this.applySort();
-
-  		this.bIgnoreSuspend = true;
-
-  		this._fireChange({reason: ChangeReason.Filter});
-  		// TODO remove this if the filter event gets removed which is deprecated
-  		if (sFilterType == FilterType.Application) {
-  			this._fireFilter({filters: this.aApplicationFilters});
-  		} else {
-  			this._fireFilter({filters: this.aFilters});
-  		}
-  		this.bIgnoreSuspend = false;
-
-  		return this;
-  	};
-
-    /**
-  	 * Filters the list
-  	 * Filters are first grouped according to their binding path.
-  	 * All filters belonging to a group are ORed and after that the
-  	 * results of all groups are ANDed.
-  	 * Usually this means, all filters applied to a single table column
-  	 * are ORed, while filters on different table columns are ANDed.
-  	 * Multiple MultiFilters are ORed.
-  	 *
-  	 * @private
-  	 */
-  	MeteorMongoListBinding.prototype.applyFilter = function(){
-  		if (!this.aFilters) {
-  			return;
-  		}
-
-  		var aFilters = this.aFilters.concat(this.aApplicationFilters),
-  			that = this;
-
-  		this.aIndices = FilterProcessor.apply(this.aIndices, aFilters, function(vRef, sPath) {
-  			return that.oModel.getProperty(sPath, that.oList[vRef]);
-  		});
-
-  		this.iLength = this.aIndices.length;
-  	};
-
-    /**
-  	 * Get distinct values
-  	 *
-  	 * @param {String} sPath
-  	 *
-  	 * @protected
-  	 */
-  	MeteorMongoListBinding.prototype.getDistinctValues = function(sPath){
-  		var aResult = [],
-  			oMap = {},
-  			sValue,
-  			that = this;
-  		jQuery.each(this.oList, function(i, oContext) {
-  			sValue = that.oModel.getProperty(sPath, oContext);
-  			if (!oMap[sValue]) {
-  				oMap[sValue] = true;
-  				aResult.push(sValue);
-  			}
-  		});
-  		return aResult;
-  	};
-
-    /**
-  	 * @see sap.ui.model.ListBinding.prototype.sort
-  	 */
-  	MeteorMongoListBinding.prototype.sort = function(aSorters){
-  		if (this.bSuspended) {
-  			this.checkUpdate(true);
-  		}
-  		if (!aSorters) {
-  			this.aSorters = null;
-  			this.updateIndices();
-  			this.applyFilter();
-  		} else {
-  			if (aSorters instanceof Sorter) {
-  				aSorters = [aSorters];
-  			}
-  			this.aSorters = aSorters;
-  			this.applySort();
-  		}
-
-  		this.bIgnoreSuspend = true;
-
-  		this._fireChange({reason: ChangeReason.Sort});
-  		// TODO remove this if the sorter event gets removed which is deprecated
-  		this._fireSort({sorter: aSorters});
-  		this.bIgnoreSuspend = false;
-
-  		return this;
-  	};
-
-    /**
-  	 * Sorts the list
-  	 * @private
-  	 */
-  	MeteorMongoListBinding.prototype.applySort = function(){
-  		var that = this;
-
-  		if (!this.aSorters || this.aSorters.length == 0) {
-  			return;
-  		}
-
-  		this.aIndices = SorterProcessor.apply(this.aIndices, this.aSorters, function(vRef, sPath) {
-  			return that.oModel.getProperty(sPath, that.oList[vRef]);
-  		});
-  	};
-
-    /**
-  	 * @see sap.ui.model.ListBinding.prototype.getLength
-  	 *
-  	 */
-  	MeteorMongoListBinding.prototype.getLength = function() {
-  		return this.iLength;
-  	};
-
-    /**
-  	 * Return the length of the list
-  	 *
-  	 * @return {int} the length
-  	 */
-  	MeteorMongoListBinding.prototype._getLength = function() {
-  		return this.aIndices.length;
-  	};
-
-
-	/**
-	 * Return contexts for the list or a specified subset of contexts
-	 * @param {int} [iStartIndex=0] the startIndex where to start the retrieval of contexts
-	 * @param {int} [iLength=length of the list] determines how many contexts to retrieve beginning from the start index.
-	 * Default is the whole list length.
-	 *
-	 * @return {Array} the contexts array
-	 * @protected
-	 */
-	MeteorMongoListBinding.prototype.getContexts = function(iStartIndex, iLength) {
-		this.iLastStartIndex = iStartIndex;
-		this.iLastLength = iLength;
-
-		if (!iStartIndex) {
-			iStartIndex = 0;
-		}
-		if (!iLength) {
-			iLength = Math.min(this.iLength, this.oModel.iSizeLimit);
-		}
-
-		var aContexts = this._getContexts(iStartIndex, iLength),
-			aContextData = [];
-
-		if (this.bUseExtendedChangeDetection) {
-			// Use try/catch to detect issues with cyclic references in JS objects,
-			// in this case diff will be disabled.
-			try {
-				for (var i = 0; i < aContexts.length; i++) {
-					aContextData.push(this.getContextData(aContexts[i]));
-				}
-
-				//Check diff
-				if (this.aLastContextData && iStartIndex < this.iLastEndIndex) {
-					aContexts.diff = jQuery.sap.arraySymbolDiff(this.aLastContextData, aContextData);
-				}
-
-				this.iLastEndIndex = iStartIndex + iLength;
-				this.aLastContexts = aContexts.slice(0);
-				this.aLastContextData = aContextData.slice(0);
-			} catch (oError) {
-				this.bUseExtendedChangeDetection = false;
-				jQuery.sap.log.warning("MeteorMongoListBinding: Extended change detection has been disabled as JSON data could not be serialized.");
-			}
-		}
-
-		return aContexts;
-	};
-
-	MeteorMongoListBinding.prototype.getCurrentContexts = function() {
-		if (this.bUseExtendedChangeDetection) {
-			return this.aLastContexts || [];
-		} else {
-			return this.getContexts(this.iLastStartIndex, this.iLastLength);
-		}
-	};
-
-	/**
-	 * Returns the context data as required for change detection/diff. This may not contain
-	 * all of the data, but just the key property
-	 *
-	 * @private
-	 */
-	MeteorMongoListBinding.prototype.getContextData = function(oContext) {
-		if (this.fnGetEntryKey && !this.bDetectUpdates) {
-			return this.fnGetEntryKey(oContext);
-		} else {
-			return JSON.stringify(oContext.getObject());
-		}
-	};
-
-	/**
-	 * Get indices of the list
-	 */
-	MeteorMongoListBinding.prototype.updateIndices = function() {
-		var i;
-
-		this.aIndices = [];
-		if (jQuery.isArray(this.oList)) {
-			for (i = 0; i < this.oList.length; i++) {
-				this.aIndices.push(i);
-			}
-		} else {
-			for (i in this.oList) {
-				this.aIndices.push(i);
-			}
-		}
-	};
-
-	/**
-	 * Update the list, indices array and apply sorting and filtering
-	 * @private
-	 */
-	MeteorMongoListBinding.prototype.update = function(){
-		var oList = this.oModel._getObject(this.sPath, this.oContext);
-		if (oList) {
-			if (jQuery.isArray(oList)) {
-				if (this.bUseExtendedChangeDetection) {
-					this.oList = jQuery.extend(true, [], oList);
-				} else {
-					this.oList = oList.slice(0);
-				}
-			} else {
-				this.oList = jQuery.extend(this.bUseExtendedChangeDetection, {}, oList);
-			}
-			this.updateIndices();
-			this.applyFilter();
-			this.applySort();
-			this.iLength = this._getLength();
-		} else {
-			this.oList = [];
-			this.aIndices = [];
-			this.iLength = 0;
-		}
-	};
 
   /**
-	 * Return contexts for the list or a specified subset of contexts
-	 * @param {int} [iStartIndex=0] the startIndex where to start the retrieval of contexts
-	 * @param {int} [iLength=length of the list] determines how many contexts to retrieve beginning from the start index.
-	 * Default is the whole list length.
-	 *
-	 * @return {Array} the contexts array
-	 * @private
-	 */
-	MeteorMongoListBinding.prototype._getContexts = function(iStartIndex, iLength) {
-		if (!iStartIndex) {
-			iStartIndex = 0;
-		}
-		if (!iLength) {
-			iLength = Math.min(this.iLength, this.oModel.iSizeLimit);
-		}
-
-		var iEndIndex = Math.min(iStartIndex + iLength, this.aIndices.length),
-		oContext,
-		aContexts = [],
-		sPrefix = this.oModel.resolve(this.sPath, this.oContext);
-
-		if (sPrefix && !jQuery.sap.endsWith(sPrefix, "/")) {
-			sPrefix += "/";
-		}
-
-		for (var i = iStartIndex; i < iEndIndex; i++) {
-			oContext = this.oModel.getContext(sPrefix + this.aIndices[i]);
-			aContexts.push(oContext);
-		}
-
-		return aContexts;
-	};
+   * Returns an array of binding contexts for the bound target list.
+   *
+   * <strong>Note:</strong>The public usage of this method is deprecated, as calls from outside of controls will lead
+   * to unexpected side effects. For avoidance use {@link meteor-model-demo.model.meteor.mongo.MeteorMongoListBinding.prototype.getCurrentContexts}
+   * instead.
+   *
+   * @function
+   * @name meteor-model-demo.model.meteor.mongo.MeteorMongoListBinding.prototype.getContexts
+   * @param {int} [iStartIndex=0] the startIndex where to start the retrieval of contexts
+   * @param {int} [iLength=length of the list] determines how many contexts to retrieve beginning from the start index.
+   * @return {sap.ui.model.Context[]} the array of contexts for each row of the bound list
+   *
+   * @protected
+   */
+  MeteorMongoListBinding.prototype.getContexts = function(iStartIndex, iLength) {
+    debugger;
+    var aContexts = [];
+    //  this.oCursor.forEach(function(doc){
+    // 	 const context = new Context(this.oModel, this.sPath + "(" + doc._id ")");
+    // 	 aContexts.push(context);
+    //  });
+    //  return aContexts;
+  };
 
   /**
-	 * Setter for context
-	 * @param {Object} oContext the new context object
-	 */
-	MeteorMongoListBinding.prototype.setContext = function(oContext) {
-		if (this.oContext != oContext) {
-			this.oContext = oContext;
-			if (this.isRelative()) {
-				this.update();
-				this._fireChange({reason: ChangeReason.Context});
-			}
-		}
-	};
+   * Filters the list according to the filter definitions
+   *
+   * @function
+   * @name meteor-model-demo.model.meteor.mongo.MeteorMongoListBinding.prototype.filter
+   * @param {object[]} aFilters Array of filter objects
+   * @param {sap.ui.model.FilterType} sFilterType Type of the filter which should be adjusted, if it is not given, the standard behaviour applies
+   * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoListBinding} returns <code>this</code> to facilitate method chaining
+   *
+   * @public
+   */
+
+  /**
+   * Sorts the list according to the sorter object
+   *
+   * @function
+   * @name meteor-model-demo.model.meteor.mongo.MeteorMongoListBinding.prototype.sort
+   * @param {sap.ui.model.Sorter|Array} aSorters the Sorter object or an array of sorters which defines the sort order
+   * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoListBinding} returns <code>this</code> to facilitate method chaining
+   * @public
+   */
+
+  /**
+   * Returns an array of currently used binding contexts of the bound control
+   *
+   * This method does not trigger any data requests from the backend or delta calculation, but just returns the context
+   * array as last requested by the control. This can be used by the application to get access to the data currently
+   * displayed by a list control.
+   *
+   * @return {sap.ui.model.Context[]} the array of contexts for each row of the bound list
+   * @since 1.28
+   * @public
+   */
+  MeteorMongoListBinding.prototype.getCurrentContexts = function() {
+    return this.getContexts();
+  };
+
+  /**
+   * Returns the number of entries in the list. This might be an estimated or preliminary length, in case
+   * the full length is not known yet, see method isLengthFinal().
+   *
+   * @return {int} returns the number of entries in the list
+   * @since 1.24
+   * @public
+   */
+  MeteorMongoListBinding.prototype.getLength = function() {
+    return this._oCusor.count();
+  };
+
+  /**
+   * Returns whether the length which can be retrieved using getLength() is a known, final length,
+   * or an preliminary or estimated length which may change if further data is requested.
+   *
+   * @return {boolean} returns whether the length is final
+   * @since 1.24
+   * @public
+   */
+  MeteorMongoListBinding.prototype.isLengthFinal = function() {
+    return true;
+  };
+
+  // base methods, may be overridden by child classes
+  /**
+   * Returns list of distinct values for the given relative binding path
+   *
+   * @param {string} sPath the relative binding path
+   * @return {Array} the array of distinct values.
+   *
+   * @public
+   */
+  MeteorMongoListBinding.prototype.getDistinctValues = function(sPath) {
+    return null;
+  };
+
+  //Eventing and related
+  /**
+   * Attach event-handler <code>fnFunction</code> to the 'sort' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoListBinding</code>.<br/>
+   * @param {function} fnFunction The function to call, when the event occurs.
+   * @param {object} [oListener] object on which to call the given function.
+   * @protected
+   * @deprecated use the change event. It now contains a parameter (reason : "sort") when a sorter event is fired.
+   */
+  MeteorMongoListBinding.prototype.attachSort = function(fnFunction, oListener) {
+    this.attachEvent("sort", fnFunction, oListener);
+  };
+
+  /**
+   * Detach event-handler <code>fnFunction</code> from the 'sort' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoListBinding</code>.<br/>
+   * @param {function} fnFunction The function to call, when the event occurs.
+   * @param {object} [oListener] object on which to call the given function.
+   * @protected
+   * @deprecated use the change event.
+   */
+  MeteorMongoListBinding.prototype.detachSort = function(fnFunction, oListener) {
+    this.detachEvent("sort", fnFunction, oListener);
+  };
+
+  /**
+   * Fire event _sort to attached listeners.
+   * @param {Map} [mArguments] the arguments to pass along with the event.
+   * @private
+   * @deprecated use the change event. It now contains a parameter (reason : "sort") when a sorter event is fired.
+   */
+  MeteorMongoListBinding.prototype._fireSort = function(mArguments) {
+    this.fireEvent("sort", mArguments);
+  };
+
+  /**
+   * Attach event-handler <code>fnFunction</code> to the 'filter' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoListBinding</code>.<br/>
+   * @param {function} fnFunction The function to call, when the event occurs.
+   * @param {object} [oListener] object on which to call the given function.
+   * @protected
+   * @deprecated use the change event. It now contains a parameter (reason : "filter") when a filter event is fired.
+   */
+  MeteorMongoListBinding.prototype.attachFilter = function(fnFunction, oListener) {
+    this.attachEvent("filter", fnFunction, oListener);
+  };
+
+  /**
+   * Detach event-handler <code>fnFunction</code> from the 'filter' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoListBinding</code>.<br/>
+   * @param {function} fnFunction The function to call, when the event occurs.
+   * @param {object} [oListener] object on which to call the given function.
+   * @protected
+   * @deprecated use the change event.
+   */
+  MeteorMongoListBinding.prototype.detachFilter = function(fnFunction, oListener) {
+    this.detachEvent("filter", fnFunction, oListener);
+  };
+
+  /**
+   * Fire event _filter to attached listeners.
+   * @param {Map} [mArguments] the arguments to pass along with the event.
+   * @private
+   * @deprecated use the change event. It now contains a parameter (reason : "filter") when a filter event is fired.
+   */
+  MeteorMongoListBinding.prototype._fireFilter = function(mArguments) {
+    this.fireEvent("filter", mArguments);
+  };
+
+  /**
+   * Indicates whether grouping is enabled for the binding.
+   * Grouping is enabled for a list binding, if at least one sorter exists on the binding and the first sorter
+   * is a grouping sorter.
+   * @public
+   * @returns {boolean} whether grouping is enabled
+   */
+  MeteorMongoListBinding.prototype.isGrouped = function() {
+    return !!(this.aSorters && this.aSorters[0] && this.aSorters[0].fnGroup);
+  };
+
+  /**
+   * Gets the group for the given context.
+   * Must only be called if isGrouped() returns that grouping is enabled for this binding. The grouping will be
+   * performed using the first sorter (in case multiple sorters are defined).
+   * @param {sap.ui.model.Context} oContext the binding context
+   * @public
+   * @returns {object} the group object containing a key property and optional custom properties
+   * @see sap.ui.model.Sorter.getGroup
+   */
+  MeteorMongoListBinding.prototype.getGroup = function(oContext) {
+    return this.aSorters[0].getGroup(oContext);
+  };
+
+  /**
+   * Enable extended change detection
+   *
+   * @param {boolean} bDetectUpdates Whether changes within the same entity should cause a delete and insert command
+   * @param {function|string} vKey The path of the property containing the key or a function getting the context as only parameter to calculate a key to identify an entry
+   * @private
+   */
+  MeteorMongoListBinding.prototype.enableExtendedChangeDetection = function(bDetectUpdates, vKey) {
+    this.bUseExtendedChangeDetection = true;
+    this.bDetectUpdates = bDetectUpdates;
+    if (typeof vKey === "string") {
+      this.fnGetEntryKey = function(oContext) {
+        return oContext.getProperty(vKey);
+      };
+    } else if (typeof vKey === "function") {
+      this.fnGetEntryKey = vKey;
+    }
+    if (this.update) {
+      this.update();
+    }
+  };
 
 
-	/**
-	 * Check whether this Binding would provide new values and in case it changed,
-	 * inform interested parties about this.
-	 *
-	 * @param {boolean} bForceupdate
-	 *
-	 */
-	MeteorMongoListBinding.prototype.checkUpdate = function(bForceupdate){
-
-		if (this.bSuspended && !this.bIgnoreSuspend && !bForceupdate) {
-			return;
-		}
-
-		if (!this.bUseExtendedChangeDetection) {
-			var oList = this.oModel._getObject(this.sPath, this.oContext);
-			if (!jQuery.sap.equal(this.oList, oList) || bForceupdate) {
-				this.update();
-				this._fireChange({reason: ChangeReason.Change});
-			}
-		} else {
-			var bChangeDetected = false;
-			var that = this;
-
-			//If the list has changed we need to update the indices first
-			var oList = this.oModel._getObject(this.sPath, this.oContext);
-			if (oList && this.oList.length != oList.length) {
-				bChangeDetected = true;
-			}
-			if (!jQuery.sap.equal(this.oList, oList)) {
-				this.update();
-			}
-
-			//Get contexts for visible area and compare with stored contexts
-			var aContexts = this._getContexts(this.iLastStartIndex, this.iLastLength);
-			if (this.aLastContexts) {
-				if (this.aLastContexts.length != aContexts.length) {
-					bChangeDetected = true;
-				} else {
-					jQuery.each(this.aLastContextData, function(iIndex, oLastData) {
-						var oCurrentData = that.getContextData(aContexts[iIndex]);
-						if (oCurrentData !== oLastData) {
-							bChangeDetected = true;
-							return false;
-						}
-					});
-				}
-			} else {
-				bChangeDetected = true;
-			}
-			if (bChangeDetected || bForceupdate) {
-				this._fireChange({reason: ChangeReason.Change});
-			}
-		}
-	};
-
-
-	return MeteorMongoListBinding;
+  return MeteorMongoListBinding;
 
 });
