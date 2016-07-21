@@ -24,6 +24,12 @@
     "sap.ui5": {
         "_version": "1.1.0",
         "rootView": "meteor-model-demo.view.App",
+        "models": {
+            "": {
+                "type": "meteor-model-demo.model.meteor.mongo.MeteorMongoModel",
+                "settings": {}
+            }
+        },
         "dependencies": {
             "minUI5Version": "1.30",
             "libs": {
@@ -40,10 +46,6 @@
             },
             "routes": [{
                 "pattern": "",
-                "name": "loading",
-                "target": ["loading", "welcome"]
-            },{
-                "pattern": "home",
                 "name": "home",
                 "target": ["master", "welcome"]
             },{

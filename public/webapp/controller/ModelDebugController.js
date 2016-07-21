@@ -1,7 +1,8 @@
 
 sap.ui.define([
-  'sap/ui/core/mvc/Controller'
-], function(Controller) {
+  'sap/ui/core/mvc/Controller',
+  'jquery.sap.global'
+], function(Controller, jQuery) {
   "use strict";
 
   var CController = Controller.extend("meteor-model-demo.controller.ModelDebugController", {
