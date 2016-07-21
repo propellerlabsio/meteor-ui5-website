@@ -55,7 +55,6 @@ sap.ui.define([
       // this.bDetectUpdates = true;
 
       // Get query
-      debugger;
       if (sPath.charAt(0) !== "/"){
         console.error("Binding lists to anyother other than root element (Mongo Collection) not implemented yet");
       }
@@ -87,12 +86,12 @@ sap.ui.define([
    * @protected
    */
   MeteorMongoListBinding.prototype.getContexts = function(iStartIndex, iLength) {
-    debugger;
     var aContexts = [];
     this._oCursor.forEach(function(doc){
-      // const context = new Context(this.oModel, this.sPath + "(" + doc._id ")");
-      // aContexts.push(context);
-    });
+      //TODO Allow list binding for arrays
+      const context = new Context(this.oModel, this.sPath + "(" + doc._id + ")");
+      aContexts.push(context);
+    }, this);
     return aContexts;
   };
 

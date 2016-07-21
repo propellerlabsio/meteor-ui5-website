@@ -3,16 +3,16 @@
  */
 
 // Provides an abstract property binding.
-sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
-	function(jQuery, Binding, SimpleType, DataState) {
+sap.ui.define(['jquery.sap.global', 'sap/ui/model/PropertyBinding', 'sap/ui/model/SimpleType','sap/ui/model/DataState'],
+	function(jQuery, PropertyBinding, SimpleType, DataState) {
 	"use strict";
 
 
 	/**
-	 * Constructor for PropertyBinding
+	 * Constructor for MeteorMongoPropertyBinding
 	 *
 	 * @class
-	 * The PropertyBinding is used to access single data values in the data model.
+	 * The MeteorMongoPropertyBinding is used to access single data values in the data model.
 	 *
 	 * @param {sap.ui.model.Model} oModel
 	 * @param {string} sPath
@@ -20,14 +20,14 @@ sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
 	 * @param {object} [mParameters]
 	 *
 	 * @public
-	 * @alias sap.ui.model.PropertyBinding
+	 * @alias meteor-model-demo.model.meteor.mongo.MeteorMongoPropertyBinding
 	 * @extends sap.ui.model.Binding
 	 */
 
-	var PropertyBinding = Binding.extend("sap.ui.model.PropertyBinding", /** @lends sap.ui.model.PropertyBinding.prototype */ {
+	var MeteorMongoPropertyBinding = PropertyBinding.extend("meteor-model-demo.model.meteor.mongo.MeteorMongoPropertyBinding", /** @lends meteor-model-demo.model.meteor.mongo.MeteorMongoPropertyBinding.prototype */ {
 
 		constructor : function (oModel, sPath, oContext, mParameters) {
-			Binding.apply(this, arguments);
+			PropertyBinding.apply(this, arguments);
 		},
 		metadata : {
 			"abstract" : true,
@@ -44,18 +44,21 @@ sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
 	 * Returns the current value of the bound target
 	 *
 	 * @function
-	 * @name sap.ui.model.PropertyBinding.prototype.getValue
+	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoPropertyBinding.prototype.getValue
 	 * @return {object} the current value of the bound target
 	 *
 	 * @public
 	 */
+	 MeteorMongoPropertyBinding.prototype.getValue = function(name){
+		 return "o";
+	 }
 
 	/**
 	 * Sets the value for this binding. A model implementation should check if the current default binding mode permits
 	 * setting the binding value and if so set the new value also in the model.
 	 *
 	 * @function
-	 * @name sap.ui.model.PropertyBinding.prototype.setValue
+	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoPropertyBinding.prototype.setValue
 	 * @param {object} oValue the value to set for this binding
 	 *
 	 * @public
@@ -70,7 +73,7 @@ sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
 	 *
 	 * @public
 	 */
-	PropertyBinding.prototype.getExternalValue = function() {
+	MeteorMongoPropertyBinding.prototype.getExternalValue = function() {
 		return this._toExternalValue(this.getValue());
 	};
 
@@ -83,7 +86,7 @@ sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
 	 *
 	 * @private
 	 */
-	PropertyBinding.prototype._toExternalValue = function(oValue) {
+	MeteorMongoPropertyBinding.prototype._toExternalValue = function(oValue) {
 		if (this.oType) {
 			oValue = this.oType.formatValue(oValue, this.sInternalType);
 		}
@@ -106,7 +109,7 @@ sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
 	 *
 	 * @public
 	 */
-	PropertyBinding.prototype.setExternalValue = function(oValue) {
+	MeteorMongoPropertyBinding.prototype.setExternalValue = function(oValue) {
 		// formatter doesn't support two way binding
 		if (this.fnFormatter) {
 			jQuery.sap.log.warning("Tried to use twoway binding, but a formatter function is used");
@@ -138,7 +141,7 @@ sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
 	 *
 	 * @public
 	 */
-	PropertyBinding.prototype.setType = function(oType, sInternalType) {
+	MeteorMongoPropertyBinding.prototype.setType = function(oType, sInternalType) {
 		this.oType = oType;
 		this.sInternalType = sInternalType;
 	};
@@ -148,7 +151,7 @@ sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
 	 *  @returns {sap.ui.model.Type} the binding type
 	 *  @public
 	 */
-	PropertyBinding.prototype.getType = function() {
+	MeteorMongoPropertyBinding.prototype.getType = function() {
 		return this.oType;
 	};
 
@@ -159,7 +162,7 @@ sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
 	 *
 	 * @public
 	 */
-	PropertyBinding.prototype.setFormatter = function(fnFormatter) {
+	MeteorMongoPropertyBinding.prototype.setFormatter = function(fnFormatter) {
 		this.fnFormatter = fnFormatter;
 	};
 
@@ -168,7 +171,7 @@ sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
 	 *  @returns {Function} the formatter function
 	 *  @public
 	 */
-	PropertyBinding.prototype.getFormatter = function() {
+	MeteorMongoPropertyBinding.prototype.getFormatter = function() {
 		return this.fnFormatter;
 	};
 
@@ -177,7 +180,7 @@ sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
 	 *  @returns {sap.ui.model.BindingMode} the binding mode
 	 *  @public
 	 */
-	PropertyBinding.prototype.getBindingMode = function() {
+	MeteorMongoPropertyBinding.prototype.getBindingMode = function() {
 		return this.sMode;
 	};
 
@@ -186,7 +189,7 @@ sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
 	 * @param {sap.ui.model.BindingMode} sBindingMode the binding mode
 	 * @protected
 	 */
-	PropertyBinding.prototype.setBindingMode = function(sBindingMode) {
+	MeteorMongoPropertyBinding.prototype.setBindingMode = function(sBindingMode) {
 		this.sMode = sBindingMode;
 	};
 
@@ -197,7 +200,7 @@ sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
 	 * current value from the model and a change event will be fired.
 	 * @public
 	 */
-	PropertyBinding.prototype.resume = function() {
+	MeteorMongoPropertyBinding.prototype.resume = function() {
 		this.bSuspended = false;
 		this.checkUpdate(true);
 	};
@@ -208,7 +211,7 @@ sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
 	 * @param {map} mPaths A Map of paths to check if update needed
 	 * @private
 	 */
-	PropertyBinding.prototype.checkDataState = function(mPaths) {
+	MeteorMongoPropertyBinding.prototype.checkDataState = function(mPaths) {
 		var sResolvedPath = this.oModel ? this.oModel.resolve(this.sPath, this.oContext) : null;
 		var that = this;
 		if (!mPaths || sResolvedPath && sResolvedPath in mPaths) {
@@ -233,6 +236,6 @@ sap.ui.define(['jquery.sap.global', './Binding', './SimpleType','./DataState'],
 		}
 	};
 
-	return PropertyBinding;
+	return MeteorMongoPropertyBinding;
 
 });

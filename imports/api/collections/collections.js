@@ -12,6 +12,6 @@ export const suppliers = new SafeCollection('Suppliers');
 
 // Publish
 if (Meteor.isServer) {
-  // Publish all languages
-  Meteor.publish('employees', () => employees.find());
+  // Publish all categories
+  Meteor.publish('categories', () => categories.find());
 }

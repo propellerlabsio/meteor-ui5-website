@@ -1,0 +1,17 @@
+<mvc:View
+	height="100%"
+	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:l="sap.ui.layout"
+	xmlns="sap.m"
+  controllerName="meteor-model-demo.controller.Loading">
+  <Page showHeader="true" title="Loading...">
+    <VBox
+        height="100%"
+		    alignItems="Center"
+			  justifyContent="Center">
+      <Title text="Loading Meteor subscriptions" level="H2"/>
+      <Text text="Please wait one moment."/>
+      <BusyIndicator size="1em" />
+    </VBox>
+	</Page>
+</mvc:View>

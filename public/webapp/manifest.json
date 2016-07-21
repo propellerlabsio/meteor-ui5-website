@@ -40,6 +40,10 @@
             },
             "routes": [{
                 "pattern": "",
+                "name": "loading",
+                "target": ["loading", "welcome"]
+            },{
+                "pattern": "home",
                 "name": "home",
                 "target": ["master", "welcome"]
             },{
@@ -61,7 +65,12 @@
             }
           ],
             "targets": {
-                "master": {
+                "loading": {
+                    "viewName": "Loading",
+                    "controlAggregation": "masterPages",
+                    "viewLevel": "1"
+                },
+                  "master": {
                     "viewName": "Master",
                     "controlAggregation": "masterPages",
                     "viewLevel": "1"

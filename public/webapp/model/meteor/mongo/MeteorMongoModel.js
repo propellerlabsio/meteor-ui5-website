@@ -8,8 +8,9 @@ sap.ui.define([
 	'sap/ui/model/Model',
 	'sap/ui/model/BindingMode',
 	'sap/ui/model/Context',
-	'meteor-model-demo/model/meteor/mongo/MeteorMongoListBinding'
-], function(jQuery, Model, BindingMode, Context, MeteorMongoListBinding) {
+	'meteor-model-demo/model/meteor/mongo/MeteorMongoListBinding',
+	'meteor-model-demo/model/meteor/mongo/MeteorMongoPropertyBinding'
+], function(jQuery, Model, BindingMode, Context, MeteorMongoListBinding, MeteorMongoPropertyBinding) {
 	"use strict";
 
 
@@ -57,8 +58,8 @@ sap.ui.define([
 			this.aBindings = [];
 			this.mContexts = {};
 			this.iSizeLimit = 100;
-			this.sDefaultBindingMode = BindingMode.TwoWay;
-			this.mSupportedBindingModes = {"OneWay": true, "TwoWay": true, "OneTime": true};
+			this.sDefaultBindingMode = BindingMode.OneWay;
+			this.mSupportedBindingModes = {"OneWay": true, "TwoWay": false, "OneTime": false};
 			this.bLegacySyntax = false;
 			this.sUpdateTimer = null;
 		},
@@ -510,6 +511,11 @@ sap.ui.define([
 	 *
 	 * @public
 	 */
+	 MeteorMongoModel.prototype.bindProperty = function(sPath, oContext, mParameters){
+		 var oBinding = new MeteorMongoPropertyBinding(this, sPath, oContext, mParameters);
+		 return oBinding;
+	 }
+
 
 	/**
 	 * Implement in inheriting classes

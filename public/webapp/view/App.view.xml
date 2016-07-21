@@ -7,7 +7,7 @@
       <tnt:ToolHeader>
         <ToolbarSpacer>
         </ToolbarSpacer>
-        <Text text="Meteor UI5 Model Demo"/>
+        <Title text="Meteor UI5 Model Demo" level="h1"/>
         <tnt:ToolHeaderUtilitySeparator />
         <ToolbarSpacer>
             <layoutData>
