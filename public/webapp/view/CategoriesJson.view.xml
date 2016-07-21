@@ -4,7 +4,7 @@
     	xmlns="sap.m"
       controllerName="meteor-model-demo.controller.CategoriesJson">
 
-		<Page id="CategoriesJson" title="Categories (JSON Model)" class="sapUiStdPage">
+		<Page id="CategoriesJson" title="JSON Model" class="sapUiStdPage">
 			<content>
         <core:Fragment fragmentName="meteor-model-demo.view.Categories" type="XML" />
 			</content>

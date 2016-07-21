@@ -4,7 +4,7 @@
     	xmlns="sap.m"
       controllerName="meteor-model-demo.controller.CategoriesMeteor">
 
-		<Page id="CategoriesMeteor" title="Categories (Meteor Model)" class="sapUiStdPage">
+		<Page id="CategoriesMeteor" title="Meteor Model" class="sapUiStdPage">
 			<content>
         <core:Fragment fragmentName="meteor-model-demo.view.Categories" type="XML" />
 			</content>
