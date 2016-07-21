@@ -18,3 +18,5 @@ ecmascript              # Enable ECMAScript2015+ syntax in app code
 
 static-html
 dburles:mongo-collection-instances
+cfs:http-methods
+http

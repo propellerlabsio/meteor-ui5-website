@@ -15,7 +15,6 @@ sap.ui.define([
   "use strict";
 
 
-  var meteor = require('meteor/meteor');
   /**
    * Constructor for MeteorMongoListBinding
    *
@@ -61,9 +60,10 @@ sap.ui.define([
         console.error("Binding lists to anyother other than root element (Mongo Collection) not implemented yet");
       }
       else {
-        var connection = DDP.connect('http://localhost:3005');
+        // TODO - move this to oModel?
+        // TODO - handle subscriptions
       	var components = sPath.split("/");
-        this._oCollection = Mongo.Collection.get(components[1], { connection: Meteor.connection });
+        this._oCollection = Mongo.Collection.get(components[1]);
         this._oCursor = this._oCollection.find();
       }
     }
@@ -89,11 +89,11 @@ sap.ui.define([
   MeteorMongoListBinding.prototype.getContexts = function(iStartIndex, iLength) {
     debugger;
     var aContexts = [];
-    //  this.oCursor.forEach(function(doc){
-    // 	 const context = new Context(this.oModel, this.sPath + "(" + doc._id ")");
-    // 	 aContexts.push(context);
-    //  });
-    //  return aContexts;
+    this._oCursor.forEach(function(doc){
+      // const context = new Context(this.oModel, this.sPath + "(" + doc._id ")");
+      // aContexts.push(context);
+    });
+    return aContexts;
   };
 
   /**
@@ -142,7 +142,10 @@ sap.ui.define([
    * @public
    */
   MeteorMongoListBinding.prototype.getLength = function() {
-    return this._oCusor.count();
+    // TODO handle subscription finished/records loaded
+    if (this._oCursor) {
+      return this._oCursor.count();
+    }
   };
 
   /**
@@ -154,7 +157,12 @@ sap.ui.define([
    * @public
    */
   MeteorMongoListBinding.prototype.isLengthFinal = function() {
-    return true;
+    // TODO handle subscription finished/records loaded
+    if (this._oCursor) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   // base methods, may be overridden by child classes

@@ -9,7 +9,7 @@ sap.ui.define([
 
     onInit: function() {
 			// Set up json model for categories - will be populated asynchrnously later
-			var oModel = new ODataModel('http://services.odata.org/V2/Northwind/Northwind.svc/');
+			var oModel = new ODataModel('/oDataProxy');
 			this.getView().setModel(oModel);
     }
 
