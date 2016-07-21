@@ -14,14 +14,13 @@
             <Column>
                 <Text text="Description"/>
             </Column>
-            <!-- <Column></Column> -->
+            <Column></Column>
         </columns>
         <ColumnListItem >
             <cells>
                 <ObjectIdentifier title="{CategoryName}"/>
-                <!-- <ObjectIdentifier title="{CategoryName}" text="{_id}"/> -->
                 <Text text="{Description}"/>
-                <!-- <Image src="data:image/bmp;base64,{Picture}"/> -->
+                <Image src="{path: 'Picture', formatter: '.formatter.dataUrlForMsImage'}"/>
             </cells>
         </ColumnListItem>
     </Table>

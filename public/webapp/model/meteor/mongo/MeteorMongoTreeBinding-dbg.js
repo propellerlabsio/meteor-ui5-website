@@ -1,1 +1,0 @@
-MeteorMongoTreeBinding.js

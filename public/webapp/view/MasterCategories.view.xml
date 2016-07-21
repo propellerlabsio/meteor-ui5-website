@@ -4,9 +4,9 @@
             <List itemPress="onItemPress">
                 <items>
                     <StandardListItem title="MeteorModel" type="Active" custom:to="categories"/>
-                    <StandardListItem title="Flat JSONModel" type="Active" custom:to="categoriesFlatJson"/>
                     <StandardListItem title="JSONModel" type="Active" custom:to="categoriesJson"/>
                     <StandardListItem title="ODataModel" type="Active" custom:to="categoriesOData"/>
+                    <StandardListItem title="Flat JSONModel (debugging)" type="Active" custom:to="categoriesFlatJson"/>
                 </items>
             </List>
         </content>

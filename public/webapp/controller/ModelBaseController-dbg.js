@@ -1,11 +1,13 @@
 
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
+  'meteor-model-demo/model/formatter',
   'jquery.sap.global'
-], function(Controller, jQuery) {
+], function(Controller, formatter, jQuery) {
   "use strict";
 
-  var CController = Controller.extend("meteor-model-demo.controller.ModelDebugController", {
+  var CController = Controller.extend("meteor-model-demo.controller.ModelBaseController", {
+    formatter: formatter,
 
     onDebugPress: function() {
       var oModel = this.getView().getModel();

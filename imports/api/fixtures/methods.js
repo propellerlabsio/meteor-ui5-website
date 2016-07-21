@@ -42,9 +42,9 @@ Meteor.methods({
 
         // Convert microsoft images by removing proprietory OLE headers
         // per https://groups.google.com/forum/#!topic/odata4j-discuss/6amvlFgExEU
-        if (propName === "Picture" || propName === "Photo"){
-          doc[propName] = prop.substring(104);
-        }
+        // if (propName === "Picture" || propName === "Photo"){
+        //   doc[propName] = prop.substring(104);
+        // }
       }
     });
 
