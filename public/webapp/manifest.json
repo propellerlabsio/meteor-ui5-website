@@ -49,6 +49,14 @@
                 "name": "home",
                 "target": ["master", "home"]
             },{
+                "pattern": "tutorial",
+                "name": "tutorial",
+                "target": ["master", "tutorial"]
+            },{
+                "pattern": "api",
+                "name": "api",
+                "target": ["master", "api"]
+            },{
                 "pattern": "compareMeteor",
                 "name": "compareMeteor",
                 "target": ["masterCompare", "categoriesMeteor"]
@@ -67,12 +75,7 @@
             }
           ],
             "targets": {
-                "loading": {
-                    "viewName": "Loading",
-                    "controlAggregation": "masterPages",
-                    "viewLevel": "1"
-                },
-                  "master": {
+                "master": {
                     "viewName": "Master",
                     "controlAggregation": "masterPages",
                     "viewLevel": "1"
@@ -84,6 +87,18 @@
                 },
                 "home": {
                     "viewName": "Home",
+                    "controlAggregation": "detailPages",
+                    "viewLevel": "1",
+                    "transition": "flip"
+                },
+                "tutorial": {
+                    "viewName": "Tutorial",
+                    "controlAggregation": "detailPages",
+                    "viewLevel": "1",
+                    "transition": "flip"
+                },
+                "api": {
+                    "viewName": "Api",
                     "controlAggregation": "detailPages",
                     "viewLevel": "1",
                     "transition": "flip"

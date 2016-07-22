@@ -15,9 +15,16 @@ sap.ui.define([
       this.getView().setModel(oViewModel, "viewModel");
     },
 
-    onDebugPress: function() {
-      debugger;
-    }
+    onPressGotoUi5: function() {
+      var win = window.open('http://openui5.org/', '_blank');
+      win.focus();
+    },
+
+    onPressGotoMeteor: function() {
+      var win = window.open('https://www.meteor.com/', '_blank');
+      win.focus();
+    },
+
   });
 
 

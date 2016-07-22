@@ -3,15 +3,15 @@
   xmlns="sap.m">
     <Page id="Welcome" title="Welcome" class="sapUiStdPage">
         <content>
-            <Label text="Welcome..."/>
+            <Text text="Welcome..."/>
         </content>
         <footer>
           <Toolbar>
-            <Button icon="/art/logos/meteor.png" text="Meteor ({viewModel>/meteorRelease})"/>
-            <!-- <Label text="Meteor ({viewModel>/meteorRelease})"></Label> -->
+            <Button text="Meteor ({viewModel>/meteorRelease})" press="onPressGotoMeteor" icon="/art/logos/meteor.png"/>
             <ToolbarSpacer/>
-            <Label text="OpenUI5 ({viewModel>/ui5Version})"></Label>
-            <Button icon="/art/logos/openui5.png"/>
+            <Text text="Built With"/>
+            <ToolbarSpacer/>
+            <Button text="OpenUI5 ({viewModel>/ui5Version})" press="onPressGotoUi5" icon="/art/logos/openui5.png"/>
           </Toolbar>
         </footer>
     </Page>

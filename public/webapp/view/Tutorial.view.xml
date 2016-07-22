@@ -2,7 +2,7 @@
   xmlns="sap.m">
     <Page id="Tutorial" title="Tutorial" class="sapUiStdPage">
         <content>
-            <Label text="Coming soon..."/>
+            <Text text="Coming soon..."/>
         </content>
     </Page>
 </mvc:View>
