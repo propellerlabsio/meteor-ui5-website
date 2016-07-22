@@ -8,7 +8,7 @@
     				<content>
     					<List itemPress="onMasterLevel1ItemPress">
     						<items>
-    							<StandardListItem title="Categories" type="Navigation" custom:to="categories"/>
+    							<StandardListItem title="Compare Models" type="Navigation" custom:to="compare"/>
     						</items>
     					</List>
     				</content>

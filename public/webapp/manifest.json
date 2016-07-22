@@ -49,9 +49,9 @@
                 "name": "home",
                 "target": ["master", "welcome"]
             },{
-                "pattern": "categories",
-                "name": "categories",
-                "target": ["masterCategories", "categoriesMeteor"]
+                "pattern": "compare",
+                "name": "compare",
+                "target": ["masterCompare", "categoriesMeteor"]
             },{
                 "pattern": "categoriesJson",
                 "name": "categoriesJson",
@@ -77,8 +77,8 @@
                     "controlAggregation": "masterPages",
                     "viewLevel": "1"
                 },
-                "masterCategories": {
-                    "viewName": "MasterCategories",
+                "masterCompare": {
+                    "viewName": "MasterCompare",
                     "controlAggregation": "masterPages",
                     "viewLevel": "2"
                 },
