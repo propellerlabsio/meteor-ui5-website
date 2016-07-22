@@ -5,12 +5,12 @@
   controllerName="meteor-model-demo.controller.MasterCompare">
     <Page id="masterCompare" title="Compare Models" icon="sap-icon://action" class="sapUiStdPage" showNavButton="true" navButtonPress="onPressBack">
         <content>
-            <List itemPress="onItemPress">
+            <List id="masterCompareList" itemPress="onItemPress" mode="SingleSelectMaster">
                 <items>
-                    <StandardListItem title="MeteorModel" type="Active" custom:to="compare"/>
-                    <StandardListItem title="JSONModel" type="Active" custom:to="categoriesJson"/>
-                    <StandardListItem title="ODataModel" type="Active" custom:to="categoriesOData"/>
-                    <StandardListItem title="Flat JSONModel (debugging)" type="Active" custom:to="categoriesFlatJson"/>
+                    <StandardListItem id="compareMeteor" title="MeteorModel" type="Active" custom:to="compareMeteor"/>
+                    <StandardListItem id="compareJson" title="JSONModel" type="Active" custom:to="compareJson"/>
+                    <StandardListItem id="compareOData" title="ODataModel" type="Active" custom:to="compareOData"/>
+                    <StandardListItem id="compareFlatJson" title="Flat JSONModel (debugging)" type="Active" custom:to="compareFlatJson"/>
                 </items>
             </List>
         </content>

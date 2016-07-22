@@ -77,7 +77,6 @@ sap.ui.define([
         if (!document) {
           console.error("Document not found!");
         } else {
-					debugger;
 					propertyValue = _.get(document, this.sPath);
         }
       }

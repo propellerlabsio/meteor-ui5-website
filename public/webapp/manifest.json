@@ -49,21 +49,21 @@
                 "name": "home",
                 "target": ["master", "welcome"]
             },{
-                "pattern": "compare",
-                "name": "compare",
+                "pattern": "compareMeteor",
+                "name": "compareMeteor",
                 "target": ["masterCompare", "categoriesMeteor"]
             },{
-                "pattern": "categoriesJson",
-                "name": "categoriesJson",
-                "target": ["masterCategories", "categoriesJson"]
+                "pattern": "compareJson",
+                "name": "compareJson",
+                "target": ["masterCompare", "categoriesJson"]
             },{
-                "pattern": "categoriesFlatJson",
-                "name": "categoriesFlatJson",
-                "target": ["masterCategories", "categoriesFlatJson"]
+                "pattern": "compareFlatJson",
+                "name": "compareFlatJson",
+                "target": ["masterCompare", "categoriesFlatJson"]
             },{
-                "pattern": "categoriesOData",
-                "name": "categoriesOData",
-                "target": ["masterCategories", "categoriesOData"]
+                "pattern": "compareOData",
+                "name": "compareOData",
+                "target": ["masterCompare", "categoriesOData"]
             }
           ],
             "targets": {
