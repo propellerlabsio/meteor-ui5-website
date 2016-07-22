@@ -4,23 +4,6 @@
       xmlns:tnt="sap.tnt"
       controllerName="meteor-ui5-demo.controller.App"
     	xmlns="sap.m">
-      <tnt:ToolHeader>
-        <ToolbarSpacer>
-        </ToolbarSpacer>
-        <Title text="Meteor UI5 Demo" level="h1"/>
-        <tnt:ToolHeaderUtilitySeparator />
-        <ToolbarSpacer>
-            <layoutData>
-                <OverflowToolbarLayoutData priority="NeverOverflow" minWidth="20px" />
-            </layoutData>
-        </ToolbarSpacer>
-        <Button press="onDebugPress" icon="sap-icon://source-code">
-            <layoutData>
-                <OverflowToolbarLayoutData priority="NeverOverflow" />
-            </layoutData>
-        </Button>
-
-    </tnt:ToolHeader>
     	<SplitApp id="SplitApp">
                 <!-- <ToolbarSpacer /> -->
     	</SplitApp>

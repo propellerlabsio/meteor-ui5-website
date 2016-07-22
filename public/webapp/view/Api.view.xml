@@ -1,0 +1,8 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+    <Page id="Api" title="API Docs" class="sapUiStdPage">
+        <content>
+            <Label text="Coming soon..."/>
+        </content>
+    </Page>
+</mvc:View>

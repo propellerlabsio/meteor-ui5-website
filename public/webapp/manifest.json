@@ -47,7 +47,7 @@
             "routes": [{
                 "pattern": "",
                 "name": "home",
-                "target": ["master", "welcome"]
+                "target": ["master", "home"]
             },{
                 "pattern": "compareMeteor",
                 "name": "compareMeteor",
@@ -82,8 +82,8 @@
                     "controlAggregation": "masterPages",
                     "viewLevel": "2"
                 },
-                "welcome": {
-                    "viewName": "Welcome",
+                "home": {
+                    "viewName": "Home",
                     "controlAggregation": "detailPages",
                     "viewLevel": "1",
                     "transition": "flip"

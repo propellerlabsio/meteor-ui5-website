@@ -1,7 +1,0 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
-    <Page id="Welcome" title="Welcome" class="sapUiStdPage">
-        <content>
-            <Label text="Welcome..."/>
-        </content>
-    </Page>
-</mvc:View>

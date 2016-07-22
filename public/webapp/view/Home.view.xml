@@ -1,0 +1,18 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+  controllerName="meteor-ui5-demo.controller.Home"
+  xmlns="sap.m">
+    <Page id="Welcome" title="Welcome" class="sapUiStdPage">
+        <content>
+            <Label text="Welcome..."/>
+        </content>
+        <footer>
+          <Toolbar>
+            <Button icon="/art/logos/meteor.png" text="Meteor ({viewModel>/meteorRelease})"/>
+            <!-- <Label text="Meteor ({viewModel>/meteorRelease})"></Label> -->
+            <ToolbarSpacer/>
+            <Label text="OpenUI5 ({viewModel>/ui5Version})"></Label>
+            <Button icon="/art/logos/openui5.png"/>
+          </Toolbar>
+        </footer>
+    </Page>
+</mvc:View>

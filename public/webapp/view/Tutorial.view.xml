@@ -1,0 +1,8 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+    <Page id="Tutorial" title="Tutorial" class="sapUiStdPage">
+        <content>
+            <Label text="Coming soon..."/>
+        </content>
+    </Page>
+</mvc:View>

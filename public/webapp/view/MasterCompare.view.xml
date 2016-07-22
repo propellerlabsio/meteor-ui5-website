@@ -2,15 +2,15 @@
   xmlns:mvc="sap.ui.core.mvc"
   xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
   xmlns="sap.m"
-  controllerName="meteor-ui5-demo.controller.MasterCompare">
+  controllerName="meteor-ui5-demo.controller.Master">
     <Page id="masterCompare" title="Compare Models" icon="sap-icon://action" class="sapUiStdPage" showNavButton="true" navButtonPress="onPressBack">
         <content>
-            <List id="masterCompareList" itemPress="onItemPress" mode="SingleSelectMaster">
+            <List id="masterList" itemPress="onItemPress" mode="SingleSelectMaster">
                 <items>
-                    <StandardListItem id="compareMeteor" title="MeteorModel" type="Active" custom:to="compareMeteor"/>
-                    <StandardListItem id="compareJson" title="JSONModel" type="Active" custom:to="compareJson"/>
-                    <StandardListItem id="compareOData" title="ODataModel" type="Active" custom:to="compareOData"/>
-                    <StandardListItem id="compareFlatJson" title="Flat JSONModel (debugging)" type="Active" custom:to="compareFlatJson"/>
+                    <StandardListItem id="compareMeteor" title="Meteor" icon="/art/logos/meteor.png" type="Active" custom:to="compareMeteor"/>
+                    <StandardListItem id="compareJson" title="JSON" icon="/art/logos/json.png" type="Active" custom:to="compareJson"/>
+                    <StandardListItem id="compareOData" title="OData" icon="/art/logos/odata.png" type="Active" custom:to="compareOData"/>
+                    <StandardListItem id="compareFlatJson" title="(debugging)" type="Active" custom:to="compareFlatJson"/>
                 </items>
             </List>
         </content>

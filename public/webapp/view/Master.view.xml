@@ -4,11 +4,14 @@
     	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     	xmlns="sap.m"
       controllerName="meteor-ui5-demo.controller.Master">
-    			<Page id="master" title="Menu" icon="sap-icon://action" class="sapUiStdPage">
+    			<Page id="master" title="Meteor UI5" icon="sap-icon://action" class="sapUiStdPage">
     				<content>
-    					<List itemPress="onMasterLevel1ItemPress">
+    					<List id="masterList" itemPress="onItemPress" mode="SingleSelectMaster">
     						<items>
-    							<StandardListItem title="Compare Models" type="Navigation" custom:to="compareMeteor"/>
+    							<StandardListItem id="home" title="Introduction" type="Active" custom:to="home"/>
+    							<StandardListItem id="tutorial" title="Tutorial" type="Active" custom:to="tutorial"/>
+    							<StandardListItem id="api" title="API docs" type="Active" custom:to="api"/>
+    							<StandardListItem id="compareMeteor" title="Compare Models" type="Navigation" custom:to="compareMeteor"/>
     						</items>
     					</List>
     				</content>
