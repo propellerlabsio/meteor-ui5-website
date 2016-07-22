@@ -22,16 +22,16 @@ sap.ui.define([
 	 * @class
 	 * List binding implementation for JSON format
 	 *
-	 * @param {meteor-model-demo.model.JSONModel} oModel
+	 * @param {meteor-ui5-demo.model.JSONModel} oModel
 	 * @param {string} sPath
 	 * @param {sap.ui.model.Context} oContext
 	 * @param {sap.ui.model.Sorter|sap.ui.model.Sorter[]} [aSorters] initial sort order (can be either a sorter or an array of sorters)
 	 * @param {sap.ui.model|sap.ui.model.Filter[]} [aFilters] predefined filter/s (can be either a filter or an array of filters)
 	 * @param {object} [mParameters]
-	 * @alias meteor-model-demo.model.FlatJSONListBinding
+	 * @alias meteor-ui5-demo.model.FlatJSONListBinding
 	 * @extends sap.ui.model.ListBinding
 	 */
-	var FlatJSONListBinding = ListBinding.extend("meteor-model-demo.model.FlatJSONListBinding", {
+	var FlatJSONListBinding = ListBinding.extend("meteor-ui5-demo.model.FlatJSONListBinding", {
 
 
   		constructor : function(oModel, sPath, oContext, aSorters, aFilters, mParameters){

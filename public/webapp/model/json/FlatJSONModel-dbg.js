@@ -6,7 +6,7 @@
  * JSON-based DataBinding
  *
  * @namespace
- * @name meteor-model-demo.model
+ * @name meteor-ui5-demo.model
  * @public
  */
 
@@ -35,9 +35,9 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/Model', 'sap/ui/model/Context'
 	 * @param {boolean} bObserve whether to observe the JSON data for property changes (experimental)
 	 * @constructor
 	 * @public
-	 * @alias meteor-model-demo.model.FlatJSONModel
+	 * @alias meteor-ui5-demo.model.FlatJSONModel
 	 */
-	var FlatJSONModel = Model.extend("meteor-model-demo.model.FlatJSONModel", /** @lends meteor-model-demo.model.FlatJSONModel.prototype */ {
+	var FlatJSONModel = Model.extend("meteor-ui5-demo.model.FlatJSONModel", /** @lends meteor-ui5-demo.model.FlatJSONModel.prototype */ {
 
 		constructor : function(oData, bObserve) {
 			this.pSequentialImportCompleted = Promise.resolve();

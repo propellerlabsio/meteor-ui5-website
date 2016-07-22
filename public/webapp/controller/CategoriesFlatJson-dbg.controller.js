@@ -1,11 +1,11 @@
 
 sap.ui.define([
-  'meteor-model-demo/controller/ModelBaseController',
-  'meteor-model-demo/model/json/FlatJSONModel'
+  'meteor-ui5-demo/controller/ModelBaseController',
+  'meteor-ui5-demo/model/json/FlatJSONModel'
 ], function(Controller, JSONModel) {
   "use strict";
 
-  var CController = Controller.extend("meteor-model-demo.controller.CategoriesFlatJson", {
+  var CController = Controller.extend("meteor-ui5-demo.controller.CategoriesFlatJson", {
 
     onInit: function() {
 			// Set up json model for categories - will be populated asynchrnously later

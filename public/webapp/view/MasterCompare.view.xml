@@ -2,7 +2,7 @@
   xmlns:mvc="sap.ui.core.mvc"
   xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
   xmlns="sap.m"
-  controllerName="meteor-model-demo.controller.MasterCompare">
+  controllerName="meteor-ui5-demo.controller.MasterCompare">
     <Page id="masterCompare" title="Compare Models" icon="sap-icon://action" class="sapUiStdPage" showNavButton="true" navButtonPress="onPressBack">
         <content>
             <List id="masterCompareList" itemPress="onItemPress" mode="SingleSelectMaster">

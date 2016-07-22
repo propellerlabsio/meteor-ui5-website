@@ -2,11 +2,11 @@
     	xmlns:core="sap.ui.core"
     	xmlns:mvc="sap.ui.core.mvc"
     	xmlns="sap.m"
-      controllerName="meteor-model-demo.controller.CategoriesJson">
+      controllerName="meteor-ui5-demo.controller.CategoriesJson">
 
 		<Page id="CategoriesJson" title="JSON Model" class="sapUiStdPage">
 			<content>
-        <core:Fragment fragmentName="meteor-model-demo.view.Categories" type="XML" />
+        <core:Fragment fragmentName="meteor-ui5-demo.view.Categories" type="XML" />
 			</content>
 		</Page>
 </mvc:View>

@@ -33,10 +33,10 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/TreeBinding'],
      *         Of course this will only happen if all parent-nodes up to the top-level are also included.
      *         If you do NOT specify this parameter: by default all nested objects/arrays will be used to build the trees hierarchy.
      *
-     * @alias meteor-model-demo.model.FlatJSONTreeBinding
+     * @alias meteor-ui5-demo.model.FlatJSONTreeBinding
      * @extends sap.ui.model.TreeBinding
      */
-    var FlatJSONTreeBinding = TreeBinding.extend("meteor-model-demo.model.FlatJSONTreeBinding", {
+    var FlatJSONTreeBinding = TreeBinding.extend("meteor-ui5-demo.model.FlatJSONTreeBinding", {
 
       constructor: function(oModel, sPath, oContext, aApplicationFilters, mParameters, aSorters) {
         TreeBinding.apply(this, arguments);

@@ -2,12 +2,12 @@
     <mvc:View
     	xmlns:mvc="sap.ui.core.mvc"
       xmlns:tnt="sap.tnt"
-      controllerName="meteor-model-demo.controller.App"
+      controllerName="meteor-ui5-demo.controller.App"
     	xmlns="sap.m">
       <tnt:ToolHeader>
         <ToolbarSpacer>
         </ToolbarSpacer>
-        <Title text="Meteor UI5 Model Demo" level="h1"/>
+        <Title text="Meteor UI5 Demo" level="h1"/>
         <tnt:ToolHeaderUtilitySeparator />
         <ToolbarSpacer>
             <layoutData>

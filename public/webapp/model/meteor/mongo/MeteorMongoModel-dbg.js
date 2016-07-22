@@ -8,8 +8,8 @@ sap.ui.define([
 	'sap/ui/model/Model',
 	'sap/ui/model/BindingMode',
 	'sap/ui/model/Context',
-	'meteor-model-demo/model/meteor/mongo/MeteorMongoListBinding',
-	'meteor-model-demo/model/meteor/mongo/MeteorMongoPropertyBinding'
+	'meteor-ui5-demo/model/meteor/mongo/MeteorMongoListBinding',
+	'meteor-ui5-demo/model/meteor/mongo/MeteorMongoPropertyBinding'
 ], function(jQuery, Model, BindingMode, Context, MeteorMongoListBinding, MeteorMongoPropertyBinding) {
 	"use strict";
 
@@ -46,9 +46,9 @@ sap.ui.define([
 	 *
 	 * @constructor
 	 * @public
-	 * @alias meteor-model-demo.model.meteor.mongo.MeteorMongoModel
+	 * @alias meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel
 	 */
-	var MeteorMongoModel = Model.extend("meteor-model-demo.model.meteor.mongo.MeteorMongoModel", /** @lends meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype */ {
+	var MeteorMongoModel = Model.extend("meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel", /** @lends meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel.prototype */ {
 
 		constructor : function () {
 			Model.apply(this, arguments);
@@ -137,7 +137,7 @@ sap.ui.define([
 	 *
 	 * Note: Subclasses might add additional parameters to the event object. Optional parameters can be omitted.
 	 *
-	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel#requestFailed
+	 * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel#requestFailed
 	 * @event
 	 * @param {sap.ui.base.Event} oEvent
 	 * @param {sap.ui.base.EventProvider} oEvent.getSource
@@ -151,7 +151,7 @@ sap.ui.define([
 	 */
 
 	/**
-	 * Attach event-handler <code>fnFunction</code> to the 'requestFailed' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.<br/>
+	 * Attach event-handler <code>fnFunction</code> to the 'requestFailed' event of this <code>meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel</code>.<br/>
 	 *
 	 *
 	 * @param {object}
@@ -162,7 +162,7 @@ sap.ui.define([
 	 * @param {object}
 	 *            [oListener] Object on which to call the given function. If empty, this MeteorMongoModel is used.
 	 *
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @public
 	 */
 	MeteorMongoModel.prototype.attachRequestFailed = function(oData, fnFunction, oListener) {
@@ -171,7 +171,7 @@ sap.ui.define([
 	};
 
 	/**
-	 * Detach event-handler <code>fnFunction</code> from the 'requestFailed' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.<br/>
+	 * Detach event-handler <code>fnFunction</code> from the 'requestFailed' event of this <code>meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel</code>.<br/>
 	 *
 	 * The passed function and listener object must match the ones previously used for event registration.
 	 *
@@ -179,7 +179,7 @@ sap.ui.define([
 	 *            fnFunction The function to call, when the event occurs.
 	 * @param {object}
 	 *            oListener Object on which the given function had to be called.
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @public
 	 */
 	MeteorMongoModel.prototype.detachRequestFailed = function(fnFunction, oListener) {
@@ -196,7 +196,7 @@ sap.ui.define([
 	 * @param {string} [mArguments.statusText] The status as a text, details not specified, intended only for diagnosis output
 	 * @param {string} [mArguments.responseText] Response that has been received for the request ,as a text string
 	 *
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @protected
 	 */
 	MeteorMongoModel.prototype.fireRequestFailed = function(mArguments) {
@@ -208,7 +208,7 @@ sap.ui.define([
 	/**
 	 * The 'parseError' event is fired when parsing of a model document (e.g. XML response) fails.
 	 *
-	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel#parseError
+	 * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel#parseError
 	 * @event
 	 * @param {sap.ui.base.Event} oEvent
 	 * @param {sap.ui.base.EventProvider} oEvent.getSource
@@ -225,7 +225,7 @@ sap.ui.define([
 	 */
 
 	/**
-	 * Attach event-handler <code>fnFunction</code> to the 'parseError' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.<br/>
+	 * Attach event-handler <code>fnFunction</code> to the 'parseError' event of this <code>meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel</code>.<br/>
 	 *
 	 *
 	 * @param {object}
@@ -236,7 +236,7 @@ sap.ui.define([
 	 * @param {object}
 	 *            [oListener] Object on which to call the given function. If empty, the global context (window) is used.
 	 *
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @public
 	 */
 	MeteorMongoModel.prototype.attachParseError = function(oData, fnFunction, oListener) {
@@ -245,7 +245,7 @@ sap.ui.define([
 	};
 
 	/**
-	 * Detach event-handler <code>fnFunction</code> from the 'parseError' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.<br/>
+	 * Detach event-handler <code>fnFunction</code> from the 'parseError' event of this <code>meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel</code>.<br/>
 	 *
 	 * The passed function and listener object must match the ones previously used for event registration.
 	 *
@@ -253,7 +253,7 @@ sap.ui.define([
 	 *            fnFunction The function to call, when the event occurs.
 	 * @param {object}
 	 *            oListener Object on which the given function had to be called.
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @public
 	 */
 	MeteorMongoModel.prototype.detachParseError = function(fnFunction, oListener) {
@@ -273,7 +273,7 @@ sap.ui.define([
 	 * @param {int} [mArguments.linepos]
 	 * @param {int} [mArguments.filepos]
 	 *
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @protected
 	 */
 	MeteorMongoModel.prototype.fireParseError = function(mArguments) {
@@ -286,7 +286,7 @@ sap.ui.define([
 	 *
 	 * Note: Subclasses might add additional parameters to the event object. Optional parameters can be omitted.
 	 *
-	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel#requestSent
+	 * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel#requestSent
 	 * @event
 	 * @param {sap.ui.base.Event} oEvent
 	 * @param {sap.ui.base.EventProvider} oEvent.getSource
@@ -300,7 +300,7 @@ sap.ui.define([
 	 */
 
 	/**
-	 * Attach event-handler <code>fnFunction</code> to the 'requestSent' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.
+	 * Attach event-handler <code>fnFunction</code> to the 'requestSent' event of this <code>meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel</code>.
 	 *
 	 *
 	 * @param {object}
@@ -311,7 +311,7 @@ sap.ui.define([
 	 * @param {object}
 	 *            [oListener] Object on which to call the given function. If empty, the global context (window) is used.
 	 *
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @public
 	 */
 	MeteorMongoModel.prototype.attachRequestSent = function(oData, fnFunction, oListener) {
@@ -320,7 +320,7 @@ sap.ui.define([
 	};
 
 	/**
-	 * Detach event-handler <code>fnFunction</code> from the 'requestSent' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.
+	 * Detach event-handler <code>fnFunction</code> from the 'requestSent' event of this <code>meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel</code>.
 	 *
 	 * The passed function and listener object must match the ones previously used for event registration.
 	 *
@@ -328,7 +328,7 @@ sap.ui.define([
 	 *            fnFunction The function to call, when the event occurs.
 	 * @param {object}
 	 *            oListener Object on which the given function had to be called.
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @public
 	 */
 	MeteorMongoModel.prototype.detachRequestSent = function(fnFunction, oListener) {
@@ -345,7 +345,7 @@ sap.ui.define([
 	 * @param {boolean} [mArguments.async] If the request is synchronous or asynchronous (if available)
 	 * @param {string} [mArguments.info] additional information for the request (if available) <strong>deprecated</strong>
 	 * @param {object} [mArguments.infoObject] Additional information for the request (if available)
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @protected
 	 */
 	MeteorMongoModel.prototype.fireRequestSent = function(mArguments) {
@@ -359,7 +359,7 @@ sap.ui.define([
 	 *
 	 * Note: Subclasses might add additional parameters to the event object. Optional parameters can be omitted.
 	 *
-	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel#requestCompleted
+	 * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel#requestCompleted
 	 * @event
 	 * @param {sap.ui.base.Event} oEvent
 	 * @param {sap.ui.base.EventProvider} oEvent.getSource
@@ -375,7 +375,7 @@ sap.ui.define([
 	 */
 
 	/**
-	 * Attach event-handler <code>fnFunction</code> to the 'requestCompleted' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.
+	 * Attach event-handler <code>fnFunction</code> to the 'requestCompleted' event of this <code>meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel</code>.
 	 *
 	 *
 	 * @param {object}
@@ -386,7 +386,7 @@ sap.ui.define([
 	 * @param {object}
 	 *            [oListener] Object on which to call the given function. If empty, the global context (window) is used.
 	 *
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @public
 	 */
 	MeteorMongoModel.prototype.attachRequestCompleted = function(oData, fnFunction, oListener) {
@@ -395,7 +395,7 @@ sap.ui.define([
 	};
 
 	/**
-	 * Detach event-handler <code>fnFunction</code> from the 'requestCompleted' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.
+	 * Detach event-handler <code>fnFunction</code> from the 'requestCompleted' event of this <code>meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel</code>.
 	 *
 	 * The passed function and listener object must match the ones previously used for event registration.
 	 *
@@ -403,7 +403,7 @@ sap.ui.define([
 	 *            fnFunction The function to call, when the event occurs.
 	 * @param {object}
 	 *            oListener Object on which the given function had to be called.
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @public
 	 */
 	MeteorMongoModel.prototype.detachRequestCompleted = function(fnFunction, oListener) {
@@ -421,7 +421,7 @@ sap.ui.define([
 	 * @param {string} [mArguments.info] additional information for the request (if available) <strong>deprecated</strong>
 	 * @param {object} [mArguments.infoObject] Additional information for the request (if available)
 	 *
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @protected
 	 */
 	MeteorMongoModel.prototype.fireRequestCompleted = function(mArguments) {
@@ -448,7 +448,7 @@ sap.ui.define([
 	 * @param {object} [mArguments.context] the context of the property
 	 * @param {object} [mArguments.value] the value of the property
 	 *
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @protected
 	 */
 	MeteorMongoModel.prototype.firePropertyChange = function(mArguments) {
@@ -457,7 +457,7 @@ sap.ui.define([
 	};
 
 	/**
-	 * Attach event-handler <code>fnFunction</code> to the 'propertyChange' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.
+	 * Attach event-handler <code>fnFunction</code> to the 'propertyChange' event of this <code>meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel</code>.
 	 *
 	 *
 	 * @param {object}
@@ -468,7 +468,7 @@ sap.ui.define([
 	 * @param {object}
 	 *            [oListener] Object on which to call the given function. If empty, the global context (window) is used.
 	 *
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @public
 	 */
 	MeteorMongoModel.prototype.attachPropertyChange = function(oData, fnFunction, oListener) {
@@ -477,7 +477,7 @@ sap.ui.define([
 	};
 
 	/**
-	 * Detach event-handler <code>fnFunction</code> from the 'propertyChange' event of this <code>meteor-model-demo.model.meteor.mongo.MeteorMongoModel</code>.
+	 * Detach event-handler <code>fnFunction</code> from the 'propertyChange' event of this <code>meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel</code>.
 	 *
 	 * The passed function and listener object must match the ones previously used for event registration.
 	 *
@@ -485,7 +485,7 @@ sap.ui.define([
 	 *            fnFunction The function to call, when the event occurs.
 	 * @param {object}
 	 *            oListener Object on which the given function had to be called.
-	 * @return {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
+	 * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} <code>this</code> to allow method chaining
 	 * @public
 	 */
 	MeteorMongoModel.prototype.detachPropertyChange = function(fnFunction, oListener) {
@@ -499,7 +499,7 @@ sap.ui.define([
 	 * Implement in inheriting classes
 	 * @abstract
 	 *
-	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype.bindProperty
+	 * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel.prototype.bindProperty
 	 * @function
 	 * @param {string}
 	 *         sPath the path pointing to the property that should be bound
@@ -521,7 +521,7 @@ sap.ui.define([
 	 * Implement in inheriting classes
 	 * @abstract
 	 *
-	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype.bindList
+	 * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel.prototype.bindList
 	 * @function
 	 * @param {string}
 	 *         sPath the path pointing to the list / array that should be bound
@@ -546,7 +546,7 @@ sap.ui.define([
 	 * Implement in inheriting classes
 	 * @abstract
 	 *
-	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype.bindTree
+	 * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel.prototype.bindTree
 	 * @function
 	 * @param {string}
 	 *         sPath the path pointing to the tree / array that should be bound
@@ -567,7 +567,7 @@ sap.ui.define([
 	 * Implement in inheriting classes
 	 * @abstract
 	 *
-	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype.createBindingContext
+	 * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel.prototype.createBindingContext
 	 * @function
 	 * @param {string}
 	 *         sPath the path to create the new context from
@@ -589,7 +589,7 @@ sap.ui.define([
 	 * Implement in inheriting classes
 	 * @abstract
 	 *
-	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype.destroyBindingContext
+	 * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel.prototype.destroyBindingContext
 	 * @function
 	 * @param {object}
 	 *         oContext to destroy
@@ -601,7 +601,7 @@ sap.ui.define([
 	 * Implement in inheriting classes
 	 * @abstract
 	 *
-	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype.getProperty
+	 * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel.prototype.getProperty
 	 * @function
 	 * @param {string}
 	 *         sPath the path to where to read the attribute value
@@ -629,7 +629,7 @@ sap.ui.define([
 	 * Create ContextBinding
 	 * @abstract
 	 *
-	 * @name meteor-model-demo.model.meteor.mongo.MeteorMongoModel.prototype.bindContext
+	 * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel.prototype.bindContext
 	 * @function
 	 * @param {string | object}
 	 *         sPath the path pointing to the property that should be bound or an object
@@ -739,7 +739,7 @@ sap.ui.define([
 	 * Otherwise it is not guaranteed that the existing bindings will be updated with the new binding mode.
 	 *
 	 * @param {sap.ui.model.BindingMode} sMode the default binding mode to set for the model
-	 * @returns {meteor-model-demo.model.meteor.mongo.MeteorMongoModel} this pointer for chaining
+	 * @returns {meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel} this pointer for chaining
 	 * @public
 	 */
 	MeteorMongoModel.prototype.setDefaultBindingMode = function(sMode) {

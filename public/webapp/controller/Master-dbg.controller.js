@@ -3,7 +3,7 @@
 			], function(Controller) {
 			"use strict";
 
-			var CController = Controller.extend("meteor-model-demo.controller.Master", {
+			var CController = Controller.extend("meteor-ui5-demo.controller.Master", {
 
 				onMasterLevel1ItemPress : function(oEvent) {
 					var sNavTo = oEvent.getParameter("listItem").getCustomData()[0].getValue();

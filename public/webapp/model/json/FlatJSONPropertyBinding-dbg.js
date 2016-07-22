@@ -17,10 +17,10 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/P
      * @param {string} sPath
      * @param {sap.ui.model.Context} oContext
      * @param {object} [mParameters]
-     * @alias meteor-model-demo.model.FlatJSONPropertyBinding
+     * @alias meteor-ui5-demo.model.FlatJSONPropertyBinding
      * @extends sap.ui.model.PropertyBinding
      */
-    var FlatJSONPropertyBinding = PropertyBinding.extend("meteor-model-demo.model.FlatJSONPropertyBinding", {
+    var FlatJSONPropertyBinding = PropertyBinding.extend("meteor-ui5-demo.model.FlatJSONPropertyBinding", {
 
 
       constructor: function(oModel, sPath, oContext, mParameters) {
