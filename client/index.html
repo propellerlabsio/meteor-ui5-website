@@ -2,8 +2,15 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta charset="UTF-8">
 	<title>meteor-ui5 Demo App</title>
-	<script id="sap-ui-bootstrap" src="https://openui5.hana.ondemand.com/resources/sap-ui-core-dbg.js" data-sap-ui-bindingSyntax="complex" data-sap-ui-theme="sap_bluecrystal" data-sap-ui-libs="sap.m,sap.ui.core" data-sap-ui-compatVersion="edge" data-sap-ui-preload="async"
-					data-sap-ui-xx-bindingSyntax="complex" data-sap-ui-resourceroots='{
+	<script id="sap-ui-bootstrap"
+		src="https://openui5.hana.ondemand.com/resources/sap-ui-core-dbg.js"
+		data-sap-ui-bindingSyntax="complex"
+		data-sap-ui-theme="sap_bluecrystal"
+		data-sap-ui-libs="sap.m,sap.ui.core"
+		data-sap-ui-compatVersion="edge"
+		data-sap-ui-preload="async"
+		data-sap-ui-xx-bindingSyntax="complex"
+		data-sap-ui-resourceroots='{
 			  "meteor-ui5-demo": "/webapp/"
 		   	}'>
 	</script>
@@ -11,19 +18,19 @@
 	<script>
 		sap.ui.getCore().attachInit(function() {
 
+			// Create component deliberately (ie not automatically) so we can give
+			// the component an id which can be used in sap.ui.getCore().getComponent()
 			var oComponent = sap.ui.getCore().createComponent({
 				name: "meteor-ui5-demo",
 				id: "meteor-ui5-demo",
 				height: "100%"
 			});
 
+			// Create component container for our component and mount it to the dom
 			new sap.ui.core.ComponentContainer({
 				component: oComponent
 			}).placeAt("content");
 
-			// new sap.ui.core.ComponentContainer({
-			// 	name: "meteor-ui5-demo",
-			// }).placeAt("content");
 		});
 	</script>
 </head>
