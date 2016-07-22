@@ -57,14 +57,28 @@ sap.ui.define([
       // Get query
       if (sPath.charAt(0) !== "/"){
         console.error("Binding lists to anyother other than root element (Mongo Collection) not implemented yet");
+        return;
       }
-      else {
-        // TODO - move this to oModel?
-        // TODO - handle subscriptions
-      	var components = sPath.split("/");
-        this._oCollection = Mongo.Collection.get(components[1]);
-        this._oCursor = this._oCollection.find();
-      }
+
+    	var components = sPath.split("/");
+      this._oCollection = Mongo.Collection.get(components[1]);
+      this._oCursor = this._oCollection.find();
+      this._oQueryHandle = this._oCursor.observeChanges({
+				added: (id, fields) => {
+					//TODO performance - only update data that has changed
+					this.oModel.refresh();
+				},
+
+				changed: (id, fields) => {
+					//TODO performance - only update data that has changed
+					this.oModel.refresh();
+				},
+
+				removed: (id) => {
+					//TODO performance - only update data that has changed
+					this.oModel.refresh();
+				}
+			});
     }
 
   });
@@ -93,6 +107,16 @@ sap.ui.define([
       aContexts.push(context);
     }, this);
     return aContexts;
+  };
+
+  MeteorMongoListBinding.prototype.destroy = function(){
+    // Call stop on queryHandle on destroy of meteor model per docs:
+    // "observeChanges returns a live query handle, which is an object with a
+    // stop method. Call stop with no arguments to stop calling the callback functions
+    // and tear down the query. The query will run forever until you call this. "
+    if (this._oQueryHandle){
+      this._oQueryHandle.stop();
+    }
   };
 
   /**

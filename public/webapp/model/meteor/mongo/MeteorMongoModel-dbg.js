@@ -893,15 +893,15 @@ sap.ui.define([
 	 * @public
 	 */
 	MeteorMongoModel.prototype.destroy = function() {
-		MessageProcessor.prototype.destroy.apply(this, arguments);
+		// Call destroy on each binding where method exists
+		this.aBindings.forEach(function (oBinding){
+			if (oBinding.hasOwnProperty("destroy")){
+				oBinding.destroy();
+			}
+		});
 
-		this.oData = {};
-		this.aBindings = [];
-		this.mContexts = {};
-		if (this.sUpdateTimer) {
-			jQuery.sap.clearDelayedCall(this.sUpdateTimer);
-		}
-		this.bDestroyed = true;
+		// Call super
+		Model.prototype.destroy.apply(this, arguments);
 	};
 
 	/**
