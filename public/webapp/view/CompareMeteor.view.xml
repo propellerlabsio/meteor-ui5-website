@@ -2,9 +2,15 @@
     	xmlns:mvc="sap.ui.core.mvc"
       xmlns="meteor-ui5-demo.control">
 
-		<DemoCodePage title="Meteor Model" class="sapUiStdPage">
-			<content>
+		<DemoCodePage title="Meteor Model"
+       class="sapUiStdPage">
+ 		  <content>
         <mvc:XMLView viewName="meteor-ui5-demo.view.CategoriesMeteor"></mvc:XMLView>
 			</content>
+      <dependencies>
+        <SourceCodeViewer src='meteor-ui5-demo.controller.CategoriesMeteor-dbg.controller.js'/>
+        <SourceCodeViewer src='meteor-ui5-demo.view.CategoriesMeteor.view.xml'/>
+        <SourceCodeViewer src='meteor-ui5-demo.view.CategoriesTable.fragment.xml'/>
+      </dependencies>
 		</DemoCodePage>
 </mvc:View>

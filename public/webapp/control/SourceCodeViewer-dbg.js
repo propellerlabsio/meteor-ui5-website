@@ -1,11 +1,11 @@
 sap.ui.define([
-	"sap/m/Page"
-], function (Page, SourceCodeViewer) {
+	"sap/ui/core/Control"
+], function (Control) {
 	"use strict";
-	return Page.extend("meteor-ui5-demo.control.DemoCodePage", {
+	return Control.extend("meteor-ui5-demo.control.SourceCodeViewer", {
 		metadata : {
 			properties : {
-				demoView: 	{type : "string"}
+				src: {type: "string"}
 			}
 		},
 		onBeforeRendering: function(){
