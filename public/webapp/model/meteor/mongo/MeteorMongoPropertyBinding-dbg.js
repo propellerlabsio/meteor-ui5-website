@@ -25,11 +25,11 @@ sap.ui.define([
      * @param {object} [mParameters]
      *
      * @public
-     * @alias meteor-ui5-demo.model.meteor.mongo.MeteorMongoPropertyBinding
+     * @alias meteor-ui5.MeteorMongoPropertyBinding
      * @extends sap.ui.model.Binding
      */
 
-    var MeteorMongoPropertyBinding = PropertyBinding.extend("meteor-ui5-demo.model.meteor.mongo.MeteorMongoPropertyBinding", /** @lends meteor-ui5-demo.model.meteor.mongo.MeteorMongoPropertyBinding.prototype */ {
+    var MeteorMongoPropertyBinding = PropertyBinding.extend("meteor-ui5.MeteorMongoPropertyBinding", /** @lends meteor-ui5.MeteorMongoPropertyBinding.prototype */ {
 
       constructor: function(oModel, sPath, oContext, mParameters) {
         PropertyBinding.apply(this, arguments);
@@ -49,7 +49,7 @@ sap.ui.define([
      * Returns the current value of the bound target
      *
      * @function
-     * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoPropertyBinding.prototype.getValue
+     * @name meteor-ui5.MeteorMongoPropertyBinding.prototype.getValue
      * @return {object} the current value of the bound target
      *
      * @public
@@ -89,7 +89,7 @@ sap.ui.define([
      * setting the binding value and if so set the new value also in the model.
      *
      * @function
-     * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoPropertyBinding.prototype.setValue
+     * @name meteor-ui5.MeteorMongoPropertyBinding.prototype.setValue
      * @param {object} oValue the value to set for this binding
      *
      * @public

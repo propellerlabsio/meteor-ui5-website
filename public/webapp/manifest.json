@@ -26,7 +26,7 @@
         "rootView": "meteor-ui5-demo.view.App",
         "models": {
             "": {
-                "type": "meteor-ui5-demo.model.meteor.mongo.MeteorMongoModel",
+                "type": "meteor-ui5.MeteorMongoModel",
                 "settings": {}
             }
         },

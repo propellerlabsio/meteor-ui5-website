@@ -13,15 +13,15 @@
             <IconTabFilter text="Demo">
               <mvc:XMLView viewName="meteor-ui5-demo.view.CategoriesMeteor"></mvc:XMLView>
             </IconTabFilter>
-            <IconTabFilter text="CategoriesMeteor.controller.js">
-              <meteor-ui5-demo:SourceCodeViewer
-                src='webapp/controller/CategoriesMeteor-dbg.controller.js'
-                hljsLanguage='js'/>
-            </IconTabFilter>
             <IconTabFilter text="CategoriesMeteor.view.xml">
               <meteor-ui5-demo:SourceCodeViewer
                 src='webapp/view/CategoriesMeteor.view.xml'
                 hljsLanguage='xml'/>
+            </IconTabFilter>
+            <IconTabFilter text="CategoriesMeteor.controller.js">
+              <meteor-ui5-demo:SourceCodeViewer
+                src='webapp/controller/CategoriesMeteor-dbg.controller.js'
+                hljsLanguage='js'/>
             </IconTabFilter>
             <IconTabFilter text="CategoriesTable.fragment.xml">
               <meteor-ui5-demo:SourceCodeViewer

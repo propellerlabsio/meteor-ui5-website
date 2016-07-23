@@ -30,10 +30,10 @@ sap.ui.define([
    * @param {object} [mParameters]
    *
    * @public
-   * @alias meteor-ui5-demo.model.meteor.mongo.MeteorMongoListBinding
+   * @alias meteor-ui5.MeteorMongoListBinding
    * @extends sap.ui.model.Binding
    */
-  var MeteorMongoListBinding = ListBinding.extend("meteor-ui5-demo.model.meteor.mongo.MeteorMongoListBinding", {
+  var MeteorMongoListBinding = ListBinding.extend("meteor-ui5.MeteorMongoListBinding", {
 
     constructor: function(oModel, sPath, oContext, aSorters, aFilters, mParameters) {
       ListBinding.call(this, oModel, sPath, oContext, mParameters);
@@ -88,11 +88,11 @@ sap.ui.define([
    * Returns an array of binding contexts for the bound target list.
    *
    * <strong>Note:</strong>The public usage of this method is deprecated, as calls from outside of controls will lead
-   * to unexpected side effects. For avoidance use {@link meteor-ui5-demo.model.meteor.mongo.MeteorMongoListBinding.prototype.getCurrentContexts}
+   * to unexpected side effects. For avoidance use {@link meteor-ui5.MeteorMongoListBinding.prototype.getCurrentContexts}
    * instead.
    *
    * @function
-   * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoListBinding.prototype.getContexts
+   * @name meteor-ui5.MeteorMongoListBinding.prototype.getContexts
    * @param {int} [iStartIndex=0] the startIndex where to start the retrieval of contexts
    * @param {int} [iLength=length of the list] determines how many contexts to retrieve beginning from the start index.
    * @return {sap.ui.model.Context[]} the array of contexts for each row of the bound list
@@ -123,10 +123,10 @@ sap.ui.define([
    * Filters the list according to the filter definitions
    *
    * @function
-   * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoListBinding.prototype.filter
+   * @name meteor-ui5.MeteorMongoListBinding.prototype.filter
    * @param {object[]} aFilters Array of filter objects
    * @param {sap.ui.model.FilterType} sFilterType Type of the filter which should be adjusted, if it is not given, the standard behaviour applies
-   * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoListBinding} returns <code>this</code> to facilitate method chaining
+   * @return {meteor-ui5.MeteorMongoListBinding} returns <code>this</code> to facilitate method chaining
    *
    * @public
    */
@@ -135,9 +135,9 @@ sap.ui.define([
    * Sorts the list according to the sorter object
    *
    * @function
-   * @name meteor-ui5-demo.model.meteor.mongo.MeteorMongoListBinding.prototype.sort
+   * @name meteor-ui5.MeteorMongoListBinding.prototype.sort
    * @param {sap.ui.model.Sorter|Array} aSorters the Sorter object or an array of sorters which defines the sort order
-   * @return {meteor-ui5-demo.model.meteor.mongo.MeteorMongoListBinding} returns <code>this</code> to facilitate method chaining
+   * @return {meteor-ui5.MeteorMongoListBinding} returns <code>this</code> to facilitate method chaining
    * @public
    */
 
@@ -203,7 +203,7 @@ sap.ui.define([
 
   //Eventing and related
   /**
-   * Attach event-handler <code>fnFunction</code> to the 'sort' event of this <code>meteor-ui5-demo.model.meteor.mongo.MeteorMongoListBinding</code>.<br/>
+   * Attach event-handler <code>fnFunction</code> to the 'sort' event of this <code>meteor-ui5.MeteorMongoListBinding</code>.<br/>
    * @param {function} fnFunction The function to call, when the event occurs.
    * @param {object} [oListener] object on which to call the given function.
    * @protected
@@ -214,7 +214,7 @@ sap.ui.define([
   };
 
   /**
-   * Detach event-handler <code>fnFunction</code> from the 'sort' event of this <code>meteor-ui5-demo.model.meteor.mongo.MeteorMongoListBinding</code>.<br/>
+   * Detach event-handler <code>fnFunction</code> from the 'sort' event of this <code>meteor-ui5.MeteorMongoListBinding</code>.<br/>
    * @param {function} fnFunction The function to call, when the event occurs.
    * @param {object} [oListener] object on which to call the given function.
    * @protected
@@ -235,7 +235,7 @@ sap.ui.define([
   };
 
   /**
-   * Attach event-handler <code>fnFunction</code> to the 'filter' event of this <code>meteor-ui5-demo.model.meteor.mongo.MeteorMongoListBinding</code>.<br/>
+   * Attach event-handler <code>fnFunction</code> to the 'filter' event of this <code>meteor-ui5.MeteorMongoListBinding</code>.<br/>
    * @param {function} fnFunction The function to call, when the event occurs.
    * @param {object} [oListener] object on which to call the given function.
    * @protected
@@ -246,7 +246,7 @@ sap.ui.define([
   };
 
   /**
-   * Detach event-handler <code>fnFunction</code> from the 'filter' event of this <code>meteor-ui5-demo.model.meteor.mongo.MeteorMongoListBinding</code>.<br/>
+   * Detach event-handler <code>fnFunction</code> from the 'filter' event of this <code>meteor-ui5.MeteorMongoListBinding</code>.<br/>
    * @param {function} fnFunction The function to call, when the event occurs.
    * @param {object} [oListener] object on which to call the given function.
    * @protected

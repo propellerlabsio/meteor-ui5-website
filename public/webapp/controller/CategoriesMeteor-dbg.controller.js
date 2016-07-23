@@ -1,6 +1,6 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
-  'meteor-ui5-demo/model/meteor/mongo/MeteorMongoModel',
+  'meteor-ui5/MeteorMongoModel',
   'meteor-ui5-demo/model/formatter'
 ], function(Controller, MeteorModel, formatter) {
   "use strict";

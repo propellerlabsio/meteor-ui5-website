@@ -25,8 +25,7 @@ sap.ui.define([
 		},
 
 		init : function () {
-			this._sCode = "console.log('Hello World!');"
-
+			this._sInitialCode = "Loading...";
 		},
 
 		// the part creating the HTML:
@@ -38,7 +37,7 @@ sap.ui.define([
 				oRm.addClass(hljsLanguage);
 				oRm.writeClasses();	// Writes the highlight JS language alias as a class on code tag
 				oRm.write(">");
-				oRm.write(oControl._sCode);
+				oRm.write(oControl._sInitialCode);
 				oRm.write("</code></pre>"); // end of the complete Control
 		}
 	});
