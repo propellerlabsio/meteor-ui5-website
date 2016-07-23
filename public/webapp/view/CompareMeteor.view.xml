@@ -1,7 +1,8 @@
 <mvc:View
     	xmlns:mvc="sap.ui.core.mvc"
       xmlns:meteor-ui5-demo="meteor-ui5-demo.control"
-      xmlns="sap.m">
+      xmlns="sap.m"
+      controllerName="meteor-ui5-demo.controller.CompareModels">
 
 		<Page title="Meteor Model" class="sapUiStdPage">
  		  <content>
