@@ -11,7 +11,8 @@ sap.ui.define([
     formatter: formatter,
 
     onInit: function() {
-			// Set up json model for categories - will be populated asynchrnously later
+			// Create a json model and load it with a file containing Categories
+      // demo data.
 			var oJsonData = [];
 			var oModel = new JSONModel(oJsonData);
 			this.getView().setModel(oModel);

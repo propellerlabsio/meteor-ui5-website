@@ -57,19 +57,19 @@
                 "name": "api",
                 "target": ["master", "api"]
             },{
-                "pattern": "compareMeteor",
+                "pattern": "compare/meteor",
                 "name": "compareMeteor",
                 "target": ["masterCompare", "compareMeteor"]
             },{
-                "pattern": "compareJson",
+                "pattern": "compare/json",
                 "name": "compareJson",
                 "target": ["masterCompare", "compareJson"]
             },{
-                "pattern": "compareFlatJson",
+                "pattern": "compare/flatjson",
                 "name": "compareFlatJson",
                 "target": ["masterCompare", "compareFlatJson"]
             },{
-                "pattern": "compareOData",
+                "pattern": "compare/odata",
                 "name": "compareOData",
                 "target": ["masterCompare", "compareOData"]
             }
@@ -123,6 +123,12 @@
                 },
                 "compareOData": {
                     "viewName": "CompareOData",
+                    "controlAggregation": "detailPages",
+                    "viewLevel": "2",
+                    "transition": "flip"
+                },
+                "viewSourceCode": {
+                    "viewName": "ViewSourceCode",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"

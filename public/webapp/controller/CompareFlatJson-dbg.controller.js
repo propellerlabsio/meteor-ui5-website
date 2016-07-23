@@ -11,7 +11,13 @@ sap.ui.define([
     formatter: formatter,
 
     onInit: function() {
-			// Set up json model for categories - will be populated asynchrnously later
+			// Set up json model for categories - will be populated asynchronously so
+      // view can render while data is being loaded from file fetched via meteor
+      // call.  This example uses a special modified copy of the standard sap
+      // json model.  Our version has been 'flattened' to remove some of the
+      // class hierarchy to make it easier to debug during development of our
+      // Meteor model (for comparison purposes). It is intended that the flat
+      // json model and this view will be removed.
 			var oJsonData = [];
 			var oModel = new JSONModel(oJsonData);
 			this.getView().setModel(oModel);
@@ -24,7 +30,6 @@ sap.ui.define([
 					oModel.setData(
             {
               Categories: result
-              // Categories: result.slice(0, 2) // TODO remove slice - debugging
             });
 			});
     }

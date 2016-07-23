@@ -11,7 +11,10 @@ sap.ui.define([
     formatter: formatter,
 
     onInit: function() {
-			// Set up json model for categories - will be populated asynchrnously later
+			// Set up Odata model for categories - will be populated via Northwind
+      // odata service.  We use a proxy due to CORS issues with service being
+      // at different URL.  Calls to URL '/oDataProxy' are redirected to
+      // http://services.odata.org/V2/Northwind/Northwind.svc
 			var oModel = new ODataModel('/oDataProxy');
 			this.getView().setModel(oModel);
     }

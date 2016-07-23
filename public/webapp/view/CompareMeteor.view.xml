@@ -1,12 +1,10 @@
 <mvc:View
-    	xmlns:core="sap.ui.core"
     	xmlns:mvc="sap.ui.core.mvc"
-    	xmlns="sap.m"
-      controllerName="meteor-ui5-demo.controller.CompareMeteor">
+      xmlns="meteor-ui5-demo.control">
 
-		<Page title="Meteor Model" class="sapUiStdPage">
+		<DemoCodePage title="Meteor Model" class="sapUiStdPage">
 			<content>
-        <core:Fragment fragmentName="meteor-ui5-demo.view.CategoriesTable" type="XML" />
+        <mvc:XMLView viewName="meteor-ui5-demo.view.CategoriesMeteor"></mvc:XMLView>
 			</content>
-		</Page>
+		</DemoCodePage>
 </mvc:View>

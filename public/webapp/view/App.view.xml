@@ -1,10 +1,7 @@
 
     <mvc:View
     	xmlns:mvc="sap.ui.core.mvc"
-      xmlns:tnt="sap.tnt"
-      controllerName="meteor-ui5-demo.controller.App"
     	xmlns="sap.m">
     	<SplitApp id="SplitApp">
-                <!-- <ToolbarSpacer /> -->
     	</SplitApp>
     </mvc:View>

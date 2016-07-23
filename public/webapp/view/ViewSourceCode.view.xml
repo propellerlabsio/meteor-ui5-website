@@ -1,0 +1,18 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+  controllerName="meteor-ui5-demo.controller.ViewSourceCode"
+  xmlns="sap.m">
+    <Page id="Welcome" title="Source Code" class="sapUiStdPage" showNavButton="true" navButtonPress="onPressBack">
+        <content>
+            <Text text="Coming soon..."/>
+        </content>
+        <!-- <footer>
+          <Toolbar>
+            <Button text="Meteor ({viewModel>/meteorRelease})" press="onPressGotoMeteor" icon="/art/logos/meteor.png"/>
+            <ToolbarSpacer/>
+            <Text text="Built With"/>
+            <ToolbarSpacer/>
+            <Button text="OpenUI5 ({viewModel>/ui5Version})" press="onPressGotoUi5" icon="/art/logos/openui5.png"/>
+          </Toolbar>
+        </footer> -->
+    </Page>
+</mvc:View>

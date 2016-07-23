@@ -1,0 +1,9 @@
+<mvc:View
+    	xmlns:core="sap.ui.core"
+    	xmlns:mvc="sap.ui.core.mvc"
+    	xmlns="sap.m"
+      controllerName="meteor-ui5-demo.controller.CategoriesMeteor">
+
+  <core:Fragment fragmentName="meteor-ui5-demo.view.CategoriesTable" type="XML" />
+  
+</mvc:View>
