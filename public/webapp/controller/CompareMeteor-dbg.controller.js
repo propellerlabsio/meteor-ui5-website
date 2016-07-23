@@ -5,10 +5,10 @@ sap.ui.define([
 ], function(Controller, MeteorModel, formatter) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5-demo.controller.CategoriesMeteor", {
+  var CController = Controller.extend("meteor-ui5-demo.controller.CompareMeteor", {
 
     formatter: formatter,
-    
+
     onInit: function() {
       Meteor.subscribe('categories', this._onSubscriptionStop, this._onSubscriptionReady);
     },

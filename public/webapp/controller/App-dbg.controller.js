@@ -76,6 +76,7 @@ sap.ui.define([
             var oShowCodeButton = new Button({
               icon: "sap-icon://source-code",
               tooltip: "Show source code",
+              text: "Show code",
               press: this.onShowSourceCodePress
             })
             oDetailPage.addHeaderContent(oShowCodeButton);

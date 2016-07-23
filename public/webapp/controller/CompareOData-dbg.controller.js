@@ -6,10 +6,10 @@ sap.ui.define([
 ], function(Controller, ODataModel, formatter) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5-demo.controller.CategoriesOData", {
+  var CController = Controller.extend("meteor-ui5-demo.controller.CompareOData", {
 
     formatter: formatter,
-    
+
     onInit: function() {
 			// Set up json model for categories - will be populated asynchrnously later
 			var oModel = new ODataModel('/oDataProxy');

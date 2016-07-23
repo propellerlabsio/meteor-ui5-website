@@ -59,19 +59,19 @@
             },{
                 "pattern": "compareMeteor",
                 "name": "compareMeteor",
-                "target": ["masterCompare", "categoriesMeteor"]
+                "target": ["masterCompare", "compareMeteor"]
             },{
                 "pattern": "compareJson",
                 "name": "compareJson",
-                "target": ["masterCompare", "categoriesJson"]
+                "target": ["masterCompare", "compareJson"]
             },{
                 "pattern": "compareFlatJson",
                 "name": "compareFlatJson",
-                "target": ["masterCompare", "categoriesFlatJson"]
+                "target": ["masterCompare", "compareFlatJson"]
             },{
                 "pattern": "compareOData",
                 "name": "compareOData",
-                "target": ["masterCompare", "categoriesOData"]
+                "target": ["masterCompare", "compareOData"]
             }
           ],
             "targets": {
@@ -103,26 +103,26 @@
                     "viewLevel": "1",
                     "transition": "flip"
                 },
-                "categoriesMeteor": {
-                    "viewName": "CategoriesMeteor",
+                "compareMeteor": {
+                    "viewName": "CompareMeteor",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"
                 },
-                "categoriesJson": {
-                    "viewName": "CategoriesJson",
+                "compareJson": {
+                    "viewName": "CompareJson",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"
                 },
-                "categoriesFlatJson": {
-                    "viewName": "CategoriesFlatJson",
+                "compareFlatJson": {
+                    "viewName": "CompareFlatJson",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"
                 },
-                "categoriesOData": {
-                    "viewName": "CategoriesOData",
+                "compareOData": {
+                    "viewName": "CompareOData",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"

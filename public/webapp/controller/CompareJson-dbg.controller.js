@@ -6,10 +6,10 @@ sap.ui.define([
 ], function(Controller, JSONModel, formatter) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5-demo.controller.CategoriesJson", {
+  var CController = Controller.extend("meteor-ui5-demo.controller.CompareJson", {
 
     formatter: formatter,
-    
+
     onInit: function() {
 			// Set up json model for categories - will be populated asynchrnously later
 			var oJsonData = [];
