@@ -1,16 +1,35 @@
 <mvc:View
     	xmlns:mvc="sap.ui.core.mvc"
-      xmlns="meteor-ui5-demo.control">
+      xmlns:meteor-ui5-demo="meteor-ui5-demo.control"
+      xmlns="sap.m">
 
-		<DemoCodePage title="Meteor Model"
-       class="sapUiStdPage">
+		<Page title="Meteor Model" class="sapUiStdPage">
  		  <content>
-        <mvc:XMLView viewName="meteor-ui5-demo.view.CategoriesMeteor"></mvc:XMLView>
+        <IconTabBar
+          expanded="true"
+          expandable="false"
+          class="sapUiResponsiveContentPadding">
+          <items>
+            <IconTabFilter text="Demo">
+              <mvc:XMLView viewName="meteor-ui5-demo.view.CategoriesMeteor"></mvc:XMLView>
+            </IconTabFilter>
+            <IconTabFilter text="CategoriesMeteor.controller.js">
+              <meteor-ui5-demo:SourceCodeViewer
+                src='webapp/controller/CategoriesMeteor-dbg.controller.js'
+                hljsLanguage='js'/>
+            </IconTabFilter>
+            <IconTabFilter text="CategoriesMeteor.view.xml">
+              <meteor-ui5-demo:SourceCodeViewer
+                src='webapp/view/CategoriesMeteor.view.xml'
+                hljsLanguage='xml'/>
+            </IconTabFilter>
+            <IconTabFilter text="CategoriesTable.fragment.xml">
+              <meteor-ui5-demo:SourceCodeViewer
+                src='webapp/view/CategoriesTable.fragment.xml'
+                hljsLanguage='xml'/>
+            </IconTabFilter>
+          </items>
+        </IconTabBar>
 			</content>
-      <dependencies>
-        <SourceCodeViewer src='meteor-ui5-demo.controller.CategoriesMeteor-dbg.controller.js'/>
-        <SourceCodeViewer src='meteor-ui5-demo.view.CategoriesMeteor.view.xml'/>
-        <SourceCodeViewer src='meteor-ui5-demo.view.CategoriesTable.fragment.xml'/>
-      </dependencies>
-		</DemoCodePage>
+		</Page>
 </mvc:View>
