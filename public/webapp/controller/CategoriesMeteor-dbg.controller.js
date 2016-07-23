@@ -10,6 +10,11 @@ sap.ui.define([
     formatter: formatter,
 
     onInit: function() {
+      // Create Meteor model
+      var oModel = new MeteorModel();
+      this.getView().setModel(oModel);
+
+      // Subscribe to categories data.  That's it!
       Meteor.subscribe('categories');
     }
 

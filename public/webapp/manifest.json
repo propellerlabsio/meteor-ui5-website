@@ -24,12 +24,6 @@
     "sap.ui5": {
         "_version": "1.1.0",
         "rootView": "meteor-ui5-demo.view.App",
-        "models": {
-            "": {
-                "type": "meteor-ui5.MeteorMongoModel",
-                "settings": {}
-            }
-        },
         "dependencies": {
             "minUI5Version": "1.30",
             "libs": {
