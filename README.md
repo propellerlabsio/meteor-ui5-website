@@ -1,8 +1,6 @@
 
 # Roadmap
 
-## Demo
-
 ## Model
 
 ### Next up
@@ -12,5 +10,10 @@
 
 ### Planned
 1. Add support for two-way binding (requires allow write to collections - not Meteor best practice which is update via method).
+2. Add TreeBinding model (I think that controls that can use this might be deprecated - check first.)
 
-### Possible
+## Demo
+
+### Planned
+1. Add comprehensive demo app that showcases many features of UI5 and shows source code for how to do it.
+1. Build tutorial around ToDo's - seems to be industry standard simple demo/tutorial app.
