@@ -16,30 +16,30 @@
             <IconTabFilter
               key="demo"
               text="Demo">
-              <mvc:XMLView viewName="meteor-ui5-demo.view.CategoriesJson"></mvc:XMLView>
+              <mvc:XMLView viewName="meteor-ui5-demo.view.EmployeesJson"></mvc:XMLView>
             </IconTabFilter>
             <IconTabFilter
               key="view"
-              text="CategoriesJson.view.xml">
+              text="EmployeesJson.view.xml">
               <meteor-ui5-demo:SourceCodeViewer
                 id="sourceJsonView"
-                src='webapp/view/CategoriesJson.view.xml'
+                src='webapp/view/EmployeesJson.view.xml'
                 hljsLanguage='xml'/>
             </IconTabFilter>
             <IconTabFilter
               key="controller"
-              text="CategoriesJson.controller.js">
+              text="EmployeesJson.controller.js">
               <meteor-ui5-demo:SourceCodeViewer
                 id="sourceJsonController"
-                src='webapp/controller/CategoriesJson-dbg.controller.js'
+                src='webapp/controller/EmployeesJson-dbg.controller.js'
                 hljsLanguage='js'/>
             </IconTabFilter>
             <IconTabFilter
               key="table"
-              text="CategoriesTable.fragment.xml">
+              text="EmployeesTable.fragment.xml">
               <meteor-ui5-demo:SourceCodeViewer
                 id="sourceJsonTable"
-                src='webapp/view/CategoriesTable.fragment.xml'
+                src='webapp/view/EmployeesTable.fragment.xml'
                 hljsLanguage='xml'/>
             </IconTabFilter>
           </items>

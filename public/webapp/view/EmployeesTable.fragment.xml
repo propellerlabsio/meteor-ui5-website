@@ -1,0 +1,30 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core">
+    <Table id="EmployeesTable" items="{/Employees}" visible="true" fixedLayout="false">
+        <columns>
+            <Column width="50px"></Column>
+            <Column>
+                <Text text="Name"/>
+            </Column>
+            <Column>
+                <Text text="Title"/>
+            </Column>
+            <Column>
+                <Text text="Country"/>
+            </Column>
+            <Column>
+                <core:Icon src="sap-icon://phone"/>
+            </Column>
+        </columns>
+        <ColumnListItem >
+            <cells>
+                <Image height="50px" src="{path: 'Photo', formatter: '.formatter.dataUrlForMsImage'}"/>
+                <ObjectIdentifier title="{LastName}, {FirstName}" text="{EmployeeID}"/>
+                <Text text="{Title}"/>
+                <Text text="{Country}"/>
+                <Text text="{Extension}"/>
+            </cells>
+        </ColumnListItem>
+    </Table>
+</core:FragmentDefinition>

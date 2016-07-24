@@ -3,7 +3,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(1)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 1,
+        "ProductID": 1,
         "ProductName": "Chai",
         "SupplierID": 1,
         "CategoryID": 1,
@@ -33,7 +33,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(2)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 2,
+        "ProductID": 2,
         "ProductName": "Chang",
         "SupplierID": 1,
         "CategoryID": 1,
@@ -63,7 +63,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(3)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 3,
+        "ProductID": 3,
         "ProductName": "Aniseed Syrup",
         "SupplierID": 1,
         "CategoryID": 2,
@@ -93,7 +93,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(4)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 4,
+        "ProductID": 4,
         "ProductName": "Chef Anton's Cajun Seasoning",
         "SupplierID": 2,
         "CategoryID": 2,
@@ -123,7 +123,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(5)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 5,
+        "ProductID": 5,
         "ProductName": "Chef Anton's Gumbo Mix",
         "SupplierID": 2,
         "CategoryID": 2,
@@ -153,7 +153,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(6)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 6,
+        "ProductID": 6,
         "ProductName": "Grandma's Boysenberry Spread",
         "SupplierID": 3,
         "CategoryID": 2,
@@ -183,7 +183,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(7)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 7,
+        "ProductID": 7,
         "ProductName": "Uncle Bob's Organic Dried Pears",
         "SupplierID": 3,
         "CategoryID": 7,
@@ -213,7 +213,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(8)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 8,
+        "ProductID": 8,
         "ProductName": "Northwoods Cranberry Sauce",
         "SupplierID": 3,
         "CategoryID": 2,
@@ -243,7 +243,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(9)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 9,
+        "ProductID": 9,
         "ProductName": "Mishi Kobe Niku",
         "SupplierID": 4,
         "CategoryID": 6,
@@ -273,7 +273,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(10)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 10,
+        "ProductID": 10,
         "ProductName": "Ikura",
         "SupplierID": 4,
         "CategoryID": 8,
@@ -303,7 +303,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(11)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 11,
+        "ProductID": 11,
         "ProductName": "Queso Cabrales",
         "SupplierID": 5,
         "CategoryID": 4,
@@ -333,7 +333,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(12)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 12,
+        "ProductID": 12,
         "ProductName": "Queso Manchego La Pastora",
         "SupplierID": 5,
         "CategoryID": 4,
@@ -363,7 +363,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(13)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 13,
+        "ProductID": 13,
         "ProductName": "Konbu",
         "SupplierID": 6,
         "CategoryID": 8,
@@ -393,7 +393,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(14)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 14,
+        "ProductID": 14,
         "ProductName": "Tofu",
         "SupplierID": 6,
         "CategoryID": 7,
@@ -423,7 +423,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(15)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 15,
+        "ProductID": 15,
         "ProductName": "Genen Shouyu",
         "SupplierID": 6,
         "CategoryID": 2,
@@ -453,7 +453,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(16)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 16,
+        "ProductID": 16,
         "ProductName": "Pavlova",
         "SupplierID": 7,
         "CategoryID": 3,
@@ -483,7 +483,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(17)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 17,
+        "ProductID": 17,
         "ProductName": "Alice Mutton",
         "SupplierID": 7,
         "CategoryID": 6,
@@ -513,7 +513,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(18)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 18,
+        "ProductID": 18,
         "ProductName": "Carnarvon Tigers",
         "SupplierID": 7,
         "CategoryID": 8,
@@ -543,7 +543,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(19)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 19,
+        "ProductID": 19,
         "ProductName": "Teatime Chocolate Biscuits",
         "SupplierID": 8,
         "CategoryID": 3,
@@ -573,7 +573,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(20)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 20,
+        "ProductID": 20,
         "ProductName": "Sir Rodney's Marmalade",
         "SupplierID": 8,
         "CategoryID": 3,
@@ -605,7 +605,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(21)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 21,
+        "ProductID": 21,
         "ProductName": "Sir Rodney's Scones",
         "SupplierID": 8,
         "CategoryID": 3,
@@ -635,7 +635,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(22)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 22,
+        "ProductID": 22,
         "ProductName": "Gustaf's Knäckebröd",
         "SupplierID": 9,
         "CategoryID": 5,
@@ -665,7 +665,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(23)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 23,
+        "ProductID": 23,
         "ProductName": "Tunnbröd",
         "SupplierID": 9,
         "CategoryID": 5,
@@ -695,7 +695,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(24)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 24,
+        "ProductID": 24,
         "ProductName": "Guaraná Fantástica",
         "SupplierID": 10,
         "CategoryID": 1,
@@ -725,7 +725,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(25)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 25,
+        "ProductID": 25,
         "ProductName": "NuNuCa Nuß-Nougat-Creme",
         "SupplierID": 11,
         "CategoryID": 3,
@@ -755,7 +755,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(26)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 26,
+        "ProductID": 26,
         "ProductName": "Gumbär Gummibärchen",
         "SupplierID": 11,
         "CategoryID": 3,
@@ -785,7 +785,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(27)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 27,
+        "ProductID": 27,
         "ProductName": "Schoggi Schokolade",
         "SupplierID": 11,
         "CategoryID": 3,
@@ -815,7 +815,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(28)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 28,
+        "ProductID": 28,
         "ProductName": "Rössle Sauerkraut",
         "SupplierID": 12,
         "CategoryID": 7,
@@ -845,7 +845,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(29)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 29,
+        "ProductID": 29,
         "ProductName": "Thüringer Rostbratwurst",
         "SupplierID": 12,
         "CategoryID": 6,
@@ -875,7 +875,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(30)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 30,
+        "ProductID": 30,
         "ProductName": "Nord-Ost Matjeshering",
         "SupplierID": 13,
         "CategoryID": 8,
@@ -905,7 +905,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(31)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 31,
+        "ProductID": 31,
         "ProductName": "Gorgonzola Telino",
         "SupplierID": 14,
         "CategoryID": 4,
@@ -935,7 +935,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(32)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 32,
+        "ProductID": 32,
         "ProductName": "Mascarpone Fabioli",
         "SupplierID": 14,
         "CategoryID": 4,
@@ -965,7 +965,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(33)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 33,
+        "ProductID": 33,
         "ProductName": "Geitost",
         "SupplierID": 15,
         "CategoryID": 4,
@@ -995,7 +995,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(34)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 34,
+        "ProductID": 34,
         "ProductName": "Sasquatch Ale",
         "SupplierID": 16,
         "CategoryID": 1,
@@ -1025,7 +1025,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(35)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 35,
+        "ProductID": 35,
         "ProductName": "Steeleye Stout",
         "SupplierID": 16,
         "CategoryID": 1,
@@ -1055,7 +1055,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(36)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 36,
+        "ProductID": 36,
         "ProductName": "Inlagd Sill",
         "SupplierID": 17,
         "CategoryID": 8,
@@ -1085,7 +1085,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(37)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 37,
+        "ProductID": 37,
         "ProductName": "Gravad lax",
         "SupplierID": 17,
         "CategoryID": 8,
@@ -1115,7 +1115,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(38)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 38,
+        "ProductID": 38,
         "ProductName": "Côte de Blaye",
         "SupplierID": 18,
         "CategoryID": 1,
@@ -1145,7 +1145,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(39)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 39,
+        "ProductID": 39,
         "ProductName": "Chartreuse verte",
         "SupplierID": 18,
         "CategoryID": 1,
@@ -1175,7 +1175,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(40)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 40,
+        "ProductID": 40,
         "ProductName": "Boston Crab Meat",
         "SupplierID": 19,
         "CategoryID": 8,
@@ -1205,7 +1205,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(41)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 41,
+        "ProductID": 41,
         "ProductName": "Jack's New England Clam Chowder",
         "SupplierID": 19,
         "CategoryID": 8,
@@ -1235,7 +1235,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(42)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 42,
+        "ProductID": 42,
         "ProductName": "Singaporean Hokkien Fried Mee",
         "SupplierID": 20,
         "CategoryID": 5,
@@ -1265,7 +1265,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(43)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 43,
+        "ProductID": 43,
         "ProductName": "Ipoh Coffee",
         "SupplierID": 20,
         "CategoryID": 1,
@@ -1295,7 +1295,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(44)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 44,
+        "ProductID": 44,
         "ProductName": "Gula Malacca",
         "SupplierID": 20,
         "CategoryID": 2,
@@ -1325,7 +1325,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(45)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 45,
+        "ProductID": 45,
         "ProductName": "Rogede sild",
         "SupplierID": 21,
         "CategoryID": 8,
@@ -1355,7 +1355,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(46)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 46,
+        "ProductID": 46,
         "ProductName": "Spegesild",
         "SupplierID": 21,
         "CategoryID": 8,
@@ -1385,7 +1385,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(47)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 47,
+        "ProductID": 47,
         "ProductName": "Zaanse koeken",
         "SupplierID": 22,
         "CategoryID": 3,
@@ -1415,7 +1415,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(48)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 48,
+        "ProductID": 48,
         "ProductName": "Chocolade",
         "SupplierID": 22,
         "CategoryID": 3,
@@ -1445,7 +1445,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(49)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 49,
+        "ProductID": 49,
         "ProductName": "Maxilaku",
         "SupplierID": 23,
         "CategoryID": 3,
@@ -1475,7 +1475,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(50)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 50,
+        "ProductID": 50,
         "ProductName": "Valkoinen suklaa",
         "SupplierID": 23,
         "CategoryID": 3,
@@ -1505,7 +1505,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(51)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 51,
+        "ProductID": 51,
         "ProductName": "Manjimup Dried Apples",
         "SupplierID": 24,
         "CategoryID": 7,
@@ -1535,7 +1535,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(52)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 52,
+        "ProductID": 52,
         "ProductName": "Filo Mix",
         "SupplierID": 24,
         "CategoryID": 5,
@@ -1565,7 +1565,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(53)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 53,
+        "ProductID": 53,
         "ProductName": "Perth Pasties",
         "SupplierID": 24,
         "CategoryID": 6,
@@ -1595,7 +1595,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(54)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 54,
+        "ProductID": 54,
         "ProductName": "Tourtière",
         "SupplierID": 25,
         "CategoryID": 6,
@@ -1625,7 +1625,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(55)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 55,
+        "ProductID": 55,
         "ProductName": "Pâté chinois",
         "SupplierID": 25,
         "CategoryID": 6,
@@ -1655,7 +1655,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(56)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 56,
+        "ProductID": 56,
         "ProductName": "Gnocchi di nonna Alice",
         "SupplierID": 26,
         "CategoryID": 5,
@@ -1685,7 +1685,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(57)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 57,
+        "ProductID": 57,
         "ProductName": "Ravioli Angelo",
         "SupplierID": 26,
         "CategoryID": 5,
@@ -1715,7 +1715,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(58)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 58,
+        "ProductID": 58,
         "ProductName": "Escargots de Bourgogne",
         "SupplierID": 27,
         "CategoryID": 8,
@@ -1745,7 +1745,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(59)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 59,
+        "ProductID": 59,
         "ProductName": "Raclette Courdavault",
         "SupplierID": 28,
         "CategoryID": 4,
@@ -1775,7 +1775,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(60)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 60,
+        "ProductID": 60,
         "ProductName": "Camembert Pierrot",
         "SupplierID": 28,
         "CategoryID": 4,
@@ -1807,7 +1807,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(61)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 61,
+        "ProductID": 61,
         "ProductName": "Sirop d'érable",
         "SupplierID": 29,
         "CategoryID": 2,
@@ -1837,7 +1837,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(62)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 62,
+        "ProductID": 62,
         "ProductName": "Tarte au sucre",
         "SupplierID": 29,
         "CategoryID": 3,
@@ -1867,7 +1867,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(63)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 63,
+        "ProductID": 63,
         "ProductName": "Vegie-spread",
         "SupplierID": 7,
         "CategoryID": 2,
@@ -1897,7 +1897,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(64)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 64,
+        "ProductID": 64,
         "ProductName": "Wimmers gute Semmelknödel",
         "SupplierID": 12,
         "CategoryID": 5,
@@ -1927,7 +1927,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(65)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 65,
+        "ProductID": 65,
         "ProductName": "Louisiana Fiery Hot Pepper Sauce",
         "SupplierID": 2,
         "CategoryID": 2,
@@ -1957,7 +1957,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(66)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 66,
+        "ProductID": 66,
         "ProductName": "Louisiana Hot Spiced Okra",
         "SupplierID": 2,
         "CategoryID": 2,
@@ -1987,7 +1987,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(67)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 67,
+        "ProductID": 67,
         "ProductName": "Laughing Lumberjack Lager",
         "SupplierID": 16,
         "CategoryID": 1,
@@ -2017,7 +2017,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(68)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 68,
+        "ProductID": 68,
         "ProductName": "Scottish Longbreads",
         "SupplierID": 8,
         "CategoryID": 3,
@@ -2047,7 +2047,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(69)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 69,
+        "ProductID": 69,
         "ProductName": "Gudbrandsdalsost",
         "SupplierID": 15,
         "CategoryID": 4,
@@ -2077,7 +2077,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(70)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 70,
+        "ProductID": 70,
         "ProductName": "Outback Lager",
         "SupplierID": 7,
         "CategoryID": 1,
@@ -2107,7 +2107,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(71)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 71,
+        "ProductID": 71,
         "ProductName": "Flotemysost",
         "SupplierID": 15,
         "CategoryID": 4,
@@ -2137,7 +2137,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(72)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 72,
+        "ProductID": 72,
         "ProductName": "Mozzarella di Giovanni",
         "SupplierID": 14,
         "CategoryID": 4,
@@ -2167,7 +2167,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(73)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 73,
+        "ProductID": 73,
         "ProductName": "Röd Kaviar",
         "SupplierID": 17,
         "CategoryID": 8,
@@ -2197,7 +2197,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(74)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 74,
+        "ProductID": 74,
         "ProductName": "Longlife Tofu",
         "SupplierID": 4,
         "CategoryID": 7,
@@ -2227,7 +2227,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(75)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 75,
+        "ProductID": 75,
         "ProductName": "Rhönbräu Klosterbier",
         "SupplierID": 12,
         "CategoryID": 1,
@@ -2257,7 +2257,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(76)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 76,
+        "ProductID": 76,
         "ProductName": "Lakkalikööri",
         "SupplierID": 23,
         "CategoryID": 1,
@@ -2287,7 +2287,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Products(77)",
             "type": "NorthwindModel.Product"
         },
-        "_id": 77,
+        "ProductID": 77,
         "ProductName": "Original Frankfurter grüne Soße",
         "SupplierID": 12,
         "CategoryID": 2,

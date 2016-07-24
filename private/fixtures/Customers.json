@@ -3,7 +3,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('ALFKI')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "ALFKI",
+        "CustomerID": "ALFKI",
         "CompanyName": "Alfreds Futterkiste",
         "ContactName": "Maria Anders",
         "ContactTitle": "Sales Representative",
@@ -29,7 +29,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('ANATR')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "ANATR",
+        "CustomerID": "ANATR",
         "CompanyName": "Ana Trujillo Emparedados y helados",
         "ContactName": "Ana Trujillo",
         "ContactTitle": "Owner",
@@ -55,7 +55,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('ANTON')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "ANTON",
+        "CustomerID": "ANTON",
         "CompanyName": "Antonio Moreno Taquer\u00eda",
         "ContactName": "Antonio Moreno",
         "ContactTitle": "Owner",
@@ -81,7 +81,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('AROUT')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "AROUT",
+        "CustomerID": "AROUT",
         "CompanyName": "Around the Horn",
         "ContactName": "Thomas Hardy",
         "ContactTitle": "Sales Representative",
@@ -107,7 +107,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('BERGS')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "BERGS",
+        "CustomerID": "BERGS",
         "CompanyName": "Berglunds snabbk\u00f6p",
         "ContactName": "Christina Berglund",
         "ContactTitle": "Order Administrator",
@@ -133,7 +133,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('BLAUS')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "BLAUS",
+        "CustomerID": "BLAUS",
         "CompanyName": "Blauer See Delikatessen",
         "ContactName": "Hanna Moos",
         "ContactTitle": "Sales Representative",
@@ -159,7 +159,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('BLONP')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "BLONP",
+        "CustomerID": "BLONP",
         "CompanyName": "Blondesddsl p\u00e8re et fils",
         "ContactName": "Fr\u00e9d\u00e9rique Citeaux",
         "ContactTitle": "Marketing Manager",
@@ -185,7 +185,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('BOLID')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "BOLID",
+        "CustomerID": "BOLID",
         "CompanyName": "B\u00f3lido Comidas preparadas",
         "ContactName": "Mart\u00edn Sommer",
         "ContactTitle": "Owner",
@@ -211,7 +211,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('BONAP')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "BONAP",
+        "CustomerID": "BONAP",
         "CompanyName": "Bon app'",
         "ContactName": "Laurence Lebihan",
         "ContactTitle": "Owner",
@@ -237,7 +237,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('BOTTM')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "BOTTM",
+        "CustomerID": "BOTTM",
         "CompanyName": "Bottom-Dollar Markets",
         "ContactName": "Elizabeth Lincoln",
         "ContactTitle": "Accounting Manager",
@@ -263,7 +263,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('BSBEV')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "BSBEV",
+        "CustomerID": "BSBEV",
         "CompanyName": "B's Beverages",
         "ContactName": "Victoria Ashworth",
         "ContactTitle": "Sales Representative",
@@ -289,7 +289,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('CACTU')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "CACTU",
+        "CustomerID": "CACTU",
         "CompanyName": "Cactus Comidas para llevar",
         "ContactName": "Patricio Simpson",
         "ContactTitle": "Sales Agent",
@@ -315,7 +315,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('CENTC')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "CENTC",
+        "CustomerID": "CENTC",
         "CompanyName": "Centro comercial Moctezuma",
         "ContactName": "Francisco Chang",
         "ContactTitle": "Marketing Manager",
@@ -341,7 +341,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('CHOPS')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "CHOPS",
+        "CustomerID": "CHOPS",
         "CompanyName": "Chop-suey Chinese",
         "ContactName": "Yang Wang",
         "ContactTitle": "Owner",
@@ -367,7 +367,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('COMMI')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "COMMI",
+        "CustomerID": "COMMI",
         "CompanyName": "Com\u00e9rcio Mineiro",
         "ContactName": "Pedro Afonso",
         "ContactTitle": "Sales Associate",
@@ -393,7 +393,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('CONSH')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "CONSH",
+        "CustomerID": "CONSH",
         "CompanyName": "Consolidated Holdings",
         "ContactName": "Elizabeth Brown",
         "ContactTitle": "Sales Representative",
@@ -419,7 +419,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('DRACD')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "DRACD",
+        "CustomerID": "DRACD",
         "CompanyName": "Drachenblut Delikatessen",
         "ContactName": "Sven Ottlieb",
         "ContactTitle": "Order Administrator",
@@ -445,7 +445,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('DUMON')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "DUMON",
+        "CustomerID": "DUMON",
         "CompanyName": "Du monde entier",
         "ContactName": "Janine Labrune",
         "ContactTitle": "Owner",
@@ -471,7 +471,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('EASTC')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "EASTC",
+        "CustomerID": "EASTC",
         "CompanyName": "Eastern Connection",
         "ContactName": "Ann Devon",
         "ContactTitle": "Sales Agent",
@@ -497,7 +497,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('ERNSH')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "ERNSH",
+        "CustomerID": "ERNSH",
         "CompanyName": "Ernst Handel",
         "ContactName": "Roland Mendel",
         "ContactTitle": "Sales Manager",
@@ -523,7 +523,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('FAMIA')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "FAMIA",
+        "CustomerID": "FAMIA",
         "CompanyName": "Familia Arquibaldo",
         "ContactName": "Aria Cruz",
         "ContactTitle": "Marketing Assistant",
@@ -549,7 +549,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('FISSA')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "FISSA",
+        "CustomerID": "FISSA",
         "CompanyName": "FISSA Fabrica Inter. Salchichas S.A.",
         "ContactName": "Diego Roel",
         "ContactTitle": "Accounting Manager",
@@ -575,7 +575,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('FOLIG')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "FOLIG",
+        "CustomerID": "FOLIG",
         "CompanyName": "Folies gourmandes",
         "ContactName": "Martine Rancé",
         "ContactTitle": "Assistant Sales Agent",
@@ -601,7 +601,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('FOLKO')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "FOLKO",
+        "CustomerID": "FOLKO",
         "CompanyName": "Folk och fä HB",
         "ContactName": "Maria Larsson",
         "ContactTitle": "Owner",
@@ -627,7 +627,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('FRANK')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "FRANK",
+        "CustomerID": "FRANK",
         "CompanyName": "Frankenversand",
         "ContactName": "Peter Franken",
         "ContactTitle": "Marketing Manager",
@@ -653,7 +653,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('FRANR')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "FRANR",
+        "CustomerID": "FRANR",
         "CompanyName": "France restauration",
         "ContactName": "Carine Schmitt",
         "ContactTitle": "Marketing Manager",
@@ -679,7 +679,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('FRANS')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "FRANS",
+        "CustomerID": "FRANS",
         "CompanyName": "Franchi S.p.A.",
         "ContactName": "Paolo Accorti",
         "ContactTitle": "Sales Representative",
@@ -705,7 +705,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('FURIB')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "FURIB",
+        "CustomerID": "FURIB",
         "CompanyName": "Furia Bacalhau e Frutos do Mar",
         "ContactName": "Lino Rodriguez",
         "ContactTitle": "Sales Manager",
@@ -731,7 +731,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('GALED')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "GALED",
+        "CustomerID": "GALED",
         "CompanyName": "Galería del gastrónomo",
         "ContactName": "Eduardo Saavedra",
         "ContactTitle": "Marketing Manager",
@@ -757,7 +757,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('GODOS')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "GODOS",
+        "CustomerID": "GODOS",
         "CompanyName": "Godos Cocina Típica",
         "ContactName": "José Pedro Freyre",
         "ContactTitle": "Sales Manager",
@@ -783,7 +783,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('GOURL')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "GOURL",
+        "CustomerID": "GOURL",
         "CompanyName": "Gourmet Lanchonetes",
         "ContactName": "André Fonseca",
         "ContactTitle": "Sales Associate",
@@ -809,7 +809,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('GREAL')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "GREAL",
+        "CustomerID": "GREAL",
         "CompanyName": "Great Lakes Food Market",
         "ContactName": "Howard Snyder",
         "ContactTitle": "Marketing Manager",
@@ -835,7 +835,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('GROSR')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "GROSR",
+        "CustomerID": "GROSR",
         "CompanyName": "GROSELLA-Restaurante",
         "ContactName": "Manuel Pereira",
         "ContactTitle": "Owner",
@@ -861,7 +861,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('HANAR')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "HANAR",
+        "CustomerID": "HANAR",
         "CompanyName": "Hanari Carnes",
         "ContactName": "Mario Pontes",
         "ContactTitle": "Accounting Manager",
@@ -887,7 +887,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('HILAA')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "HILAA",
+        "CustomerID": "HILAA",
         "CompanyName": "HILARION-Abastos",
         "ContactName": "Carlos Hernández",
         "ContactTitle": "Sales Representative",
@@ -913,7 +913,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('HUNGC')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "HUNGC",
+        "CustomerID": "HUNGC",
         "CompanyName": "Hungry Coyote Import Store",
         "ContactName": "Yoshi Latimer",
         "ContactTitle": "Sales Representative",
@@ -939,7 +939,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('HUNGO')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "HUNGO",
+        "CustomerID": "HUNGO",
         "CompanyName": "Hungry Owl All-Night Grocers",
         "ContactName": "Patricia McKenna",
         "ContactTitle": "Sales Associate",
@@ -965,7 +965,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('ISLAT')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "ISLAT",
+        "CustomerID": "ISLAT",
         "CompanyName": "Island Trading",
         "ContactName": "Helen Bennett",
         "ContactTitle": "Marketing Manager",
@@ -991,7 +991,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('KOENE')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "KOENE",
+        "CustomerID": "KOENE",
         "CompanyName": "Königlich Essen",
         "ContactName": "Philip Cramer",
         "ContactTitle": "Sales Associate",
@@ -1017,7 +1017,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('LACOR')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "LACOR",
+        "CustomerID": "LACOR",
         "CompanyName": "La corne d'abondance",
         "ContactName": "Daniel Tonini",
         "ContactTitle": "Sales Representative",
@@ -1043,7 +1043,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('LAMAI')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "LAMAI",
+        "CustomerID": "LAMAI",
         "CompanyName": "La maison d'Asie",
         "ContactName": "Annette Roulet",
         "ContactTitle": "Sales Manager",
@@ -1069,7 +1069,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('LAUGB')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "LAUGB",
+        "CustomerID": "LAUGB",
         "CompanyName": "Laughing Bacchus Wine Cellars",
         "ContactName": "Yoshi Tannamuri",
         "ContactTitle": "Marketing Assistant",
@@ -1095,7 +1095,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('LAZYK')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "LAZYK",
+        "CustomerID": "LAZYK",
         "CompanyName": "Lazy K Kountry Store",
         "ContactName": "John Steel",
         "ContactTitle": "Marketing Manager",
@@ -1121,7 +1121,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('LEHMS')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "LEHMS",
+        "CustomerID": "LEHMS",
         "CompanyName": "Lehmanns Marktstand",
         "ContactName": "Renate Messner",
         "ContactTitle": "Sales Representative",
@@ -1147,7 +1147,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('LETSS')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "LETSS",
+        "CustomerID": "LETSS",
         "CompanyName": "Let's Stop N Shop",
         "ContactName": "Jaime Yorres",
         "ContactTitle": "Owner",
@@ -1173,7 +1173,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('LILAS')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "LILAS",
+        "CustomerID": "LILAS",
         "CompanyName": "LILA-Supermercado",
         "ContactName": "Carlos González",
         "ContactTitle": "Accounting Manager",
@@ -1199,7 +1199,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('LINOD')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "LINOD",
+        "CustomerID": "LINOD",
         "CompanyName": "LINO-Delicateses",
         "ContactName": "Felipe Izquierdo",
         "ContactTitle": "Owner",
@@ -1225,7 +1225,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('LONEP')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "LONEP",
+        "CustomerID": "LONEP",
         "CompanyName": "Lonesome Pine Restaurant",
         "ContactName": "Fran Wilson",
         "ContactTitle": "Sales Manager",
@@ -1251,7 +1251,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('MAGAA')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "MAGAA",
+        "CustomerID": "MAGAA",
         "CompanyName": "Magazzini Alimentari Riuniti",
         "ContactName": "Giovanni Rovelli",
         "ContactTitle": "Marketing Manager",
@@ -1277,7 +1277,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('MAISD')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "MAISD",
+        "CustomerID": "MAISD",
         "CompanyName": "Maison Dewey",
         "ContactName": "Catherine Dewey",
         "ContactTitle": "Sales Agent",
@@ -1303,7 +1303,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('MEREP')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "MEREP",
+        "CustomerID": "MEREP",
         "CompanyName": "Mère Paillarde",
         "ContactName": "Jean Fresnière",
         "ContactTitle": "Marketing Assistant",
@@ -1329,7 +1329,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('MORGK')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "MORGK",
+        "CustomerID": "MORGK",
         "CompanyName": "Morgenstern Gesundkost",
         "ContactName": "Alexander Feuer",
         "ContactTitle": "Marketing Assistant",
@@ -1355,7 +1355,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('NORTS')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "NORTS",
+        "CustomerID": "NORTS",
         "CompanyName": "North/South",
         "ContactName": "Simon Crowther",
         "ContactTitle": "Sales Associate",
@@ -1381,7 +1381,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('OCEAN')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "OCEAN",
+        "CustomerID": "OCEAN",
         "CompanyName": "Océano Atlántico Ltda.",
         "ContactName": "Yvonne Moncada",
         "ContactTitle": "Sales Agent",
@@ -1407,7 +1407,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('OLDWO')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "OLDWO",
+        "CustomerID": "OLDWO",
         "CompanyName": "Old World Delicatessen",
         "ContactName": "Rene Phillips",
         "ContactTitle": "Sales Representative",
@@ -1433,7 +1433,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('OTTIK')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "OTTIK",
+        "CustomerID": "OTTIK",
         "CompanyName": "Ottilies Käseladen",
         "ContactName": "Henriette Pfalzheim",
         "ContactTitle": "Owner",
@@ -1459,7 +1459,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('PARIS')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "PARIS",
+        "CustomerID": "PARIS",
         "CompanyName": "Paris spécialités",
         "ContactName": "Marie Bertrand",
         "ContactTitle": "Owner",
@@ -1485,7 +1485,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('PERIC')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "PERIC",
+        "CustomerID": "PERIC",
         "CompanyName": "Pericles Comidas clásicas",
         "ContactName": "Guillermo Fernández",
         "ContactTitle": "Sales Representative",
@@ -1511,7 +1511,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('PICCO')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "PICCO",
+        "CustomerID": "PICCO",
         "CompanyName": "Piccolo und mehr",
         "ContactName": "Georg Pipps",
         "ContactTitle": "Sales Manager",
@@ -1537,7 +1537,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('PRINI')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "PRINI",
+        "CustomerID": "PRINI",
         "CompanyName": "Princesa Isabel Vinhos",
         "ContactName": "Isabel de Castro",
         "ContactTitle": "Sales Representative",
@@ -1563,7 +1563,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('QUEDE')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "QUEDE",
+        "CustomerID": "QUEDE",
         "CompanyName": "Que Delícia",
         "ContactName": "Bernardo Batista",
         "ContactTitle": "Accounting Manager",
@@ -1589,7 +1589,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('QUEEN')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "QUEEN",
+        "CustomerID": "QUEEN",
         "CompanyName": "Queen Cozinha",
         "ContactName": "Lúcia Carvalho",
         "ContactTitle": "Marketing Assistant",
@@ -1615,7 +1615,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('QUICK')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "QUICK",
+        "CustomerID": "QUICK",
         "CompanyName": "QUICK-Stop",
         "ContactName": "Horst Kloss",
         "ContactTitle": "Accounting Manager",
@@ -1641,7 +1641,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('RANCH')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "RANCH",
+        "CustomerID": "RANCH",
         "CompanyName": "Rancho grande",
         "ContactName": "Sergio Gutiérrez",
         "ContactTitle": "Sales Representative",
@@ -1667,7 +1667,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('RATTC')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "RATTC",
+        "CustomerID": "RATTC",
         "CompanyName": "Rattlesnake Canyon Grocery",
         "ContactName": "Paula Wilson",
         "ContactTitle": "Assistant Sales Representative",
@@ -1693,7 +1693,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('REGGC')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "REGGC",
+        "CustomerID": "REGGC",
         "CompanyName": "Reggiani Caseifici",
         "ContactName": "Maurizio Moroni",
         "ContactTitle": "Sales Associate",
@@ -1719,7 +1719,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('RICAR')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "RICAR",
+        "CustomerID": "RICAR",
         "CompanyName": "Ricardo Adocicados",
         "ContactName": "Janete Limeira",
         "ContactTitle": "Assistant Sales Agent",
@@ -1745,7 +1745,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('RICSU')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "RICSU",
+        "CustomerID": "RICSU",
         "CompanyName": "Richter Supermarkt",
         "ContactName": "Michael Holz",
         "ContactTitle": "Sales Manager",
@@ -1771,7 +1771,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('ROMEY')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "ROMEY",
+        "CustomerID": "ROMEY",
         "CompanyName": "Romero y tomillo",
         "ContactName": "Alejandra Camino",
         "ContactTitle": "Accounting Manager",
@@ -1797,7 +1797,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('SANTG')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "SANTG",
+        "CustomerID": "SANTG",
         "CompanyName": "Santé Gourmet",
         "ContactName": "Jonas Bergulfsen",
         "ContactTitle": "Owner",
@@ -1823,7 +1823,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('SAVEA')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "SAVEA",
+        "CustomerID": "SAVEA",
         "CompanyName": "Save-a-lot Markets",
         "ContactName": "Jose Pavarotti",
         "ContactTitle": "Sales Representative",
@@ -1849,7 +1849,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('SEVES')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "SEVES",
+        "CustomerID": "SEVES",
         "CompanyName": "Seven Seas Imports",
         "ContactName": "Hari Kumar",
         "ContactTitle": "Sales Manager",
@@ -1875,7 +1875,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('SIMOB')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "SIMOB",
+        "CustomerID": "SIMOB",
         "CompanyName": "Simons bistro",
         "ContactName": "Jytte Petersen",
         "ContactTitle": "Owner",
@@ -1901,7 +1901,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('SPECD')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "SPECD",
+        "CustomerID": "SPECD",
         "CompanyName": "Spécialités du monde",
         "ContactName": "Dominique Perrier",
         "ContactTitle": "Marketing Manager",
@@ -1927,7 +1927,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('SPLIR')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "SPLIR",
+        "CustomerID": "SPLIR",
         "CompanyName": "Split Rail Beer & Ale",
         "ContactName": "Art Braunschweiger",
         "ContactTitle": "Sales Manager",
@@ -1953,7 +1953,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('SUPRD')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "SUPRD",
+        "CustomerID": "SUPRD",
         "CompanyName": "Suprêmes délices",
         "ContactName": "Pascale Cartrain",
         "ContactTitle": "Accounting Manager",
@@ -1979,7 +1979,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('THEBI')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "THEBI",
+        "CustomerID": "THEBI",
         "CompanyName": "The Big Cheese",
         "ContactName": "Liz Nixon",
         "ContactTitle": "Marketing Manager",
@@ -2005,7 +2005,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('THECR')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "THECR",
+        "CustomerID": "THECR",
         "CompanyName": "The Cracker Box",
         "ContactName": "Liu Wong",
         "ContactTitle": "Marketing Assistant",
@@ -2031,7 +2031,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('TOMSP')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "TOMSP",
+        "CustomerID": "TOMSP",
         "CompanyName": "Toms Spezialitäten",
         "ContactName": "Karin Josephs",
         "ContactTitle": "Marketing Manager",
@@ -2057,7 +2057,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('TORTU')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "TORTU",
+        "CustomerID": "TORTU",
         "CompanyName": "Tortuga Restaurante",
         "ContactName": "Miguel Angel Paolino",
         "ContactTitle": "Owner",
@@ -2085,7 +2085,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('TRADH')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "TRADH",
+        "CustomerID": "TRADH",
         "CompanyName": "Tradição Hipermercados",
         "ContactName": "Anabela Domingues",
         "ContactTitle": "Sales Representative",
@@ -2111,7 +2111,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('TRAIH')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "TRAIH",
+        "CustomerID": "TRAIH",
         "CompanyName": "Trail's Head Gourmet Provisioners",
         "ContactName": "Helvetius Nagy",
         "ContactTitle": "Sales Associate",
@@ -2137,7 +2137,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('VAFFE')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "VAFFE",
+        "CustomerID": "VAFFE",
         "CompanyName": "Vaffeljernet",
         "ContactName": "Palle Ibsen",
         "ContactTitle": "Sales Manager",
@@ -2163,7 +2163,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('VICTE')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "VICTE",
+        "CustomerID": "VICTE",
         "CompanyName": "Victuailles en stock",
         "ContactName": "Mary Saveley",
         "ContactTitle": "Sales Agent",
@@ -2189,7 +2189,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('VINET')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "VINET",
+        "CustomerID": "VINET",
         "CompanyName": "Vins et alcools Chevalier",
         "ContactName": "Paul Henriot",
         "ContactTitle": "Accounting Manager",
@@ -2215,7 +2215,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('WANDK')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "WANDK",
+        "CustomerID": "WANDK",
         "CompanyName": "Die Wandernde Kuh",
         "ContactName": "Rita Müller",
         "ContactTitle": "Sales Representative",
@@ -2241,7 +2241,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('WARTH')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "WARTH",
+        "CustomerID": "WARTH",
         "CompanyName": "Wartian Herkku",
         "ContactName": "Pirkko Koskitalo",
         "ContactTitle": "Accounting Manager",
@@ -2267,7 +2267,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('WELLI')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "WELLI",
+        "CustomerID": "WELLI",
         "CompanyName": "Wellington Importadora",
         "ContactName": "Paula Parente",
         "ContactTitle": "Sales Manager",
@@ -2293,7 +2293,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('WHITC')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "WHITC",
+        "CustomerID": "WHITC",
         "CompanyName": "White Clover Markets",
         "ContactName": "Karl Jablonski",
         "ContactTitle": "Owner",
@@ -2319,7 +2319,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('WILMK')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "WILMK",
+        "CustomerID": "WILMK",
         "CompanyName": "Wilman Kala",
         "ContactName": "Matti Karttunen",
         "ContactTitle": "Owner/Marketing Assistant",
@@ -2345,7 +2345,7 @@
             "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Customers('WOLZA')",
             "type": "NorthwindModel.Customer"
         },
-        "_id": "WOLZA",
+        "CustomerID": "WOLZA",
         "CompanyName": "Wolski  Zajazd",
         "ContactName": "Zbyszek Piestrzeniewicz",
         "ContactTitle": "Owner",

@@ -3,7 +3,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(1)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 1,
+    "SupplierID": 1,
     "CompanyName": "Exotic Liquids",
     "ContactName": "Charlotte Cooper",
     "ContactTitle": "Purchasing Manager",
@@ -25,7 +25,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(2)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 2,
+    "SupplierID": 2,
     "CompanyName": "New Orleans Cajun Delights",
     "ContactName": "Shelley Burke",
     "ContactTitle": "Order Administrator",
@@ -47,7 +47,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(3)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 3,
+    "SupplierID": 3,
     "CompanyName": "Grandma Kelly's Homestead",
     "ContactName": "Regina Murphy",
     "ContactTitle": "Sales Representative",
@@ -69,7 +69,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(4)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 4,
+    "SupplierID": 4,
     "CompanyName": "Tokyo Traders",
     "ContactName": "Yoshi Nagase",
     "ContactTitle": "Marketing Manager",
@@ -91,7 +91,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(5)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 5,
+    "SupplierID": 5,
     "CompanyName": "Cooperativa de Quesos 'Las Cabras'",
     "ContactName": "Antonio del Valle Saavedra",
     "ContactTitle": "Export Administrator",
@@ -113,7 +113,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(6)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 6,
+    "SupplierID": 6,
     "CompanyName": "Mayumi's",
     "ContactName": "Mayumi Ohno",
     "ContactTitle": "Marketing Representative",
@@ -135,7 +135,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(7)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 7,
+    "SupplierID": 7,
     "CompanyName": "Pavlova, Ltd.",
     "ContactName": "Ian Devling",
     "ContactTitle": "Marketing Manager",
@@ -157,7 +157,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(8)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 8,
+    "SupplierID": 8,
     "CompanyName": "Specialty Biscuits, Ltd.",
     "ContactName": "Peter Wilson",
     "ContactTitle": "Sales Representative",
@@ -179,7 +179,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(9)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 9,
+    "SupplierID": 9,
     "CompanyName": "PB Kn\u00e4ckebr\u00f6d AB",
     "ContactName": "Lars Peterson",
     "ContactTitle": "Sales Agent",
@@ -201,7 +201,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(10)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 10,
+    "SupplierID": 10,
     "CompanyName": "Refrescos Americanas LTDA",
     "ContactName": "Carlos Diaz",
     "ContactTitle": "Marketing Manager",
@@ -223,7 +223,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(11)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 11,
+    "SupplierID": 11,
     "CompanyName": "Heli S\u00fc\u00dfwaren GmbH & Co. KG",
     "ContactName": "Petra Winkler",
     "ContactTitle": "Sales Manager",
@@ -245,7 +245,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(12)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 12,
+    "SupplierID": 12,
     "CompanyName": "Plutzer Lebensmittelgro\u00dfm\u00e4rkte AG",
     "ContactName": "Martin Bein",
     "ContactTitle": "International Marketing Mgr.",
@@ -267,7 +267,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(13)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 13,
+    "SupplierID": 13,
     "CompanyName": "Nord-Ost-Fisch Handelsgesellschaft mbH",
     "ContactName": "Sven Petersen",
     "ContactTitle": "Coordinator Foreign Markets",
@@ -289,7 +289,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(14)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 14,
+    "SupplierID": 14,
     "CompanyName": "Formaggi Fortini s.r.l.",
     "ContactName": "Elio Rossi",
     "ContactTitle": "Sales Representative",
@@ -311,7 +311,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(15)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 15,
+    "SupplierID": 15,
     "CompanyName": "Norske Meierier",
     "ContactName": "Beate Vileid",
     "ContactTitle": "Marketing Manager",
@@ -333,7 +333,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(16)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 16,
+    "SupplierID": 16,
     "CompanyName": "Bigfoot Breweries",
     "ContactName": "Cheryl Saylor",
     "ContactTitle": "Regional Account Rep.",
@@ -355,7 +355,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(17)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 17,
+    "SupplierID": 17,
     "CompanyName": "Svensk Sj\u00f6f\u00f6da AB",
     "ContactName": "Michael Bj\u00f6rn",
     "ContactTitle": "Sales Representative",
@@ -377,7 +377,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(18)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 18,
+    "SupplierID": 18,
     "CompanyName": "Aux joyeux eccl\u00e9siastiques",
     "ContactName": "Guyl\u00e8ne Nodier",
     "ContactTitle": "Sales Manager",
@@ -399,7 +399,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(19)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 19,
+    "SupplierID": 19,
     "CompanyName": "New England Seafood Cannery",
     "ContactName": "Robb Merchant",
     "ContactTitle": "Wholesale Account Agent",
@@ -421,7 +421,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(20)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 20,
+    "SupplierID": 20,
     "CompanyName": "Leka Trading",
     "ContactName": "Chandra Leka",
     "ContactTitle": "Owner",
@@ -443,7 +443,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(21)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 21,
+    "SupplierID": 21,
     "CompanyName": "Lyngbysild",
     "ContactName": "Niels Petersen",
     "ContactTitle": "Sales Manager",
@@ -465,7 +465,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(22)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 22,
+    "SupplierID": 22,
     "CompanyName": "Zaanse Snoepfabriek",
     "ContactName": "Dirk Luchte",
     "ContactTitle": "Accounting Manager",
@@ -487,7 +487,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(23)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 23,
+    "SupplierID": 23,
     "CompanyName": "Karkki Oy",
     "ContactName": "Anne Heikkonen",
     "ContactTitle": "Product Manager",
@@ -509,7 +509,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(24)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 24,
+    "SupplierID": 24,
     "CompanyName": "G'day, Mate",
     "ContactName": "Wendy Mackenzie",
     "ContactTitle": "Sales Representative",
@@ -531,7 +531,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(25)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 25,
+    "SupplierID": 25,
     "CompanyName": "Ma Maison",
     "ContactName": "Jean-Guy Lauzon",
     "ContactTitle": "Marketing Manager",
@@ -553,7 +553,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(26)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 26,
+    "SupplierID": 26,
     "CompanyName": "Pasta Buttini s.r.l.",
     "ContactName": "Giovanni Giudici",
     "ContactTitle": "Order Administrator",
@@ -575,7 +575,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(27)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 27,
+    "SupplierID": 27,
     "CompanyName": "Escargots Nouveaux",
     "ContactName": "Marie Delamare",
     "ContactTitle": "Sales Manager",
@@ -597,7 +597,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(28)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 28,
+    "SupplierID": 28,
     "CompanyName": "Gai p\u00e2turage",
     "ContactName": "Eliane Noz",
     "ContactTitle": "Sales Representative",
@@ -619,7 +619,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Suppliers(29)",
         "type": "NorthwindModel.Supplier"
     },
-    "_id": 29,
+    "SupplierID": 29,
     "CompanyName": "For\u00eats d'\u00e9rables",
     "ContactName": "Chantal Goulet",
     "ContactTitle": "Accounting Manager",

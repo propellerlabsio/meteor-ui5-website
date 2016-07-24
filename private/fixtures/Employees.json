@@ -3,7 +3,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Employees(1)",
         "type": "NorthwindModel.Employee"
     },
-    "_id": 1,
+    "EmployeeID": 1,
     "LastName": "Davolio",
     "FirstName": "Nancy",
     "Title": "Sales Representative",
@@ -46,7 +46,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Employees(2)",
         "type": "NorthwindModel.Employee"
     },
-    "_id": 2,
+    "EmployeeID": 2,
     "LastName": "Fuller",
     "FirstName": "Andrew",
     "Title": "Vice President, Sales",
@@ -89,7 +89,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Employees(3)",
         "type": "NorthwindModel.Employee"
     },
-    "_id": 3,
+    "EmployeeID": 3,
     "LastName": "Leverling",
     "FirstName": "Janet",
     "Title": "Sales Representative",
@@ -132,7 +132,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Employees(4)",
         "type": "NorthwindModel.Employee"
     },
-    "_id": 4,
+    "EmployeeID": 4,
     "LastName": "Peacock",
     "FirstName": "Margaret",
     "Title": "Sales Representative",
@@ -175,7 +175,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Employees(5)",
         "type": "NorthwindModel.Employee"
     },
-    "_id": 5,
+    "EmployeeID": 5,
     "LastName": "Buchanan",
     "FirstName": "Steven",
     "Title": "Sales Manager",
@@ -218,7 +218,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Employees(6)",
         "type": "NorthwindModel.Employee"
     },
-    "_id": 6,
+    "EmployeeID": 6,
     "LastName": "Suyama",
     "FirstName": "Michael",
     "Title": "Sales Representative",
@@ -261,7 +261,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Employees(7)",
         "type": "NorthwindModel.Employee"
     },
-    "_id": 7,
+    "EmployeeID": 7,
     "LastName": "King",
     "FirstName": "Robert",
     "Title": "Sales Representative",
@@ -304,7 +304,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Employees(8)",
         "type": "NorthwindModel.Employee"
     },
-    "_id": 8,
+    "EmployeeID": 8,
     "LastName": "Callahan",
     "FirstName": "Laura",
     "Title": "Inside Sales Coordinator",
@@ -347,7 +347,7 @@
         "uri": "http://services.odata.org/V2/northwind/Northwind.svc/Employees(9)",
         "type": "NorthwindModel.Employee"
     },
-    "_id": 9,
+    "EmployeeID": 9,
     "LastName": "Dodsworth",
     "FirstName": "Anne",
     "Title": "Sales Representative",

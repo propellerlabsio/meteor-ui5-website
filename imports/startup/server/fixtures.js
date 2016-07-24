@@ -15,17 +15,17 @@ import {
 
 Meteor.startup(() => {
   // code to run on server at startup
-  loadFileIntoCollection('fixtures/Categories.json', categories);
-  loadFileIntoCollection('fixtures/Customers.json', customers);
-  loadFileIntoCollection('fixtures/Employees.json', employees);
+  loadFileIntoCollection('fixtures/Categories.json', categories, "CategoryID");
+  loadFileIntoCollection('fixtures/Customers.json', customers, "CustomerID");
+  loadFileIntoCollection('fixtures/Employees.json', employees, "EmployeeID");
   loadFileIntoCollection('fixtures/Order_Details.json', orderDetails);
-  loadFileIntoCollection('fixtures/Orders.json', orders);
-  loadFileIntoCollection('fixtures/Products.json', products);
-  loadFileIntoCollection('fixtures/Shippers.json', shippers);
-  loadFileIntoCollection('fixtures/Suppliers.json', suppliers);
+  loadFileIntoCollection('fixtures/Orders.json', orders, "OrderID");
+  loadFileIntoCollection('fixtures/Products.json', products, "ProductID");
+  loadFileIntoCollection('fixtures/Shippers.json', shippers, "ShipperID");
+  loadFileIntoCollection('fixtures/Suppliers.json', suppliers, "SupplierID");
 });
 
-function loadFileIntoCollection(file, collection) {
+function loadFileIntoCollection(file, collection, idProperty) {
   // TODO Remove
   // collection.remove({});
 
@@ -36,13 +36,18 @@ function loadFileIntoCollection(file, collection) {
     // Clean up data
     jsonFile.forEach((doc, index) => {
       // Insert converted document
-      const converted = Meteor.call('fixtures.cleanDocument', doc, (error, cleaned) => {
-        if (error) {
-          console.error(error);
-        } else {
-          collection.insert(cleaned);
+      const converted = Meteor.call(
+        'fixtures.cleanDocument',
+        doc,
+        idProperty,
+        (error, cleaned) => {
+          if (error) {
+            console.error(error);
+          } else {
+            collection.insert(cleaned);
+          }
         }
-      });
+      );
     });
   }
 }

@@ -5,7 +5,7 @@ sap.ui.define([
 ], function(Controller, MeteorModel, formatter) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5-demo.controller.CategoriesMeteor", {
+  var CController = Controller.extend("meteor-ui5-demo.controller.EmployeesMeteor", {
 
     formatter: formatter,
 
@@ -14,8 +14,8 @@ sap.ui.define([
       var oModel = new MeteorModel();
       this.getView().setModel(oModel);
 
-      // Subscribe to categories data.  That's it!
-      Meteor.subscribe('categories');
+      // Subscribe to Employees data.  That's it!
+      Meteor.subscribe('employees');
     }
 
   });

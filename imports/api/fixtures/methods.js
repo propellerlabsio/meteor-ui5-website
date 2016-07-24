@@ -11,12 +11,14 @@ Meteor.methods({
     return converted;
   },
 
-  'fixtures.cleanDocument'(doc){
-    if (doc.hasOwnProperty("_id")){
-      // Convert id's to strings
-      if (typeof doc._id !== "string"){
-        doc._id = doc._id.toString();
+  'fixtures.cleanDocument'(doc, idProperty){
+    if (idProperty) {
+      // Convert id's to strings and store in field used in mongo
+      let idPropertyValue = doc[idProperty];
+      if (typeof idPropertyValue !== "string"){
+        idPropertyValue = idPropertyValue.toString();
       }
+      doc._id = idPropertyValue;
     }
 
     // Delete metadata property
@@ -39,12 +41,6 @@ Meteor.methods({
             delete doc[propName];
           }
         }
-
-        // Convert microsoft images by removing proprietory OLE headers
-        // per https://groups.google.com/forum/#!topic/odata4j-discuss/6amvlFgExEU
-        // if (propName === "Picture" || propName === "Photo"){
-        //   doc[propName] = prop.substring(104);
-        // }
       }
     });
 
