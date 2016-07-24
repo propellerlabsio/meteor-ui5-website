@@ -1,0 +1,4 @@
+/*Remove big arse /unnecessary top-margin from icontabbar with no icons*/
+.sapMITBHead.sapMITBInLine.sapMITBTextOnly{
+    margin-top: 0px !important;
+}

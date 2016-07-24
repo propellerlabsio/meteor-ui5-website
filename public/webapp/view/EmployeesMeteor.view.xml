@@ -4,5 +4,5 @@
   controllerName="meteor-ui5-demo.controller.EmployeesMeteor">
 
     <core:Fragment fragmentName="meteor-ui5-demo.view.EmployeesTable" type="XML"/>
-
+    
 </mvc:View>

@@ -16,6 +16,15 @@ sap.ui.define([
 
       // Subscribe to Employees data.  That's it!
       Meteor.subscribe('employees');
+    },
+
+    onViewSettingsButtonPressed: function(){
+      this.byId("ViewSettingsDialog").open();
+
+    },
+
+    onConfirmViewSettings: function(){
+        debugger;
     }
 
   });

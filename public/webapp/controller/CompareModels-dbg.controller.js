@@ -26,7 +26,7 @@ sap.ui.define([
 			}, true /*without history*/);
 		},
 
-		_onRoutePatterMatched(oEvent){
+		_onRoutePatterMatched: function(oEvent){
       // Store current route name so we can use it for tab navigation within
       // current route
       this._sRouteName = oEvent.mParameters.name;
