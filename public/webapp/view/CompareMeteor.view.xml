@@ -4,9 +4,10 @@
       xmlns="sap.m">
       <!-- controllerName="meteor-ui5-demo.controller.CompareModels"> -->
 
-		<Page title="Meteor Model" class="sapUiStdPage">
+		<Page id="compareMeteorPage" title="Meteor Model" class="sapUiStdPage">
  		  <content>
         <IconTabBar
+          id="tabsCompareMeteor"
           expanded="true"
           expandable="false"
           class="sapUiResponsiveContentPadding">
@@ -16,16 +17,19 @@
             </IconTabFilter>
             <IconTabFilter text="CategoriesMeteor.view.xml">
               <meteor-ui5-demo:SourceCodeViewer
+                id="sourceMeteorView"
                 src='webapp/view/CategoriesMeteor.view.xml'
                 hljsLanguage='xml'/>
             </IconTabFilter>
             <IconTabFilter text="CategoriesMeteor.controller.js">
               <meteor-ui5-demo:SourceCodeViewer
+                id="sourceMeteorController"
                 src='webapp/controller/CategoriesMeteor-dbg.controller.js'
                 hljsLanguage='js'/>
             </IconTabFilter>
             <IconTabFilter text="CategoriesTable.fragment.xml">
               <meteor-ui5-demo:SourceCodeViewer
+                id="sourceMeteorTable"
                 src='webapp/view/CategoriesTable.fragment.xml'
                 hljsLanguage='xml'/>
             </IconTabFilter>

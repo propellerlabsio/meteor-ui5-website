@@ -13,18 +13,22 @@ sap.ui.define([
 		},
 
 		onAfterRendering: function(){
-			// Use highlight js on code
+			// Get values/references we need
 			var sSrc = this.getProperty("src");
-			var oCodeArea = jQuery('pre code').first();
+			var oSourceViewer = this.getDomRef();
+
+			// Use jquery to load code from url in src property
+			console.log("Loading " + sSrc + " into " + this.sId);
 			jQuery.get(sSrc, function(data) {
-				oCodeArea.text(data);
-				jQuery('pre code').each(function(i, block) {
-			    hljs.highlightBlock(block);
-			  });
+				// Load code into dom element
+				oSourceViewer.innerText = data;
+
+				// Ask hljs to highlight code
+			  hljs.highlightBlock(oSourceViewer);
 			}, "text");
 		},
 
-		init : function () {
+		init: function () {
 			this._sInitialCode = "Loading...";
 		},
 
