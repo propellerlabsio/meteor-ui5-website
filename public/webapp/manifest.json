@@ -59,10 +59,6 @@
                 "name": "compareJson",
                 "target": ["masterCompare", "compareJson"]
             },{
-                "pattern": "compare/flatjson",
-                "name": "compareFlatJson",
-                "target": ["masterCompare", "compareFlatJson"]
-            },{
                 "pattern": "compare/odata",
                 "name": "compareOData",
                 "target": ["masterCompare", "compareOData"]
@@ -105,12 +101,6 @@
                 },
                 "compareJson": {
                     "viewName": "CompareJson",
-                    "controlAggregation": "detailPages",
-                    "viewLevel": "2",
-                    "transition": "flip"
-                },
-                "compareFlatJson": {
-                    "viewName": "CompareFlatJson",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"

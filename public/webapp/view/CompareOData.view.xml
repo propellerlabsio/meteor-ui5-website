@@ -1,12 +1,36 @@
 <mvc:View
-    	xmlns:core="sap.ui.core"
     	xmlns:mvc="sap.ui.core.mvc"
-    	xmlns="sap.m"
-      controllerName="meteor-ui5-demo.controller.CompareOData">
+      xmlns:meteor-ui5-demo="meteor-ui5-demo.control"
+      xmlns="sap.m">
+      <!-- controllerName="meteor-ui5-demo.controller.CompareModels"> -->
 
-		<Page title="OData Model" class="sapUiStdPage">
-			<content>
-        <core:Fragment fragmentName="meteor-ui5-demo.view.CategoriesTable" type="XML" />
+		<Page title="oData Model" class="sapUiStdPage">
+ 		  <content>
+        <IconTabBar
+          expanded="true"
+          expandable="false"
+          class="sapUiResponsiveContentPadding">
+          <items>
+            <IconTabFilter text="Demo">
+              <mvc:XMLView viewName="meteor-ui5-demo.view.CategoriesOData"></mvc:XMLView>
+            </IconTabFilter>
+            <IconTabFilter text="CategoriesOData.view.xml">
+              <meteor-ui5-demo:SourceCodeViewer
+                src='webapp/view/CategoriesOData.view.xml'
+                hljsLanguage='xml'/>
+            </IconTabFilter>
+            <IconTabFilter text="CategoriesOData.controller.js">
+              <meteor-ui5-demo:SourceCodeViewer
+                src='webapp/controller/CategoriesOData-dbg.controller.js'
+                hljsLanguage='js'/>
+            </IconTabFilter>
+            <IconTabFilter text="CategoriesTable.fragment.xml">
+              <meteor-ui5-demo:SourceCodeViewer
+                src='webapp/view/CategoriesTable.fragment.xml'
+                hljsLanguage='xml'/>
+            </IconTabFilter>
+          </items>
+        </IconTabBar>
 			</content>
 		</Page>
 </mvc:View>

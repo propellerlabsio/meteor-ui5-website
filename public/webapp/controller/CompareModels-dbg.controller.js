@@ -16,7 +16,6 @@ sap.ui.define([
 
   });
 
-
   return CController;
 
 });

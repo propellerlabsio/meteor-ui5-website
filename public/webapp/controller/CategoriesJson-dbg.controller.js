@@ -6,7 +6,7 @@ sap.ui.define([
 ], function(Controller, JSONModel, formatter) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5-demo.controller.CompareJson", {
+  var CController = Controller.extend("meteor-ui5-demo.controller.CategoriesJson", {
 
     formatter: formatter,
 
@@ -25,7 +25,6 @@ sap.ui.define([
 					oModel.setData(
             {
                Categories: result
-              // Categories: result.slice(0, 2) // TODO remove slice - debugging
             });
 			});
     }

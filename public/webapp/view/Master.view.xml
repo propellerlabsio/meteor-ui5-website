@@ -11,7 +11,7 @@
     							<StandardListItem id="home" title="Introduction" type="Active" custom:to="home"/>
     							<StandardListItem id="tutorial" title="Tutorial" type="Active" custom:to="tutorial"/>
     							<StandardListItem id="api" title="API docs" type="Active" custom:to="api"/>
-    							<StandardListItem id="compareMeteor" title="Compare Models" type="Navigation" custom:to="compareMeteor"/>
+    							<StandardListItem id="compareMeteor" title="Compare UI5 Models" type="Navigation" custom:to="compareMeteor"/>
     						</items>
     					</List>
     				</content>
