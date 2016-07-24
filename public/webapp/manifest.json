@@ -51,15 +51,15 @@
                 "name": "api",
                 "target": ["master", "api"]
             },{
-                "pattern": "compare/meteor",
+                "pattern": "compare/meteor:?query:",
                 "name": "compareMeteor",
                 "target": ["masterCompare", "compareMeteor"]
             },{
-                "pattern": "compare/json",
+                "pattern": "compare/json:?query:",
                 "name": "compareJson",
                 "target": ["masterCompare", "compareJson"]
             },{
-                "pattern": "compare/odata",
+                "pattern": "compare/odata:?query:",
                 "name": "compareOData",
                 "target": ["masterCompare", "compareOData"]
             }

@@ -1,33 +1,42 @@
 <mvc:View
     	xmlns:mvc="sap.ui.core.mvc"
       xmlns:meteor-ui5-demo="meteor-ui5-demo.control"
-      xmlns="sap.m">
-      <!-- controllerName="meteor-ui5-demo.controller.CompareModels"> -->
+      xmlns="sap.m"
+      controllerName="meteor-ui5-demo.controller.CompareModels">
 
 		<Page id="compareJsonPage" title="JSON Model" class="sapUiStdPage">
  		  <content>
         <IconTabBar
-          id="tabsCompareJson"
+          id="tabsCompare"
+          select="onTabSelect"
           expanded="true"
           expandable="false"
           class="sapUiResponsiveContentPadding">
           <items>
-            <IconTabFilter text="Demo">
+            <IconTabFilter
+              key="demo"
+              text="Demo">
               <mvc:XMLView viewName="meteor-ui5-demo.view.CategoriesJson"></mvc:XMLView>
             </IconTabFilter>
-            <IconTabFilter text="CategoriesJson.view.xml">
+            <IconTabFilter
+              key="view"
+              text="CategoriesJson.view.xml">
               <meteor-ui5-demo:SourceCodeViewer
                 id="sourceJsonView"
                 src='webapp/view/CategoriesJson.view.xml'
                 hljsLanguage='xml'/>
             </IconTabFilter>
-            <IconTabFilter text="CategoriesJson.controller.js">
+            <IconTabFilter
+              key="controller"
+              text="CategoriesJson.controller.js">
               <meteor-ui5-demo:SourceCodeViewer
                 id="sourceJsonController"
                 src='webapp/controller/CategoriesJson-dbg.controller.js'
                 hljsLanguage='js'/>
             </IconTabFilter>
-            <IconTabFilter text="CategoriesTable.fragment.xml">
+            <IconTabFilter
+              key="table"
+              text="CategoriesTable.fragment.xml">
               <meteor-ui5-demo:SourceCodeViewer
                 id="sourceJsonTable"
                 src='webapp/view/CategoriesTable.fragment.xml'

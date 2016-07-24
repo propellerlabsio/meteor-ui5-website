@@ -7,9 +7,9 @@
         <content>
             <List id="masterList" itemPress="onItemPress" mode="SingleSelectMaster">
                 <items>
-                    <StandardListItem id="compareMeteor" title="Meteor" icon="/art/logos/meteor.png" type="Active" custom:to="compareMeteor"/>
-                    <StandardListItem id="compareJson" title="JSON" icon="/art/logos/json.png" type="Active" custom:to="compareJson"/>
-                    <StandardListItem id="compareOData" title="OData" icon="/art/logos/odata.png" type="Active" custom:to="compareOData"/>
+                    <StandardListItem id="compareMeteor" title="Meteor" icon="/art/logos/meteor.png" type="Active" custom:to="compareMeteor" custom:preserveQueryParams="true"/>
+                    <StandardListItem id="compareJson" title="JSON" icon="/art/logos/json.png" type="Active" custom:to="compareJson" custom:preserveQueryParams="true"/>
+                    <StandardListItem id="compareOData" title="OData" icon="/art/logos/odata.png" type="Active" custom:to="compareOData" custom:preserveQueryParams="true"/>
                 </items>
             </List>
         </content>

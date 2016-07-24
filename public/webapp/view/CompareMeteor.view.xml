@@ -1,33 +1,42 @@
 <mvc:View
     	xmlns:mvc="sap.ui.core.mvc"
       xmlns:meteor-ui5-demo="meteor-ui5-demo.control"
-      xmlns="sap.m">
-      <!-- controllerName="meteor-ui5-demo.controller.CompareModels"> -->
+      xmlns="sap.m"
+      controllerName="meteor-ui5-demo.controller.CompareModels">
 
 		<Page id="compareMeteorPage" title="Meteor Model" class="sapUiStdPage">
  		  <content>
         <IconTabBar
-          id="tabsCompareMeteor"
+          id="tabsCompare"
+          select="onTabSelect"
           expanded="true"
           expandable="false"
           class="sapUiResponsiveContentPadding">
           <items>
-            <IconTabFilter text="Demo">
+            <IconTabFilter
+              key="demo"
+              text="Demo">
               <mvc:XMLView viewName="meteor-ui5-demo.view.CategoriesMeteor"></mvc:XMLView>
             </IconTabFilter>
-            <IconTabFilter text="CategoriesMeteor.view.xml">
+            <IconTabFilter
+              key="view"
+              text="CategoriesMeteor.view.xml">
               <meteor-ui5-demo:SourceCodeViewer
                 id="sourceMeteorView"
                 src='webapp/view/CategoriesMeteor.view.xml'
                 hljsLanguage='xml'/>
             </IconTabFilter>
-            <IconTabFilter text="CategoriesMeteor.controller.js">
+            <IconTabFilter
+              key="controller"
+              text="CategoriesMeteor.controller.js">
               <meteor-ui5-demo:SourceCodeViewer
                 id="sourceMeteorController"
                 src='webapp/controller/CategoriesMeteor-dbg.controller.js'
                 hljsLanguage='js'/>
             </IconTabFilter>
-            <IconTabFilter text="CategoriesTable.fragment.xml">
+            <IconTabFilter
+              key="table"
+              text="CategoriesTable.fragment.xml">
               <meteor-ui5-demo:SourceCodeViewer
                 id="sourceMeteorTable"
                 src='webapp/view/CategoriesTable.fragment.xml'
