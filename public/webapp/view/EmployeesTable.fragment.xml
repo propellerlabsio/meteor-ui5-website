@@ -1,42 +1,45 @@
-<core:FragmentDefinition
-    xmlns="sap.m"
-    xmlns:core="sap.ui.core">
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
     <Table id="EmployeesTable" items="{/Employees}" visible="true" fixedLayout="false">
-      <headerToolbar>
-        <OverflowToolbar>
-            <Title text="Employees" level="H2"/>
-            <ToolbarSpacer></ToolbarSpacer>
-            <!--  Add the View Settings button -->
-            <Button icon="sap-icon://drop-down-list" press="onViewSettingsButtonPressed"/>
-        </OverflowToolbar>
-      </headerToolbar>
-      <columns>
-          <Column width="50px"></Column>
-          <Column>
-              <Text text="Name"/>
-          </Column>
-          <Column>
-              <Text text="Title"/>
-          </Column>
-          <Column>
-              <Text text="Country"/>
-          </Column>
-          <Column>
-              <core:Icon src="sap-icon://phone"/>
-          </Column>
-      </columns>
-      <ColumnListItem >
-          <cells>
-              <Image height="50px" src="{path: 'Photo', formatter: '.formatter.dataUrlForMsImage'}"/>
-              <ObjectIdentifier title="{LastName}, {FirstName}" text="{EmployeeID}"/>
-              <Text text="{Title}"/>
-              <Text text="{Country}"/>
-              <Text text="{Extension}"/>
-          </cells>
-      </ColumnListItem>
+        <headerToolbar>
+            <OverflowToolbar>
+                <Title text="Employees" level="H2"/>
+                <ToolbarSpacer></ToolbarSpacer>
+                <!--  Add the View Settings button -->
+                <Button icon="sap-icon://drop-down-list" press="onViewSettingsButtonPressed"/>
+            </OverflowToolbar>
+        </headerToolbar>
+        <infoToolbar>
+            <Toolbar id="EmployeesFilterBar" active="true" visible="false" press="[onViewSettingsButtonPressed, views.control.EmployeesTableSettings]">
+                <Label id="EmployeesFilterLabel" text="?"/>
+            </Toolbar>
+        </infoToolbar>
+        <columns>
+            <Column width="50px"></Column>
+            <Column>
+                <Text text="Name"/>
+            </Column>
+            <Column>
+                <Text text="Title"/>
+            </Column>
+            <Column>
+                <Text text="Country"/>
+            </Column>
+            <Column>
+                <core:Icon src="sap-icon://phone"/>
+            </Column>
+        </columns>
+        <ColumnListItem >
+            <cells>
+                <Image height="50px" src="{path: 'Photo', formatter: '.formatter.dataUrlForMsImage'}"/>
+                <ObjectIdentifier title="{LastName}, {FirstName}" text="{EmployeeID}"/>
+                <Text text="{Title}"/>
+                <Text text="{Country}"/>
+                <Text text="{Extension}"/>
+            </cells>
+        </ColumnListItem>
 
-      <dependents>
-        <core:Fragment fragmentName="meteor-ui5-demo.view.EmployeesTableSettings" type="XML"/>
-      </dependents>
+        <dependents>
+            <core:Fragment fragmentName="meteor-ui5-demo.view.EmployeesTableSettings" type="XML"/>
+        </dependents>
     </Table>
 </core:FragmentDefinition>

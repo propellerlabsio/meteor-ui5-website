@@ -14,6 +14,9 @@
 
 ## Demo
 
+### Next up
+1. Remove debugging version in UI5 bootstrap and/or make our code work with debugging on / off.
+
 ### Planned
 1. Add comprehensive demo app that showcases many features of UI5 and shows source code for how to do it.
 1. Build tutorial around ToDo's - seems to be industry standard simple demo/tutorial app.

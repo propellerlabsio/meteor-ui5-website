@@ -12,6 +12,7 @@ HTTP.methods({
 function callODataService() {
 
   let url = 'http://services.odata.org/V2/Northwind/Northwind.svc';
+  // let url = 'http://services.odata.org/V3/OData/OData.svc/';
 
   // Build rest of url from parameters - painful we have to do it this way but there's
   // no way with http-methods to gulp the rest of a url after oDataProxy into one parameter

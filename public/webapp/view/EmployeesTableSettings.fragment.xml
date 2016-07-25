@@ -3,6 +3,8 @@
         <sortItems>
             <ViewSettingsItem text="First name" key="FirstName" selected="true"/>
             <ViewSettingsItem text="Last name" key="LastName"/>
+            <ViewSettingsItem text="Title" key="Title"/>
+            <ViewSettingsItem text="Country" key="Country"/>
         </sortItems>
         <filterItems>
             <ViewSettingsFilterItem text="Country" key="Country" multiSelect="true">
