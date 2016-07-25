@@ -16,6 +16,9 @@
 ## Demo
 
 ### Next up
+1. Add binding demos page with results.  This is useful for users but also as a test page for us.
+1. Abstract away identical filter / sorter building code from different controllers into one place to better highlight what's actually different.
+1. Write Compare Models intro page explaining demos and highlighting just the differences.
 1. Fix filter and sorter not working with ODataModel. (EmployeesOData-dbg.controller.js)
 1. Remove debugging version in UI5 bootstrap and/or make our code work with debugging on / off.
 

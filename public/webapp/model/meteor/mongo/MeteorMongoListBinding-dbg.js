@@ -8,12 +8,10 @@
 sap.ui.define([
   'jquery.sap.global',
   'sap/ui/model/ListBinding',
-  'sap/ui/model/Filter',
-  'sap/ui/model/Sorter',
-  'sap/ui/model/Context'
-], function(jQuery, ListBinding, Filter, Sorter, Context) {
+  'sap/ui/model/Context',
+  'sap/ui/model/FilterOperator',
+], function(jQuery, ListBinding, Context, FilterOperator) {
   "use strict";
-
 
   /**
    * Constructor for MeteorMongoListBinding
@@ -97,7 +95,6 @@ sap.ui.define([
 
     // Build mongo selector
     let selector = {};
-    debugger;
     if (this.aFilters.length){
       selector = this._buildMongoSelector();
     }
@@ -134,11 +131,10 @@ sap.ui.define([
     let oMongoSelector = {};
     // Build mongo selector incorporating each filter
     this.aFilters.forEach((oFilter) => {
-      debugger;
       // Example filter object:
       // {sPath: "Country", sOperator: "EQ", oValue1: "USA", oValue2: undefined, _bMultiFilter: false}
 
-      // Validate filter options are supported
+      // Validate: We don't currently support multi-filter
       if (oFilter._bMultiFilter) {
         const sError = "MultiFilter not yet supported by ListBinding.";
         jQuery.sap.log.fatal(sError);
@@ -146,8 +142,57 @@ sap.ui.define([
         return;
       }
 
-      // Add filter criteria
-      
+      // Build selector according to filter operator
+      let oPropertySelector = {};
+      switch (oFilter.sOperator) {
+        case FilterOperator.BT:
+          oPropertySelector["$gte"] = oFilter.oValue1;
+          oPropertySelector["$lte"] = oFilter.oValue2;
+          break;
+        case FilterOperator.Contains:
+          // TODO investigate performance options. Need to also determine if
+          // we can dynamically determine and use $text if a text index has been
+          // created.
+          oPropertySelector["$regex"] = "/" + oFilter.oValue + "/";
+          oPropertySelector["$options"] = "i"; // case-insensitive
+          break;
+        case FilterOperator.EndsWith:
+          oPropertySelector["$regex"] = "/" + oFilter.oValue + "$/";
+          break;
+        case FilterOperator.EQ:
+          debugger;
+          break;
+      //   case FilterOperator.GE:
+      //     break;
+      //   case FilterOperator.GT:
+      //     break;
+      //   case FilterOperator.LE:
+      //     break;
+      //   case FilterOperator.LT:
+      //     break;
+      //   case FilterOperator.NE:
+      //     break;
+      //   case FilterOperator.StartsWith:
+      //     break;
+        default:
+      //     const sError = "MultiFilter not yet supported by ListBinding.";
+      //     jQuery.sap.log.fatal(sError);
+      //     this.oModel.fireParseError({ srcText: sError });
+          return;
+      }
+
+      // Add property selector to our overall selector
+      if (oMongoSelector[oFilter.sPath]){
+        // Create empty object for this property
+        oMongoSelector[sPath] = {};
+      } else {
+        // How to merge these?  Not handled yet
+        const sError = "Multiple filters on same property not yet supported by ListBinding.";
+        jQuery.sap.log.fatal(sError);
+        this.oModel.fireParseError({ srcText: sError });
+        return;
+      }
+
 
       // // Don't know what options need to be supported yet but currently
       // // we only support sorting based on a simple property with ascending or
@@ -164,9 +209,8 @@ sap.ui.define([
 
     });
 
-    return aMongoSelector;
+    return oMongoSelector;
   };
-
 
   MeteorMongoListBinding.prototype._buildMongoSortSpecifier = function() {
     let aMongoSortSpecifier = [];
@@ -257,7 +301,6 @@ sap.ui.define([
     this._runQuery();
   };
 
-
   /**
    * Sorts the list according to the sorter object
    *
@@ -322,7 +365,6 @@ sap.ui.define([
     }
   };
 
-  // base methods, may be overridden by child classes
   /**
    * Returns list of distinct values for the given relative binding path
    *
