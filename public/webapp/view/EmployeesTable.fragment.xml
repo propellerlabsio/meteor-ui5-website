@@ -1,5 +1,8 @@
 <core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+
+    <!-- Table for showing employees -->
     <Table id="EmployeesTable" items="{/Employees}" visible="true" fixedLayout="false">
+        <!-- Header toolbar with title and button -->
         <headerToolbar>
             <OverflowToolbar>
                 <Title text="Employees" level="H2"/>
@@ -8,11 +11,15 @@
                 <Button icon="sap-icon://drop-down-list" press="onViewSettingsButtonPressed"/>
             </OverflowToolbar>
         </headerToolbar>
+
+        <!-- Info tool bar for displaying active filter criteria -->
         <infoToolbar>
             <Toolbar id="EmployeesFilterBar" active="true" visible="false" press="[onViewSettingsButtonPressed, views.control.EmployeesTableSettings]">
                 <Label id="EmployeesFilterLabel" text="?"/>
             </Toolbar>
         </infoToolbar>
+
+        <!-- Table columns -->
         <columns>
             <Column width="50px"></Column>
             <Column>
@@ -28,6 +35,8 @@
                 <core:Icon src="sap-icon://phone"/>
             </Column>
         </columns>
+
+        <!-- Define what is in each row -->
         <ColumnListItem >
             <cells>
                 <Image height="50px" src="{path: 'Photo', formatter: '.formatter.dataUrlForMsImage'}"/>
@@ -38,8 +47,28 @@
             </cells>
         </ColumnListItem>
 
+        <!-- Dependents not rendered until expressly requested -->
         <dependents>
-            <core:Fragment fragmentName="meteor-ui5-demo.view.EmployeesTableSettings" type="XML"/>
+          <!-- View settings dialog for filter/sort options -->
+          <ViewSettingsDialog id="ViewSettingsDialog" confirm="onConfirmViewSettings">
+              <!-- Fields we can sort by -->
+              <sortItems>
+                  <ViewSettingsItem text="First name" key="FirstName" selected="true"/>
+                  <ViewSettingsItem text="Last name" key="LastName"/>
+                  <ViewSettingsItem text="Title" key="Title"/>
+                  <ViewSettingsItem text="Country" key="Country"/>
+              </sortItems>
+
+              <!-- Fields we can filter by -->
+              <filterItems>
+                  <ViewSettingsFilterItem text="Country" key="Country" multiSelect="true">
+                      <items>
+                          <ViewSettingsItem text="U.S.A." key="USA"/>
+                          <ViewSettingsItem text="United Kingdom" key="UK"/>
+                      </items>
+                  </ViewSettingsFilterItem>
+              </filterItems>
+          </ViewSettingsDialog>
         </dependents>
     </Table>
 </core:FragmentDefinition>
