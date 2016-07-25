@@ -15,6 +15,7 @@
 ## Demo
 
 ### Next up
+1. Fix filter and sorter not working with ODataModel. (EmployeesOData-dbg.controller.js)
 1. Remove debugging version in UI5 bootstrap and/or make our code work with debugging on / off.
 
 ### Planned

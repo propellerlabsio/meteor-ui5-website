@@ -36,7 +36,13 @@ sap.ui.define([
   var MeteorMongoListBinding = ListBinding.extend("meteor-ui5.MeteorMongoListBinding", {
 
     constructor: function(oModel, sPath, oContext, aSorters, aFilters, mParameters) {
+
       ListBinding.call(this, oModel, sPath, oContext, mParameters);
+
+      // BELOW COMMENTD CODE IS IN SUPER CLASS.  COPIED HERE AS DOCUMENTATION WHILE
+      // I DEVELOP.
+      // TODO: REMOVE.
+
       // Super:
       // this.aSorters = aSorters;
       // if (!jQuery.isArray(this.aSorters) && this.aSorters instanceof Sorter) {
@@ -55,34 +61,135 @@ sap.ui.define([
       // this.bDetectUpdates = true;
 
       // Get query
-      if (sPath.charAt(0) !== "/"){
-        console.error("Binding lists to anyother other than root element (Mongo Collection) not implemented yet");
-        return;
+      if (sPath.charAt(0) !== "/") {
+        const sError = "Binding lists to anyother other than root element (Mongo Collection) not implemented yet";
+        jQuery.sap.log.fatal(sError);
+        oModel.fireParseError({
+          url: "",
+          errorCode: -1,
+          reason: "",
+          srcText: sError,
+          line: -1,
+          linepos: -1,
+          filepos: -1
+        });
       }
 
-    	var components = sPath.split("/");
-      this._oCollection = Mongo.Collection.get(components[1]);
-      this._oCursor = this._oCollection.find();
-      this._oQueryHandle = this._oCursor.observeChanges({
-				added: (id, fields) => {
-					//TODO performance - only update data that has changed
-					this.oModel.refresh();
-				},
+      // Split path into components at forward slash
+      var aComponents = sPath.split("/");
+      if (aComponents[0] === "") {
+        aComponents.shift();
+      }
 
-				changed: (id, fields) => {
-					//TODO performance - only update data that has changed
-					this.oModel.refresh();
-				},
+      // Validate components
+      if (aComponents.length !== 1) {
+        var sError = "Currently unsupported list bindind path: " + sPath;
+        jQuery.sap.log.fatal(sError);
+        oModel.fireParseError({
+          url: "",
+          errorCode: -1,
+          reason: "",
+          srcText: sError,
+          line: -1,
+          linepos: -1,
+          filepos: -1
+        });
+      }
 
-				removed: (id) => {
-					//TODO performance - only update data that has changed
-					this.oModel.refresh();
-				}
-			});
+      // Store Collection
+      this._oCollection = Mongo.Collection.get(aComponents[0]);
+
+      // Build and run query
+      this._runQuery();
+
     }
 
   });
 
+  MeteorMongoListBinding.prototype._runQuery = function() {
+    // Stop observing changes in any existing query.  Will run forever otherwise.
+    if (this._oQueryHandle) {
+      this._oQueryHandle.stop();
+    }
+
+    // Build query options
+    var options = {};
+    if (this.aSorters.length) {
+      options.sort = this._buildMongoSortSpecifier()
+    }
+
+    // Execute query
+    this._oCursor = this._oCollection.find({}, options);
+
+    // Create query handle so we can observe changes
+    this._oQueryHandle = this._oCursor.observeChanges({
+      added: (id, fields) => {
+        //TODO performance - only update data that has changed
+        this.oModel.refresh();
+      },
+
+      changed: (id, fields) => {
+        //TODO performance - only update data that has changed
+        this.oModel.refresh();
+      },
+
+      removed: (id) => {
+        //TODO performance - only update data that has changed
+        this.oModel.refresh();
+      }
+    });
+  }
+
+  MeteorMongoListBinding.prototype._buildMongoSortSpecifier = function() {
+    let aMongoSortSpecifier = [];
+    this.aSorters.forEach((oSorter) => {
+      // Don't know what options need to be supported yet but currently
+      // we only support sorting based on a simple property with ascending or
+      // descending option.  Validate that this sorter seems to meet that
+      // criteria.
+      const bHasSlash = (oSorter.sPath.indexOf("/") > -1);
+      const bHasPeriod = (oSorter.sPath.indexOf(".") > -1);
+      if (bHasSlash || bHasPeriod) {
+        const sError = "Currently unsupported list sorting path: " + sPath;
+        jQuery.sap.log.fatal(sError);
+        oModel.fireParseError({
+          url: "",
+          errorCode: -1,
+          reason: "",
+          srcText: sError,
+          line: -1,
+          linepos: -1,
+          filepos: -1
+        });
+        return;
+      }
+
+      // Validate that we don't have a custom comparator function (not possible
+      // with Mongo read - may be able to add it later as post query javascript
+      // filtering)
+      if (oSorter.fnCompare) {
+        const sError = "Custom sort comparator functions currently unsupported";
+        jQuery.sap.log.fatal(sError);
+        oModel.fireParseError({
+          url: "",
+          errorCode: -1,
+          reason: "",
+          srcText: sError,
+          line: -1,
+          linepos: -1,
+          filepos: -1
+        });
+        return;
+      }
+
+      // Build mongo sort specifier
+      aMongoSortSpecifier.push(
+        [oSorter.sPath, oSorter.bDescending ? -1 : 1]
+      );
+    });
+
+    return aMongoSortSpecifier;
+  };
 
   /**
    * Returns an array of binding contexts for the bound target list.
@@ -101,7 +208,7 @@ sap.ui.define([
    */
   MeteorMongoListBinding.prototype.getContexts = function(iStartIndex, iLength) {
     var aContexts = [];
-    this._oCursor.forEach(function(doc){
+    this._oCursor.forEach(function(doc) {
       //TODO Allow list binding for arrays
       const context = new Context(this.oModel, this.sPath + "(" + doc._id + ")");
       aContexts.push(context);
@@ -109,12 +216,12 @@ sap.ui.define([
     return aContexts;
   };
 
-  MeteorMongoListBinding.prototype.destroy = function(){
+  MeteorMongoListBinding.prototype.destroy = function() {
     // Call stop on queryHandle on destroy of meteor model per docs:
     // "observeChanges returns a live query handle, which is an object with a
     // stop method. Call stop with no arguments to stop calling the callback functions
     // and tear down the query. The query will run forever until you call this. "
-    if (this._oQueryHandle){
+    if (this._oQueryHandle) {
       this._oQueryHandle.stop();
     }
   };
@@ -130,6 +237,14 @@ sap.ui.define([
    *
    * @public
    */
+  MeteorMongoListBinding.prototype.filter = function(aFilters, sFilterType) {
+    // Replace contents of aFilters property
+    this._aFilters = aFilters;
+
+    // Re-run query
+    this._runQuery();
+  };
+
 
   /**
    * Sorts the list according to the sorter object
@@ -140,6 +255,13 @@ sap.ui.define([
    * @return {meteor-ui5.MeteorMongoListBinding} returns <code>this</code> to facilitate method chaining
    * @public
    */
+  MeteorMongoListBinding.prototype.sort = function(aSorters) {
+    // Replace contents of aSorters property
+    Array.isArray(aSorters) ? this.aSorters = aSorters : this.aSorters = [aSorters];
+
+    // Re-run query
+    this._runQuery();
+  };
 
   /**
    * Returns an array of currently used binding contexts of the bound control
@@ -201,95 +323,6 @@ sap.ui.define([
     return null;
   };
 
-  //Eventing and related
-  /**
-   * Attach event-handler <code>fnFunction</code> to the 'sort' event of this <code>meteor-ui5.MeteorMongoListBinding</code>.<br/>
-   * @param {function} fnFunction The function to call, when the event occurs.
-   * @param {object} [oListener] object on which to call the given function.
-   * @protected
-   * @deprecated use the change event. It now contains a parameter (reason : "sort") when a sorter event is fired.
-   */
-  MeteorMongoListBinding.prototype.attachSort = function(fnFunction, oListener) {
-    this.attachEvent("sort", fnFunction, oListener);
-  };
-
-  /**
-   * Detach event-handler <code>fnFunction</code> from the 'sort' event of this <code>meteor-ui5.MeteorMongoListBinding</code>.<br/>
-   * @param {function} fnFunction The function to call, when the event occurs.
-   * @param {object} [oListener] object on which to call the given function.
-   * @protected
-   * @deprecated use the change event.
-   */
-  MeteorMongoListBinding.prototype.detachSort = function(fnFunction, oListener) {
-    this.detachEvent("sort", fnFunction, oListener);
-  };
-
-  /**
-   * Fire event _sort to attached listeners.
-   * @param {Map} [mArguments] the arguments to pass along with the event.
-   * @private
-   * @deprecated use the change event. It now contains a parameter (reason : "sort") when a sorter event is fired.
-   */
-  MeteorMongoListBinding.prototype._fireSort = function(mArguments) {
-    this.fireEvent("sort", mArguments);
-  };
-
-  /**
-   * Attach event-handler <code>fnFunction</code> to the 'filter' event of this <code>meteor-ui5.MeteorMongoListBinding</code>.<br/>
-   * @param {function} fnFunction The function to call, when the event occurs.
-   * @param {object} [oListener] object on which to call the given function.
-   * @protected
-   * @deprecated use the change event. It now contains a parameter (reason : "filter") when a filter event is fired.
-   */
-  MeteorMongoListBinding.prototype.attachFilter = function(fnFunction, oListener) {
-    this.attachEvent("filter", fnFunction, oListener);
-  };
-
-  /**
-   * Detach event-handler <code>fnFunction</code> from the 'filter' event of this <code>meteor-ui5.MeteorMongoListBinding</code>.<br/>
-   * @param {function} fnFunction The function to call, when the event occurs.
-   * @param {object} [oListener] object on which to call the given function.
-   * @protected
-   * @deprecated use the change event.
-   */
-  MeteorMongoListBinding.prototype.detachFilter = function(fnFunction, oListener) {
-    this.detachEvent("filter", fnFunction, oListener);
-  };
-
-  /**
-   * Fire event _filter to attached listeners.
-   * @param {Map} [mArguments] the arguments to pass along with the event.
-   * @private
-   * @deprecated use the change event. It now contains a parameter (reason : "filter") when a filter event is fired.
-   */
-  MeteorMongoListBinding.prototype._fireFilter = function(mArguments) {
-    this.fireEvent("filter", mArguments);
-  };
-
-  /**
-   * Indicates whether grouping is enabled for the binding.
-   * Grouping is enabled for a list binding, if at least one sorter exists on the binding and the first sorter
-   * is a grouping sorter.
-   * @public
-   * @returns {boolean} whether grouping is enabled
-   */
-  MeteorMongoListBinding.prototype.isGrouped = function() {
-    return !!(this.aSorters && this.aSorters[0] && this.aSorters[0].fnGroup);
-  };
-
-  /**
-   * Gets the group for the given context.
-   * Must only be called if isGrouped() returns that grouping is enabled for this binding. The grouping will be
-   * performed using the first sorter (in case multiple sorters are defined).
-   * @param {sap.ui.model.Context} oContext the binding context
-   * @public
-   * @returns {object} the group object containing a key property and optional custom properties
-   * @see sap.ui.model.Sorter.getGroup
-   */
-  MeteorMongoListBinding.prototype.getGroup = function(oContext) {
-    return this.aSorters[0].getGroup(oContext);
-  };
-
   /**
    * Enable extended change detection
    *
@@ -298,6 +331,11 @@ sap.ui.define([
    * @private
    */
   MeteorMongoListBinding.prototype.enableExtendedChangeDetection = function(bDetectUpdates, vKey) {
+
+    // TODO: BELOW CODE HAS BEEN COPIED VERBATIM FROM 'sap/ui/model/ListBinding'
+    // DON'T KNOW HOW IT WORKS AND WHAT IT IS SUPPOSED TO DO SO HOISTING INTO THIS CLASS
+    // TO OBSERVE IT. REPLACE OR DELETE IT WHEN ITS UNDERSTOOD
+
     this.bUseExtendedChangeDetection = true;
     this.bDetectUpdates = bDetectUpdates;
     if (typeof vKey === "string") {
@@ -311,7 +349,6 @@ sap.ui.define([
       this.update();
     }
   };
-
 
   return MeteorMongoListBinding;
 
