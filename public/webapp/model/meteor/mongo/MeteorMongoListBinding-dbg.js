@@ -64,15 +64,7 @@ sap.ui.define([
       if (sPath.charAt(0) !== "/") {
         const sError = "Binding lists to anyother other than root element (Mongo Collection) not implemented yet";
         jQuery.sap.log.fatal(sError);
-        oModel.fireParseError({
-          url: "",
-          errorCode: -1,
-          reason: "",
-          srcText: sError,
-          line: -1,
-          linepos: -1,
-          filepos: -1
-        });
+        oModel.fireParseError({ srcText: sError });
       }
 
       // Split path into components at forward slash
@@ -85,15 +77,7 @@ sap.ui.define([
       if (aComponents.length !== 1) {
         var sError = "Currently unsupported list bindind path: " + sPath;
         jQuery.sap.log.fatal(sError);
-        oModel.fireParseError({
-          url: "",
-          errorCode: -1,
-          reason: "",
-          srcText: sError,
-          line: -1,
-          linepos: -1,
-          filepos: -1
-        });
+        oModel.fireParseError({ srcText: sError });
       }
 
       // Store Collection
@@ -101,7 +85,6 @@ sap.ui.define([
 
       // Build and run query
       this._runQuery();
-
     }
 
   });
@@ -150,35 +133,19 @@ sap.ui.define([
       const bHasSlash = (oSorter.sPath.indexOf("/") > -1);
       const bHasPeriod = (oSorter.sPath.indexOf(".") > -1);
       if (bHasSlash || bHasPeriod) {
-        const sError = "Currently unsupported list sorting path: " + sPath;
+        const sError = "Currently unsupported list sorting path: " + oSorter.sPath;
         jQuery.sap.log.fatal(sError);
-        oModel.fireParseError({
-          url: "",
-          errorCode: -1,
-          reason: "",
-          srcText: sError,
-          line: -1,
-          linepos: -1,
-          filepos: -1
-        });
+        this.oModel.fireParseError({ srcText: sError });
         return;
       }
 
-      // Validate that we don't have a custom comparator function (not possible
+      // Validate that we don't have a custom comparator function (if not possible
       // with Mongo read - may be able to add it later as post query javascript
       // filtering)
       if (oSorter.fnCompare) {
         const sError = "Custom sort comparator functions currently unsupported";
         jQuery.sap.log.fatal(sError);
-        oModel.fireParseError({
-          url: "",
-          errorCode: -1,
-          reason: "",
-          srcText: sError,
-          line: -1,
-          linepos: -1,
-          filepos: -1
-        });
+        this.oModel.fireParseError({ srcText: sError });
         return;
       }
 
