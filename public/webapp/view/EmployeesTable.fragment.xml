@@ -8,7 +8,8 @@
                 <Title text="Employees" level="H2"/>
                 <ToolbarSpacer></ToolbarSpacer>
                 <!--  Add the View Settings button -->
-                <Button icon="sap-icon://drop-down-list" press="onViewSettingsButtonPressed"/>
+                <Button icon="sap-icon://sort" press="onSortButtonPressed"/>
+                <Button icon="sap-icon://filter" press="onFilterButtonPressed"/>
             </OverflowToolbar>
         </headerToolbar>
 
@@ -49,26 +50,34 @@
 
         <!-- Dependents not rendered until expressly requested -->
         <dependents>
-          <!-- View settings dialog for filter/sort options -->
-          <ViewSettingsDialog id="ViewSettingsDialog" confirm="onConfirmViewSettings">
-              <!-- Fields we can sort by -->
-              <sortItems>
-                  <ViewSettingsItem text="First name" key="FirstName" selected="true"/>
-                  <ViewSettingsItem text="Last name" key="LastName"/>
-                  <ViewSettingsItem text="Title" key="Title"/>
-                  <ViewSettingsItem text="Country" key="Country"/>
-              </sortItems>
+            <!-- View settings dialog for filter/sort options -->
+            <ViewSettingsDialog id="ViewSettingsDialog" confirm="onConfirmViewSettings">
+                <!-- Fields we can sort by -->
+                <sortItems>
+                    <ViewSettingsItem text="First name" key="FirstName" selected="true"/>
+                    <ViewSettingsItem text="Last name" key="LastName"/>
+                    <ViewSettingsItem text="Title" key="Title"/>
+                    <ViewSettingsItem text="Country" key="Country"/>
+                </sortItems>
 
-              <!-- Fields we can filter by -->
-              <filterItems>
-                  <ViewSettingsFilterItem text="Country" key="Country" multiSelect="true">
-                      <items>
-                          <ViewSettingsItem text="U.S.A." key="USA"/>
-                          <ViewSettingsItem text="United Kingdom" key="UK"/>
-                      </items>
-                  </ViewSettingsFilterItem>
-              </filterItems>
-          </ViewSettingsDialog>
+                <!-- Fields we can filter by -->
+                <filterItems>
+                    <ViewSettingsFilterItem text="Country" key="Country" multiSelect="true">
+                        <items>
+                            <ViewSettingsItem text="U.S.A." key="USA"/>
+                            <ViewSettingsItem text="United Kingdom" key="UK"/>
+                        </items>
+                    </ViewSettingsFilterItem>
+                    <ViewSettingsFilterItem text="Title" key="Title" multiSelect="true">
+                        <items>
+                            <ViewSettingsItem text="Sales Representative" key="Sales Representative"/>
+                            <ViewSettingsItem text="Inside Sales Coordinator" key="Inside Sales Coordinator"/>
+                            <ViewSettingsItem text="Sales Manager" key="Sales Manager"/>
+                            <ViewSettingsItem text="Vice President, Sales" key="Vice President, Sales"/>
+                        </items>
+                      </ViewSettingsFilterItem>
+                </filterItems>
+            </ViewSettingsDialog>
         </dependents>
     </Table>
 </core:FragmentDefinition>

@@ -2,9 +2,10 @@ sap.ui.define([
   'sap/ui/core/mvc/Controller',
   'sap/ui/model/json/JSONModel',
   'sap/ui/model/Filter',
+  'sap/ui/model/FilterOperator',
   'sap/ui/model/Sorter',
   'meteor-ui5-demo/model/formatter'
-], function(Controller, JSONModel, Filter, Sorter, formatter) {
+], function(Controller, JSONModel, Filter, FilterOperator, Sorter, formatter) {
   "use strict";
 
   var CController = Controller.extend("meteor-ui5-demo.controller.EmployeesJson", {
@@ -33,9 +34,14 @@ sap.ui.define([
     * The following code is the same for all models but repeated in each
     * controller rather than in some shared parent controller for clarity.
     */
-    onViewSettingsButtonPressed: function() {
-      // Show view settings dialog
-      this.byId("ViewSettingsDialog").open();
+    onSortButtonPressed: function() {
+      // Show view settings dialog - sort page
+      this.byId("ViewSettingsDialog").open("sort");
+    },
+
+    onFilterButtonPressed: function() {
+      // Show view settings dialog - filter page
+      this.byId("ViewSettingsDialog").open("filter");
     },
 
     onConfirmViewSettings: function(oEvent) {
@@ -58,7 +64,7 @@ sap.ui.define([
         // Create filter and apply it
         var sPath = oItem.getParent().getKey();
         var sValue = oItem.getKey();
-        var oFilter = new Filter(sPath, 'EQ', sValue);
+        var oFilter = new Filter(sPath, FilterOperator.EQ, sValue);
         aFilters.push(oFilter);
       });
       oBinding.filter(aFilters);

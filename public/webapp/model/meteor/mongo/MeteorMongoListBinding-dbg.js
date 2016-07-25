@@ -95,10 +95,17 @@ sap.ui.define([
       this._oQueryHandle.stop();
     }
 
+    // Build mongo selector
+    let selector = {};
+    debugger;
+    if (this.aFilters.length){
+      selector = this._buildMongoSelector();
+    }
+
     // Build query options
-    var options = {};
+    let options = {};
     if (this.aSorters.length) {
-      options.sort = this._buildMongoSortSpecifier()
+      options.sort = this._buildMongoSortSpecifier();
     }
 
     // Execute query
@@ -122,6 +129,44 @@ sap.ui.define([
       }
     });
   }
+
+  MeteorMongoListBinding.prototype._buildMongoSelector = function() {
+    let oMongoSelector = {};
+    // Build mongo selector incorporating each filter
+    this.aFilters.forEach((oFilter) => {
+      debugger;
+      // Example filter object:
+      // {sPath: "Country", sOperator: "EQ", oValue1: "USA", oValue2: undefined, _bMultiFilter: false}
+
+      // Validate filter options are supported
+      if (oFilter._bMultiFilter) {
+        const sError = "MultiFilter not yet supported by ListBinding.";
+        jQuery.sap.log.fatal(sError);
+        this.oModel.fireParseError({ srcText: sError });
+        return;
+      }
+
+      // Add filter criteria
+      
+
+      // // Don't know what options need to be supported yet but currently
+      // // we only support sorting based on a simple property with ascending or
+      // // descending option.  Validate that this sorter seems to meet that
+      // // criteria.
+      // const bHasSlash = (oSorter.sPath.indexOf("/") > -1);
+      // const bHasPeriod = (oSorter.sPath.indexOf(".") > -1);
+      // if (bHasSlash || bHasPeriod) {
+      //   const sError = "Currently unsupported list sorting path: " + oSorter.sPath;
+      //   jQuery.sap.log.fatal(sError);
+      //   this.oModel.fireParseError({ srcText: sError });
+      //   return;
+      // }
+
+    });
+
+    return aMongoSelector;
+  };
+
 
   MeteorMongoListBinding.prototype._buildMongoSortSpecifier = function() {
     let aMongoSortSpecifier = [];
@@ -206,7 +251,7 @@ sap.ui.define([
    */
   MeteorMongoListBinding.prototype.filter = function(aFilters, sFilterType) {
     // Replace contents of aFilters property
-    this._aFilters = aFilters;
+    this.aFilters = aFilters;
 
     // Re-run query
     this._runQuery();
