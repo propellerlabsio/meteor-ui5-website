@@ -151,7 +151,7 @@ sap.ui.define([
 
       // Build mongo sort specifier
       aMongoSortSpecifier.push(
-        [oSorter.sPath, oSorter.bDescending ? -1 : 1]
+        [oSorter.sPath, oSorter.bDescending ? "desc" : "asc"]
       );
     });
 
