@@ -1,0 +1,11 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:core="sap.ui.core"
+  xmlns="sap.m"
+  controllerName="meteor-ui5-demo.controller.Binding">
+    <Page id="Binding" title="Introduction" class="sapUiStdPage">
+        <content>
+            <Text text="Coming soon..."/>
+        </content>
+    </Page>
+</mvc:View>

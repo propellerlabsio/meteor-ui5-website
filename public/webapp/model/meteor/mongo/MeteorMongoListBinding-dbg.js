@@ -106,7 +106,7 @@ sap.ui.define([
     }
 
     // Execute query
-    this._oCursor = this._oCollection.find({}, options);
+    this._oCursor = this._oCollection.find(selector, options);
 
     // Create query handle so we can observe changes
     this._oQueryHandle = this._oCursor.observeChanges({
@@ -153,40 +153,52 @@ sap.ui.define([
           // TODO investigate performance options. Need to also determine if
           // we can dynamically determine and use $text if a text index has been
           // created.
-          oPropertySelector["$regex"] = "/" + oFilter.oValue + "/";
+          oPropertySelector["$regex"] = "/" + oFilter.oValue1 + "/";
           oPropertySelector["$options"] = "i"; // case-insensitive
           break;
         case FilterOperator.EndsWith:
-          oPropertySelector["$regex"] = "/" + oFilter.oValue + "$/";
+          oPropertySelector["$regex"] = "/" + oFilter.oValue1 + "$/";
           break;
         case FilterOperator.EQ:
-          debugger;
+          // TODO add $eq when supported in mini-mongo (version 1.4?).  Hope this
+          // work around doesn't bite us in the mean time.  Refer:
+          // https://github.com/meteor/meteor/issues/4142
+          oPropertySelector = oFilter.oValue1;
           break;
-      //   case FilterOperator.GE:
-      //     break;
-      //   case FilterOperator.GT:
-      //     break;
-      //   case FilterOperator.LE:
-      //     break;
-      //   case FilterOperator.LT:
-      //     break;
-      //   case FilterOperator.NE:
-      //     break;
-      //   case FilterOperator.StartsWith:
-      //     break;
+        case FilterOperator.GE:
+          oPropertySelector["$gte"] = oFilter.oValue1;
+        case FilterOperator.GT:
+          oPropertySelector["$gt"] = oFilter.oValue1;
+          break;
+        case FilterOperator.LE:
+          oPropertySelector["$lte"] = oFilter.oValue1;
+          break;
+        case FilterOperator.LT:
+          oPropertySelector["$lt"] = oFilter.oValue1;
+          break;
+        case FilterOperator.NE:
+          //TODO: Test.  Valid in Mongo, not sure if minimongo supports - see
+          // EQ FilterOperator above
+          oPropertySelector["$ne"] = oFilter.oValue1;
+          break;
+        case FilterOperator.StartsWith:
+          oPropertySelector["$regex"] = "/^" + oFilter.oValue1 + "/";
+          break;
         default:
-      //     const sError = "MultiFilter not yet supported by ListBinding.";
-      //     jQuery.sap.log.fatal(sError);
-      //     this.oModel.fireParseError({ srcText: sError });
+          const sError = "Filter operator " + oFilter.sOperator + " not supported.";
+          jQuery.sap.log.fatal(sError);
+          this.oModel.fireParseError({ srcText: sError });
           return;
       }
 
       // Add property selector to our overall selector
-      if (oMongoSelector[oFilter.sPath]){
+      if (!oMongoSelector[oFilter.sPath]){
         // Create empty object for this property
-        oMongoSelector[sPath] = {};
+        oMongoSelector[oFilter.sPath] = oPropertySelector;
+      // } else if (oMongoSelector.$and) {
+      //
       } else {
-        // How to merge these?  Not handled yet
+        // TODO: How to merge these?  Not handled yet
         const sError = "Multiple filters on same property not yet supported by ListBinding.";
         jQuery.sap.log.fatal(sError);
         this.oModel.fireParseError({ srcText: sError });
@@ -209,6 +221,7 @@ sap.ui.define([
 
     });
 
+        debugger;
     return oMongoSelector;
   };
 

@@ -45,16 +45,18 @@
 				},
 
 				_onRoutePatterMatched(oEvent){
+					// Remember current route for later
+					this._sRouteName = oEvent.mParameters.name;
+
 					// Store route query parameters on current route in case we need to
 					// preserve them on navigation to next route
 					const oArgs = oEvent.getParameter("arguments");
 					this._oQueryParams = oArgs["?query"];
 
 					// Set selected item in master list if it can be determined from route
-					var sRouteName = oEvent.mParameters.name;
 					var oList = this.byId("masterList");
 					if (oList){
-						var oItem = this.byId(sRouteName);
+						var oItem = this.byId(this._sRouteName);
 						if (oItem) {
 							oList.setSelectedItem(oItem);
 						}

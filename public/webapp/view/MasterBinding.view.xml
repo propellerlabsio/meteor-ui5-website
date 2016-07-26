@@ -1,0 +1,16 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+  xmlns="sap.m"
+  controllerName="meteor-ui5-demo.controller.Master">
+    <Page id="masterBinding" title="Binding" icon="sap-icon://action" class="sapUiStdPage" showNavButton="true" navButtonPress="onPressBack">
+        <content>
+            <List id="masterList" itemPress="onItemPress" mode="SingleSelectMaster">
+                <items>
+                    <StandardListItem id="binding" title="Introduction" type="Active" custom:to="binding"/>
+                    <StandardListItem id="bindingExamples" title="Examples" type="Active" custom:to="bindingExamples"/>
+                </items>
+            </List>
+        </content>
+    </Page>
+</mvc:View>

@@ -1,0 +1,37 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+  xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+  xmlns="sap.m"
+  controllerName="meteor-ui5-demo.controller.BindingExamples">
+    <Page id="BindingExamples" title="Binding Examples" class="sapUiStdPage">
+        <content>
+            <Table
+              id="BindingExamplesTable"
+              class="navTableControlLayout"
+              items="{/BindingExamples}"
+              fixedLayout="false">
+                <columns>
+                    <Column>
+                        <Label text="Example"/>
+                    </Column>
+                    <Column>
+                        <Label text="Type"/>
+                    </Column>
+                    <Column demandPopin="true">
+                        <Label text="Description"/>
+                    </Column>
+                </columns>
+                <ColumnListItem
+                  class="navTableItemLayout"
+                  type="Navigation"
+                  press="onListItemPress"
+                  custom:id="{_id}">
+                    <cells>
+                        <ObjectIdentifier title="{title}"/>
+                        <Text text="{type}"/>
+                        <Text text="{description}"/>
+                    </cells>
+                </ColumnListItem>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

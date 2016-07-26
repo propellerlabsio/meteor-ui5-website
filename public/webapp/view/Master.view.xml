@@ -1,19 +1,14 @@
-
-    <mvc:View
-    	xmlns:mvc="sap.ui.core.mvc"
-    	xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-    	xmlns="sap.m"
-      controllerName="meteor-ui5-demo.controller.Master">
-    			<Page id="master" title="Meteor UI5" icon="sap-icon://action" class="sapUiStdPage">
-    				<content>
-    					<List id="masterList" itemPress="onItemPress" mode="SingleSelectMaster">
-    						<items>
-    							<StandardListItem id="home" title="Introduction" type="Active" custom:to="home"/>
-    							<StandardListItem id="tutorial" title="Tutorial" type="Active" custom:to="tutorial"/>
-    							<StandardListItem id="api" title="API docs" type="Active" custom:to="api"/>
-    							<StandardListItem id="compareMeteor" title="Compare UI5 Models" type="Navigation" custom:to="compareMeteor"/>
-    						</items>
-    					</List>
-    				</content>
-    			</Page>
-    </mvc:View>
+<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns="sap.m" controllerName="meteor-ui5-demo.controller.Master">
+    <Page id="master" title="Meteor UI5" icon="sap-icon://action" class="sapUiStdPage">
+        <content>
+            <List id="masterList" itemPress="onItemPress" mode="SingleSelectMaster">
+                <items>
+                    <StandardListItem id="home" title="Introduction" type="Active" custom:to="home"/>
+                    <StandardListItem id="tutorial" title="Tutorial" type="Active" custom:to="tutorial"/>
+                    <StandardListItem id="binding" title="Binding" type="Navigation" custom:to="binding"/>
+                    <StandardListItem id="compareMeteor" title="Compare UI5 Models" type="Navigation" custom:to="compareMeteor"/>
+                </items>
+            </List>
+        </content>
+    </Page>
+</mvc:View>

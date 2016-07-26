@@ -1,6 +1,7 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
-  'sap/ui/model/json/JSONModel',
+  // 'sap/ui/model/json/JSONModel',
+  'meteor-ui5-demo/model/json/FlatJSONModel',   // TODO rever to standard JSON model - this one is for debugging
   'sap/ui/model/Filter',
   'sap/ui/model/FilterOperator',
   'sap/ui/model/Sorter',

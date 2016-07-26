@@ -30,11 +30,16 @@
                 "sap.m": {}
             }
         },
-      	"resources": {
-      	  "css": [{
-      		  "uri": "css/style.css"
-      		}]
-      	},
+        "models": {
+            "": {
+                "type": "meteor-ui5.MeteorMongoModel"
+            }
+        },
+        "resources": {
+            "css": [{
+                "uri": "css/style.css"
+            }]
+        },
         "routing": {
             "config": {
                 "routerClass": "sap.m.routing.Router",
@@ -47,28 +52,35 @@
                 "pattern": "",
                 "name": "home",
                 "target": ["master", "home"]
-            },{
+            }, {
                 "pattern": "tutorial",
                 "name": "tutorial",
                 "target": ["master", "tutorial"]
-            },{
-                "pattern": "api",
-                "name": "api",
-                "target": ["master", "api"]
-            },{
+            }, {
+                "pattern": "binding",
+                "name": "binding",
+                "target": ["masterBinding", "binding"]
+            }, {
+                "pattern": "binding/examples",
+                "name": "bindingExamples",
+                "target": ["masterBinding", "bindingExamples"]
+            }, {
+                "pattern": "binding/examples/{id}",
+                "name": "bindingExample",
+                "target": ["masterBinding", "bindingExample"]
+            }, {
                 "pattern": "compare/meteor:?query:",
                 "name": "compareMeteor",
                 "target": ["masterCompare", "compareMeteor"]
-            },{
+            }, {
                 "pattern": "compare/json:?query:",
                 "name": "compareJson",
                 "target": ["masterCompare", "compareJson"]
-            },{
+            }, {
                 "pattern": "compare/odata:?query:",
                 "name": "compareOData",
                 "target": ["masterCompare", "compareOData"]
-            }
-          ],
+            }],
             "targets": {
                 "master": {
                     "viewName": "Master",
@@ -79,6 +91,11 @@
                     "viewName": "MasterCompare",
                     "controlAggregation": "masterPages",
                     "viewLevel": "2"
+                },
+                "masterBinding": {
+                    "viewName": "MasterBinding",
+                    "controlAggregation": "masterPages",
+                    "viewLevel": "3"
                 },
                 "home": {
                     "viewName": "Home",
@@ -92,11 +109,22 @@
                     "viewLevel": "1",
                     "transition": "flip"
                 },
-                "api": {
-                    "viewName": "Api",
+                "binding": {
+                    "viewName": "Binding",
                     "controlAggregation": "detailPages",
-                    "viewLevel": "1",
+                    "viewLevel": "3",
                     "transition": "flip"
+                },
+                "bindingExamples": {
+                    "viewName": "BindingExamples",
+                    "controlAggregation": "detailPages",
+                    "viewLevel": "3",
+                    "transition": "flip"
+                },
+                "bindingExample": {
+                    "viewName": "BindingExample",
+                    "controlAggregation": "detailPages",
+                    "viewLevel": "4"
                 },
                 "compareMeteor": {
                     "viewName": "CompareMeteor",

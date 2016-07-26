@@ -57,6 +57,13 @@ sap.ui.define([
     MeteorMongoPropertyBinding.prototype.getValue = function(name) {
       let propertyValue;
 
+			// Check we have a context or we can't return a property - not yet sure
+			// why this is sometimes being called when context hasn't been set yet
+			// (Grid Table)
+			if (!this.oContext){
+				return;
+			}
+
       // Build unique document selector from context path that is in format of
       // "/<Collection>(<_id>)"
       const contextPath = this.oContext.sPath;

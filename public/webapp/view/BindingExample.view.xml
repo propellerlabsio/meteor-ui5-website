@@ -1,0 +1,10 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+  controllerName="meteor-ui5-demo.controller.BindingExample"
+  xmlns="sap.m">
+    <Page id="Welcome" title="Binding Example" class="sapUiStdPage" 
+      showNavButton="true" navButtonPress="onPressBack">
+        <content>
+            <Text text="Binding example coming soon..."/>
+        </content>
+    </Page>
+</mvc:View>

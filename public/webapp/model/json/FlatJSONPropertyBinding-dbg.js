@@ -44,6 +44,12 @@ sap.ui.define(['jquery.sap.global', 'sap/ui/model/ChangeReason', 'sap/ui/model/P
      * @return {object} the current value of the bound target
      */
     FlatJSONPropertyBinding.prototype._getValue = function() {
+      // TODO remove - debugging info only
+			if (!this.oContext){
+        jQuery.sap.log.debug("FlatJsonPropertyBinding _getValue called before context set.");
+			}
+
+
       var sProperty = this.sPath.substr(this.sPath.lastIndexOf("/") + 1);
       if (sProperty == "__name__") {
         var aPath = this.oContext.split("/");
