@@ -112,16 +112,20 @@ sap.ui.define([
     this._oQueryHandle = this._oCursor.observeChanges({
       added: (id, fields) => {
         //TODO performance - only update data that has changed
+        console.log("Record(s) added - refreshing all");
         this.oModel.refresh();
+        // this.fireDataReceived();
       },
 
       changed: (id, fields) => {
         //TODO performance - only update data that has changed
+        console.log("Record(s) changed - refreshing all");
         this.oModel.refresh();
       },
 
       removed: (id) => {
         //TODO performance - only update data that has changed
+        console.log("Record(s) removed - refreshing all");
         this.oModel.refresh();
       }
     });

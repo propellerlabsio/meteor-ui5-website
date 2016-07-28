@@ -4,7 +4,8 @@
     "title": "All orders",
     "type": "List",
     "description": "Bind to collection with no filters",
-    "active": true
+    "active": true,
+    "bindingFunction": "bindOrdersTableToAllOrders"
 
 },{
     "_id": "2",
@@ -12,12 +13,14 @@
     "title": "Some orders",
     "type": "List",
     "description": "Bind to collection using filters",
-    "active": true
+    "active": true,
+    "bindingFunction": "bindOrdersTableToSomeOrders"
 },{
     "_id": "3",
     "sequence": "3",
     "title": "One order",
     "type": "Property",
     "description": "Bind to single document in collection using document id",
-    "active": true
+    "active": true,
+    "bindingFunction": "bindOrdersFormToOneOrder"
 }]

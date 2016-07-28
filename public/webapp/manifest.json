@@ -65,21 +65,21 @@
                 "name": "bindingExamples",
                 "target": ["masterBinding", "bindingExamples"]
             }, {
-                "pattern": "binding/examples/{id}",
-                "name": "bindingExample",
-                "target": ["masterBinding", "bindingExample"]
-            }, {
                 "pattern": "compare/meteor:?query:",
                 "name": "compareMeteor",
-                "target": ["masterCompare", "compareMeteor"]
+                "target": ["masterCompare", "compareModel"]
             }, {
                 "pattern": "compare/json:?query:",
                 "name": "compareJson",
-                "target": ["masterCompare", "compareJson"]
+                "target": ["masterCompare", "compareModel"]
             }, {
                 "pattern": "compare/odata:?query:",
                 "name": "compareOData",
-                "target": ["masterCompare", "compareOData"]
+                "target": ["masterCompare", "compareModel"]
+            }, {
+                "pattern": "temp",
+                "name": "temp",
+                "target": ["master", "tempDebug"]
             }],
             "targets": {
                 "master": {
@@ -121,31 +121,20 @@
                     "viewLevel": "3",
                     "transition": "flip"
                 },
-                "bindingExample": {
-                    "viewName": "BindingExample",
-                    "controlAggregation": "detailPages",
-                    "viewLevel": "4"
-                },
-                "compareMeteor": {
-                    "viewName": "CompareMeteor",
-                    "controlAggregation": "detailPages",
-                    "viewLevel": "2",
-                    "transition": "flip"
-                },
-                "compareJson": {
-                    "viewName": "CompareJson",
-                    "controlAggregation": "detailPages",
-                    "viewLevel": "2",
-                    "transition": "flip"
-                },
-                "compareOData": {
-                    "viewName": "CompareOData",
+                "compareModel": {
+                    "viewName": "CompareModel",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"
                 },
                 "viewSourceCode": {
                     "viewName": "ViewSourceCode",
+                    "controlAggregation": "detailPages",
+                    "viewLevel": "2",
+                    "transition": "flip"
+                },
+                "tempDebug": {
+                    "viewName": "TempDebug",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"

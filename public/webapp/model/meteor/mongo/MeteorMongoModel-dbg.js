@@ -64,75 +64,19 @@ sap.ui.define([
 			this.sUpdateTimer = null;
 		},
 
-		metadata : {
-
-			"abstract" : true,
-			publicMethods : [
-				// methods
-				"bindProperty", "bindList", "bindTree", "bindContext", "createBindingContext", "destroyBindingContext", "getProperty",
-				"getDefaultBindingMode", "setDefaultBindingMode", "isBindingModeSupported", "attachParseError", "detachParseError",
-				"attachRequestCompleted", "detachRequestCompleted", "attachRequestFailed", "detachRequestFailed", "attachRequestSent",
-				"detachRequestSent", "setSizeLimit", "refresh", "isList", "getObject"
-		  ]
-
-		  /* the following would save code, but requires the new ManagedObject (1.9.1)
-		  , events : {
-				"parseError" : {},
-				"requestFailed" : {},
-				"requestSent" : {},
-				"requestCompleted" ; {}
-		  }
-		  */
-
-		}
+			// publicMethods : [
+			// 	// methods
+			// 	"bindProperty", "bindList", "bindTree", "bindContext", "createBindingContext", "destroyBindingContext", "getProperty",
+			// 	"getDefaultBindingMode", "setDefaultBindingMode", "isBindingModeSupported", "attachParseError", "detachParseError",
+			// 	"attachRequestCompleted", "detachRequestCompleted", "attachRequestFailed", "detachRequestFailed", "attachRequestSent",
+			// 	"detachRequestSent", "setSizeLimit", "refresh", "isList", "getObject"
+		  // ]
+			//
 
 	});
 
 
-	/**
-	 * Map of event names, that are provided by the model.
-	 */
-	MeteorMongoModel.M_EVENTS = {
-		/**
-		 * Depending on the model implementation a ParseError should be fired if a parse error occurred.
-		 * Contains the parameters:
-		 * errorCode, url, reason, srcText, line, linepos, filepos
-		 */
-		ParseError : "parseError",
-
-		/**
-		 * Depending on the model implementation a RequestFailed should be fired if a request to a backend failed.
-		 * Contains the parameters:
-		 * message, statusCode, statusText and responseText
-		 *
-		 */
-		RequestFailed : "requestFailed",
-
-		/**
-		 * Depending on the model implementation a RequestSent should be fired when a request to a backend is sent.
-		 * Contains Parameters: url, type, async, info (<strong>deprecated</strong>), infoObject
-		 *
-		 */
-		RequestSent : "requestSent",
-
-		/**
-		 * Depending on the model implementation a RequestCompleted should be fired when a request to a backend is completed regardless if the request failed or succeeded.
-		 * Contains Parameters: url, type, async, info (<strong>deprecated</strong>), infoObject, success, errorobject
-		 *
-		 */
-		RequestCompleted : "requestCompleted",
-
-		/**
-		 * Event is fired when changes occur to a property value in the model. The event contains a reason parameter which describes the cause of the property value change.
-		 * Currently the event is only fired with reason <code>sap.ui.model.ChangeReason.Binding</code> which is fired when two way changes occur to a value of a property binding.
-		 * Contains the parameters:
-		 * reason, path, context, value
-		 *
-		 */
-		PropertyChange : "propertyChange"
-	};
-
-	/**
+/**
 	 * The 'requestFailed' event is fired, when data retrieval from a backend failed.
 	 *
 	 * Note: Subclasses might add additional parameters to the event object. Optional parameters can be omitted.
@@ -609,7 +553,45 @@ sap.ui.define([
 	 *		   [oContext=null] the context with which the path should be resolved
 	 * @public
 	 */
+	 MeteorMongoModel.prototype.getProperty = function(sPath, oContext){
+		  let propertyValue;
 
+			// Check we have a context or we can't return a property - not yet sure
+			// why this is sometimes being called when context hasn't been set yet
+			// (Grid Table)
+			if (!oContext){
+				return;
+			}
+
+      // Build unique document selector from context path that is in format of
+      // "/<Collection>(<_id>)"
+      const contextPath = oContext.sPath;
+      const firstChar = contextPath.charAt(0);
+      const openParens = contextPath.indexOf("(");
+      const closeParens = contextPath.indexOf(")");
+
+      // Validate context path
+      if (firstChar !== "/" || openParens < 0 || closeParens < 0) {
+        console.error("Unsupported context path");
+      } else {
+        // Get collection name and document id
+        const collectionName = contextPath.substring(1, openParens);
+        const documentId = contextPath.substring(openParens + 1, closeParens);
+
+        // Get single document
+        var document = Mongo.Collection.get(collectionName).findOne(documentId);
+        if (!document) {
+          console.error("Document not found!");
+        } else if (sPath) {
+					propertyValue = _.get(document, sPath);
+        } else {
+					// Return document (e.g. called by getObject)
+					propertyValue = document;
+				}
+      }
+
+      return propertyValue;
+	 }
 	/**
 	 * Implement in inheriting classes
 	 * @abstract

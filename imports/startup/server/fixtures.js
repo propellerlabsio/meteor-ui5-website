@@ -28,9 +28,10 @@ Meteor.startup(() => {
 });
 
 /**
- * Northwind source data has order details - ie products ordered - in separate entity.
- * In order to produce an example of nested documents (the mongo way) we will
- * merge both Orders and OrderDetails into the one Orders collection.
+ * Northwind source data has order items detail - ie products ordered - in
+ * separate entity. In order to produce an example of nested documents (the
+ * mongo way) we will merge both Orders and OrderDetails into the one Orders
+ * collection with OrderDetails in an "Items" property.
  */
 function loadOrders() {
   debugger;
@@ -50,14 +51,14 @@ function loadOrders() {
             console.error(error);
           } else {
             // Add array property to order for storing details
-            cleaned.Details = [];
+            cleaned.Items = [];
             orders.insert(cleaned);
           }
         }
       );
     });
 
-    // Load order details
+    // Load order details into Items property of Orders
     jsonFile = JSON.parse(Assets.getText('fixtures/OrderDetails.json'));
     jsonFile.forEach((doc, index) => {
       // Get converted document
@@ -69,11 +70,14 @@ function loadOrders() {
           if (error) {
             console.error(error);
           } else {
+            // Remove redundant OrderID property from item details
+            delete cleaned.OrderID;
+            
             // Add details to existing order document
             orders.update({
               _id: doc.OrderID.toString()
             }, {
-              $push: {Details: cleaned}
+              $push: {Items: cleaned}
             });
           }
         }

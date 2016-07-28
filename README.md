@@ -14,7 +14,9 @@ This is the roadmap for the MeteorModel package:
 #### Backlog
 
 1. Package model into meteor-ui5 repo.
+1. Optimize performance of observe changes - current hack of refreshing all for every change is killing apps on anything more than 50 or so records.
 1. List binding to array properties of single documents.
+1. Add support for paging.  UI5 instantiates multiple control objects for every record in a list.  Need to limit the amount of front-end memory consumed when paging through large lists.
 
 #### Planned
 

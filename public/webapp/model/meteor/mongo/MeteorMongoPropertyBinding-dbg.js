@@ -54,41 +54,8 @@ sap.ui.define([
      *
      * @public
      */
-    MeteorMongoPropertyBinding.prototype.getValue = function(name) {
-      let propertyValue;
-
-			// Check we have a context or we can't return a property - not yet sure
-			// why this is sometimes being called when context hasn't been set yet
-			// (Grid Table)
-			if (!this.oContext){
-				return;
-			}
-
-      // Build unique document selector from context path that is in format of
-      // "/<Collection>(<_id>)"
-      const contextPath = this.oContext.sPath;
-      const firstChar = contextPath.charAt(0);
-      const openParens = contextPath.indexOf("(");
-      const closeParens = contextPath.indexOf(")");
-
-      // Validate context path
-      if (firstChar !== "/" || openParens < 0 || closeParens < 0) {
-        console.error("Unsupported context path");
-      } else {
-        // Get collection name and document id
-        const collectionName = contextPath.substring(1, openParens);
-        const documentId = contextPath.substring(openParens + 1, closeParens);
-
-        // Get single document
-        var document = Mongo.Collection.get(collectionName).findOne(documentId);
-        if (!document) {
-          console.error("Document not found!");
-        } else {
-					propertyValue = _.get(document, this.sPath);
-        }
-      }
-
-      return propertyValue;
+    MeteorMongoPropertyBinding.prototype.getValue = function() {
+			return this.oModel.getProperty(this.sPath, this.oContext);
     }
 
     /**

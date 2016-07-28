@@ -7,29 +7,45 @@ sap.ui.define([
 	return Control.extend("meteor-ui5-demo.control.SourceCodeViewer", {
 		metadata : {
 			properties : {
-				src: {type: "string"},
+				sourceFile: {type: "string"},
+				sourceCode: {type: "string"},
 				hljsLanguage: {type: "string"}
 			}
 		},
 
 		onAfterRendering: function(){
 			// Get values/references we need
-			var sSrc = this.getProperty("src");
+			var sSourceCode = this.getProperty("sourceCode");
+			var sSourceFile = this.getProperty("sourceFile");
 			var oSourceViewer = this.getDomRef();
+			var that = this;
 
-			// Use jquery to load code from url in src property
-			console.log("Loading " + sSrc + " into " + this.sId);
-			jQuery.get(sSrc, function(data) {
-				// Load code into dom element
-				oSourceViewer.innerText = data;
+			// If source code provided, load it into dom element directly
+			if (sSourceCode){
+					// Load code into dom element
+					oSourceViewer.innerText = sSourceCode;
 
-				// Ask hljs to highlight code
-			  hljs.highlightBlock(oSourceViewer);
-			}, "text");
+					// Ask hljs to highlight code
+				  hljs.highlightBlock(oSourceViewer);
+
+					this.setBusy(false);
+			} else {
+				// Use jquery to load code from url in sourceFile property
+				console.log("Loading " + sSourceFile + " into " + this.sId);
+				jQuery.get(sSourceFile, function(data) {
+					// Load code into dom element
+					oSourceViewer.innerText = data;
+
+					// Ask hljs to highlight code
+				  hljs.highlightBlock(oSourceViewer);
+
+					that.setBusy(false);
+				}, "text");
+			}
 		},
 
 		init: function () {
-			this._sInitialCode = "Loading...";
+			this.setBusy(true);
 		},
 
 		// the part creating the HTML:
