@@ -3,12 +3,13 @@
   xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
   xmlns="sap.m"
   controllerName="meteor-ui5-demo.controller.Master">
-    <Page id="masterBinding" title="Binding" icon="sap-icon://action" class="sapUiStdPage" showNavButton="true" navButtonPress="onPressBack">
+    <Page id="masterCompare" title="Binding Examples" icon="sap-icon://action" class="sapUiStdPage" showNavButton="true" navButtonPress="onPressBack">
         <content>
             <List id="masterList" itemPress="onItemPress" mode="SingleSelectMaster">
                 <items>
-                    <StandardListItem id="binding" title="Introduction" type="Active" custom:to="binding"/>
-                    <StandardListItem id="bindingExamples" title="Examples" type="Active" custom:to="bindingExamples"/>
+                    <StandardListItem id="bindingAllOrders" title="All Orders" type="Active" custom:to="bindingAllOrders" />
+                    <StandardListItem id="bindingSomeOrders" title="Some Orders" type="Active" custom:to="bindingSomeOrders" />
+                    <StandardListItem id="bindingOneOrder" title="One Order" type="Active" custom:to="bindingOneOrder" />
                 </items>
             </List>
         </content>

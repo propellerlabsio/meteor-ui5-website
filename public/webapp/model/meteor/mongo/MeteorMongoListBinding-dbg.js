@@ -225,7 +225,6 @@ sap.ui.define([
 
     });
 
-        debugger;
     return oMongoSelector;
   };
 

@@ -57,25 +57,29 @@
                 "name": "tutorial",
                 "target": ["master", "tutorial"]
             }, {
-                "pattern": "binding",
-                "name": "binding",
-                "target": ["masterBinding", "binding"]
-            }, {
-                "pattern": "binding/examples",
-                "name": "bindingExamples",
-                "target": ["masterBinding", "bindingExamples"]
-            }, {
-                "pattern": "compare/meteor:?query:",
+                "pattern": "compare/meteor",
                 "name": "compareMeteor",
-                "target": ["masterCompare", "compareModel"]
+                "target": ["masterCompare", "demo"]
             }, {
-                "pattern": "compare/json:?query:",
+                "pattern": "compare/json",
                 "name": "compareJson",
-                "target": ["masterCompare", "compareModel"]
+                "target": ["masterCompare", "demo"]
             }, {
-                "pattern": "compare/odata:?query:",
+                "pattern": "compare/odata",
                 "name": "compareOData",
-                "target": ["masterCompare", "compareModel"]
+                "target": ["masterCompare", "demo"]
+            }, {
+                "pattern": "binding/allOrders",
+                "name": "bindingAllOrders",
+                "target": ["masterBinding", "demo"]
+            }, {
+                "pattern": "binding/someOrders",
+                "name": "bindingSomeOrders",
+                "target": ["masterBinding", "demo"]
+            }, {
+                "pattern": "binding/oneOrder",
+                "name": "bindingOneOrder",
+                "target": ["masterBinding", "demo"]
             }, {
                 "pattern": "temp",
                 "name": "temp",
@@ -109,20 +113,8 @@
                     "viewLevel": "1",
                     "transition": "flip"
                 },
-                "binding": {
-                    "viewName": "Binding",
-                    "controlAggregation": "detailPages",
-                    "viewLevel": "3",
-                    "transition": "flip"
-                },
-                "bindingExamples": {
-                    "viewName": "BindingExamples",
-                    "controlAggregation": "detailPages",
-                    "viewLevel": "3",
-                    "transition": "flip"
-                },
-                "compareModel": {
-                    "viewName": "CompareModel",
+                "demo": {
+                    "viewName": "Demo",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"

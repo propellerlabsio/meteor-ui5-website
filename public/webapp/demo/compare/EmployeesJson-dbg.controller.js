@@ -9,7 +9,7 @@ sap.ui.define([
 ], function(Controller, JSONModel, Filter, FilterOperator, Sorter, formatter) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5-demo.controller.EmployeesJson", {
+  var CController = Controller.extend("meteor-ui5-demo.demo.compare.EmployeesJson", {
 
     formatter: formatter,
 

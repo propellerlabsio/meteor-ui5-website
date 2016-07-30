@@ -1,0 +1,19 @@
+<mvc:View
+    	xmlns:mvc="sap.ui.core.mvc"
+      xmlns:meteor-ui5-demo="meteor-ui5-demo.control"
+      xmlns="sap.m"
+      controllerName="meteor-ui5-demo.controller.Demo">
+
+		<Page id="compareModel" title="{viewState>/pageTitle}" class="sapUiStdPage">
+ 		  <content>
+        <meteor-ui5-demo:DemoViewer
+          id="modelExampleControl"
+          infoText="{viewState>/Demo/infoText}"
+          focusCode="{viewState>/Demo/focusCode}"
+          demoViewName="{viewState>/Demo/demoViewName}"
+          sourceFiles="{viewState>/Demo/sourceFiles}"
+          />
+			</content>
+		</Page>
+
+</mvc:View>

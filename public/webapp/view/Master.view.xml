@@ -5,7 +5,7 @@
                 <items>
                     <StandardListItem id="home" title="Introduction" type="Active" custom:to="home"/>
                     <StandardListItem id="tutorial" title="Tutorial" type="Active" custom:to="tutorial"/>
-                    <StandardListItem id="binding" title="Binding" type="Navigation" custom:to="binding"/>
+                    <StandardListItem id="binding" title="Binding Examples" type="Navigation" custom:to="bindingAllOrders"/>
                     <StandardListItem id="compareMeteor" title="Compare UI5 Models" type="Navigation" custom:to="compareMeteor"/>
                 </items>
             </List>

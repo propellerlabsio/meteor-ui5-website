@@ -1,0 +1,77 @@
+[{
+    "routeName": "compareMeteor",
+    "pageTitle": "Meteor Model",
+    "infoText": "This demo uses the Meteor Model for all data.",
+    "focusCode": "console.log('Hello World');",
+    "demoViewName": "meteor-ui5-demo.demo.compare.EmployeesMeteor",
+    "sourceFiles": [{
+        "title": "View",
+        "file": "webapp/demo/compare/EmployeesMeteor.view.xml"
+    }, {
+        "title": "Controller",
+        "file": "webapp/demo/compare/EmployeesMeteor-dbg.controller.js"
+    }, {
+        "title": "Employees Table",
+        "file": "webapp/demo/compare/EmployeesTable.fragment.xml"
+    }]
+}, {
+    "routeName": "compareJson",
+    "pageTitle": "JSON Model",
+    "infoText": "This demo uses a UI5-standard JSON Model for all data.",
+    "demoViewName": "meteor-ui5-demo.demo.compare.EmployeesJson",
+    "sourceFiles": [{
+        "title": "View",
+        "file": "webapp/demo/compare/EmployeesJson.view.xml"
+    }, {
+        "title": "Controller",
+        "file": "webapp/demo/compare/EmployeesJson-dbg.controller.js"
+    }, {
+        "title": "Employees Table",
+        "file": "webapp/demo/compare/EmployeesTable.fragment.xml"
+    }]
+}, {
+    "routeName": "compareOData",
+    "pageTitle": "OData Model",
+    "infoText": "This demo uses a UI5-standard OData Model for all data.  All data is fetched from the Northwind OData sample service.",
+    "demoViewName": "meteor-ui5-demo.demo.compare.EmployeesOData",
+    "sourceFiles": [{
+        "title": "View",
+        "file": "webapp/demo/compare/EmployeesOData.view.xml"
+    }, {
+        "title": "Controller",
+        "file": "webapp/demo/compare/EmployeesOData-dbg.controller.js"
+    }, {
+        "title": "Employees Table",
+        "file": "webapp/demo/compare/EmployeesTable.fragment.xml"
+    }]
+}, {
+    "routeName": "bindingAllOrders",
+    "pageTitle": "All Orders",
+    "demoViewName": "meteor-ui5-demo.demo.binding.AllOrders",
+    "sourceFiles": [{
+        "title": "View",
+        "file": "webapp/demo/binding/AllOrders.view.xml"
+    }, {
+        "title": "Controller",
+        "file": "webapp/demo/binding/AllOrders-dbg.controller.js"
+    }, {
+        "title": "Orders Table",
+        "file": "webapp/demo/binding/OrdersTable.fragment.xml"
+    }]
+}, {
+    "routeName": "bindingSomeOrders",
+    "pageTitle": "Some Orders",
+    "demoViewName": "meteor-ui5-demo.demo.binding.SomeOrders",
+    "sourceFiles": [{
+        "title": "View",
+        "file": "webapp/demo/binding/SomeOrders.view.xml"
+    }, {
+        "title": "Controller",
+        "file": "webapp/demo/binding/SomeOrders-dbg.controller.js"
+    }, {
+        "title": "Orders Table",
+        "file": "webapp/demo/binding/OrdersTable.fragment.xml"
+    }]
+}, {
+    "routeName": "bindingOneOrder"
+}]

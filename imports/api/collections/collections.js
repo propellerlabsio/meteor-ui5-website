@@ -10,21 +10,19 @@ export const orders = new SafeCollection('Orders');
 export const products = new SafeCollection('Products');
 export const shippers = new SafeCollection('Shippers');
 export const suppliers = new SafeCollection('Suppliers');
-
-// Internal collections
-export const bindingExamples = new SafeCollection('BindingExamples');
+export const demos = new SafeCollection('Demos');
 
 // Publish
 if (Meteor.isServer) {
+  // Publish all demos
+  Meteor.publish('demos', () => demos.find());
+
   // Publish all employees
   Meteor.publish('employees', () => employees.find());
 
-  // Publish all binding examples
-  Meteor.publish('bindingExamples', () => bindingExamples.find());
-
   // Publish  orders
   Meteor.publish('orders', () => {
-    // TODO: Remove limit when below is resolved
+    // TODO: Remove limit when observe changes is resolved
     // Limit publish to 20 orders as performance is killing us with the full
     // list of 830 orders until we get the observeChanges code sorted out in
     // the ListBinding model

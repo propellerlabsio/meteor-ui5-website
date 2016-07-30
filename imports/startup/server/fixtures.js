@@ -5,6 +5,7 @@ import {
   bindingExamples,
   categories,
   customers,
+  demos,
   employees,
   orderDetails,
   orders,
@@ -22,7 +23,7 @@ Meteor.startup(() => {
   loadFileIntoEmptyCollection('fixtures/Shippers.json', shippers, "ShipperID");
   loadFileIntoEmptyCollection('fixtures/Suppliers.json', suppliers, "SupplierID");
   loadFileIntoEmptyCollection('fixtures/Products.json', products, "ProductID");
-  loadFileIntoEmptyCollection('fixtures/BindingExamples.json', bindingExamples);
+  loadFileIntoEmptyCollection('fixtures/Demos.json', demos);
 
   loadOrders();
 });
@@ -34,7 +35,6 @@ Meteor.startup(() => {
  * collection with OrderDetails in an "Items" property.
  */
 function loadOrders() {
-  debugger;
   if (!orders.find().count()) {
     console.log(`loading orders (2 files)...`);
 
@@ -62,7 +62,6 @@ function loadOrders() {
     jsonFile = JSON.parse(Assets.getText('fixtures/OrderDetails.json'));
     jsonFile.forEach((doc, index) => {
       // Get converted document
-      debugger;
       const converted = Meteor.call(
         'fixtures.cleanDocument',
         doc,
@@ -72,7 +71,7 @@ function loadOrders() {
           } else {
             // Remove redundant OrderID property from item details
             delete cleaned.OrderID;
-            
+
             // Add details to existing order document
             orders.update({
               _id: doc.OrderID.toString()
