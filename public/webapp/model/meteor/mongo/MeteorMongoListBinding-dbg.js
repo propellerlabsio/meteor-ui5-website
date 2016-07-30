@@ -10,7 +10,8 @@ sap.ui.define([
   'sap/ui/model/ListBinding',
   'sap/ui/model/Context',
   'sap/ui/model/FilterOperator',
-], function(jQuery, ListBinding, Context, FilterOperator) {
+  'sap/ui/model/ChangeReason'
+], function(jQuery, ListBinding, Context, FilterOperator, ChangeReason) {
   "use strict";
 
   /**
@@ -58,6 +59,9 @@ sap.ui.define([
       // this.bUseExtendedChangeDetection = false;
       // this.bDetectUpdates = true;
 
+      // Set up array for storing contexts
+      this._aContexts = [];
+
       // Get query
       if (sPath.charAt(0) !== "/") {
         const sError = "Binding lists to anyother other than root element (Mongo Collection) not implemented yet";
@@ -100,7 +104,12 @@ sap.ui.define([
     }
 
     // Build query options
-    let options = {};
+    let options = {
+      // TODO reinstate below limit when I know how to make it work.  Requires
+      // complex change to observeChanges that may be best addressed at the same
+      // time we introduce paging.
+      // limit: this.oModel.iSizeLimit
+    };
     if (this.aSorters.length) {
       options.sort = this._buildMongoSortSpecifier();
     }
@@ -109,12 +118,13 @@ sap.ui.define([
     this._oCursor = this._oCollection.find(selector, options);
 
     // Create query handle so we can observe changes
+    // var that = this;
     this._oQueryHandle = this._oCursor.observeChanges({
       added: (id, fields) => {
-        //TODO performance - only update data that has changed
-        console.log("Record(s) added - refreshing all");
-        this.oModel.refresh();
-        // this.fireDataReceived();
+        const oContext = new Context(this.oModel, this.sPath + "(" + id + ")");
+        this._aContexts.push(oContext);
+        this.fireDataReceived();
+        this._fireChange(ChangeReason.add);
       },
 
       changed: (id, fields) => {
@@ -279,13 +289,15 @@ sap.ui.define([
    * @protected
    */
   MeteorMongoListBinding.prototype.getContexts = function(iStartIndex, iLength) {
-    var aContexts = [];
-    this._oCursor.forEach(function(doc) {
-      //TODO Allow list binding for arrays
-      const context = new Context(this.oModel, this.sPath + "(" + doc._id + ")");
-      aContexts.push(context);
-    }, this);
-    return aContexts;
+    // TODO Optimize the interplay between this method and the observeChanges.added
+    // code added to the query.  It's exponentially better than it was but is still
+    // being called every time dataChange is fired so if the query results
+    // in say 830 records, then it is called 830 times returning 0..830 records.
+    // NOTE above does not seem to impact performace with local testing of 830
+    // records so may be a low priority issue or no issue at all.
+    const iStart = iStartIndex === undefined ? 0 : iStartIndex;
+    const iLen = iLength === undefined ? this.oModel.iSizeLimit - iStart : iLength;
+    return this._aContexts.slice(iStart).splice(0, iLen);
   };
 
   MeteorMongoListBinding.prototype.destroy = function() {
@@ -346,7 +358,7 @@ sap.ui.define([
    * @public
    */
   MeteorMongoListBinding.prototype.getCurrentContexts = function() {
-    return this.getContexts();
+    return this._aContexts;
   };
 
   /**
@@ -358,10 +370,7 @@ sap.ui.define([
    * @public
    */
   MeteorMongoListBinding.prototype.getLength = function() {
-    // TODO handle subscription finished/records loaded
-    if (this._oCursor) {
-      return this._oCursor.count();
-    }
+    return this._aContexts.length;
   };
 
   /**
@@ -373,12 +382,15 @@ sap.ui.define([
    * @public
    */
   MeteorMongoListBinding.prototype.isLengthFinal = function() {
-    // TODO handle subscription finished/records loaded
-    if (this._oCursor) {
-      return true;
-    } else {
-      return false;
-    }
+    // TODO don't know what to do here yet.  Can't get this method
+    // to trigger and in any case, the only way to calculate if queryHandle.count()
+    // is final is to introduce subscriptions to the model which I've been
+    // keen to avoid as it will complicate the hell out of things whereas
+    // having it outside of the model is quite simple.  There's a discussion
+    // on the issue here:
+    // http://stackoverflow.com/questions/18744665/how-to-get-a-published-collections-total-count-regardless-of-a-specified-limit
+    // In the mean time return false;
+    return false;
   };
 
   /**

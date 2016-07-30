@@ -57,7 +57,7 @@ sap.ui.define([
 			this.bDestroyed = false;
 			this.aBindings = [];
 			this.mContexts = {};
-			this.iSizeLimit = 100;
+			this.iSizeLimit = 1000;
 			this.sDefaultBindingMode = BindingMode.OneWay;
 			this.mSupportedBindingModes = {"OneWay": true, "TwoWay": false, "OneTime": false};
 			this.bLegacySyntax = false;

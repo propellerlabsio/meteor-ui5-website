@@ -22,12 +22,10 @@ if (Meteor.isServer) {
 
   // Publish  orders
   Meteor.publish('orders', () => {
-    // TODO: Remove limit when observe changes is resolved
-    // Limit publish to 20 orders as performance is killing us with the full
-    // list of 830 orders until we get the observeChanges code sorted out in
-    // the ListBinding model
-    const limitSelector = {"_id": {$gte: "10248", $lte: "10267"}};
-    var cursor = orders.find(limitSelector);
+    var cursor = orders.find();
+    // TODO work out why below message is showing in meteor server console - ie
+    // publication seems to be running even though it should never be called
+    // on the server?
     console.log("Publishing " + cursor.count() + " orders.");
     return cursor;
   });
