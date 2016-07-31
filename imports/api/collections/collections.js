@@ -16,25 +16,16 @@ export const demos = new SafeCollection('Demos');
 if (Meteor.isServer) {
   // Publish all demos
   Meteor.publish('demos', () => {
-    // TODO remove console log when we're sure subscriptions are working correctly
-    console.log("Publishing demos...");
-    
     return demos.find()
   });
 
   // Publish all employees
   Meteor.publish('employees', () => {
-    // TODO remove console log when we're sure subscriptions are working correctly
-    console.log("Publishing employees...");
-
     return employees.find();
   });
 
   // Publish  orders
   Meteor.publish('orders', () => {
-    // TODO remove console log when we're sure subscriptions are working correctly
-    console.log("Publishing orders...");
-
     return orders.find();
   });
 

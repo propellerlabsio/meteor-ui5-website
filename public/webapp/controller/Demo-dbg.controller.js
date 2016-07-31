@@ -18,9 +18,13 @@ sap.ui.define([
       this._oRouter.attachRoutePatternMatched(this._onRoutePatternMatched, this);
 
       // Subscribe to Demos for getting content of selected demo
-      Meteor.subscribe("demos", this._loadDemoForCurrentRoute.bind(this));
+      this._subscription = Meteor.subscribe("demos", this._loadDemoForCurrentRoute.bind(this));
     },
 
+    onExit: function(){
+      this._subscription.stop();
+    },
+    
     _onRoutePatternMatched: function(oEvent) {
       // Store current route name and view state model
       this._sRouteName = oEvent.mParameters.name;

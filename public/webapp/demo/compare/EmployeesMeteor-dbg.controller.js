@@ -17,8 +17,12 @@ sap.ui.define([
       var oModel = new MeteorModel();
       this.getView().setModel(oModel);
 
-      // Subscribe to Employees data.  That's it!
-      Meteor.subscribe('employees');
+      // Subscribe to Employees data.
+      this._subscription = Meteor.subscribe('employees');
+    },
+
+    onExit: function(){
+      this._subscription.stop();
     },
 
     /**

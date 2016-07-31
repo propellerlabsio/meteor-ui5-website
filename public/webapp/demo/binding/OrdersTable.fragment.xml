@@ -36,5 +36,4 @@
         </cells>
       </ColumnListItem>
   </Table>
-      <!-- number="{= ${Details}.length}" -->
 </core:FragmentDefinition>

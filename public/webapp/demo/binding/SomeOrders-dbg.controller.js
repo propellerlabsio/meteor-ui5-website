@@ -16,8 +16,8 @@ sap.ui.define([
       var oModel = new MeteorModel();
       this.getView().setModel(oModel);
 
-      // Subscribe to Employees data.  That's it!
-      Meteor.subscribe('orders');
+      // Subscribe to data
+      this._subscription = Meteor.subscribe('orders');
 
       // Create filter for customer = HANAR
       const oCustomerFilter = new Filter({
@@ -32,6 +32,10 @@ sap.ui.define([
         template: this.byId("OrdersItem").clone(),
         filters: [oCustomerFilter]
       });
+    },
+
+    onExit: function(){
+      this._subscription.stop();
     }
 
   });

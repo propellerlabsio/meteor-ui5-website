@@ -1,8 +1,8 @@
 [{
     "routeName": "compareMeteor",
     "pageTitle": "Meteor Model",
-    "infoText": "This demo uses the Meteor Model for all data handling.  The only effective difference between this model and the others in these demos is in the way the model is instantiated.  Meteor Models require no arguments such as data (in the case of JSON Model) or a service URL (OData) but instead provide access to all Meteor collections by default.  The binding code (path, filters and sorters) is identical in all three of these examples.\n\nIt is also usual in Meteor to 'subscribe' to a publication. This will send data from the server to the front end as required.  In Meteor UI5 it is not necessary to check that a subscription is ready - the model will automatically update any bindings with data as it is recieved.\n\nBelow is how the Meteor Model is intantiated in the view controller.  In larger examples, with several views, it would be usual to do this in the Component.js or manifest files.",
-    "focusCode": "// Create Meteor model\nvar oModel = new MeteorModel();\nthis.getView().setModel(oModel);\n\n// Subscribe to Employees data.  That's it!\nMeteor.subscribe('employees');",
+    "infoText": "This demo uses the Meteor Model for all data handling.  The only effective difference between this model and the others in these demos is in the way the model is instantiated.  Meteor Models require no arguments such as data (in the case of JSON Model) or a service URL (OData) but instead provide access to all Meteor collections by default.  The binding code (path, filters and sorters) is identical in all three of these examples.\n\nIt is also usual in Meteor to 'subscribe' to a publication. This will send data from the server to the front end as required.  In Meteor UI5 it is not necessary to check that a subscription is ready - the model will automatically update any bindings with data as it is recieved. However, you should store the subscription reference and call the .stop() method on it in the controller's onExit() callback.\n\nBelow is how the Meteor Model is intantiated in the view controller.  In larger examples, with several views, it would be usual to do this in the Component.js or manifest files.",
+    "focusCode": "// Create Meteor model\nvar oModel = new MeteorModel();\nthis.getView().setModel(oModel);\n\n// Subscribe to Employees data.\nthis._subscription = Meteor.subscribe('employees');",
     "demoViewName": "meteor-ui5-demo.demo.compare.EmployeesMeteor",
     "sourceFiles": [{
         "title": "View",
@@ -76,5 +76,6 @@
     }]
 }, {
     "routeName": "bindingOneOrder",
-    "pageTitle": "One Order"
+    "pageTitle": "One Order",
+    "demoViewName": "meteor-ui5-demo.demo.binding.OneOrder"
 }]
