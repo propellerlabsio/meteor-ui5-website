@@ -3,9 +3,10 @@ sap.ui.define([
   "sap/m/IconTabBar",
   "sap/m/IconTabFilter",
   "sap/m/Text",
+  "sap/m/MessageStrip",
   "meteor-ui5-demo/control/SourceCodeViewer",
   "sap/ui/core/mvc/XMLView"
-], function(Control, IconTabBar, IconTabFilter, Text, SourceCodeViewer, XMLView) {
+], function(Control, IconTabBar, IconTabFilter, Text, MessageStrip, SourceCodeViewer, XMLView) {
   "use strict";
   return Control.extend("meteor-ui5-demo.control.DemoViewer", {
     metadata: {
@@ -68,12 +69,6 @@ sap.ui.define([
     },
 
     onBeforeRendering: function() {
-      // Only continue if properties we need are available
-      const sDemoViewName = this.getProperty("demoViewName");
-      if (!sDemoViewName) {
-        return;
-      }
-
       // // Load content into tabs via properties that are now avialable.
       // First remove all existing content - some issue with my understanding
       // of control instances because this once instance seem to be being shared
@@ -82,27 +77,68 @@ sap.ui.define([
       this._demoTab.removeAllContent();
       this._sourceTab.removeAllContent();
 
+      // Add content
+      this._addInfoTabContent();
+      this._addDemoTabContent();
+      this._addSourceTabContent();
+
+    },
+
+    renderer: function(oRM, oControl) {
+      oRM.write("<div");
+      oRM.writeControlData(oControl);
+      oRM.writeClasses();
+      oRM.write(">");
+      oRM.renderControl(oControl.getAggregation("_tabs"));
+      oRM.write("</div>");
+    },
+
+    _addInfoTabContent: function(){
       // Add info tab content
-      this._infoTab.addContent(new Text({
-        text: this.getProperty("infoText")
-      }));
-      const sFocusCode = this.getProperty("focusCode");
-      if (sFocusCode){
-        this._infoTab.addContent(new SourceCodeViewer({
-          sourceCode: this.getProperty("focusCode"),
-          // sourceCode: sFocusCode,
-          hljsLanguage: 'js'
+      const sInfoText = this.getProperty("infoText");
+      if (sInfoText) {
+        this._infoTab.addContent(new Text({
+          text: sInfoText
+        }));
+        const sFocusCode = this.getProperty("focusCode");
+        if (sFocusCode){
+          this._infoTab.addContent(new SourceCodeViewer({
+            sourceCode: this.getProperty("focusCode"),
+            // sourceCode: sFocusCode,
+            hljsLanguage: 'js'
+          }));
+        }
+      } else {
+        this._infoTab.addContent(new MessageStrip({
+          text:"Info text not configured.",
+  				type:"Error",
+  				showIcon: true,
+  				showCloseButton: false
         }));
       }
+    },
 
+    _addDemoTabContent: function(){
       // Add demo tab content
-      this._demoTab.addContent(new XMLView({
-        viewName: this.getProperty("demoViewName")
-      }));
+      const demoViewName = this.getProperty("demoViewName");
+      if (demoViewName){
+        this._demoTab.addContent(new XMLView({
+          viewName: demoViewName
+        }));
+      } else {
+        this._demoTab.addContent(new MessageStrip({
+          text:"Demo view not configured.",
+  				type:"Error",
+  				showIcon: true,
+  				showCloseButton: false
+        }));
+      }
+    },
 
+    _addSourceTabContent: function(){
       // Add source tab content
       const oSourceFiles = this.getProperty("sourceFiles");
-      if (oSourceFiles.length){
+      if (oSourceFiles && oSourceFiles.length){
         // Create tab bar for multiple source code files
         const oCodeTabs = new IconTabBar({
           expanded: true,
@@ -123,17 +159,14 @@ sap.ui.define([
 
         // Add code tabs to source tab
         this._sourceTab.addContent(oCodeTabs);
+      } else {
+        this._sourceTab.addContent(new MessageStrip({
+          text:"Source files not configured.",
+  				type:"Error",
+  				showIcon: true,
+  				showCloseButton: false
+        }));
       }
-
-    },
-
-    renderer: function(oRM, oControl) {
-      oRM.write("<div");
-      oRM.writeControlData(oControl);
-      oRM.writeClasses();
-      oRM.write(">");
-      oRM.renderControl(oControl.getAggregation("_tabs"));
-      oRM.write("</div>");
     },
 
     _getSourceFileType(sFileName) {

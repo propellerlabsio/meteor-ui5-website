@@ -75,5 +75,6 @@
         "file": "webapp/demo/binding/OrdersTable.fragment.xml"
     }]
 }, {
-    "routeName": "bindingOneOrder"
+    "routeName": "bindingOneOrder",
+    "pageTitle": "One Order"
 }]

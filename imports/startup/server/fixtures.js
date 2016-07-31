@@ -23,10 +23,18 @@ Meteor.startup(() => {
   loadFileIntoEmptyCollection('fixtures/Shippers.json', shippers, "ShipperID");
   loadFileIntoEmptyCollection('fixtures/Suppliers.json', suppliers, "SupplierID");
   loadFileIntoEmptyCollection('fixtures/Products.json', products, "ProductID");
-  loadFileIntoEmptyCollection('fixtures/Demos.json', demos);
+
+  // Always reload the following files on server startup (they are small and
+  // quickly loaded and frequently changing)
+  loadFileReplaceCollection('fixtures/Demos.json', demos);
 
   loadOrders();
 });
+
+function loadFileReplaceCollection(file, collection, idProperty) {
+  collection.remove({});
+  loadFileIntoEmptyCollection(file, collection, idProperty);
+}
 
 /**
  * Northwind source data has order items detail - ie products ordered - in
@@ -76,7 +84,9 @@ function loadOrders() {
             orders.update({
               _id: doc.OrderID.toString()
             }, {
-              $push: {Items: cleaned}
+              $push: {
+                Items: cleaned
+              }
             });
           }
         }
