@@ -124,7 +124,7 @@ sap.ui.define([
     // Create query handle so we can observe changes
     // var that = this;
     this._oQueryHandle = this._oCursor.observeChanges({
-      added: (id, fields) => {
+      addedBefore: (id, fields, before) => {
         const oContext = new Context(this.oModel, this.sPath + "(" + id + ")");
         this._aContexts.push(oContext);
         this.fireDataReceived();
@@ -243,7 +243,7 @@ sap.ui.define([
   };
 
   MeteorMongoListBinding.prototype._buildMongoSortSpecifier = function() {
-    let aMongoSortSpecifier = [];
+    let oMongoSortSpecifier = {};
     this.aSorters.forEach((oSorter) => {
       // Don't know what options need to be supported yet but currently
       // we only support sorting based on a simple property with ascending or
@@ -269,12 +269,10 @@ sap.ui.define([
       }
 
       // Build mongo sort specifier
-      aMongoSortSpecifier.push(
-        [oSorter.sPath, oSorter.bDescending ? "desc" : "asc"]
-      );
+      oMongoSortSpecifier[oSorter.sPath] = oSorter.bDescending ? -1 : 1;
     });
 
-    return aMongoSortSpecifier;
+    return oMongoSortSpecifier;
   };
 
   /**
