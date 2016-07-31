@@ -1,7 +1,6 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
-  // 'sap/ui/model/json/JSONModel',
-  'meteor-ui5-demo/model/json/FlatJSONModel',   // TODO rever to standard JSON model - this one is for debugging
+  'sap/ui/model/json/JSONModel',
   'sap/ui/model/Filter',
   'sap/ui/model/FilterOperator',
   'sap/ui/model/Sorter',
@@ -14,21 +13,9 @@ sap.ui.define([
     formatter: formatter,
 
     onInit: function() {
-      // Create a json model and load it with a file containing Employees
-      // demo data.
-      var oJsonData = [];
-      var oModel = new JSONModel(oJsonData);
+      // Create a json model with data from a file and make it our view model
+      var oModel = new JSONModel('/webapp/demo/compare/Employees.json');
       this.getView().setModel(oModel);
-
-      // Call meteor method to populate JSON model with data
-      Meteor.call(
-        'fixtures.getJSONfile',
-        'fixtures/Employees.json',
-        (error, result) => {
-          oModel.setData({
-            Employees: result
-          });
-        });
     },
 
     /**

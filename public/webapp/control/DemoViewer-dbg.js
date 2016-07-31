@@ -89,7 +89,8 @@ sap.ui.define([
       const sFocusCode = this.getProperty("focusCode");
       if (sFocusCode){
         this._infoTab.addContent(new SourceCodeViewer({
-          sourceCode: sFocusCode,
+          sourceCode: this.getProperty("focusCode"),
+          // sourceCode: sFocusCode,
           hljsLanguage: 'js'
         }));
       }
