@@ -15,19 +15,27 @@ export const demos = new SafeCollection('Demos');
 // Publish
 if (Meteor.isServer) {
   // Publish all demos
-  Meteor.publish('demos', () => demos.find());
+  Meteor.publish('demos', () => {
+    // TODO remove console log when we're sure subscriptions are working correctly
+    console.log("Publishing demos...");
+    
+    return demos.find()
+  });
 
   // Publish all employees
-  Meteor.publish('employees', () => employees.find());
+  Meteor.publish('employees', () => {
+    // TODO remove console log when we're sure subscriptions are working correctly
+    console.log("Publishing employees...");
+
+    return employees.find();
+  });
 
   // Publish  orders
   Meteor.publish('orders', () => {
-    var cursor = orders.find();
-    // TODO work out why below message is showing in meteor server console - ie
-    // publication seems to be running even though it should never be called
-    // on the server?
-    console.log("Publishing " + cursor.count() + " orders.");
-    return cursor;
+    // TODO remove console log when we're sure subscriptions are working correctly
+    console.log("Publishing orders...");
+
+    return orders.find();
   });
 
 }
