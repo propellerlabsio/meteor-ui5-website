@@ -41,6 +41,8 @@ This is the roadmap for this demo website:
 
 #### Backlog
 
+1. Convert all demo info texts and make all future help files and tutorials use markdown.  Create custom UI5 control to use [Remarkable library](https://github.com/jonschlinkert/remarkable) for displaying markdown in UI5 pages.
+
 ##### Compare Models
 
 1. Abstract away identical filter / sorter building code from different controllers into utility class to better highlight what's actually different and relevant to the model code.
