@@ -55,7 +55,7 @@ This is the roadmap for this demo website:
 
 ##### General
 
-1. Remove debugging version in UI5 bootstrap and/or make our code work with debugging on / off.
+1. Make our code work with UI5 debug sources turned on or off.  Currently if on it fails looking for "-dbg" versions of our source files.
 1. Automatically incorporate this README into the welcome page.
 
 #### Planned
