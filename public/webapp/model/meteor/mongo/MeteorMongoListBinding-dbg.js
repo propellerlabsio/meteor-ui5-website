@@ -97,6 +97,10 @@ sap.ui.define([
       this._oQueryHandle.stop();
     }
 
+    // Reset existing contexts
+    this._aContexts = [];
+    this._fireChange(ChangeReason.remove);
+
     // Build mongo selector
     let selector = {};
     if (this.aFilters.length){
