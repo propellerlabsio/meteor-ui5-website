@@ -109,10 +109,7 @@ sap.ui.define([
 
     // Build query options
     let options = {
-      // TODO reinstate below limit when I know how to make it work.  Requires
-      // complex change to observeChanges that may be best addressed at the same
-      // time we introduce paging.
-      // limit: this.oModel.iSizeLimit
+      limit: this.oModel.iSizeLimit
     };
     if (this.aSorters.length) {
       options.sort = this._buildMongoSortSpecifier();

@@ -17,6 +17,8 @@ This is the roadmap for the MeteorModel package:
 1. Optimize performance of observe changes (records ~~added~~, changed & removed )- current hack of refreshing all for every change is killing apps on anything more than 50 or so records. (NOTE: added fixed 31/7.)
 1. List binding to array properties of single documents.
 1. Add support for paging.  UI5 instantiates multiple control objects for every record in a list.  Need to limit the amount of front-end memory consumed when paging through large lists.
+1. Document standard model setSizeLimit method and our default size limit (currently 1000). This affects list bindings.  Not even sure if we need a size limit but the other models have it - even JSON so felt safer to do it but just make it very big.  In principle, once we introduce paging, we shouldn't be showing any more than 100 bindings at a time in a list page.
+
 
 #### Planned
 
