@@ -17,7 +17,7 @@ This is the roadmap for the MeteorModel package:
 1. Optimize performance of observe changes (records ~~added~~, changed & removed )- current hack of refreshing all for every change is killing apps on anything more than 50 or so records. (NOTE: added fixed 31/7.)
 1. List binding to array properties of single documents.
 1. Add support for paging.  UI5 instantiates multiple control objects for every record in a list.  Need to limit the amount of front-end memory consumed when paging through large lists.
-1. Document standard model setSizeLimit method and our default size limit (currently 1000). This affects list bindings.  Not even sure if we need a size limit but the other models have it - even JSON so felt safer to do it but just make it very big.  In principle, once we introduce paging, we shouldn't be showing any more than 100 bindings at a time in a list page.
+1. Document standard model setSizeLimit method and our default size limit (currently 1000). This affects list bindings.  Not even sure if we need a size limit but the other models have it - even JSON  - so felt safer to do it but just make it very big.  In principle, once we introduce paging, we shouldn't be showing any more than 100 bindings at a time in a list page.
 
 
 #### Planned
@@ -28,6 +28,7 @@ This is the roadmap for the MeteorModel package:
 
 #### Maybe
 
+1. See if we can't add the equivalent of OData navigation URLs to our Meteor Model concept.  This would be useful for example where an `/Orders` record stores only the `EmployeeID` of the employee who took the order but we'd like to show the Employee name in a list of orders.   We may be able to make use of query parameters for this purpose - e.g. `/Employees/FirstName?_id=EmployeeID`.  Although the context binding is to the `/Orders` collection it would decipher the request and return the data from the `/Employees` collection.
 1. See if Meteor Simple schema can be used to automatically produce metadata for smart controls.
 1. Allow mongo selectors and option.sorts to be specified directly in list binding path instead of using UI5 sorters and filters.  E.g. path could be "\Employees({FirstName: 'Peter'})".  This would likely only appeal to people coming to UI5 from Meteor (questionable there'd be that many given how entrenched Blaze/React are) and would lose many of the benefits of consistency between the different UI5 models.
 

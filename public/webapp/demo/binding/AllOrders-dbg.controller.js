@@ -14,7 +14,12 @@ sap.ui.define([
       var oModel = new MeteorModel();
       this.getView().setModel(oModel);
 
-      // Subscribe to Employees data.  That's it!
+      // Since this demonstration has no filters applied, set the standard UI5
+      // model sizeLimit property to prevent huge volumes of data being sent to
+      // to the front end
+      oModel.setSizeLimit(100)
+
+      // Subscribe to Employees data.
       Meteor.subscribe('orders');
 
       // Bind table to all Orders

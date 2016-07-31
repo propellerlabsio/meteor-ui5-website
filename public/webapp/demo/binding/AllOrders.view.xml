@@ -1,8 +1,16 @@
 <mvc:View
+  xmlns="sap.m"
   xmlns:core="sap.ui.core"
   xmlns:mvc="sap.ui.core.mvc"
   controllerName="meteor-ui5-demo.demo.binding.AllOrders">
 
     <core:Fragment fragmentName="meteor-ui5-demo.demo.binding.OrdersTable" type="XML"/>
+
+    <MessageStrip
+			text="As this list has no filters applied, the results have been limited to 100 rows via a model setting to prevent huge volumes of data being loaded."
+			showIcon="true"
+			showCloseButton="false"
+			class="sapUiSmallMarginTop">
+		</MessageStrip>
 
 </mvc:View>

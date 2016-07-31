@@ -86,9 +86,6 @@ function loadOrders() {
 }
 
 function loadFileIntoEmptyCollection(file, collection, idProperty) {
-  // TODO Remove
-  // collection.remove({});
-
   if (!collection.find().count()) {
     console.log(`loading ${file}...`);
     const jsonFile = JSON.parse(Assets.getText(file));

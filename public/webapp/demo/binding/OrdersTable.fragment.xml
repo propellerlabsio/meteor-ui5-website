@@ -6,17 +6,33 @@
   <Table id="OrdersTable">
       <columns>
         <Column>
-          <Label text="Mongo ID" />
+          <Label text="_id" />
         </Column>
         <Column>
-          <Label text="OrderID" />
+          <Label text="CustomerID" />
+        </Column>
+        <Column>
+          <Label text="Items.length" />
+        </Column>
+        <Column>
+          <Label text="Freight" />
+        </Column>
+        <Column>
+          <Label text="ShipCity" />
+        </Column>
+        <Column>
+          <Label text="ShipCountry" />
         </Column>
       </columns>
 
       <ColumnListItem id="OrdersItem">
         <cells>
           <Text text="{_id}"/>
-          <Text text="{OrderID}"/>
+          <Text text="{CustomerID}"/>
+          <Text text="{= ${Items}.length}"/>
+          <Text text="{Freight}"/>
+          <Text text="{ShipCity}"/>
+          <Text text="{ShipCountry}"/>
         </cells>
       </ColumnListItem>
   </Table>
