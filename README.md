@@ -1,14 +1,17 @@
 # Meteor UI5
 
 ## Introduction
+
 Coming soon.
 
 ## Roadmap
 
 ### Model
+
 This is the roadmap for the MeteorModel package:
 
 #### Next up
+
 1. Fix MeteorModel to handle multiple filters with proper AND/OR conditions (in progress).
 
 #### Backlog
@@ -33,6 +36,7 @@ This is the roadmap for the MeteorModel package:
 1. Allow mongo selectors and option.sorts to be specified directly in list binding path instead of using UI5 sorters and filters.  E.g. path could be "\Employees({FirstName: 'Peter'})".  This would likely only appeal to people coming to UI5 from Meteor (questionable there'd be that many given how entrenched Blaze/React are) and would lose many of the benefits of consistency between the different UI5 models.
 
 ### Demo
+
 This is the roadmap for this demo website:
 
 #### Next up
@@ -55,5 +59,6 @@ This is the roadmap for this demo website:
 1. Automatically incorporate this README into the welcome page.
 
 #### Planned
+
 1. Build tutorial around ToDo's - seems to be industry standard simple demo/tutorial app.
 1. ~~Add comprehensive demo app that showcases many features of UI5 and shows source code for how to do it.~~ (Not sure cost is justified given many UI5 examples available in the UI5 Explored page.  Maybe this website can function as the planned demo if we publish it to a public repo.)
