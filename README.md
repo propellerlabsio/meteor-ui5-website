@@ -12,7 +12,7 @@ This is the roadmap for the MeteorModel package:
 
 #### Next up
 
-1. Fix MeteorModel to handle multiple filters with proper AND/OR conditions (in progress).
+1. Fix MeteorModel to handle multiple filters with proper AND/OR conditions (in progress). See also [Issue 1](https://github.com/propellerlabsio/meteor-ui5-experimental/issues/1)
 
 #### Backlog
 
@@ -55,7 +55,7 @@ This is the roadmap for this demo website:
 
 ##### General
 
-1. Make our code work with UI5 debug sources turned on or off.  Currently if on it fails looking for "-dbg" versions of our source files.
+1. Make our code work with UI5 debug sources turned on or off.  Currently if on it fails looking for "-dbg" versions of our source files  [Issue 2](https://github.com/propellerlabsio/meteor-ui5-experimental/issues/2).
 1. Automatically incorporate this README into the welcome page.
 
 #### Planned
