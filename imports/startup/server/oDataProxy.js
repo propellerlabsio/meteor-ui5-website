@@ -11,20 +11,8 @@ HTTP.methods({
 
 function callODataService() {
 
-  let url = 'http://services.odata.org/V2/Northwind/Northwind.svc';
-  // let url = 'http://services.odata.org/V3/OData/OData.svc/';
-
-  // Build rest of url from parameters - painful we have to do it this way but there's
-  // no way with http-methods to gulp the rest of a url after oDataProxy into one parameter
-  if (this.params.p1) {
-    url = url + "/" + this.params.p1;
-    if (this.params.p2) {
-      url = url + this.params.p2;
-
-      // TODO: Add more parameters here as required
-    }
-  }
-  console.log("Handling oDataProxy request for " + url);
+  const proxyUrl = this.request.originalUrl.substring(11);
+  const url = 'http://services.odata.org/V2/Northwind/Northwind.svc' + proxyUrl;
   const response = HTTP.get(url);
 
   // Get service call response headers and add them to our response

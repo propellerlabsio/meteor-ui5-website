@@ -51,7 +51,6 @@ This is the roadmap for this demo website:
 
 1. Abstract away identical filter / sorter building code from different controllers into utility class to better highlight what's actually different and relevant to the model code.
 1. Write Compare Models info texts / focus code explaining demos and highlighting just the differences.
-1. Fix filter and sorter not working with ODataModel. (EmployeesOData-dbg.controller.js)
 
 ##### General
 
