@@ -12,7 +12,7 @@ This is the roadmap for the MeteorModel package:
 
 #### Next up
 
-1. Fix MeteorModel to handle multiple filters with proper AND/OR conditions (in progress). See also [Issue 1](https://github.com/propellerlabsio/meteor-ui5-experimental/issues/1)
+1. ~~Fix MeteorModel to handle multiple filters with proper AND/OR conditions (in progress).~~ (Basic support coded to mimic OData/JSON models - confirm approach with David before closing issue.) See [Issue 1](https://github.com/propellerlabsio/meteor-ui5-experimental/issues/1)
 
 #### Backlog
 
@@ -21,6 +21,7 @@ This is the roadmap for the MeteorModel package:
 1. List binding to array properties of single documents.
 1. Add support for paging.  UI5 instantiates multiple control objects for every record in a list.  Need to limit the amount of front-end memory consumed when paging through large lists.
 1. Document standard model setSizeLimit method and our default size limit (currently 1000). This affects list bindings.  Not even sure if we need a size limit but the other models have it - even JSON  - so felt safer to do it but just make it very big.  In principle, once we introduce paging, we shouldn't be showing any more than 100 bindings at a time in a list page.
+1. Document meteor version requirements (Meteor ie v1.4) - restriction is caused by support for later Mongo version in v1.4 and query operators such as $eq.  Also add error checking in Model to test this.
 
 
 #### Planned
