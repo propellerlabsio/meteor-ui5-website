@@ -4,7 +4,7 @@
       xmlns="sap.m"
       controllerName="meteor-ui5-demo.controller.Demo">
 
-		<Page id="compareModel" title="{viewState>/pageTitle}" class="sapUiStdPage">
+		<Page id="compareModel" title="{viewState>/Demo/pageTitle}" class="sapUiStdPage">
  		  <content>
         <meteor-ui5-demo:DemoViewer
           id="modelExampleControl"
