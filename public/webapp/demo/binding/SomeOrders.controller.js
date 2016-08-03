@@ -33,7 +33,7 @@ sap.ui.define([
         value1: 'France'
       })
 
-      // Bind table to some orders (Filters in Constructor doesn't work!)
+      // Bind table to some orders via filters 
       this.byId("OrdersTable").bindItems({
         path: "/Orders",
         template: this.byId("OrdersItem").clone(),
@@ -41,11 +41,11 @@ sap.ui.define([
       });
 
       // Update filter label and show/hide filter bar
-			this.byId("OrdersFilterLabel").setText("Filtered by: Customer (VINET), Country (France)");
-			this.byId("OrdersFilterBar").setVisible(true);
+      this.byId("OrdersFilterLabel").setText("Filtered by: Customer (VINET), Country (France)");
+      this.byId("OrdersFilterBar").setVisible(true);
     },
 
-    onExit: function(){
+    onExit: function() {
       this._subscription.stop();
     }
 
