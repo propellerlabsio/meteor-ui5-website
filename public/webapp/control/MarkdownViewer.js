@@ -33,6 +33,11 @@ sap.ui.define([
     },
 
     onBeforeRendering: function() {
+      // Only load once - these are static markdown files / texts
+      if (this._bMarkdownLoaded) {
+        return;
+      }
+
       // Get values/references we need
       const sMarkdownText = this.getProperty("markdownText");
       const sMarkdownFile = this.getProperty("markdownFile");
@@ -48,7 +53,7 @@ sap.ui.define([
         linkTarget: '', // set target to open link in
 
         // Enable some language-neutral replacements + quotes beautification
-        typographer: false,
+        typographer: true,
 
         // Double + single quotes replacement pairs, when typographer enabled,
         // and smartquotes on. Set doubles to '«»' for Russian, '„“' for German.
@@ -73,6 +78,7 @@ sap.ui.define([
         // Load code into dom element
         this._oHTML.setContent(md.render(sMarkdownText));
         this.setBusy(false);
+        this._bMarkdownLoaded = true;
       } else {
         // Use jquery to load code from url in markdownFile property
         console.log("Loading " + sMarkdownFile + " into " + this.sId);
@@ -82,6 +88,7 @@ sap.ui.define([
           that._oHTML.setContent(md.render(data));
 
           that.setBusy(false);
+          that._bMarkdownLoaded = true;
         }, "text");
       }
     },
