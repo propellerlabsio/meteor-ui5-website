@@ -10,12 +10,16 @@ sap.ui.define([
     formatter: formatter,
 
     onInit: function() {
-      // Create Meteor model
-      var oModel = new MeteorModel();
-      this.getView().setModel(oModel);
-
+      // TODO revert to putting model instantiation outside of subscription
+      // callback as soon as we've finished building MeteorMongoContextBinding
       // Subscribe to orders
-      this._subscription = Meteor.subscribe('orders');
+      this._subscription = Meteor.subscribe('orders', () =>{
+
+        // Create Meteor model
+        var oModel = new MeteorModel();
+        this.getView().setModel(oModel);
+
+      });
     },
 
     onExit: function(){

@@ -62,7 +62,7 @@ sap.ui.define([
       // Set up array for storing contexts
       this._aContexts = [];
 
-      // Get query
+      // Validate path
       if (sPath.charAt(0) !== "/") {
         const sError = "Binding lists to anyother other than root element (Mongo Collection) not implemented yet";
         jQuery.sap.log.fatal(sError);

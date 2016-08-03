@@ -4,7 +4,7 @@
   xmlns="sap.m">
 
   <ObjectHeader
-		binding="{/Orders('10248')}"
+		binding="{/Orders(10248)}"
 		title="{OrderID}"
 		number="{= ${Items}.length}"
 		numberUnit="Items" >
@@ -14,5 +14,5 @@
 			<ObjectAttribute text="{ShipCountry}" />
 		</attributes>
 	</ObjectHeader>
-  
+
 </core:FragmentDefinition>

@@ -9,8 +9,9 @@ sap.ui.define([
 	'sap/ui/model/BindingMode',
 	'sap/ui/model/Context',
 	'meteor-ui5/MeteorMongoListBinding',
-	'meteor-ui5/MeteorMongoPropertyBinding'
-], function(jQuery, Model, BindingMode, Context, MeteorMongoListBinding, MeteorMongoPropertyBinding) {
+	'meteor-ui5/MeteorMongoPropertyBinding',
+	'meteor-ui5/MeteorMongoContextBinding'
+], function(jQuery, Model, BindingMode, Context, MeteorMongoListBinding, MeteorMongoPropertyBinding, MeteorMongoContextBinding) {
 	"use strict";
 
 
@@ -580,14 +581,15 @@ sap.ui.define([
 
         // Get single document
         var document = Mongo.Collection.get(collectionName).findOne(documentId);
-        if (!document) {
-          console.error("Document not found!");
-        } else if (sPath) {
-					propertyValue = _.get(document, sPath);
-        } else {
-					// Return document (e.g. called by getObject)
-					propertyValue = document;
-				}
+        if (document) {
+					if (sPath) {
+						// Return property
+						propertyValue = _.get(document, sPath);
+	        } else {
+						// Return document (e.g. called by getObject)
+						propertyValue = document;
+					}
+        }
       }
 
       return propertyValue;
@@ -626,6 +628,40 @@ sap.ui.define([
 	 *
 	 * @public
 	 */
+	 MeteorMongoModel.prototype.bindContext = function(sPath, oContext, mParameters) {
+ 		var oBinding = new MeteorMongoContextBinding(this, sPath, oContext, mParameters);
+ 		return oBinding;
+ 	};
+
+	/**
+		 * @see sap.ui.model.Model.prototype.bindElement
+		 *
+		 */
+		/**
+		 * @see sap.ui.model.Model.prototype.createBindingContext
+		 *
+		 */
+		MeteorMongoModel.prototype.createBindingContext = function(sPath, oContext, mParameters, fnCallBack) {
+			// optional parameter handling
+			if (typeof oContext == "function") {
+				fnCallBack = oContext;
+				oContext = null;
+			}
+			if (typeof mParameters == "function") {
+				fnCallBack = mParameters;
+				mParameters = null;
+			}
+			// resolve path and create context
+			var sContextPath = this.resolve(sPath, oContext),
+				oNewContext = (sContextPath == undefined) ? undefined : this.getContext(sContextPath ? sContextPath : "/");
+			if (!oNewContext) {
+				oNewContext = null;
+			}
+			if (fnCallBack) {
+				fnCallBack(oNewContext);
+			}
+			return oNewContext;
+		};
 
 	/**
 	 * Gets a binding context. If context already exists, return it from the map,
