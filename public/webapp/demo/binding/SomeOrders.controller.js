@@ -23,15 +23,26 @@ sap.ui.define([
       const oCustomerFilter = new Filter({
         path: 'CustomerID',
         operator: FilterOperator.EQ,
-        value1: 'HANAR'
+        value1: 'VINET'
       })
 
-      // Bind table to some orders
+      // Create filter for country = Brazil
+      const oCountryFilter = new Filter({
+        path: 'ShipCountry',
+        operator: FilterOperator.EQ,
+        value1: 'France'
+      })
+
+      // Bind table to some orders (Filters in Constructor doesn't work!)
       this.byId("OrdersTable").bindItems({
         path: "/Orders",
         template: this.byId("OrdersItem").clone(),
-        filters: [oCustomerFilter]
+        filters: [oCustomerFilter, oCountryFilter]
       });
+
+      // Update filter label and show/hide filter bar
+			this.byId("OrdersFilterLabel").setText("Filtered by: Customer (VINET), Country (France)");
+			this.byId("OrdersFilterBar").setVisible(true);
     },
 
     onExit: function(){

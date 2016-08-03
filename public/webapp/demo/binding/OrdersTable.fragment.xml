@@ -4,27 +4,36 @@
   xmlns="sap.m">
 
   <Table id="OrdersTable">
+      <!-- Info tool bar for displaying active filter criteria -->
+      <infoToolbar>
+          <Toolbar id="OrdersFilterBar" active="true" visible="false">
+              <Label id="OrdersFilterLabel" text="?"/>
+          </Toolbar>
+      </infoToolbar>
+
+      <!-- Columns -->
       <columns>
         <Column>
-          <Label text="_id" />
+          <Label text="Order" />
         </Column>
         <Column>
-          <Label text="CustomerID" />
+          <Label text="Customer" />
         </Column>
         <Column>
-          <Label text="Items.length" />
+          <Label text="Items" />
         </Column>
         <Column>
           <Label text="Freight" />
         </Column>
         <Column>
-          <Label text="ShipCity" />
+          <Label text="City" />
         </Column>
         <Column>
-          <Label text="ShipCountry" />
+          <Label text="Country" />
         </Column>
       </columns>
 
+      <!-- Item -->
       <ColumnListItem id="OrdersItem">
         <cells>
           <Text text="{_id}"/>

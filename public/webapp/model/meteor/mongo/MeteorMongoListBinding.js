@@ -107,8 +107,8 @@ sap.ui.define([
 
     // Build mongo selector
     let selector = {};
-    if (this.aFilters.length) {
-      selector = this._buildMongoSelector(this.aFilters);
+    if (this.aApplicationFilters.length) {
+      selector = this._buildMongoSelector(this.aApplicationFilters);
     }
 
     // Build query options
@@ -337,7 +337,7 @@ sap.ui.define([
    */
   MeteorMongoListBinding.prototype.filter = function(aFilters, sFilterType) {
     // Replace contents of aFilters property
-    this.aFilters = aFilters;
+    this.aApplicationFilters = aFilters;
 
     // Re-run query
     this._runQuery();
