@@ -8,8 +8,8 @@
  		  <content>
         <meteor-ui5-demo:DemoViewer
           id="modelExampleControl"
-          infoMarkdownText="{viewState>/Demo/infoMarkdownText}"
-          infoMarkdownFile="{viewState>/Demo/infoMarkdownFile}"
+          infoText="{viewState>/Demo/infoText}"
+          infoFile="{viewState>/Demo/infoFile}"
           focusCode="{viewState>/Demo/focusCode}"
           demoViewName="{viewState>/Demo/demoViewName}"
           sourceFiles="{viewState>/Demo/sourceFiles}"

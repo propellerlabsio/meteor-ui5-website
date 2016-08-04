@@ -1,8 +1,7 @@
 [{
     "routeName": "compareMeteor",
     "pageTitle": "Meteor Model",
-    "infoMarkdownText": "",
-    "infoMarkdownFile": "webapp/demo/compare/EmployeesMeteor.md",
+    "infoFile": "webapp/demo/compare/EmployeesMeteor.md",
     "demoViewName": "meteor-ui5-demo.demo.compare.EmployeesMeteor",
     "sourceFiles": [{
         "title": "View",
@@ -17,8 +16,7 @@
 }, {
     "routeName": "compareJson",
     "pageTitle": "JSON Model",
-    "infoMarkdownText": "",
-    "infoMarkdownFile": "webapp/demo/compare/EmployeesJson.md",
+    "infoFile": "webapp/demo/compare/EmployeesJson.md",
     "demoViewName": "meteor-ui5-demo.demo.compare.EmployeesJson",
     "sourceFiles": [{
         "title": "View",
@@ -33,8 +31,7 @@
 }, {
     "routeName": "compareOData",
     "pageTitle": "OData Model",
-    "infoMarkdownText": "",
-    "infoMarkdownFile": "webapp/demo/compare/EmployeesOData.md",
+    "infoFile": "webapp/demo/compare/EmployeesOData.md",
     "demoViewName": "meteor-ui5-demo.demo.compare.EmployeesOData",
     "sourceFiles": [{
         "title": "View",

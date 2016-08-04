@@ -12,10 +12,10 @@ sap.ui.define([
   return Control.extend("meteor-ui5-demo.control.DemoViewer", {
     metadata: {
       properties: {
-        infoMarkdownText: {
+        infoText: {
           type: "string"
         },
-        infoMarkdownFile: {
+        infoFile: {
           type: "string"
         },
         demoViewName: {
@@ -95,14 +95,14 @@ sap.ui.define([
     },
 
     _addInfoTabContent: function(){
-      const markdownText = this.getProperty("infoMarkdownText");
-      const markdownFile = this.getProperty("infoMarkdownFile");
+      const markdownText = this.getProperty("infoText");
+      const markdownFile = this.getProperty("infoFile");
 
       // Add info tab content
       if (markdownFile || markdownText ) {
         this._infoTab.addContent(new MarkdownViewer({
-          markdownText: this.getProperty("infoMarkdownText"),
-          markdownFile: this.getProperty("infoMarkdownFile")
+          markdownText: this.getProperty("infoText"),
+          markdownFile: this.getProperty("infoFile")
         }));
       } else {
         this._infoTab.addContent(new MessageStrip({
