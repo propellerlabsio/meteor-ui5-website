@@ -5,16 +5,17 @@ sap.ui.define([
   "sap/m/Text",
   "sap/m/MessageStrip",
   "meteor-ui5-demo/control/SourceCodeViewer",
+  "meteor-ui5-demo/control/MarkdownViewer",
   "sap/ui/core/mvc/XMLView"
-], function(Control, IconTabBar, IconTabFilter, Text, MessageStrip, SourceCodeViewer, XMLView) {
+], function(Control, IconTabBar, IconTabFilter, Text, MessageStrip, SourceCodeViewer, MarkdownViewer, XMLView) {
   "use strict";
   return Control.extend("meteor-ui5-demo.control.DemoViewer", {
     metadata: {
       properties: {
-        infoText: {
+        infoMarkdownText: {
           type: "string"
         },
-        focusCode: {
+        infoMarkdownFile: {
           type: "string"
         },
         demoViewName: {
@@ -94,20 +95,15 @@ sap.ui.define([
     },
 
     _addInfoTabContent: function(){
+      const markdownText = this.getProperty("infoMarkdownText");
+      const markdownFile = this.getProperty("infoMarkdownFile");
+
       // Add info tab content
-      const sInfoText = this.getProperty("infoText");
-      if (sInfoText) {
-        this._infoTab.addContent(new Text({
-          text: sInfoText
+      if (markdownFile || markdownText ) {
+        this._infoTab.addContent(new MarkdownViewer({
+          markdownText: this.getProperty("infoMarkdownText"),
+          markdownFile: this.getProperty("infoMarkdownFile")
         }));
-        const sFocusCode = this.getProperty("focusCode");
-        if (sFocusCode){
-          this._infoTab.addContent(new SourceCodeViewer({
-            sourceCode: this.getProperty("focusCode"),
-            // sourceCode: sFocusCode,
-            hljsLanguage: 'js'
-          }));
-        }
       } else {
         this._infoTab.addContent(new MessageStrip({
           text:"Info text not configured.",
