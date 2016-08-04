@@ -5,7 +5,7 @@
 
   <ObjectHeader
 		binding="{/Orders(10248)}"
-		title="{OrderID}"
+		title="Order {OrderID}"
 		number="{= ${Items}.length}"
 		numberUnit="Items" >
 		<attributes>
