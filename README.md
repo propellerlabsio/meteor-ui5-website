@@ -33,7 +33,6 @@ This is the roadmap for the MeteorModel package:
 #### Maybe
 
 1. See if we can't add the equivalent of OData navigation URLs to our Meteor Model concept.  This would be useful for example where an `/Orders` record stores only the `EmployeeID` of the employee who took the order but we'd like to show the Employee name in a list of orders.   We may be able to make use of query parameters for this purpose - e.g. `/Employees/FirstName?_id=EmployeeID`.  Although the context binding is to the `/Orders` collection it would decipher the request and return the data from the `/Employees` collection.
-1. See if Meteor Simple schema can be used to automatically produce metadata for smart controls.
 1. Allow mongo selectors and option.sorts to be specified directly in list binding path instead of using UI5 sorters and filters.  E.g. path could be "\Employees({FirstName: 'Peter'})".  This would likely only appeal to people coming to UI5 from Meteor (questionable there'd be that many given how entrenched Blaze/React are) and would lose many of the benefits of consistency between the different UI5 models.
 
 ### Demo
