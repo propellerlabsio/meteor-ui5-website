@@ -46,6 +46,7 @@
 }, {
     "routeName": "bindingAllOrders",
     "pageTitle": "All Orders",
+    "infoFile": "webapp/demo/binding/AllOrders.md",
     "demoViewName": "meteor-ui5-demo.demo.binding.AllOrders",
     "sourceFiles": [{
         "title": "View",
