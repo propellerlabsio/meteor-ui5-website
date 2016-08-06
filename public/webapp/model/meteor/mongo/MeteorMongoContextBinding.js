@@ -1,8 +1,8 @@
 // Provides an abstraction for list bindings
 sap.ui.define([
-  'sap/ui/model/ContextBinding',
-  'sap/ui/model/ChangeReason'
-],
+    'sap/ui/model/ContextBinding',
+    'sap/ui/model/ChangeReason'
+  ],
   function(ContextBinding, ChangeReason) {
     "use strict";
 
@@ -42,38 +42,38 @@ sap.ui.define([
       }
     });
 
-  MeteorMongoContextBinding.prototype.destroy = function() {
-    // Stop observing changes in any existing query.  Will run forever otherwise.
-    if (this._oQueryHandle) {
-      this._oQueryHandle.stop();
-    }
-  };
-
-  MeteorMongoContextBinding.prototype._runQuery = function() {
-    // Stop observing changes in any existing query.  Will run forever otherwise.
-    if (this._oQueryHandle) {
-      this._oQueryHandle.stop();
-    }
-
-    // Run query
-    const oCursor = this.oModel.runQuery(this.sPath, this.oComponent);
-
-    // Create query handle so we can observe changes
-    this._oQueryHandle = oCursor.observeChanges({
-      addedBefore: (id, fields, before) => {
-        this.fireDataReceived();
-        this._fireChange(ChangeReason.add);
-      },
-
-      changed: (id, fields) => {
-        this._fireChange(ChangeReason.change);
-      },
-
-      removed: (id) => {
-        this._fireChange(ChangeReason.remove);
+    MeteorMongoContextBinding.prototype.destroy = function() {
+      // Stop observing changes in any existing query.  Will run forever otherwise.
+      if (this._oQueryHandle) {
+        this._oQueryHandle.stop();
       }
-    });
-  }
+    };
+
+    MeteorMongoContextBinding.prototype._runQuery = function() {
+      // Stop observing changes in any existing query.  Will run forever otherwise.
+      if (this._oQueryHandle) {
+        this._oQueryHandle.stop();
+      }
+
+      // Run query
+      const oCursor = this.oModel.runQuery(this.sPath, this.oComponent);
+
+      // Create query handle so we can observe changes
+      this._oQueryHandle = oCursor.observeChanges({
+        addedBefore: (id, fields, before) => {
+          this.fireDataReceived();
+          this._fireChange(ChangeReason.add);
+        },
+
+        changed: (id, fields) => {
+          this._fireChange(ChangeReason.change);
+        },
+
+        removed: (id) => {
+          this._fireChange(ChangeReason.remove);
+        }
+      });
+    }
 
 
     /**

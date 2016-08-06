@@ -37,27 +37,6 @@ sap.ui.define([
 
       ListBinding.call(this, oModel, sPath, oContext, aSorters, aFilters, mParameters);
 
-      // BELOW COMMENTD CODE IS IN SUPER CLASS.  COPIED HERE AS DOCUMENTATION WHILE
-      // I DEVELOP.
-      // TODO: REMOVE.
-
-      // Super:
-      // this.aSorters = aSorters;
-      // if (!jQuery.isArray(this.aSorters) && this.aSorters instanceof Sorter) {
-      // 	this.aSorters = [this.aSorters];
-      // } else if (!jQuery.isArray(this.aSorters)) {
-      // 	this.aSorters = [];
-      // }
-      // this.aFilters = [];
-      // if (!jQuery.isArray(aFilters) && aFilters instanceof Filter) {
-      // 	aFilters = [aFilters];
-      // } else if (!jQuery.isArray(aFilters)) {
-      // 	aFilters = [];
-      // }
-      // this.aApplicationFilters = aFilters;
-      // this.bUseExtendedChangeDetection = false;
-      // this.bDetectUpdates = true;
-
       // Set up array for storing contexts
       this._aContexts = [];
 
@@ -91,14 +70,12 @@ sap.ui.define([
       },
 
       changed: (id, fields) => {
-        //TODO performance - only update data that has changed
-        console.log("Record(s) changed - refreshing all");
+        //TODO performance - work out how to only update data that has changed
         this.oModel.refresh();
       },
 
       removed: (id) => {
-        //TODO performance - only update data that has changed
-        console.log("Record(s) removed - refreshing all");
+        //TODO performance - work out how to only update data that has changed
         this.oModel.refresh();
       }
     });
@@ -233,6 +210,7 @@ sap.ui.define([
    * @public
    */
   MeteorMongoListBinding.prototype.getDistinctValues = function(sPath) {
+    // TODO what's supposed to go here?
     return null;
   };
 
