@@ -58,6 +58,7 @@
 }, {
     "routeName": "bindingSomeOrders",
     "pageTitle": "Some Orders",
+    "infoFile": "webapp/demo/binding/SomeOrders.md",
     "demoViewName": "meteor-ui5.demo.binding.SomeOrders",
     "sourceFiles": [{
         "title": "View",
@@ -77,8 +78,5 @@
     }, {
         "title": "Controller",
         "file": "webapp/demo/binding/OneOrder-dbg.controller.js"
-    }, {
-        "title": "Orders Table",
-        "file": "webapp/demo/binding/OrderDetails.fragment.xml"
     }]
 }]

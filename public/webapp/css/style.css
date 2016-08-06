@@ -12,11 +12,15 @@
 .markdown h1,h2,h3,h4,h5,h6 {
   color: #333333;
   font-weight: normal;
+  margin-top: 1em;
+  margin-bottom: .25em;
 }
 
 /*Lines in paragraphs are too cramped*/
 .markdown p {
   line-height: 135%;
+  margin-top: .5em;
+  margin-bottom: .5em;
 }
 
 /*Style block quotes with identation and left border*/
