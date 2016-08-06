@@ -1,16 +1,26 @@
 <mvc:View
-  xmlns="sap.m"
   xmlns:core="sap.ui.core"
   xmlns:mvc="sap.ui.core.mvc"
-  controllerName="meteor-ui5-demo.demo.binding.AllOrders">
+  xmlns="sap.m"
+  controllerName="meteor-ui5.demo.binding.AllOrders">
 
-    <MessageStrip
-			text="As this list has no filters applied, the results have been limited to 100 rows via a model setting to prevent huge volumes of data being loaded."
-			showIcon="true"
-			showCloseButton="false"
-			class="sapUiSmallMarginBottom">
-		</MessageStrip>
+    <!-- Show message re limit of 100 at top of list -->
+    <core:Fragment id="topMessage" fragmentName="meteor-ui5.demo.binding.MessageLimit100" type="XML"/>
 
-    <core:Fragment fragmentName="meteor-ui5-demo.demo.binding.OrdersTable" type="XML"/>
+    <!-- List all orders in table -->
+    <Table id="OrdersTable" items="{/Orders}">
+        <!-- Columns -->
+        <columns>
+            <core:Fragment fragmentName="meteor-ui5.demo.binding.OrdersTableColumns"
+                type="XML" />
+        </columns>
+
+        <!-- Item contents -->
+        <core:Fragment fragmentName="meteor-ui5.demo.binding.OrdersTableItem"
+            type="XML" />
+    </Table>
+
+    <!-- Repeat message re limit of 100 at bottom of list -->
+    <core:Fragment id="bottomMessage" fragmentName="meteor-ui5.demo.binding.MessageLimit100" type="XML"/>
 
 </mvc:View>

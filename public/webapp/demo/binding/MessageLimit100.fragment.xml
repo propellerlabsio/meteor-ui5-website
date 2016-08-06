@@ -1,0 +1,12 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+
+    <MessageStrip
+			text="As this list has no filters applied, the results have been limited to 100 rows via a model setting to prevent huge volumes of data being loaded."
+			showIcon="true"
+			showCloseButton="false"
+			class="sapUiSmallMarginBottom">
+		</MessageStrip>
+
+</core:FragmentDefinition>

@@ -11,7 +11,7 @@ sap.ui.define([
 ], function(jQuery, PropertyBinding, SimpleType, DataState) {
     "use strict";
 
-		jQuery.sap.require("meteor-ui5-demo.lib.lodash");
+		jQuery.sap.require("meteor-ui5.lib.lodash");
 
     /**
      * Constructor for MeteorMongoPropertyBinding
@@ -25,11 +25,11 @@ sap.ui.define([
      * @param {object} [mParameters]
      *
      * @public
-     * @alias meteor-ui5.MeteorMongoPropertyBinding
+     * @alias meteor-ui5-mongo.MeteorMongoPropertyBinding
      * @extends sap.ui.model.Binding
      */
 
-    var MeteorMongoPropertyBinding = PropertyBinding.extend("meteor-ui5.MeteorMongoPropertyBinding", /** @lends meteor-ui5.MeteorMongoPropertyBinding.prototype */ {
+    var MeteorMongoPropertyBinding = PropertyBinding.extend("meteor-ui5-mongo.MeteorMongoPropertyBinding", /** @lends meteor-ui5-mongo.MeteorMongoPropertyBinding.prototype */ {
 
       constructor: function(oModel, sPath, oContext, mParameters) {
         PropertyBinding.apply(this, arguments);
@@ -49,7 +49,7 @@ sap.ui.define([
      * Returns the current value of the bound target
      *
      * @function
-     * @name meteor-ui5.MeteorMongoPropertyBinding.prototype.getValue
+     * @name meteor-ui5-mongo.MeteorMongoPropertyBinding.prototype.getValue
      * @return {object} the current value of the bound target
      *
      * @public
@@ -63,7 +63,7 @@ sap.ui.define([
      * setting the binding value and if so set the new value also in the model.
      *
      * @function
-     * @name meteor-ui5.MeteorMongoPropertyBinding.prototype.setValue
+     * @name meteor-ui5-mongo.MeteorMongoPropertyBinding.prototype.setValue
      * @param {object} oValue the value to set for this binding
      *
      * @public

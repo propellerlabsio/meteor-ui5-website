@@ -4,12 +4,12 @@ sap.ui.define([
   "sap/m/IconTabFilter",
   "sap/m/Text",
   "sap/m/MessageStrip",
-  "meteor-ui5-demo/control/SourceCodeViewer",
-  "meteor-ui5-demo/control/MarkdownViewer",
+  "meteor-ui5/control/SourceCodeViewer",
+  "meteor-ui5/control/MarkdownViewer",
   "sap/ui/core/mvc/XMLView"
 ], function(Control, IconTabBar, IconTabFilter, Text, MessageStrip, SourceCodeViewer, MarkdownViewer, XMLView) {
   "use strict";
-  return Control.extend("meteor-ui5-demo.control.DemoViewer", {
+  return Control.extend("meteor-ui5.control.DemoViewer", {
     metadata: {
       properties: {
         infoText: {
@@ -101,8 +101,8 @@ sap.ui.define([
       // Add info tab content
       if (markdownFile || markdownText ) {
         this._infoTab.addContent(new MarkdownViewer({
-          markdownText: this.getProperty("infoText"),
-          markdownFile: this.getProperty("infoFile")
+          markdownText: markdownText,
+          markdownFile: markdownFile
         }));
       } else {
         this._infoTab.addContent(new MessageStrip({

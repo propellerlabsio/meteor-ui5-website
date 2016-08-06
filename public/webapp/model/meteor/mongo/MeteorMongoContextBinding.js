@@ -4,7 +4,7 @@ sap.ui.define(['sap/ui/model/ContextBinding'],
     "use strict";
 
     /**
-     * Constructor for MeteorModelContextBinding
+     * Constructor for MeteorMongoContextBinding
      *
      * @class
      * The ContextBinding is a specific binding for a setting context for the model
@@ -15,10 +15,10 @@ sap.ui.define(['sap/ui/model/ContextBinding'],
      * @param {Object} [mParameters]
      * @abstract
      * @public
-     * @alias meteor-ui5.MeteorModelContextBinding
+     * @alias meteor-ui5-mongo.MeteorMongoContextBinding
      * @extends sap.ui.model.ContextBinding
      */
-    var MeteorModelContextBinding = ContextBinding.extend("meteor-ui5.MeteorModelContextBinding", /** @lends meteor-ui5.MeteorModelContextBinding.prototype */ {
+    var MeteorMongoContextBinding = ContextBinding.extend("meteor-ui5-mongo.MeteorMongoContextBinding", /** @lends meteor-ui5-mongo.MeteorMongoContextBinding.prototype */ {
 
       constructor: function(oModel, sPath, oContext, mParameters, oEvents) {
         ContextBinding.call(this, oModel, sPath, oContext, mParameters, oEvents);
@@ -33,7 +33,7 @@ sap.ui.define(['sap/ui/model/ContextBinding'],
     /**
      * @see sap.ui.model.ContextBinding.prototype.refresh
      */
-    MeteorModelContextBinding.prototype.refresh = function(bForceUpdate) {
+    MeteorMongoContextBinding.prototype.refresh = function(bForceUpdate) {
       var that = this;
       //recreate Context: force update
       this.oModel.createBindingContext(this.sPath, this.oContext, this.mParameters, function(oContext) {
@@ -49,7 +49,7 @@ sap.ui.define(['sap/ui/model/ContextBinding'],
     /**
      * @see sap.ui.model.ContextBinding.prototype.refresh
      */
-    MeteorModelContextBinding.prototype.initialize = function() {
+    MeteorMongoContextBinding.prototype.initialize = function() {
       var that = this;
       //recreate Context: force update
       this.oModel.createBindingContext(this.sPath, this.oContext, this.mParameters, function(oContext) {
@@ -61,7 +61,7 @@ sap.ui.define(['sap/ui/model/ContextBinding'],
     /**
      * @see sap.ui.model.ContextBinding.prototype.setContext
      */
-    MeteorModelContextBinding.prototype.setContext = function(oContext) {
+    MeteorMongoContextBinding.prototype.setContext = function(oContext) {
       var that = this;
       if (this.oContext != oContext) {
         this.oContext = oContext;
@@ -72,6 +72,6 @@ sap.ui.define(['sap/ui/model/ContextBinding'],
       }
     };
 
-    return MeteorModelContextBinding;
+    return MeteorMongoContextBinding;
 
   });

@@ -1,0 +1,17 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+
+    <!-- Order Item -->
+    <ColumnListItem id="OrdersItem">
+        <cells>
+            <Text text="{_id}" />
+            <Text text="{CustomerID}" />
+            <Text text="{= ${Items}.length}" />
+            <Text text="{Freight}" />
+            <Text text="{ShipCity}" />
+            <Text text="{ShipCountry}" />
+        </cells>
+    </ColumnListItem>
+
+</core:FragmentDefinition>

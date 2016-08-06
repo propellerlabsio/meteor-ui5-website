@@ -1,6 +1,6 @@
-<mvc:View controllerName="meteor-ui5-demo.controller.Home"
+<mvc:View controllerName="meteor-ui5.controller.Home"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:meteor-ui5-demo="meteor-ui5-demo.control"
+    xmlns:meteor-ui5="meteor-ui5.control"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns="sap.m">
 
@@ -9,16 +9,18 @@
         class="sapUiStdPage">
         <content>
             <!-- "Fork me on Github" ribbon -->
-            <html:a href="https://github.com/propellerlabsio/meteor-ui5-demo">
-                <html:img style="position: absolute; top: 0; right: 0; border: 0;"
+            <html:a href="https://github.com/propellerlabsio/meteor-ui5">
+                <html:img style="position: absolute; top: 0; right: 0; border: 0; z-index: 5;"
                     src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"
                     alt="Fork me on GitHub"
                     data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" /></html:a>
 
             <!-- Page content from markdown file -->
-            <meteor-ui5-demo:MarkdownViewer
+            <Panel>
+            <meteor-ui5:MarkdownViewer
                class="sapUiResponsiveMargin"
                markdownFile="webapp/view/Home.md" />
+            </Panel>
         </content>
 
         <!-- Footer toolbar -->

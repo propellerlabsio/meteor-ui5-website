@@ -5,9 +5,9 @@ sap.ui.define([
 ], function(jQuery, Control, HTML) {
   "use strict";
 
-  jQuery.sap.require('meteor-ui5-demo.lib.remarkable');
+  jQuery.sap.require('meteor-ui5.lib.remarkable');
 
-  return Control.extend("meteor-ui5-demo.control.MarkdownViewer", {
+  return Control.extend("meteor-ui5.control.MarkdownViewer", {
     metadata: {
       properties: {
         markdownFile: {
@@ -98,6 +98,7 @@ sap.ui.define([
       // instead of "this" in the renderer function
       oRm.write("<div");
       oRm.writeControlData(oControl); // writes the Control ID and enables event handling - important!
+      oRm.addClass("markdown")
       oRm.writeClasses(); // Writes the highlight JS language alias as a class on code tag
       oRm.write(">");
       oRm.renderControl(oControl.getAggregation("_html"));

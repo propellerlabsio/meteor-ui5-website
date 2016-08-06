@@ -1,0 +1,25 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+
+    <!-- Orders Table Columns -->
+    <Column>
+        <Label text="Order" />
+    </Column>
+    <Column>
+        <Label text="Customer" />
+    </Column>
+    <Column>
+        <Label text="Items" />
+    </Column>
+    <Column>
+        <Label text="Freight" />
+    </Column>
+    <Column>
+        <Label text="City" />
+    </Column>
+    <Column>
+        <Label text="Country" />
+    </Column>
+    
+</core:FragmentDefinition>

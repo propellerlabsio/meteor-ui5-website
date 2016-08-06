@@ -2,7 +2,7 @@ sap.ui.define([
   "sap/ui/core/UIComponent"
 ], function(UIComponent) {
   "use strict";
-  return UIComponent.extend("meteor-ui5-demo.Component", {
+  return UIComponent.extend("meteor-ui5.Component", {
     metadata: {
       manifest: "json"
     },

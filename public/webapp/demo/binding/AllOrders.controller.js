@@ -1,11 +1,11 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
-  'meteor-ui5/MeteorMongoModel',
-  'meteor-ui5-demo/model/formatter'
+  'meteor-ui5-mongo/MeteorMongoModel',
+  'meteor-ui5/model/formatter'
 ], function(Controller, MeteorModel, formatter) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5-demo.demo.binding.AllOrders", {
+  var CController = Controller.extend("meteor-ui5.demo.binding.AllOrders", {
 
     formatter: formatter,
 
@@ -22,14 +22,9 @@ sap.ui.define([
       // Subscribe to data.
       this._subscription = Meteor.subscribe('orders');
 
-      // Bind table to all Orders
-      this.byId("OrdersTable").bindItems({
-        path: "/Orders",
-        template: this.byId("OrdersItem").clone()
-      });
     },
 
-    onExit: function(){
+    onExit: function() {
       this._subscription.stop();
     }
 

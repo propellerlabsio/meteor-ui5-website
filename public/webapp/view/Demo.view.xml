@@ -1,12 +1,12 @@
 <mvc:View
     	xmlns:mvc="sap.ui.core.mvc"
-      xmlns:meteor-ui5-demo="meteor-ui5-demo.control"
+      xmlns:meteor-ui5="meteor-ui5.control"
       xmlns="sap.m"
-      controllerName="meteor-ui5-demo.controller.Demo">
+      controllerName="meteor-ui5.controller.Demo">
 
 		<Page id="compareModel" title="{viewState>/Demo/pageTitle}" class="sapUiStdPage">
  		  <content>
-        <meteor-ui5-demo:DemoViewer
+        <meteor-ui5:DemoViewer
           id="modelExampleControl"
           infoText="{viewState>/Demo/infoText}"
           infoFile="{viewState>/Demo/infoFile}"

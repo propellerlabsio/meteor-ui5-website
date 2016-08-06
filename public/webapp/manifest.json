@@ -2,7 +2,7 @@
     "_version": "1.1.0",
     "sap.app": {
         "_version": "1.1.0",
-        "id": "meteor-ui5-demo",
+        "id": "meteor-ui5",
         "type": "application",
         "title": "UI5 Meteor Model Demo",
         "description": "Demonstration of the UI5 Meteor Model.",
@@ -23,7 +23,7 @@
     },
     "sap.ui5": {
         "_version": "1.1.0",
-        "rootView": "meteor-ui5-demo.view.App",
+        "rootView": "meteor-ui5.view.App",
         "dependencies": {
             "minUI5Version": "1.30",
             "libs": {
@@ -32,7 +32,7 @@
         },
         "models": {
             "": {
-                "type": "meteor-ui5.MeteorMongoModel"
+                "type": "meteor-ui5-mongo.MeteorMongoModel"
             }
         },
         "resources": {
@@ -44,7 +44,7 @@
             "config": {
                 "routerClass": "sap.m.routing.Router",
                 "viewType": "XML",
-                "viewPath": "meteor-ui5-demo.view",
+                "viewPath": "meteor-ui5.view",
                 "controlId": "SplitApp",
                 "clearTarget": false
             },

@@ -3,8 +3,24 @@
     margin-top: 0px !important;
 }
 
+/*Set font (copied from SAP theme)*/
+.markdown {
+  font-family: Arial,Helvetica,sans-serif;
+}
+
+/*Set heading colors (copied from SAP theme)*/
+.markdown h1,h2,h3,h4,h5,h6 {
+  color: #333333;
+  font-weight: normal;
+}
+
+/*Lines in paragraphs are too cramped*/
+.markdown p {
+  line-height: 135%;
+}
+
 /*Style block quotes with identation and left border*/
-blockquote {
+.markdown blockquote {
   margin-top: 10px;
   margin-bottom: 10px;
   margin-left: 50px;
@@ -12,9 +28,33 @@ blockquote {
   border-left: 3px solid #ccc;
 }
 
+/* Simple code snippets - small texts surrounded in backticks */
+.markdown code {
+  color: #777;
+  font-size: .9em;
+}
+
+/* Tables */
+.markdown table {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Table content padding */
+.markdown td, th {
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+/*Table headings */
+.markdown th {
+  color: #333333;
+  font-size: .9em;
+}
+
 /* Markdown-produced HTML: Style code snippets with small indentation and
 small border*/
-pre {
+.markdown pre {
     display: block;
     padding: 9.5px;
     margin: 0 0 10px;
