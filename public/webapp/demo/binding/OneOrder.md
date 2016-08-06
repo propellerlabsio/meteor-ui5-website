@@ -5,7 +5,7 @@ In this example we want a single, specific document. Documents in Mongo collecti
 
 | Component | Description |
 | --------- | ----------- |
-| `/` | The root context - ie this binding is not relative to any parent control binding. |
+| `/` | The root context - ie this binding is not relative to any parent context binding. |
 | `Orders` | The name of the Mongo database collection. |
 | `(10248)` | The unique id of the document we want. |
 

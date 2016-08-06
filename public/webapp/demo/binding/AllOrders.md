@@ -5,7 +5,7 @@ In this example where we want all documents, we simply bind the table to the col
 
 | Component | Description |
 | - | - |
-| `/` | The root context - ie this binding is not relative to any parent control binding. |
+| `/` | The root context - ie this binding is not relative to any parent context binding. |
 | `Orders` | The name of the Mongo database collection. |
 
 ## This demo
