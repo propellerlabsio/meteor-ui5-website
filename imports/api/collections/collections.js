@@ -1,4 +1,6 @@
-import { Meteor } from 'meteor/meteor';
+import {
+  Meteor
+} from 'meteor/meteor';
 import SafeCollection from './SafeCollection.js';
 
 // Sample Northwind data from oData service.  May not need all of these but
@@ -24,9 +26,18 @@ if (Meteor.isServer) {
     return employees.find();
   });
 
-  // Publish  orders
-  Meteor.publish('orders', () => {
-    return orders.find();
+  // Publish  orders and associated customers
+  Meteor.publishComposite('orders', {
+    find: function() {
+      return orders.find();
+    },
+    children: [{
+      find: function(order) {
+        return customers.find({
+          _id: order.CustomerID
+        });
+      }
+    }]
   });
 
 }

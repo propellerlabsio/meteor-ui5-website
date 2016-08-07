@@ -244,7 +244,12 @@ sap.ui.define([
         if (document) {
           if (sPath) {
             // Return property
-            propertyValue = _.get(document, sPath);
+            if (sPath === "/Customers(CustomerID)/CompanyName"){
+              // TODO - fix/remove - temporary debugging
+              propertyValue = "Vins et alcools Chevalier";
+            } else {
+              propertyValue = _.get(document, sPath);
+            }
           } else {
             // Return document (e.g. called by getObject)
             propertyValue = document;

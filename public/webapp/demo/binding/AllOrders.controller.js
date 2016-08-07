@@ -17,7 +17,7 @@ sap.ui.define([
       // Since this demonstration has no filters applied, set the standard UI5
       // model sizeLimit property to prevent huge volumes of data being sent to
       // to the front end
-      oModel.setSizeLimit(100)
+      oModel.setSizeLimit(50);
 
       // Subscribe to data.
       this._subscription = Meteor.subscribe('orders');

@@ -10,14 +10,16 @@ sap.ui.define([
     formatter: formatter,
 
     onInit: function() {
-      // TODO revert to putting model instantiation outside of subscription
-      // callback as soon as we've finished building MeteorMongoContextBinding
-      // Subscribe to orders
-      this._subscription = Meteor.subscribe('orders', () =>{
 
-        // Create Meteor model
-        var oModel = new MeteorModel();
-        this.getView().setModel(oModel);
+      // Create Meteor model
+      var oModel = new MeteorModel();
+      this.getView().setModel(oModel);
+
+      // Subscribe to orders
+      this._subscription = Meteor.subscribe('orders',() =>{
+        const sPath = "/Orders(10248)/CustomerID";
+        const sCompanyName = oModel.getProperty(sPath);
+        debugger;
       });
     },
 

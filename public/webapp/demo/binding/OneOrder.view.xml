@@ -4,8 +4,8 @@
   xmlns="sap.m"
   controllerName="meteor-ui5.demo.binding.OneOrder">
 
-  <VBox id="Order" binding="{/Orders(10248)}">
-    <core:Fragment fragmentName="meteor-ui5.demo.binding.OrderDetails" type="XML"/>
+  <VBox id="Order" >
+    <core:Fragment fragmentName="meteor-ui5.demo.binding.OrderHeader" type="XML"/>
   </VBox>
 
 </mvc:View>
