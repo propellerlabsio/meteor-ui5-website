@@ -52,14 +52,14 @@ sap.ui.define([
    */
   var MeteorMongoModel = Model.extend("meteor-ui5-mongo.MeteorMongoModel", /** @lends meteor-ui5-mongo.MeteorMongoModel.prototype */ {
 
-    constructor: function() {
+    constructor: function(iSizeLimit) {
       Model.apply(this, arguments);
 
       this.oData = {};
       this.bDestroyed = false;
       this.aBindings = [];
       this.mContexts = {};
-      this.iSizeLimit = 1000;
+      this.iSizeLimit = iSizeLimit || 100;
       this.sDefaultBindingMode = BindingMode.OneWay;
       this.mSupportedBindingModes = {
         "OneWay": true,
@@ -147,6 +147,8 @@ sap.ui.define([
 
    * @public
    */
+   // TODO implement this.  Check first if controls that use this haven't all been
+   // deprecated.
 
   /**
    * Create binding context. (Implementation copied from ClientModel.js)
@@ -201,6 +203,7 @@ sap.ui.define([
 
    * @public
    */
+   //TODO implement this
 
   /**
    * Implement in inheriting classes
@@ -244,10 +247,12 @@ sap.ui.define([
         if (document) {
           if (sPath) {
             // Return property
-            if (sPath === "/Customers(CustomerID)/CompanyName"){
-              // TODO - fix/remove - temporary debugging
+            if (sPath.charAt(0) === "?"){
+              // Lookup property in another collection
+              // E.g. ?Customers(CustomerID)/CompanyName
               propertyValue = "Vins et alcools Chevalier";
             } else {
+              // Regular property - get from current document
               propertyValue = _.get(document, sPath);
             }
           } else {

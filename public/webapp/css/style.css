@@ -16,6 +16,26 @@
   margin-bottom: .25em;
 }
 
+/*Set invidual heading sizes - default sizes are too jarring in their differences.*/
+.markdown h1 {
+  font-size: 2em;
+}
+.markdown h2 {
+  font-size: 1.8em;
+}
+.markdown h3 {
+  font-size: 1.6em;
+}
+.markdown h4 {
+  font-size: 1.4em;
+}
+.markdown h5 {
+  font-size: 1.2em;
+}
+.markdown h6 {
+  font-size: 1em;
+}
+
 /*Lines in paragraphs are too cramped*/
 .markdown p {
   line-height: 135%;
@@ -42,6 +62,7 @@
 .markdown table {
     border: 1px solid #ccc;
     border-radius: 4px;
+    margin-top: 1em;
 }
 
 /* Table content padding */

@@ -16,18 +16,23 @@ export const demos = new SafeCollection('Demos');
 
 // Publish
 if (Meteor.isServer) {
-  // Publish all demos
+  // Publish demos
   Meteor.publish('demos', () => {
     return demos.find()
   });
 
-  // Publish all employees
+  // Publish employees
   Meteor.publish('employees', () => {
     return employees.find();
   });
 
+  // Publish orders
+  Meteor.publish('orders', () => {
+    return orders.find();
+  });
+
   // Publish  orders and associated customers
-  Meteor.publishComposite('orders', {
+  Meteor.publishComposite('ordersWithCustomers', {
     find: function() {
       return orders.find();
     },

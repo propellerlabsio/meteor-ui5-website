@@ -8,7 +8,7 @@
         "file": "webapp/demo/compare/EmployeesMeteor.view.xml"
     }, {
         "title": "Controller",
-        "file": "webapp/demo/compare/EmployeesMeteor-dbg.controller.js"
+        "file": "webapp/demo/compare/EmployeesMeteor.controller.js"
     }, {
         "title": "Employees Table",
         "file": "webapp/demo/compare/EmployeesTable.fragment.xml"
@@ -23,7 +23,7 @@
         "file": "webapp/demo/compare/EmployeesJson.view.xml"
     }, {
         "title": "Controller",
-        "file": "webapp/demo/compare/EmployeesJson-dbg.controller.js"
+        "file": "webapp/demo/compare/EmployeesJson.controller.js"
     }, {
         "title": "Employees Table",
         "file": "webapp/demo/compare/EmployeesTable.fragment.xml"
@@ -38,7 +38,7 @@
         "file": "webapp/demo/compare/EmployeesOData.view.xml"
     }, {
         "title": "Controller",
-        "file": "webapp/demo/compare/EmployeesOData-dbg.controller.js"
+        "file": "webapp/demo/compare/EmployeesOData.controller.js"
     }, {
         "title": "Employees Table",
         "file": "webapp/demo/compare/EmployeesTable.fragment.xml"
@@ -53,7 +53,7 @@
         "file": "webapp/demo/binding/AllOrders.view.xml"
     }, {
         "title": "Controller",
-        "file": "webapp/demo/binding/AllOrders-dbg.controller.js"
+        "file": "webapp/demo/binding/AllOrders.controller.js"
     }]
 }, {
     "routeName": "bindingSomeOrders",
@@ -65,7 +65,7 @@
         "file": "webapp/demo/binding/SomeOrders.view.xml"
     }, {
         "title": "Controller",
-        "file": "webapp/demo/binding/SomeOrders-dbg.controller.js"
+        "file": "webapp/demo/binding/SomeOrders.controller.js"
     }]
 }, {
     "routeName": "bindingOneOrder",
@@ -77,6 +77,18 @@
         "file": "webapp/demo/binding/OneOrder.view.xml"
     }, {
         "title": "Controller",
-        "file": "webapp/demo/binding/OneOrder-dbg.controller.js"
+        "file": "webapp/demo/binding/OneOrder.controller.js"
+    }]
+}, {
+    "routeName": "bindingPropertyLookup",
+    "pageTitle": "Property Lookup",
+    "infoFile": "webapp/demo/binding/PropertyLookup.md",
+    "demoViewName": "meteor-ui5.demo.binding.PropertyLookup",
+    "sourceFiles": [{
+        "title": "View",
+        "file": "webapp/demo/binding/PropertyLookup.view.xml"
+    }, {
+        "title": "Controller",
+        "file": "webapp/demo/binding/PropertyLookup.controller.js"
     }]
 }]

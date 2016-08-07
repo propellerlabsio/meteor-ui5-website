@@ -10,6 +10,7 @@
                     <StandardListItem id="bindingAllOrders" title="All Orders" type="Active" custom:to="bindingAllOrders" />
                     <StandardListItem id="bindingOneOrder" title="One Order" type="Active" custom:to="bindingOneOrder" />
                     <StandardListItem id="bindingSomeOrders" title="Some Orders" type="Active" custom:to="bindingSomeOrders" />
+                    <StandardListItem id="bindingPropertyLookup" title="Property Lookup" type="Active" custom:to="bindingPropertyLookup" />
                 </items>
             </List>
         </content>

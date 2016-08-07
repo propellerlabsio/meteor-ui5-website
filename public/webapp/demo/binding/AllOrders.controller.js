@@ -10,14 +10,11 @@ sap.ui.define([
     formatter: formatter,
 
     onInit: function() {
-      // Create Meteor model
-      var oModel = new MeteorModel();
+      // Create Meteor model with sizeLimit option set to 50. Since this
+      // demonstration has no filters applied we want to prevent huge volumes
+      // of data being sent to the front end
+      var oModel = new MeteorModel(50);
       this.getView().setModel(oModel);
-
-      // Since this demonstration has no filters applied, set the standard UI5
-      // model sizeLimit property to prevent huge volumes of data being sent to
-      // to the front end
-      oModel.setSizeLimit(50);
 
       // Subscribe to data.
       this._subscription = Meteor.subscribe('orders');

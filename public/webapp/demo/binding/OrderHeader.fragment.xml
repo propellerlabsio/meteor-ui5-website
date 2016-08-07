@@ -10,7 +10,7 @@
       <ObjectAttribute title="Customer ID"
           text="{CustomerID}" />
       <ObjectAttribute title="Customer Name"
-          text="{/Customers(CustomerID)/CompanyName}" />
+          text="{?Customers(CustomerID)/CompanyName}" />
       <ObjectAttribute title="City"
           text="{ShipCity}" />
       <ObjectAttribute title="Country"

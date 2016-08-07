@@ -5,7 +5,7 @@
   controllerName="meteor-ui5.demo.binding.AllOrders">
 
     <!-- Show message re limit of 50 at top of list -->
-    <core:Fragment id="topMessage" fragmentName="meteor-ui5.demo.binding.MessageLimit" type="XML"/>
+    <core:Fragment id="topMessage" fragmentName="meteor-ui5.demo.binding.AllOrdersLimit" type="XML"/>
 
     <!-- List all orders in table -->
     <Table id="OrdersTable" items="{/Orders}">
@@ -21,6 +21,6 @@
     </Table>
 
     <!-- Repeat message re limit of 50 at bottom of list -->
-    <core:Fragment id="bottomMessage" fragmentName="meteor-ui5.demo.binding.MessageLimit" type="XML"/>
+    <core:Fragment id="bottomMessage" fragmentName="meteor-ui5.demo.binding.AllOrdersLimit" type="XML"/>
 
 </mvc:View>
