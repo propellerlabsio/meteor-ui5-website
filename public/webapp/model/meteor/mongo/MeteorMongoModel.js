@@ -147,8 +147,8 @@ sap.ui.define([
 
    * @public
    */
-   // TODO implement this.  Check first if controls that use this haven't all been
-   // deprecated.
+  // TODO implement this.  Check first if controls that use this haven't all been
+  // deprecated.
 
   /**
    * Create binding context. (Implementation copied from ClientModel.js)
@@ -203,7 +203,7 @@ sap.ui.define([
 
    * @public
    */
-   //TODO implement this
+  //TODO implement this
 
   /**
    * Implement in inheriting classes
@@ -218,62 +218,87 @@ sap.ui.define([
    * @public
    */
   MeteorMongoModel.prototype.getProperty = function(sPath, oContext) {
-      let propertyValue;
+    let propertyValue;
 
-      // Check we have a context or we can't return a property - not yet sure
-      // why this is sometimes being called when context hasn't been set yet
-      // (Grid Table)
-      if (!oContext) {
-        return;
-      }
+    // Check we have a context or we can't return a property - not yet sure
+    // why this is sometimes being called when context hasn't been set yet
+    // (Grid Table)
+    if (!oContext) {
+      return;
+    }
 
-      // Build unique document selector from context path that is in format of
-      // "/<Collection>(<_id>)"
-      const contextPath = oContext.sPath;
-      const firstChar = contextPath.charAt(0);
-      const openParens = contextPath.indexOf("(");
-      const closeParens = contextPath.indexOf(")");
+    // Build unique document selector from context path that is in format of
+    // "/<Collection>(<_id>)"
+    const contextPath = oContext.sPath;
+    const firstChar = contextPath.charAt(0);
+    const openParens = contextPath.indexOf("(");
+    const closeParens = contextPath.indexOf(")");
 
-      // Validate context path
-      if (firstChar !== "/" || openParens < 0 || closeParens < 0) {
-        console.error("Unsupported context path");
-      } else {
-        // Get collection name and document id
-        const collectionName = contextPath.substring(1, openParens);
-        const documentId = contextPath.substring(openParens + 1, closeParens);
+    // Validate context path
+    if (firstChar !== "/" || openParens < 0 || closeParens < 0) {
+      console.error("Unsupported context path");
+    } else {
+      // Get collection name and document id
+      const collectionName = contextPath.substring(1, openParens);
+      const documentId = contextPath.substring(openParens + 1, closeParens);
 
-        // Get single document
-        var document = Mongo.Collection.get(collectionName).findOne(documentId);
-        if (document) {
-          if (sPath) {
-            // Return property
-            if (sPath.charAt(0) === "?"){
-              // Lookup property in another collection
-              // E.g. ?Customers(CustomerID)/CompanyName
-              propertyValue = "Vins et alcools Chevalier";
-            } else {
-              // Regular property - get from current document
-              propertyValue = _.get(document, sPath);
-            }
+      // Get single document
+      var document = Mongo.Collection.get(collectionName).findOne(documentId);
+      if (document) {
+        if (sPath) {
+          // Return property
+          if (sPath.charAt(0) === "?") {
+            this._getLookupProperty(document, sPath);
           } else {
-            // Return document (e.g. called by getObject)
-            propertyValue = document;
+            // Regular property - get from current document
+            propertyValue = _.get(document, sPath);
           }
+        } else {
+          // Return document (e.g. called by getObject)
+          propertyValue = document;
         }
       }
-
-      return propertyValue;
     }
-    /**
-     * Implement in inheriting classes
-     * @abstract
-     *
-     * @param {string}
-     *         sPath the path to where to read the object
-     * @param {object}
-     *		   [oContext=null] the context with which the path should be resolved
-     * @public
-     */
+
+    return propertyValue;
+  }
+
+  MeteorMongoModel.prototype._getLookupProperty = function(oCurrentDocument, sLookupPath) {
+    // This is a lookup query, e.g.: "?Customers(CustomerID)/CompanyName"
+    // Create context and path to lookup property in another collection
+
+    // Build context path for querying lookup collection.  Note:
+    // components.documentId actually contains property name in
+    // current document
+    var oLookupComponents = this._getPathComponents(sLookupPath);
+    const sLookupContextPath =
+      "/" +
+      oLookupComponents.collectionName +
+      "(" +
+      oCurrentDocument[oLookupComponents.documentId] +
+      ")";
+
+    // Get context for querying lookup collection if it already exists
+    // or create one
+    const oLookupContext = this.getContext(sLookupContextPath);
+
+    // Call standard getProperty with new context and path property
+    return this.getProperty(
+      oLookupComponents.propertyPath,
+      oLookupContext
+    );
+  }
+
+  /**
+   * Implement in inheriting classes
+   * @abstract
+   *
+   * @param {string}
+   *         sPath the path to where to read the object
+   * @param {object}
+   *		   [oContext=null] the context with which the path should be resolved
+   * @public
+   */
   MeteorMongoModel.prototype.getObject = function(sPath, oContext) {
     return this.getProperty(sPath, oContext);
   };
@@ -285,14 +310,20 @@ sap.ui.define([
     // set in this method.
     let oComponents = {
       collectionName: "",
-      documentId: ""
+      documentId: "",
+      propertyPath: "",
     };
 
     // Resolve path from oContext and sPath into one full path
-    var sPath = this.resolve(sPath, oContext);
+    let sFullPath = oContext ? this.resolve(sPath, oContext) : sPath;
 
     // Validate path
-    if (sPath.charAt(0) !== "/") {
+    const sFirstChar = sFullPath.charAt(0);
+    if (sFirstChar === "?") {
+      // Question mark denotes Meteor Mongo model Lookup binding path
+      // Convert it to a regular root (non-relative path)
+      sFullPath = "/" + sFullPath.slice(1);
+    } else if (sFirstChar !== "/") {
       const sError = "Binding to anything other than root element (Mongo Collection) not implemented yet";
       jQuery.sap.log.fatal(sError);
       this.fireParseError({
@@ -301,14 +332,14 @@ sap.ui.define([
     }
 
     // Split path into components at forward slash
-    var aComponents = sPath.split("/");
+    var aComponents = sFullPath.split("/");
     if (aComponents[0] === "") {
       aComponents.shift();
     }
 
     // Validate components
-    if (aComponents.length !== 1) {
-      var sError = "Currently unsupported binding path: " + sPath;
+    if (aComponents.length < 1) {
+      var sError = "Unsupported binding path: " + sFullPath;
       jQuery.sap.log.fatal(sError);
       oModel.fireParseError({
         srcText: sError
@@ -316,34 +347,38 @@ sap.ui.define([
     }
 
     // Interpret first componet - Collection name - possibly with document id
-    const sCollectionComponent  = aComponents[0];
+    const sCollectionComponent = aComponents[0];
     const openParens = sCollectionComponent.indexOf("(");
     if (openParens < 0) {
-			// No document id - whole component is collection name
-			oComponents.collectionName = sCollectionComponent;
+      // No document id - whole component is collection name
+      oComponents.collectionName = sCollectionComponent;
     } else {
       // Get collection name and document id
-    	const closeParens = sCollectionComponent.indexOf(")");
+      const closeParens = sCollectionComponent.indexOf(")");
       oComponents.collectionName = sCollectionComponent.substring(0, openParens);
       oComponents.documentId = sCollectionComponent.substring(openParens + 1, closeParens);
     }
 
-		return oComponents;
+    // Return remaining components as property path
+    aComponents.shift();
+    oComponents.propertyPath = aComponents.join('/');
+
+    return oComponents;
   };
 
   /* Builds and runs mongo collection find and returns meteor cursor */
   MeteorMongoModel.prototype.runQuery = function(sPath, oContext, aSorters, aFilters) {
-		// Resolve path and get components (collection name, document id)
-		var oPathComponents = this._getPathComponents(sPath, oContext);
+    // Resolve path and get components (collection name, document id)
+    var oPathComponents = this._getPathComponents(sPath, oContext);
 
     // Get Collection
     var oCollection = Mongo.Collection.get(oPathComponents.collectionName);
 
     // Build mongo selector
     let selector = {};
-		if (oPathComponents.documentId){
-			selector._id = oPathComponents.documentId;
-		} else if (aFilters && aFilters.length) {
+    if (oPathComponents.documentId) {
+      selector._id = oPathComponents.documentId;
+    } else if (aFilters && aFilters.length) {
       selector = this._buildMongoSelector(aFilters);
     }
 

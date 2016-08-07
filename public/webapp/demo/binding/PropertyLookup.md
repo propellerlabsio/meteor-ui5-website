@@ -19,9 +19,7 @@ The following table breaks down the components of this lookup:
 | `/CompanyName` | The property from the the Customers collection that we want to show. |
 
 #### Subscriptions
-Note, if using Meteor publications and subscriptions, it is still necessary to ensure the front-end has the data it requires.  Querying the `Customers` collection in a lookup will not return any data if the front-end doesn't have the relevant Customer document.  
-
-_The [`reywood:publish-composite`](https://atmospherejs.com/reywood/publish-composite) package can be useful for ensuring all related data is published at the same time.  We use this in our demo server code to publish related Customer documents for each Order that we publish.  Refer to the [Publishing Relational Data](https://guide.meteor.com/data-loading.html#publishing-relations) section in the Meteor Guide for more information._
+Note, if using Meteor publications and subscriptions, it is still necessary to ensure the front-end has the data it requires.  Querying the `Customers` collection in a lookup will not return any data if the front-end doesn't have the relevant Customer document. Refer to the [Publishing Relational Data](https://guide.meteor.com/data-loading.html#publishing-relations) section in the Meteor Guide for more information.
 
 ### This demo
 
