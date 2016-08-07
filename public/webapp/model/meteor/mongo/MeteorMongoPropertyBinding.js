@@ -32,15 +32,9 @@ sap.ui.define([
     var MeteorMongoPropertyBinding = PropertyBinding.extend("meteor-ui5-mongo.MeteorMongoPropertyBinding", /** @lends meteor-ui5-mongo.MeteorMongoPropertyBinding.prototype */ {
 
       constructor: function(oModel, sPath, oContext, mParameters) {
+				// Call super constructor
         PropertyBinding.apply(this, arguments);
       },
-      metadata: {
-        "abstract": true,
-
-        publicMethods: [
-          "getValue", "setValue", "setType", "getType", "setFormatter", "getFormatter", "getExternalValue", "setExternalValue", "getBindingMode"
-        ]
-      }
 
     });
 
@@ -68,44 +62,18 @@ sap.ui.define([
      *
      * @public
      */
-
-    /**
-     * Returns the current external value of the bound target which is formatted via a type or formatter function.
-     *
-     * @throws sap.ui.model.FormatException
-     *
-     * @return {object} the current value of the bound target
-     *
-     * @public
-     */
-    MeteorMongoPropertyBinding.prototype.getExternalValue = function() {
-      return this._toExternalValue(this.getValue());
-    };
-
-    /**
-     * Returns the current external value of the given value which is formatted via a type or formatter function.
-     *
-     * @throws sap.ui.model.FormatException
-     *
-     * @return {object} the current value of the bound target
-     *
-     * @private
-     */
-    MeteorMongoPropertyBinding.prototype._toExternalValue = function(oValue) {
-      if (this.oType) {
-        oValue = this.oType.formatValue(oValue, this.sInternalType);
-      }
-      if (this.fnFormatter) {
-        oValue = this.fnFormatter(oValue);
-      }
-      return oValue;
-    };
-
+		 // TODO: Do we need to implement this eventually?  See TODO in
+		 // setExternalValue.
 
     /**
      * Sets the value for this binding. The value is parsed and validated against its type and then set to the binding.
      * A model implementation should check if the current default binding mode permits
      * setting the binding value and if so set the new value also in the model.
+		 *
+		 * TODO: Do something with this - this was copied from base PropertyBinding
+		 * class but we don't support two-way binding.  When we do, we will have to
+		 * override this code.  In the mean time we need to change it to throw an
+		 * exception.
      *
      * @param {object} oValue the value to set for this binding
      *
@@ -115,6 +83,7 @@ sap.ui.define([
      * @public
      */
     MeteorMongoPropertyBinding.prototype.setExternalValue = function(oValue) {
+
       // formatter doesn't support two way binding
       if (this.fnFormatter) {
         jQuery.sap.log.warning("Tried to use twoway binding, but a formatter function is used");
@@ -135,114 +104,6 @@ sap.ui.define([
       // if no type specified set value directly
       oDataState.setInvalidValue(null);
       this.setValue(oValue);
-    };
-
-    /**
-     * Sets the optional type and internal type for the binding. The type and internal type are used to do the parsing/formatting correctly.
-     * The internal type is the property type of the element which the value is formatted to.
-     *
-     * @param {sap.ui.model.Type} oType the type for the binding
-     * @param {String} sInternalType the internal type of the element property which this binding is bound against.
-     *
-     * @public
-     */
-    MeteorMongoPropertyBinding.prototype.setType = function(oType, sInternalType) {
-      this.oType = oType;
-      this.sInternalType = sInternalType;
-    };
-
-    /**
-     *  Returns the type if any for the binding.
-     *  @returns {sap.ui.model.Type} the binding type
-     *  @public
-     */
-    MeteorMongoPropertyBinding.prototype.getType = function() {
-      return this.oType;
-    };
-
-    /**
-     * Sets the optional formatter function for the binding.
-
-     * @param {function} fnFormatter the formatter function for the binding
-     *
-     * @public
-     */
-    MeteorMongoPropertyBinding.prototype.setFormatter = function(fnFormatter) {
-      this.fnFormatter = fnFormatter;
-    };
-
-    /**
-     *  Returns the formatter function
-     *  @returns {Function} the formatter function
-     *  @public
-     */
-    MeteorMongoPropertyBinding.prototype.getFormatter = function() {
-      return this.fnFormatter;
-    };
-
-    /**
-     *  Returns the binding mode
-     *  @returns {sap.ui.model.BindingMode} the binding mode
-     *  @public
-     */
-    MeteorMongoPropertyBinding.prototype.getBindingMode = function() {
-      return this.sMode;
-    };
-
-    /**
-     * Sets the binding mode
-     * @param {sap.ui.model.BindingMode} sBindingMode the binding mode
-     * @protected
-     */
-    MeteorMongoPropertyBinding.prototype.setBindingMode = function(sBindingMode) {
-      this.sMode = sBindingMode;
-    };
-
-    /**
-     * Resumes the binding update. Change events will be fired again.
-     *
-     * When the binding is resumed and the control value was changed in the meantime, the control value will be set to the
-     * current value from the model and a change event will be fired.
-     * @public
-     */
-    MeteorMongoPropertyBinding.prototype.resume = function() {
-      this.bSuspended = false;
-      this.checkUpdate(true);
-    };
-
-    /**
-     * Checks whether an update of the data state of this binding is required.
-     *
-     * @param {map} mPaths A Map of paths to check if update needed
-     * @private
-     */
-    MeteorMongoPropertyBinding.prototype.checkDataState = function(mPaths) {
-      var sResolvedPath = this.oModel ? this.oModel.resolve(this.sPath, this.oContext) : null;
-      var that = this;
-      if (!mPaths || sResolvedPath && sResolvedPath in mPaths) {
-        var oDataState = this.getDataState();
-        if (sResolvedPath) {
-          oDataState.setModelMessages(this.oModel.getMessagesByPath(sResolvedPath));
-        }
-        if (oDataState && oDataState.changed()) {
-          if (this.mEventRegistry["DataStateChange"]) {
-            this.fireEvent("DataStateChange", {
-              dataState: oDataState
-            });
-          }
-          if (this.mEventRegistry["AggregatedDataStateChange"]) {
-            if (!this._sDataStateTimout) {
-              this._sDataStateTimout = setTimeout(function() {
-                that.fireEvent("AggregatedDataStateChange", {
-                  dataState: oDataState
-                });
-                oDataState.changed(false);
-                that._sDataStateTimout = null;
-              }, 0);
-            }
-          }
-        }
-      }
     };
 
     return MeteorMongoPropertyBinding;
