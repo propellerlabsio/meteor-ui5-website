@@ -2,7 +2,7 @@
   xmlns:core="sap.ui.core"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns="sap.m"
-  controllerName="meteor-ui5.demo.binding.OneOrder">
+  controllerName="meteor-ui5.demo.binding.PropertyLookup">
 
   <ObjectHeader title="Order {_id}"
       binding="{/Orders(10248)}"
@@ -10,7 +10,7 @@
       numberUnit="Items">
     <attributes>
       <ObjectAttribute title="Customer"
-          text="{CustomerID}" />
+          text="{?Customers(CustomerID)/CompanyName}" />
       <ObjectAttribute title="Country"
           text="{ShipCountry}" />
     </attributes>

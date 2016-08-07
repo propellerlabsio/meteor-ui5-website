@@ -3,7 +3,7 @@
     xmlns="sap.m">
 
     <MessageStrip
-			text="As this list has no filters applied, the results have been limited to 100 rows via a model setting to prevent huge volumes of data being loaded."
+			text="No filters have been applied but the results have been limited to 50 documents via model setting iSizeLimit."
 			showIcon="true"
 			showCloseButton="false"
 			class="sapUiSmallMarginBottom">

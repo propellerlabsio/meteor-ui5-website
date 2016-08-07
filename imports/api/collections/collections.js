@@ -1,4 +1,6 @@
-import { Meteor } from 'meteor/meteor';
+import {
+  Meteor
+} from 'meteor/meteor';
 import SafeCollection from './SafeCollection.js';
 
 // Sample Northwind data from oData service.  May not need all of these but
@@ -14,19 +16,33 @@ export const demos = new SafeCollection('Demos');
 
 // Publish
 if (Meteor.isServer) {
-  // Publish all demos
+  // Publish demos
   Meteor.publish('demos', () => {
     return demos.find()
   });
 
-  // Publish all employees
+  // Publish employees
   Meteor.publish('employees', () => {
     return employees.find();
   });
 
-  // Publish  orders
+  // Publish orders
   Meteor.publish('orders', () => {
     return orders.find();
+  });
+
+  // Publish  orders and associated customers
+  Meteor.publishComposite('ordersWithCustomers', {
+    find: function() {
+      return orders.find();
+    },
+    children: [{
+      find: function(order) {
+        return customers.find({
+          _id: order.CustomerID
+        });
+      }
+    }]
   });
 
 }

@@ -20,3 +20,4 @@ static-html@1.1.11
 dburles:mongo-collection-instances
 cfs:http-methods
 http@1.2.8
+reywood:publish-composite

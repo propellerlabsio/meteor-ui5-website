@@ -5,7 +5,7 @@ sap.ui.define([
 ], function(Controller, MeteorModel, formatter) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5.demo.binding.OneOrder", {
+  var CController = Controller.extend("meteor-ui5.demo.binding.PropertyLookup", {
 
     formatter: formatter,
 
@@ -16,7 +16,7 @@ sap.ui.define([
       this.getView().setModel(oModel);
 
       // Subscribe to orders
-      this._subscription = Meteor.subscribe('orders');
+      this._subscription = Meteor.subscribe('ordersWithCustomers');
     },
 
     onExit: function(){

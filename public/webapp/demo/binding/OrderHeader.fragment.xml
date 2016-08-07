@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+
+  <ObjectHeader title="Order {_id}"
+      binding="{/Orders(10248)}"
+      number="{= ${Items}.length}"
+      numberUnit="Items">
+    <attributes>
+      <ObjectAttribute title="Customer ID"
+          text="{CustomerID}" />
+      <ObjectAttribute title="Customer Name"
+          text="{?Customers(CustomerID)/CompanyName}" />
+      <ObjectAttribute title="City"
+          text="{ShipCity}" />
+      <ObjectAttribute title="Country"
+          text="{ShipCountry}" />
+    </attributes>
+  </ObjectHeader>
+
+</core:FragmentDefinition>

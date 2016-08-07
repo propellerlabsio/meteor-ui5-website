@@ -9,9 +9,8 @@ sap.ui.define([
   'jquery.sap.global',
   'sap/ui/model/ListBinding',
   'sap/ui/model/Context',
-  'sap/ui/model/FilterOperator',
   'sap/ui/model/ChangeReason'
-], function(jQuery, ListBinding, Context, FilterOperator, ChangeReason) {
+], function(jQuery, ListBinding, Context, ChangeReason) {
   "use strict";
 
   /**
@@ -38,56 +37,8 @@ sap.ui.define([
 
       ListBinding.call(this, oModel, sPath, oContext, aSorters, aFilters, mParameters);
 
-      // BELOW COMMENTD CODE IS IN SUPER CLASS.  COPIED HERE AS DOCUMENTATION WHILE
-      // I DEVELOP.
-      // TODO: REMOVE.
-
-      // Super:
-      // this.aSorters = aSorters;
-      // if (!jQuery.isArray(this.aSorters) && this.aSorters instanceof Sorter) {
-      // 	this.aSorters = [this.aSorters];
-      // } else if (!jQuery.isArray(this.aSorters)) {
-      // 	this.aSorters = [];
-      // }
-      // this.aFilters = [];
-      // if (!jQuery.isArray(aFilters) && aFilters instanceof Filter) {
-      // 	aFilters = [aFilters];
-      // } else if (!jQuery.isArray(aFilters)) {
-      // 	aFilters = [];
-      // }
-      // this.aApplicationFilters = aFilters;
-      // this.bUseExtendedChangeDetection = false;
-      // this.bDetectUpdates = true;
-
       // Set up array for storing contexts
       this._aContexts = [];
-
-      // Validate path
-      if (sPath.charAt(0) !== "/") {
-        const sError = "Binding lists to anyother other than root element (Mongo Collection) not implemented yet";
-        jQuery.sap.log.fatal(sError);
-        oModel.fireParseError({
-          srcText: sError
-        });
-      }
-
-      // Split path into components at forward slash
-      var aComponents = sPath.split("/");
-      if (aComponents[0] === "") {
-        aComponents.shift();
-      }
-
-      // Validate components
-      if (aComponents.length !== 1) {
-        var sError = "Currently unsupported list bindind path: " + sPath;
-        jQuery.sap.log.fatal(sError);
-        oModel.fireParseError({
-          srcText: sError
-        });
-      }
-
-      // Store Collection
-      this._oCollection = Mongo.Collection.get(aComponents[0]);
 
       // Build and run query
       this._runQuery();
@@ -105,26 +56,12 @@ sap.ui.define([
     this._aContexts = [];
     this._fireChange(ChangeReason.remove);
 
-    // Build mongo selector
-    let selector = {};
-    if (this.aApplicationFilters.length) {
-      selector = this._buildMongoSelector(this.aApplicationFilters);
-    }
-
-    // Build query options
-    let options = {
-      limit: this.oModel.iSizeLimit
-    };
-    if (this.aSorters.length) {
-      options.sort = this._buildMongoSortSpecifier();
-    }
-
-    // Execute query
-    this._oCursor = this._oCollection.find(selector, options);
+    // Run query
+    const oCursor = this.oModel.runQuery(this.sPath, this.oComponent, this.aSorters, this.aApplicationFilters);
 
     // Create query handle so we can observe changes
     // var that = this;
-    this._oQueryHandle = this._oCursor.observeChanges({
+    this._oQueryHandle = oCursor.observeChanges({
       addedBefore: (id, fields, before) => {
         const oContext = new Context(this.oModel, this.sPath + "(" + id + ")");
         this._aContexts.push(oContext);
@@ -133,159 +70,16 @@ sap.ui.define([
       },
 
       changed: (id, fields) => {
-        //TODO performance - only update data that has changed
-        console.log("Record(s) changed - refreshing all");
+        //TODO performance - work out how to only update data that has changed
         this.oModel.refresh();
       },
 
       removed: (id) => {
-        //TODO performance - only update data that has changed
-        console.log("Record(s) removed - refreshing all");
+        //TODO performance - work out how to only update data that has changed
         this.oModel.refresh();
       }
     });
   }
-
-  MeteorMongoListBinding.prototype._buildMongoSelector = function(aFilters) {
-    let oMongoSelector = {};
-    // Build mongo selector incorporating each filter
-
-    // Build set of properties with an array of filters for each.  These will
-    // will be combined with and/or conditions into the mongo selector later
-    const properties = new Map();
-    aFilters.forEach((oFilter) => {
-      // Validate: We don't currently support multi-filter
-      if (oFilter._bMultiFilter) {
-        const sError = "MultiFilter not yet supported by ListBinding.";
-        jQuery.sap.log.fatal(sError);
-        this.oModel.fireParseError({
-          srcText: sError
-        });
-        return;
-      }
-
-      // Build mongo expression according to UI5 filter operator
-      // Example filter object:
-      // {sPath: "Country", sOperator: "EQ", oValue1: "USA", oValue2: undefined, _bMultiFilter: false}
-      let oMongoExpression = {};
-      switch (oFilter.sOperator) {
-        case FilterOperator.BT:
-          oMongoExpression["$gte"] = oFilter.oValue1;
-          oMongoExpression["$lte"] = oFilter.oValue2;
-          break;
-        case FilterOperator.Contains:
-          // TODO investigate performance options. Need to also determine if
-          // we can dynamically determine and use $text if a text index has been
-          // created.
-          oMongoExpression["$regex"] = "/" + oFilter.oValue1 + "/";
-          oMongoExpression["$options"] = "i"; // case-insensitive
-          break;
-        case FilterOperator.EndsWith:
-          oMongoExpression["$regex"] = "/" + oFilter.oValue1 + "$/";
-          break;
-        case FilterOperator.EQ:
-          // TODO add $eq when supported in mini-mongo (version 1.4?).  Hope this
-          // work around doesn't bite us in the mean time.  Refer:
-          // https://github.com/meteor/meteor/issues/4142
-          oMongoExpression = oFilter.oValue1;
-          break;
-        case FilterOperator.GE:
-          oMongoExpression["$gte"] = oFilter.oValue1;
-        case FilterOperator.GT:
-          oMongoExpression["$gt"] = oFilter.oValue1;
-          break;
-        case FilterOperator.LE:
-          oMongoExpression["$lte"] = oFilter.oValue1;
-          break;
-        case FilterOperator.LT:
-          oMongoExpression["$lt"] = oFilter.oValue1;
-          break;
-        case FilterOperator.NE:
-          //TODO: Test.  Valid in Mongo, not sure if minimongo supports - see
-          // EQ FilterOperator above
-          oMongoExpression["$ne"] = oFilter.oValue1;
-          break;
-        case FilterOperator.StartsWith:
-          oMongoExpression["$regex"] = "/^" + oFilter.oValue1 + "/";
-          break;
-        default:
-          const sError = "Filter operator " + oFilter.sOperator + " not supported.";
-          jQuery.sap.log.fatal(sError);
-          this.oModel.fireParseError({
-            srcText: sError
-          });
-          return;
-      }
-
-      // Add current property to the map if it doesn't already exist
-      const propertyName = oFilter.sPath;
-      if (!properties.has(propertyName)) {
-        properties.set(propertyName, []);
-      }
-
-      // Add current property selector to map
-      const propertySelector = {};
-      propertySelector[propertyName] = oMongoExpression;
-      properties.get(propertyName).push(propertySelector);
-    });
-
-    // Combine propery selectors for different properties using mongo $and
-    const $and = [];
-    properties.forEach(function(expressions){
-      // Combine expressions for single property using mongo $or (if multiple)
-      if (expressions.length === 1) {
-        $and.push(expressions[0]);
-      } else {
-        $and.push({
-          $or: expressions
-        })
-      }
-    });
-
-    if ($and.length > 1) {
-      oMongoSelector["$and"] = $and;
-    } else {
-      oMongoSelector = $and[0];
-    }
-    return oMongoSelector;
-  };
-
-  MeteorMongoListBinding.prototype._buildMongoSortSpecifier = function() {
-    let oMongoSortSpecifier = {};
-    this.aSorters.forEach((oSorter) => {
-      // Don't know what options need to be supported yet but currently
-      // we only support sorting based on a simple property with ascending or
-      // descending option.  Validate that this sorter seems to meet that
-      // criteria.
-      const bHasSlash = (oSorter.sPath.indexOf("/") > -1);
-      const bHasPeriod = (oSorter.sPath.indexOf(".") > -1);
-      if (bHasSlash || bHasPeriod) {
-        const sError = "Currently unsupported list sorting path: " + oSorter.sPath;
-        jQuery.sap.log.fatal(sError);
-        this.oModel.fireParseError({
-          srcText: sError
-        });
-        return;
-      }
-
-      // Validate that we don't have a custom comparator function (if not possible
-      // with Mongo read - may be able to add it later as post query javascript
-      // filtering)
-      if (oSorter.fnCompare) {
-        const sError = "Custom sort comparator functions currently unsupported";
-        jQuery.sap.log.fatal(sError);
-        this.oModel.fireParseError({
-          srcText: sError
-        });
-        return;
-      }
-
-      // Build mongo sort specifier
-      oMongoSortSpecifier[oSorter.sPath] = oSorter.bDescending ? -1 : 1;
-    });
-
-    return oMongoSortSpecifier;
-  };
 
   /**
    * Returns an array of binding contexts for the bound target list.
@@ -416,6 +210,7 @@ sap.ui.define([
    * @public
    */
   MeteorMongoListBinding.prototype.getDistinctValues = function(sPath) {
+    // TODO what's supposed to go here?
     return null;
   };
 
