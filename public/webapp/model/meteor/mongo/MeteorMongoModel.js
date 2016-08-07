@@ -70,15 +70,6 @@ sap.ui.define([
       this.sUpdateTimer = null;
     },
 
-    // publicMethods : [
-    // 	// methods
-    // 	"bindProperty", "bindList", "bindTree", "bindContext", "createBindingContext", "destroyBindingContext", "getProperty",
-    // 	"getDefaultBindingMode", "setDefaultBindingMode", "isBindingModeSupported", "attachParseError", "detachParseError",
-    // 	"attachRequestCompleted", "detachRequestCompleted", "attachRequestFailed", "detachRequestFailed", "attachRequestSent",
-    // 	"detachRequestSent", "setSizeLimit", "refresh", "isList", "getObject"
-    // ]
-    //
-
   });
 
 
@@ -248,7 +239,7 @@ sap.ui.define([
         if (sPath) {
           // Return property
           if (sPath.charAt(0) === "?") {
-            this._getLookupProperty(document, sPath);
+            propertyValue = this._getLookupProperty(document, sPath);
           } else {
             // Regular property - get from current document
             propertyValue = _.get(document, sPath);
