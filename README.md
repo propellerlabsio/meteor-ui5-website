@@ -12,7 +12,7 @@ This is the roadmap for the MeteorModel package:
 
 #### Next up
 
-1. List binding to array properties of single documents.
+1. Filtering/sorting on list binding to array properties of single documents.
 
 #### v0.1
 
