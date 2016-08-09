@@ -53,37 +53,21 @@
                 "name": "home",
                 "target": ["master", "home"]
             }, {
+                "pattern": "demos",
+                "name": "demos",
+                "target": ["masterDemos", "demos"]
+            }, {
+                "pattern": "demo/:groupId:/:demoId:",
+                "name": "demo",
+                "target": ["masterDemos", "demo"]
+            }, {
                 "pattern": "tutorial",
                 "name": "tutorial",
                 "target": ["master", "tutorial"]
             }, {
-                "pattern": "compare/meteor",
-                "name": "compareMeteor",
-                "target": ["masterCompare", "demo"]
-            }, {
-                "pattern": "compare/json",
-                "name": "compareJson",
-                "target": ["masterCompare", "demo"]
-            }, {
-                "pattern": "compare/odata",
-                "name": "compareOData",
-                "target": ["masterCompare", "demo"]
-            }, {
-                "pattern": "binding/all-orders",
-                "name": "bindingAllOrders",
-                "target": ["masterBinding", "demo"]
-            }, {
-                "pattern": "binding/some-orders",
-                "name": "bindingSomeOrders",
-                "target": ["masterBinding", "demo"]
-            }, {
-                "pattern": "binding/one-order",
-                "name": "bindingOneOrder",
-                "target": ["masterBinding", "demo"]
-            }, {
-                "pattern": "binding/property-lookup",
-                "name": "bindingPropertyLookup",
-                "target": ["masterBinding", "demo"]
+                "pattern": "docs",
+                "name": "docs",
+                "target": ["master", "docs"]
             }],
             "targets": {
                 "master": {
@@ -91,15 +75,10 @@
                     "controlAggregation": "masterPages",
                     "viewLevel": "1"
                 },
-                "masterCompare": {
-                    "viewName": "MasterCompare",
+                "masterDemos": {
+                    "viewName": "MasterDemos",
                     "controlAggregation": "masterPages",
                     "viewLevel": "2"
-                },
-                "masterBinding": {
-                    "viewName": "MasterBinding",
-                    "controlAggregation": "masterPages",
-                    "viewLevel": "3"
                 },
                 "home": {
                     "viewName": "Home",
@@ -107,10 +86,10 @@
                     "viewLevel": "1",
                     "transition": "flip"
                 },
-                "tutorial": {
-                    "viewName": "Tutorial",
+                "demos": {
+                    "viewName": "Demos",
                     "controlAggregation": "detailPages",
-                    "viewLevel": "1",
+                    "viewLevel": "2",
                     "transition": "flip"
                 },
                 "demo": {
@@ -119,10 +98,16 @@
                     "viewLevel": "2",
                     "transition": "flip"
                 },
-                "viewSourceCode": {
-                    "viewName": "ViewSourceCode",
+                "tutorial": {
+                    "viewName": "Tutorial",
                     "controlAggregation": "detailPages",
-                    "viewLevel": "2",
+                    "viewLevel": "1",
+                    "transition": "flip"
+                },
+                "docs": {
+                    "viewName": "Docs",
+                    "controlAggregation": "detailPages",
+                    "viewLevel": "1",
                     "transition": "flip"
                 }
             }

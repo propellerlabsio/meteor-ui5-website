@@ -81,7 +81,6 @@ sap.ui.define([
         this._bMarkdownLoaded = true;
       } else {
         // Use jquery to load code from url in markdownFile property
-        console.log("Loading " + sMarkdownFile + " into " + this.sId);
         const that = this;
         jQuery.get(sMarkdownFile, function(data) {
           // Load code into dom element

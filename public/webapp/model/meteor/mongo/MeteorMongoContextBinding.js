@@ -56,7 +56,7 @@ sap.ui.define([
       }
 
       // Run query
-      const oCursor = this.oModel.runQuery(this.sPath, this.oComponent);
+      const oCursor = this.oModel.runQuery(this.sPath, this.oContext);
 
       // Create query handle so we can observe changes
       this._oQueryHandle = oCursor.observeChanges({

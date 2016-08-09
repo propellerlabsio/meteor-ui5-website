@@ -4,16 +4,14 @@
       xmlns="sap.m"
       controllerName="meteor-ui5.controller.Demo">
 
-		<Page id="compareModel" title="{viewState>/Demo/pageTitle}" class="sapUiStdPage">
+		<Page id="compareModel" binding="{viewState>/Demo}" title="{viewState>title}" class="sapUiStdPage">
  		  <content>
+
         <meteor-ui5:DemoViewer
-          id="modelExampleControl"
-          infoText="{viewState>/Demo/infoText}"
-          infoFile="{viewState>/Demo/infoFile}"
-          focusCode="{viewState>/Demo/focusCode}"
-          demoViewName="{viewState>/Demo/demoViewName}"
-          sourceFiles="{viewState>/Demo/sourceFiles}"
-          />
+          groupId="{viewState>groupId}"
+          demoId="{viewState>demoId}"
+          infoFile="{viewState>infoFile}"
+          demoViewName="{viewState>demoViewName}" />
 			</content>
 		</Page>
 

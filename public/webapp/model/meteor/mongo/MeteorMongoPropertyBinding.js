@@ -11,8 +11,6 @@ sap.ui.define([
 ], function(jQuery, PropertyBinding, SimpleType, DataState) {
     "use strict";
 
-		jQuery.sap.require("meteor-ui5.lib.lodash");
-
     /**
      * Constructor for MeteorMongoPropertyBinding
      *

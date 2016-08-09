@@ -1,94 +1,46 @@
 [{
-    "routeName": "compareMeteor",
-    "pageTitle": "Meteor Model",
-    "infoFile": "webapp/demo/compare/EmployeesMeteor.md",
-    "demoViewName": "meteor-ui5.demo.compare.EmployeesMeteor",
-    "sourceFiles": [{
-        "title": "View",
-        "file": "webapp/demo/compare/EmployeesMeteor.view.xml"
-    }, {
-        "title": "Controller",
-        "file": "webapp/demo/compare/EmployeesMeteor.controller.js"
-    }, {
-        "title": "Employees Table",
-        "file": "webapp/demo/compare/EmployeesTable.fragment.xml"
-    }]
+  "groupId": "binding",
+  "title": "Binding",
+  "icon": "sap-icon://chain-link",
+  "demos": [{
+    "demoId": "all-orders",
+    "title": "All Orders",
+    "infoFile": "AllOrders.md",
+    "demoViewName": "AllOrders"
+  }, {
+    "demoId": "some-orders",
+    "title": "Some Orders",
+    "infoFile": "SomeOrders.md",
+    "demoViewName": "SomeOrders"
+  }, {
+    "demoId": "one-order",
+    "title": "One Order",
+    "infoFile": "OneOrder.md",
+    "demoViewName": "OneOrder"
+  }, {
+    "demoId": "property-lookup",
+    "title": "Property Lookup",
+    "infoFile": "PropertyLookup.md",
+    "demoViewName": "PropertyLookup"
+  }]
 }, {
-    "routeName": "compareJson",
-    "pageTitle": "JSON Model",
-    "infoFile": "webapp/demo/compare/EmployeesJson.md",
-    "demoViewName": "meteor-ui5.demo.compare.EmployeesJson",
-    "sourceFiles": [{
-        "title": "View",
-        "file": "webapp/demo/compare/EmployeesJson.view.xml"
-    }, {
-        "title": "Controller",
-        "file": "webapp/demo/compare/EmployeesJson.controller.js"
-    }, {
-        "title": "Employees Table",
-        "file": "webapp/demo/compare/EmployeesTable.fragment.xml"
-    }]
-}, {
-    "routeName": "compareOData",
-    "pageTitle": "OData Model",
-    "infoFile": "webapp/demo/compare/EmployeesOData.md",
-    "demoViewName": "meteor-ui5.demo.compare.EmployeesOData",
-    "sourceFiles": [{
-        "title": "View",
-        "file": "webapp/demo/compare/EmployeesOData.view.xml"
-    }, {
-        "title": "Controller",
-        "file": "webapp/demo/compare/EmployeesOData.controller.js"
-    }, {
-        "title": "Employees Table",
-        "file": "webapp/demo/compare/EmployeesTable.fragment.xml"
-    }]
-}, {
-    "routeName": "bindingAllOrders",
-    "pageTitle": "All Orders",
-    "infoFile": "webapp/demo/binding/AllOrders.md",
-    "demoViewName": "meteor-ui5.demo.binding.AllOrders",
-    "sourceFiles": [{
-        "title": "View",
-        "file": "webapp/demo/binding/AllOrders.view.xml"
-    }, {
-        "title": "Controller",
-        "file": "webapp/demo/binding/AllOrders.controller.js"
-    }]
-}, {
-    "routeName": "bindingSomeOrders",
-    "pageTitle": "Some Orders",
-    "infoFile": "webapp/demo/binding/SomeOrders.md",
-    "demoViewName": "meteor-ui5.demo.binding.SomeOrders",
-    "sourceFiles": [{
-        "title": "View",
-        "file": "webapp/demo/binding/SomeOrders.view.xml"
-    }, {
-        "title": "Controller",
-        "file": "webapp/demo/binding/SomeOrders.controller.js"
-    }]
-}, {
-    "routeName": "bindingOneOrder",
-    "pageTitle": "One Order",
-    "infoFile": "webapp/demo/binding/OneOrder.md",
-    "demoViewName": "meteor-ui5.demo.binding.OneOrder",
-    "sourceFiles": [{
-        "title": "View",
-        "file": "webapp/demo/binding/OneOrder.view.xml"
-    }, {
-        "title": "Controller",
-        "file": "webapp/demo/binding/OneOrder.controller.js"
-    }]
-}, {
-    "routeName": "bindingPropertyLookup",
-    "pageTitle": "Property Lookup",
-    "infoFile": "webapp/demo/binding/PropertyLookup.md",
-    "demoViewName": "meteor-ui5.demo.binding.PropertyLookup",
-    "sourceFiles": [{
-        "title": "View",
-        "file": "webapp/demo/binding/PropertyLookup.view.xml"
-    }, {
-        "title": "Controller",
-        "file": "webapp/demo/binding/PropertyLookup.controller.js"
-    }]
+  "groupId": "compare",
+  "title": "Compare UI5 Models",
+  "icon": "sap-icon://compare",
+  "demos": [{
+    "demoId": "meteor",
+    "title": "Meteor Model",
+    "infoFile": "EmployeesMeteor.md",
+    "demoViewName": "EmployeesMeteor"
+  }, {
+    "demoId": "json",
+    "title": "JSON Model",
+    "infoFile": "EmployeesJson.md",
+    "demoViewName": "EmployeesJson"
+  }, {
+    "demoId": "odata",
+    "title": "OData Model",
+    "infoFile": "EmployeesOData.md",
+    "demoViewName": "EmployeesOData"
+  }]
 }]

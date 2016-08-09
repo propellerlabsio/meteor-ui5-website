@@ -2,7 +2,7 @@
   xmlns:core="sap.ui.core"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns="sap.m"
-  controllerName="meteor-ui5.demo.binding.OneOrder">
+  controllerName="meteor-ui5.demo.binding.one-order.OneOrder">
 
   <ObjectHeader title="Order {_id}"
       binding="{/Orders(10248)}"

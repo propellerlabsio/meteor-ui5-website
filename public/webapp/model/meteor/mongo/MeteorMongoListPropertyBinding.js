@@ -14,10 +14,10 @@ sap.ui.define([
   "use strict";
 
   /**
-   * Constructor for MeteorMongoListBinding
+   * Constructor for MeteorMongoListPropertyBinding
    *
    * @class
-   * The MeteorMongoListBinding is a specific binding for lists in the model, which can be used
+   * The MeteorMongoListPropertyBinding is a specific binding for lists in the model, which can be used
    * to populate Tables or ItemLists.
    *
    * @param {sap.ui.model.Model} oModel
@@ -28,10 +28,10 @@ sap.ui.define([
    * @param {object} [mParameters]
    *
    * @public
-   * @alias meteor-ui5-mongo.MeteorMongoListBinding
+   * @alias meteor-ui5-mongo.MeteorMongoListPropertyBinding
    * @extends sap.ui.model.Binding
    */
-  var MeteorMongoListBinding = ListBinding.extend("meteor-ui5-mongo.MeteorMongoListBinding", {
+  var MeteorMongoListPropertyBinding = ListBinding.extend("meteor-ui5-mongo.MeteorMongoListPropertyBinding", {
 
     constructor: function(oModel, sPath, oContext, aSorters, aFilters, mParameters) {
 
@@ -46,7 +46,7 @@ sap.ui.define([
 
   });
 
-  MeteorMongoListBinding.prototype._runQuery = function() {
+  MeteorMongoListPropertyBinding.prototype._runQuery = function() {
     // Stop observing changes in any existing query.  Will run forever otherwise.
     if (this._oQueryHandle) {
       this._oQueryHandle.stop();
@@ -56,15 +56,13 @@ sap.ui.define([
     this._aContexts = [];
     this._fireChange(ChangeReason.remove);
 
-    // Run query
-    const oCursor = this.oModel.runQuery(this.sPath, this.oComponent, this.aSorters, this.aApplicationFilters);
+    // Run query for context.
+    this._oCursor = this.oModel.runQuery(this.sPath, this.oContext, this.aSorters, this.aApplicationFilters);
 
     // Create query handle so we can observe changes
     // var that = this;
-    this._oQueryHandle = oCursor.observeChanges({
+    this._oQueryHandle = this._oCursor.observeChanges({
       addedBefore: (id, fields, before) => {
-        const oContext = new Context(this.oModel, this.sPath + "(" + id + ")");
-        this._aContexts.push(oContext);
         this.fireDataReceived();
         this._fireChange(ChangeReason.add);
       },
@@ -85,30 +83,45 @@ sap.ui.define([
    * Returns an array of binding contexts for the bound target list.
    *
    * <strong>Note:</strong>The public usage of this method is deprecated, as calls from outside of controls will lead
-   * to unexpected side effects. For avoidance use {@link meteor-ui5-mongo.MeteorMongoListBinding.prototype.getCurrentContexts}
+   * to unexpected side effects. For avoidance use {@link meteor-ui5-mongo.MeteorMongoListPropertyBinding.prototype.getCurrentContexts}
    * instead.
    *
    * @function
-   * @name meteor-ui5-mongo.MeteorMongoListBinding.prototype.getContexts
+   * @name meteor-ui5-mongo.MeteorMongoListPropertyBinding.prototype.getContexts
    * @param {int} [iStartIndex=0] the startIndex where to start the retrieval of contexts
    * @param {int} [iLength=length of the list] determines how many contexts to retrieve beginning from the start index.
    * @return {sap.ui.model.Context[]} the array of contexts for each row of the bound list
    *
    * @protected
    */
-  MeteorMongoListBinding.prototype.getContexts = function(iStartIndex, iLength) {
-    // TODO Optimize the interplay between this method and the observeChanges.added
-    // code added to the query.  It's exponentially better than it was but is still
-    // being called every time dataChange is fired so if the query results
-    // in say 830 records, then it is called 830 times returning 0..830 records.
-    // NOTE above does not seem to impact performace with local testing of 830
-    // records so may be a low priority issue or no issue at all.
+  MeteorMongoListPropertyBinding.prototype.getContexts = function(iStartIndex, iLength) {
+
+    // Get document containing property.  We used find instead of findOne to
+    // produce the cursor even though we will only ever get one document
+    // so that we can observeChanges on it.  Just get the first (only) document
+    // from the query handle.
+    this._aContexts = [];
+    var oDocument = this._oCursor.fetch()[0];
+    var aProperty = _.get(oDocument, this.sPath);
+    if (!Array.isArray(aProperty)){
+      //TODO use standard UI5 error handling here
+      console.error(this.sPath + " is not an array.");
+    } else {
+        aProperty.forEach((value, index) => {
+          // Create context
+          var sPath = this.oContext.sPath + "/" + this.sPath + "[" + index + "]"
+          const oContext = new Context(this.oModel, sPath);
+          this._aContexts.push(oContext);
+        })
+    }
+
+
     const iStart = iStartIndex === undefined ? 0 : iStartIndex;
     const iLen = iLength === undefined ? this.oModel.iSizeLimit - iStart : iLength;
     return this._aContexts.slice(iStart).splice(0, iLen);
   };
 
-  MeteorMongoListBinding.prototype.destroy = function() {
+  MeteorMongoListPropertyBinding.prototype.destroy = function() {
     // Call stop on queryHandle on destroy of meteor model per docs:
     // "observeChanges returns a live query handle, which is an object with a
     // stop method. Call stop with no arguments to stop calling the callback functions
@@ -122,14 +135,14 @@ sap.ui.define([
    * Filters the list according to the filter definitions
    *
    * @function
-   * @name meteor-ui5-mongo.MeteorMongoListBinding.prototype.filter
+   * @name meteor-ui5-mongo.MeteorMongoListPropertyBinding.prototype.filter
    * @param {object[]} aFilters Array of filter objects
    * @param {sap.ui.model.FilterType} sFilterType Type of the filter which should be adjusted, if it is not given, the standard behaviour applies
-   * @return {meteor-ui5-mongo.MeteorMongoListBinding} returns <code>this</code> to facilitate method chaining
+   * @return {meteor-ui5-mongo.MeteorMongoListPropertyBinding} returns <code>this</code> to facilitate method chaining
    *
    * @public
    */
-  MeteorMongoListBinding.prototype.filter = function(aFilters, sFilterType) {
+  MeteorMongoListPropertyBinding.prototype.filter = function(aFilters, sFilterType) {
     // Replace contents of aFilters property
     this.aApplicationFilters = aFilters;
 
@@ -141,12 +154,12 @@ sap.ui.define([
    * Sorts the list according to the sorter object
    *
    * @function
-   * @name meteor-ui5-mongo.MeteorMongoListBinding.prototype.sort
+   * @name meteor-ui5-mongo.MeteorMongoListPropertyBinding.prototype.sort
    * @param {sap.ui.model.Sorter|Array} aSorters the Sorter object or an array of sorters which defines the sort order
-   * @return {meteor-ui5-mongo.MeteorMongoListBinding} returns <code>this</code> to facilitate method chaining
+   * @return {meteor-ui5-mongo.MeteorMongoListPropertyBinding} returns <code>this</code> to facilitate method chaining
    * @public
    */
-  MeteorMongoListBinding.prototype.sort = function(aSorters) {
+  MeteorMongoListPropertyBinding.prototype.sort = function(aSorters) {
     // Replace contents of aSorters property
     Array.isArray(aSorters) ? this.aSorters = aSorters : this.aSorters = [aSorters];
 
@@ -165,7 +178,7 @@ sap.ui.define([
    * @since 1.28
    * @public
    */
-  MeteorMongoListBinding.prototype.getCurrentContexts = function() {
+  MeteorMongoListPropertyBinding.prototype.getCurrentContexts = function() {
     return this._aContexts;
   };
 
@@ -177,7 +190,7 @@ sap.ui.define([
    * @since 1.24
    * @public
    */
-  MeteorMongoListBinding.prototype.getLength = function() {
+  MeteorMongoListPropertyBinding.prototype.getLength = function() {
     return this._aContexts.length;
   };
 
@@ -189,7 +202,7 @@ sap.ui.define([
    * @since 1.24
    * @public
    */
-  MeteorMongoListBinding.prototype.isLengthFinal = function() {
+  MeteorMongoListPropertyBinding.prototype.isLengthFinal = function() {
     // TODO don't know what to do here yet.  Can't get this method
     // to trigger and in any case, the only way to calculate if queryHandle.count()
     // is final is to introduce subscriptions to the model which I've been
@@ -209,7 +222,7 @@ sap.ui.define([
    *
    * @public
    */
-  MeteorMongoListBinding.prototype.getDistinctValues = function(sPath) {
+  MeteorMongoListPropertyBinding.prototype.getDistinctValues = function(sPath) {
     // TODO what's supposed to go here?
     return null;
   };
@@ -221,7 +234,7 @@ sap.ui.define([
    * @param {function|string} vKey The path of the property containing the key or a function getting the context as only parameter to calculate a key to identify an entry
    * @private
    */
-  MeteorMongoListBinding.prototype.enableExtendedChangeDetection = function(bDetectUpdates, vKey) {
+  MeteorMongoListPropertyBinding.prototype.enableExtendedChangeDetection = function(bDetectUpdates, vKey) {
 
     // TODO: BELOW CODE HAS BEEN COPIED VERBATIM FROM 'sap/ui/model/ListBinding'
     // DON'T KNOW HOW IT WORKS AND WHAT IT IS SUPPOSED TO DO SO HOISTING INTO THIS CLASS
@@ -241,6 +254,6 @@ sap.ui.define([
     }
   };
 
-  return MeteorMongoListBinding;
+  return MeteorMongoListPropertyBinding;
 
 });
