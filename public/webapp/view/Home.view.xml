@@ -14,14 +14,20 @@
         <Text text="Meteor-Ui5 brings to together two powerful open source javascript web frameworks and allows you to use them together:"/>
         <HBox justifyContent="SpaceAround">
 
-            <Panel>
+            <!-- <Panel> -->
               <HBox justifyContent="SpaceAround">
                 <Image src="/art/logos/meteor.png" width="150px"></Image>
-                <FormattedText htmlText="Meteor is really cool.  Here's why..." rows="8"/>
+                <FormattedText htmlText='&lt;strong&gt;Meteor summary&lt;/strong&gt;
+			            &lt;ul&gt;&lt;li&gt;Full-stack JavaScript platform for developing model web and mobile applications&lt;/li&gt;&lt;li&gt;data on the wire&lt;/li&gt;
+                  &lt;li&gt; &lt;/li&gt;&lt;/ul&gt;'/>
               </HBox>
-            </Panel>
-
-          <Text text="openui5 summary"/>
+            <!-- </Panel> -->
+            <HBox justifyContent="SpaceAround">
+             <Image src="/art/logos/openui5.png" width="150px"></Image>
+             <FormattedText htmlText='&lt;strong&gt;Openui5 summary&lt;/strong&gt;
+               &lt;ul&gt;&lt;li&gt;More than 200 feature-rich Ui controls&lt;/li&gt;&lt;li&gt;Consistent User Experience&lt;/li&gt;
+               &lt;li&gt;Responsive Across Browsers and Devices&lt;/li&gt;&lt;li&gt; &lt;/li&gt;&lt;/ul&gt;'/>
+          </HBox>
         </HBox>
         <HBox justifyContent="SpaceAround">
 
@@ -45,6 +51,7 @@
         </HBox>
 
       </VBox>
+
     </content>
 
     <!-- Footer toolbar -->
