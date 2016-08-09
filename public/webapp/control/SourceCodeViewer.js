@@ -37,7 +37,6 @@ sap.ui.define([
         this.setBusy(false);
       } else {
         // Use jquery to load code from url in sourceFile property
-        console.log("Loading " + sSourceFile + " into " + this.sId);
         jQuery.get(sSourceFile, function(data) {
           // Load code into dom element
           oSourceViewer.innerText = data;

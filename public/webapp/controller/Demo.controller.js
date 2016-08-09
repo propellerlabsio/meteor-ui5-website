@@ -24,23 +24,45 @@ sap.ui.define([
     onExit: function(){
       this._subscription.stop();
     },
-    
+
     _onRoutePatternMatched: function(oEvent) {
       // Store current route name and view state model
       this._sRouteName = oEvent.mParameters.name;
 
       // Set which view and source files to display in our view state model
-      this._loadDemoForCurrentRoute();
+      if (this._sRouteName === "demo"){
+        var oArguments = oEvent.getParameters().arguments;
+        this._sGroupId = oArguments.groupId;
+        this._sDemoId = oArguments.demoId;
+        this._loadDemoForCurrentRoute();
+      }
     },
 
     _loadDemoForCurrentRoute() {
-
-      // If route known, load
-      if (this._sRouteName){
-        const oModel = this.getView().getModel("viewState");
-        const oDemo = Mongo.Collection.get("Demos").findOne({routeName: this._sRouteName});
-        oModel.setProperty("/Demo", oDemo);
+      // Need both group and demo
+      if (!this._sGroupId || !this._sDemoId){
+        return;
       }
+
+      // Get demo group
+      var oDemoGroup = Mongo.Collection.get("Demos").findOne({
+        groupId: this._sGroupId
+      });
+      if (!oDemoGroup){
+        return;
+      }
+
+      // Get demo
+      var oDemo = oDemoGroup.demos.find((demo)=>{
+          return demo.demoId === this._sDemoId;
+      });
+
+      // Add group to our demo as property (not in our model at this level)
+      oDemo.groupId = this._sGroupId;
+
+      // Store in view model for view property binding
+      const oModel = this.getView().getModel("viewState");
+      oModel.setProperty("/Demo", oDemo);
     }
 
   });

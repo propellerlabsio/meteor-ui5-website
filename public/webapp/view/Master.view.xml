@@ -4,9 +4,9 @@
             <List id="masterList" itemPress="onItemPress" mode="SingleSelectMaster">
                 <items>
                     <StandardListItem id="home" title="Introduction" type="Active" custom:to="home"/>
-                    <StandardListItem id="tutorial" title="Tutorial" type="Active" custom:to="tutorial"/>
-                    <StandardListItem id="binding" title="Binding Examples" type="Navigation" custom:to="bindingAllOrders"/>
-                    <StandardListItem id="compareMeteor" title="Compare UI5 Models" type="Navigation" custom:to="compareMeteor"/>
+                    <StandardListItem id="demos" title="Demos" type="Navigation" custom:to="demos"/>
+                    <StandardListItem id="tutorial" title="Tutorial" type="Navigation" custom:to="tutorial"/>
+                    <StandardListItem id="docs" title="Docs" type="Navigation" custom:to="docs"/>
                 </items>
             </List>
         </content>

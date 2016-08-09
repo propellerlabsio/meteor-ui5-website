@@ -1,3 +1,4 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
-    <SplitApp id="SplitApp"></SplitApp>
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m">
+  <SplitApp id="SplitApp"></SplitApp>
 </mvc:View>

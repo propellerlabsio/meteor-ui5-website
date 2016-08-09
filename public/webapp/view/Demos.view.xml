@@ -1,0 +1,10 @@
+<mvc:View
+    	xmlns:mvc="sap.ui.core.mvc"
+      xmlns:meteor-ui5="meteor-ui5.control"
+      xmlns="sap.m"
+      controllerName="meteor-ui5.controller.Demo">
+
+		<Page  title="Demos" class="sapUiStdPage">
+		</Page>
+
+</mvc:View>
