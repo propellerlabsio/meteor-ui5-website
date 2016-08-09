@@ -8,13 +8,24 @@ sap.ui.define([
   'sap/ui/model/Model',
   'sap/ui/model/BindingMode',
   'sap/ui/model/Context',
-  'meteor-ui5-mongo/MeteorMongoListBinding',
+  'meteor-ui5-mongo/MeteorMongoListDocumentBinding',
+  'meteor-ui5-mongo/MeteorMongoListPropertyBinding',
   'meteor-ui5-mongo/MeteorMongoPropertyBinding',
   'meteor-ui5-mongo/MeteorMongoContextBinding',
   'sap/ui/model/FilterOperator',
-], function(jQuery, Model, BindingMode, Context, MeteorMongoListBinding, MeteorMongoPropertyBinding, MeteorMongoContextBinding, FilterOperator) {
+], function(
+  jQuery,
+  Model,
+  BindingMode,
+  Context,
+  MeteorMongoListDocumentBinding,
+  MeteorMongoListPropertyBinding,
+  MeteorMongoPropertyBinding,
+  MeteorMongoContextBinding,
+  FilterOperator) {
   "use strict";
 
+  jQuery.sap.require("meteor-ui5.lib.lodash");
 
   /**
    * The SAPUI5 Data Binding API.
@@ -95,7 +106,7 @@ sap.ui.define([
 
 
   /**
-   * Return new MeteorMongoListBinding for given parameters
+   * Return new MeteorMongoListDocumentBinding for given parameters
    *
    * @name meteor-ui5-mongo.MeteorMongoModel.prototype.bindList
    * @function
@@ -114,7 +125,14 @@ sap.ui.define([
    * @public
    */
   MeteorMongoModel.prototype.bindList = function(sPath, oContext, aSorters, aFilters, mParameters) {
-    var oBinding = new MeteorMongoListBinding(this, sPath, oContext, aSorters, aFilters, mParameters);
+    var oBinding;
+    if (oContext) {
+      // Binding list to array property in single document
+      oBinding = new MeteorMongoListPropertyBinding(this, sPath, oContext, aSorters, aFilters, mParameters);
+    } else {
+      // Binding list to documents in Mongo
+      oBinding = new MeteorMongoListDocumentBinding(this, sPath, oContext, aSorters, aFilters, mParameters);
+    }
     return oBinding;
   }
 
@@ -210,7 +228,6 @@ sap.ui.define([
    */
   MeteorMongoModel.prototype.getProperty = function(sPath, oContext) {
     let propertyValue;
-
     // Check we have a context or we can't return a property - not yet sure
     // why this is sometimes being called when context hasn't been set yet
     // (Grid Table)
@@ -218,36 +235,24 @@ sap.ui.define([
       return;
     }
 
-    // Build unique document selector from context path that is in format of
-    // "/<Collection>(<_id>)"
-    const contextPath = oContext.sPath;
-    const firstChar = contextPath.charAt(0);
-    const openParens = contextPath.indexOf("(");
-    const closeParens = contextPath.indexOf(")");
-
-    // Validate context path
-    if (firstChar !== "/" || openParens < 0 || closeParens < 0) {
-      console.error("Unsupported context path");
-    } else {
-      // Get collection name and document id
-      const collectionName = contextPath.substring(1, openParens);
-      const documentId = contextPath.substring(openParens + 1, closeParens);
-
-      // Get single document
-      var document = Mongo.Collection.get(collectionName).findOne(documentId);
-      if (document) {
-        if (sPath) {
-          // Return property
-          if (sPath.charAt(0) === "?") {
-            propertyValue = this._getLookupProperty(document, sPath);
-          } else {
-            // Regular property - get from current document
-            propertyValue = _.get(document, sPath);
-          }
+    // Get single document
+    var oComponents = this._getPathComponents(sPath, oContext);
+    // collectionName: "",
+    // documentId: "",
+    // propertyPath: "",
+    var document = Mongo.Collection.get(oComponents.collectionName).findOne(oComponents.documentId);
+    if (document) {
+      if (oComponents.propertyPath) {
+        // Return property
+        if (oComponents.propertyPath.charAt(0) === "?") {
+          propertyValue = this._getLookupProperty(document, oComponents.propertyPath);
         } else {
-          // Return document (e.g. called by getObject)
-          propertyValue = document;
+          // Regular property - get from current document
+          propertyValue = _.get(document, oComponents.propertyPath);
         }
+      } else {
+        // Return document (e.g. called by getObject)
+        propertyValue = document;
       }
     }
 
@@ -315,7 +320,7 @@ sap.ui.define([
       // Convert it to a regular root (non-relative path)
       sFullPath = "/" + sFullPath.slice(1);
     } else if (sFirstChar !== "/") {
-      const sError = "Binding to anything other than root element (Mongo Collection) not implemented yet";
+      const sError = "Cannot find root element (Mongo Collection).";
       jQuery.sap.log.fatal(sError);
       this.fireParseError({
         srcText: sError
@@ -352,7 +357,7 @@ sap.ui.define([
 
     // Return remaining components as property path
     aComponents.shift();
-    oComponents.propertyPath = aComponents.join('/');
+    oComponents.propertyPath = aComponents.join('.');
 
     return oComponents;
   };
