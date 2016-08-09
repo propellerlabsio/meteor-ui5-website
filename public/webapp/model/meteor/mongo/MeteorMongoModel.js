@@ -228,6 +228,7 @@ sap.ui.define([
    */
   MeteorMongoModel.prototype.getProperty = function(sPath, oContext) {
     let propertyValue;
+
     // Check we have a context or we can't return a property - not yet sure
     // why this is sometimes being called when context hasn't been set yet
     // (Grid Table)
@@ -357,7 +358,21 @@ sap.ui.define([
 
     // Return remaining components as property path
     aComponents.shift();
-    oComponents.propertyPath = aComponents.join('.');
+    var sPropertyPath = aComponents.join('.');
+    if (sPropertyPath){
+      var iCloseParens = sPropertyPath.indexOf(")");
+      if (iCloseParens > -1){
+        // Replace period directly after closing parenthesis with "/"
+        // TODO fix this hack - don't quite understand yet why this is necessary
+        // but seems to be for lookups.
+        var iFirstAfterCloseParens = iCloseParens + 1;
+        if (sPropertyPath.charAt(iFirstAfterCloseParens) === ".") {
+          sPropertyPath = sPropertyPath.substr(0, iFirstAfterCloseParens) + "/"
+            + sPropertyPath.substr(iCloseParens + 1);
+        }
+      }
+    }
+    oComponents.propertyPath = sPropertyPath;
 
     return oComponents;
   };
