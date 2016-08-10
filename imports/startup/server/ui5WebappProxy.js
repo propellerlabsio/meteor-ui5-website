@@ -7,8 +7,32 @@ import fs from 'fs';
 
 // Get file system path to public folder
 const ui5appFolder = "/webapp/";
+const ui5demoFolder = "/webapp/demo/";
 const publicFolderPath = __meteor_bootstrap__.serverDir + "/../web.browser/app";
 
+// Connect handlers for demo folders
+WebApp.connectHandlers.use(ui5demoFolder, function(req, res, next) {
+  // Return directory listing for demo folders on request
+  if (req.url.substr(req.url.length - 1) === "/") {
+    const dirPath = publicFolderPath + ui5demoFolder + req.url;
+    fs.readdir(dirPath, (error,files) => {
+      if (error){
+        console.log(error);
+        res.writeHead(404);
+        res.end();
+      } else {
+        res.writeHead(200, { 'Content-Type': 'text' });
+        res.write(files.join("\n"));
+        res.end();
+      }
+    });
+  } else {
+    // Not handled by us - pass request to next handler
+    next();
+  }
+});
+
+// Connect handlers for main webapp folder
 WebApp.connectHandlers.use(ui5appFolder, function(req, res, next) {
   if (req.url.indexOf("-dbg") > -1) {
     // Serve requests for debug versions of our UI5 files (contains "-dbg") by
@@ -34,21 +58,7 @@ WebApp.connectHandlers.use(ui5appFolder, function(req, res, next) {
       res.writeHead(404);
       res.end();
     });
-  } else if (req.url.substr(req.url.length - 1) === "/") {
-    // Return directory listing
-    const dirPath = publicFolderPath + ui5appFolder + req.url;
-    fs.readdir(dirPath, (error,files) => {
-      if (error){
-        console.log(error);
-        res.writeHead(404);
-        res.end();
-      } else {
-        res.writeHead(200, { 'Content-Type': 'text' });
-        res.write(files.join("\n"));
-        res.end();
-      }
-    });
-  } else {
+  }  else {
     // Not handled by us - pass request to next handler
     next();
   }
