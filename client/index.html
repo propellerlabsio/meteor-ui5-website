@@ -34,9 +34,13 @@
 			});
 
 			// Create component container for our component and mount it to the dom
-			new sap.ui.core.ComponentContainer({
-				component: oComponent
-			}).placeAt("content");
+			new sap.m.Shell({
+			 app : new sap.ui.core.ComponentContainer({
+					component: oComponent
+
+		  	})
+
+		 }).placeAt("content");
 
 		});
 	</script>

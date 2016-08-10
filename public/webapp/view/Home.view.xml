@@ -1,7 +1,8 @@
 <mvc:View controllerName="meteor-ui5.controller.Home" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:meteor-ui5="meteor-ui5.control" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m">
 
-  <Page id="Welcome" title="Welcome" class="sapUiStdPage">
+  <Page id="Welcome" title="Welcome" class="sapUiStdPage sapUiTinyMarginBegin">
     <content>
+
       <!-- "Fork me on Github" ribbon -->
       <html:a href="https://github.com/propellerlabsio/meteor-ui5">
         <html:img
@@ -31,7 +32,7 @@
         </HBox>
         <HBox justifyContent="SpaceAround">
 
-          <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Demos">
+          <GenericTile press="onTiledemosPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Demos">
             <!-- subheader="Subtitle" press="press">
           <tileContent>
           <TileContent unit="EUR" footer="Current Quarter">
@@ -42,11 +43,11 @@
           </tileContent> -->
           </GenericTile>
 
-          <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Tutorial"></GenericTile>
+          <GenericTile press="onTiletutorialPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Tutorial"></GenericTile>
 
-          <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Docs"></GenericTile>
+          <GenericTile press="onTiledocsPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Docs"></GenericTile>
 
-          <GenericTile class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Repository"></GenericTile>
+          <GenericTile press="onTilerepositoryPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Repository"></GenericTile>
 
         </HBox>
 

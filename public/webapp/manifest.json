@@ -68,6 +68,10 @@
                 "pattern": "docs",
                 "name": "docs",
                 "target": ["master", "docs"]
+            }, {
+                "pattern": "repository",
+                "name": "repository",
+                "target": ["master", "repository"]
             }],
             "targets": {
                 "master": {
@@ -92,6 +96,12 @@
                     "viewLevel": "2",
                     "transition": "flip"
                 },
+                "docs": {
+                  "viewName": "Docs",
+                  "controlAggregation": "detailPages",
+                  "viewLevel": "2",
+                  "transition": "flip"
+                },
                 "demo": {
                     "viewName": "Demo",
                     "controlAggregation": "detailPages",
@@ -104,11 +114,12 @@
                     "viewLevel": "1",
                     "transition": "flip"
                 },
-                "docs": {
-                    "viewName": "Docs",
+                "repository": {
+                    "viewName": "Repository",
                     "controlAggregation": "detailPages",
                     "viewLevel": "1",
                     "transition": "flip"
+
                 }
             }
         }

@@ -7,6 +7,7 @@
                     <StandardListItem id="demos" title="Demos" type="Navigation" custom:to="demos"/>
                     <StandardListItem id="tutorial" title="Tutorial" type="Navigation" custom:to="tutorial"/>
                     <StandardListItem id="docs" title="Docs" type="Navigation" custom:to="docs"/>
+                    <StandardListItem id="repository" title="Repository" type="Navigation" custom:to="repository"/>
                 </items>
             </List>
         </content>
