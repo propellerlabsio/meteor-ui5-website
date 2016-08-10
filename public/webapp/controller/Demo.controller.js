@@ -44,21 +44,11 @@ sap.ui.define([
         return;
       }
 
-      // Get demo group
-      var oDemoGroup = Mongo.Collection.get("Demos").findOne({
-        groupId: this._sGroupId
-      });
-      if (!oDemoGroup){
+      // Get demo
+      var oDemo = Mongo.Collection.get("Demos").findOne(this._sDemoId);
+      if (!oDemo){
         return;
       }
-
-      // Get demo
-      var oDemo = oDemoGroup.demos.find((demo)=>{
-          return demo.demoId === this._sDemoId;
-      });
-
-      // Add group to our demo as property (not in our model at this level)
-      oDemo.groupId = this._sGroupId;
 
       // Store in view model for view property binding
       const oModel = this.getView().getModel("viewState");

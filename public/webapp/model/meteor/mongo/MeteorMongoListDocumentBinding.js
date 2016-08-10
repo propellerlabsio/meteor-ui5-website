@@ -9,8 +9,9 @@ sap.ui.define([
   'jquery.sap.global',
   'sap/ui/model/ListBinding',
   'sap/ui/model/Context',
-  'sap/ui/model/ChangeReason'
-], function(jQuery, ListBinding, Context, ChangeReason) {
+  'sap/ui/model/ChangeReason',
+  'sap/ui/model/Filter'
+], function(jQuery, ListBinding, Context, ChangeReason, Filter) {
   "use strict";
 
   /**
@@ -131,6 +132,12 @@ sap.ui.define([
    */
   MeteorMongoListDocumentBinding.prototype.filter = function(aFilters, sFilterType) {
     // Replace contents of aFilters property
+    this.aFilters = [];
+    if (!jQuery.isArray(aFilters) && aFilters instanceof Filter) {
+      aFilters = [aFilters];
+    } else if (!jQuery.isArray(aFilters)) {
+      aFilters = [];
+    }
     this.aApplicationFilters = aFilters;
 
     // Re-run query

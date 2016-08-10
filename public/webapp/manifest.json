@@ -55,9 +55,9 @@
             }, {
                 "pattern": "demos",
                 "name": "demos",
-                "target": ["masterDemos", "demos"]
+                "target": ["masterDemos", "demosIntro"]
             }, {
-                "pattern": "demo/:groupId:/:demoId:",
+                "pattern": "demo/{groupId}/{demoId}",
                 "name": "demo",
                 "target": ["masterDemos", "demo"]
             }, {
@@ -86,8 +86,8 @@
                     "viewLevel": "1",
                     "transition": "flip"
                 },
-                "demos": {
-                    "viewName": "Demos",
+                "demosIntro": {
+                    "viewName": "DemosIntro",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"

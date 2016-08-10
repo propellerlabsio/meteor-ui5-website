@@ -440,11 +440,17 @@ sap.ui.define([
           // TODO investigate performance options. Need to also determine if
           // we can dynamically determine and use $text if a text index has been
           // created.
-          oMongoExpression["$regex"] = "/" + oFilter.oValue1 + "/";
+          // In the mean time, build a regex. 
+          oMongoExpression["$regex"] = new RegExp(oFilter.oValue1);
+          oMongoExpression["$options"] = "i"; // case-insensitive
+          break;
+        case FilterOperator.StartsWith:
+          oMongoExpression["$regex"] = new RegExp("^" + oFilter.oValue1);
           oMongoExpression["$options"] = "i"; // case-insensitive
           break;
         case FilterOperator.EndsWith:
-          oMongoExpression["$regex"] = "/" + oFilter.oValue1 + "$/";
+          oMongoExpression["$regex"] = new RegExp(oFilter.oValue1 + "$");
+          oMongoExpression["$options"] = "i"; // case-insensitive
           break;
         case FilterOperator.EQ:
           // TODO add $eq when supported in mini-mongo (version 1.4?).  Hope this
@@ -467,9 +473,6 @@ sap.ui.define([
           //TODO: Test.  Valid in Mongo, not sure if minimongo supports - see
           // EQ FilterOperator above
           oMongoExpression["$ne"] = oFilter.oValue1;
-          break;
-        case FilterOperator.StartsWith:
-          oMongoExpression["$regex"] = "/^" + oFilter.oValue1 + "/";
           break;
         default:
           const sError = "Filter operator " + oFilter.sOperator + " not supported.";

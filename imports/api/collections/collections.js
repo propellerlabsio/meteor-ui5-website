@@ -13,15 +13,29 @@ export const products = new SafeCollection('Products');
 export const shippers = new SafeCollection('Shippers');
 export const suppliers = new SafeCollection('Suppliers');
 export const demos = new SafeCollection('Demos');
+export const demoGroups = new SafeCollection('DemoGroups');
 
 // Publish
 if (Meteor.isServer) {
 
-  // Publish demos
-  Meteor.publish('demos', () => {
-    return demos.find()
+  // Publish demo groups
+  Meteor.publish('demoGroups', () => {
+    return demoGroups.find()
   });
 
+  // Publish demos and associated groups
+  Meteor.publishComposite('demos', {
+    find: function() {
+      return demos.find();
+    },
+    children: [{
+      find: function(demo) {
+        return demoGroups.find({
+          _id: demo.groupId
+        });
+      }
+    }]
+  });
   // Publish employees
   Meteor.publish('employees', () => {
     return employees.find();
