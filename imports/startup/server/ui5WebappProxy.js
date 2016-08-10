@@ -31,7 +31,6 @@ WebApp.connectHandlers.use(ui5appFolder, function(req, res, next) {
         res.end();
     });
     fileStream.on('error', function(err) {
-      debugger;
       res.writeHead(404);
       res.end();
     });

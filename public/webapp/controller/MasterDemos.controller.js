@@ -1,7 +1,10 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
-  'sap/ui/model/json/JSONModel'
-], function(Controller, JSONModel) {
+  'sap/ui/model/json/JSONModel',
+  'sap/ui/model/Filter',
+  'sap/ui/model/FilterOperator',
+  'sap/m/GroupHeaderListItem',
+], function(Controller, JSONModel, Filter, FilterOperator, GroupHeaderListItem) {
   "use strict";
 
   var CController = Controller.extend("meteor-ui5.controller.MasterDemos", {
@@ -21,55 +24,67 @@ sap.ui.define([
       this._subscription = Meteor.subscribe("demos"); // , this._loadDemoForCurrentRoute.bind(this));
     },
 
-    onExit: function(){
+    onExit: function() {
       this._subscription.stop();
     },
 
-    onPressBack : function() {
+    onPressBack: function() {
       this._oRouter.navTo("home");
     },
 
-    onGroupSelect: function(oEvent) {
-      // Convenience: automatically expand groups when they are pressed
-      // without requiring user to click the icon on the right
-      // Get group pressed
-      var oGroup = oEvent.getSource();
-      oGroup.setExpanded(!oGroup.getExpanded());
+    getGroupHeader: function(oGroup) {
+      var oGroupData = Mongo.Collection.get("DemoGroups").findOne(oGroup.key);
+      return new GroupHeaderListItem({
+        title: oGroupData.title,
+        upperCase: false
+      });
     },
 
     onDemoSelect: function(oEvent) {
-      // Get item selected
-      var oDemoItem = oEvent.getSource();
-      var oItem = oDemoItem.getBindingContext().getObject();
-
-      // Get group selected (parent)
-      var oDemoGroup = oDemoItem.getParent();
-      var oGroup = oDemoGroup.getBindingContext().getObject();
+      // Get demo data for selected item
+      var oList = oEvent.getSource();
+      var oDemoItem = oList.getSelectedItem();
+      var oItemData = oDemoItem.getBindingContext().getObject();
 
       // Nav to demo selected
-			this._oRouter.navTo("demo", {
-          groupId: oGroup.groupId,
-          demoId: oItem.demoId
+      this._oRouter.navTo("demo", {
+        groupId: oItemData.groupId,
+        demoId: oItemData._id
       });
+    },
+
+    onSearch: function(oEvent) {
+      // Get list binding
+      var oList = this.byId("demosList");
+      var oBinding = oList.getBinding("items");
+
+      // Build filter with search term
+      var oSearchField = oEvent.getSource();
+      if (oSearchField){
+        var oFilter = new Filter({
+          path: 'title',
+          operator: FilterOperator.Contains,
+          value1: oSearchField.getValue()
+        });
+
+        // Apply filter to list binding
+        oBinding.filter(oFilter);
+      } else {
+        // Clear filter
+        oBinding.filter();
+      }
+
     },
 
     _onRoutePatternMatched: function(oEvent) {
       // Store current route name and view state model
       this._sRouteName = oEvent.mParameters.name;
 
-      // Store which is the currently selected group and demo in our viewModel
-      if (this._sRouteName === "demo"){
+      // Store which is the currently selected demo in our viewModel
+      if (this._sRouteName === "demo") {
         var oModel = this.getView().getModel("viewState");
         var oArguments = oEvent.getParameters().arguments;
-        oModel.setProperty("/groupId", oArguments.groupId);
         oModel.setProperty("/demoId", oArguments.demoId);
-
-        // Focus on selected demo.  This is necessary if coming to this page
-        // via a bookmark as the control is not shown as selected.  Unforunately
-        // NavigationListItems have no active or selected state to otherwise
-        // visibly highlight which demo is being displayed.  I might not have
-        // used the NavigationList if I had known earlier.
-        // TODO
       }
     }
   });

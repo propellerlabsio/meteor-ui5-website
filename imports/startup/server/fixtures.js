@@ -6,6 +6,7 @@ import {
   categories,
   customers,
   demos,
+  demoGroups,
   employees,
   orderDetails,
   orders,
@@ -27,6 +28,7 @@ Meteor.startup(() => {
   // Always reload the following files on server startup (they are small and
   // quickly loaded and frequently changing)
   loadFileReplaceCollection('fixtures/Demos.json', demos);
+  loadFileReplaceCollection('fixtures/DemoGroups.json', demoGroups);
 
   loadOrders();
 });
