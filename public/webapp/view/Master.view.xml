@@ -1,4 +1,7 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns="sap.m" controllerName="meteor-ui5.controller.Master">
+<mvc:View
+   xmlns:mvc="sap.ui.core.mvc"
+   xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+   xmlns="sap.m" controllerName="meteor-ui5.controller.Master">
     <Page id="master" title="Meteor UI5" icon="sap-icon://action" class="sapUiStdPage">
         <content>
             <List id="masterList" itemPress="onItemPress" mode="SingleSelectMaster">

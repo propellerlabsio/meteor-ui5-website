@@ -1,4 +1,41 @@
-<mvc:View controllerName="meteor-ui5.controller.Home" xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns:meteor-ui5="meteor-ui5.control" xmlns:html="http://www.w3.org/1999/xhtml" xmlns="sap.m">
+<mvc:View controllerName="meteor-ui5.controller.Home" xmlns:core="sap.ui.core"
+   xmlns:mvc="sap.ui.core.mvc"
+   xmlns:meteor-ui5="meteor-ui5.control"
+    xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:u="sap.ui.unified"
+    xmlns="sap.m">
+<u:Shell>
+
+  			<u:headItems>
+  				<u:ShellHeadItem
+  					tooltip="Configuration"
+  					icon="sap-icon://menu2"
+  					press="handlePressConfiguration" />
+  				<u:ShellHeadItem
+  					tooltip="Home"
+  					icon="sap-icon://home"
+  					visible="false"
+  					press="handlePressHome" />
+  			</u:headItems>
+  			<u:headEndItems>
+  				<u:ShellHeadItem
+  					icon="sap-icon://log"
+  					tooltip="Logoff"
+  					press="handleLogoffPress" />
+  			</u:headEndItems>
+  			<u:user>
+  				<u:ShellHeadUserItem
+  					image="sap-icon://person-placeholder"
+  					username="Karl Mustermann"
+  					press="handleUserItemPressed" />
+  			</u:user>
+  			<u:search>
+  				<SearchField
+  					search="handleSearchPressed"/>
+  			</u:search>
+  			<u:paneContent>
+  				<Text text="Lorem ipsum" />
+  			</u:paneContent>
 
   <Page id="Welcome" title="Welcome" class="sapUiStdPage sapUiTinyMarginBegin">
     <content>
@@ -12,20 +49,20 @@
           data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"/></html:a>
 
       <VBox>
-        <Text text="Meteor-Ui5 brings to together two powerful open source javascript web frameworks and allows you to use them together:"/>
+        <Text class="sapUiResponsiveMargin" text="Meteor-Ui5 brings to together two powerful open source javascript web frameworks and allows you to use them together:"/>
         <HBox justifyContent="SpaceAround">
 
             <!-- <Panel> -->
               <HBox justifyContent="SpaceAround">
                 <Image src="/art/logos/meteor.png" width="150px"></Image>
-                <FormattedText htmlText='&lt;strong&gt;Meteor summary&lt;/strong&gt;
+                <FormattedText class="sapUiResponsiveMargin" htmlText='&lt;strong&gt;Meteor summary&lt;/strong&gt;
 			            &lt;ul&gt;&lt;li&gt;Full-stack JavaScript platform for developing model web and mobile applications&lt;/li&gt;&lt;li&gt;data on the wire&lt;/li&gt;
                   &lt;li&gt; &lt;/li&gt;&lt;/ul&gt;'/>
               </HBox>
             <!-- </Panel> -->
             <HBox justifyContent="SpaceAround">
              <Image src="/art/logos/openui5.png" width="150px"></Image>
-             <FormattedText htmlText='&lt;strong&gt;Openui5 summary&lt;/strong&gt;
+             <FormattedText class="sapUiResponsiveMargin" htmlText='&lt;strong&gt;Openui5 summary&lt;/strong&gt;
                &lt;ul&gt;&lt;li&gt;More than 200 feature-rich Ui controls&lt;/li&gt;&lt;li&gt;Consistent User Experience&lt;/li&gt;
                &lt;li&gt;Responsive Across Browsers and Devices&lt;/li&gt;&lt;li&gt; &lt;/li&gt;&lt;/ul&gt;'/>
           </HBox>
@@ -50,7 +87,6 @@
           <GenericTile press="onTilerepositoryPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Repository"></GenericTile>
 
         </HBox>
-
       </VBox>
 
     </content>
@@ -66,4 +102,5 @@
       </Toolbar>
     </footer>
   </Page>
+</u:Shell>
 </mvc:View>
