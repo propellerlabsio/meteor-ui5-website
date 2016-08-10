@@ -15,5 +15,4 @@
           demoViewName="{viewState>demoViewName}" />
     </content>
   </Page>
-
 </mvc:View>
