@@ -12,6 +12,12 @@ sap.ui.define([
   return Control.extend("meteor-ui5.control.DemoViewer", {
     metadata: {
       properties: {
+        groupId: {
+          type: "string"
+        },
+        demoId: {
+          type: "string"
+        },
         infoText: {
           type: "string"
         },
@@ -70,7 +76,8 @@ sap.ui.define([
     },
 
     onBeforeRendering: function() {
-      // // Load content into tabs via properties that are now avialable.
+      // Load content into tabs via properties that are now available.
+
       // First remove all existing content - some issue with my understanding
       // of control instances because this once instance seem to be being shared
       // between all models.
@@ -78,7 +85,12 @@ sap.ui.define([
       this._demoTab.removeAllContent();
       this._sourceTab.removeAllContent();
 
-      // Add content
+      // Only continue if we have properties we need
+      if (!this.getProperty("groupId") || !this.getProperty("demoId")) {
+        return;
+      }
+
+      // Add tab content
       this._addInfoTabContent();
       this._addDemoTabContent();
       this._addSourceTabContent();
@@ -94,75 +106,101 @@ sap.ui.define([
       oRM.write("</div>");
     },
 
-    _addInfoTabContent: function(){
+    _addInfoTabContent: function() {
       const markdownText = this.getProperty("infoText");
-      const markdownFile = this.getProperty("infoFile");
+      const markdownFile =
+        this._getDemoFilePath() +
+        this.getProperty("infoFile");
 
       // Add info tab content
-      if (markdownFile || markdownText ) {
+      if (markdownFile || markdownText) {
         this._infoTab.addContent(new MarkdownViewer({
           markdownText: markdownText,
           markdownFile: markdownFile
         }));
       } else {
         this._infoTab.addContent(new MessageStrip({
-          text:"Info text not configured.",
-  				type:"Error",
-  				showIcon: true,
-  				showCloseButton: false
+          text: "Info text not configured.",
+          type: "Error",
+          showIcon: true,
+          showCloseButton: false
         }));
       }
     },
 
-    _addDemoTabContent: function(){
+    _addDemoTabContent: function() {
       // Add demo tab content
-      const demoViewName = this.getProperty("demoViewName");
-      if (demoViewName){
+      const demoViewName =
+        "meteor-ui5.demo." +
+        this.getProperty("groupId") + "." +
+        this.getProperty("demoId") + "." +
+        this.getProperty("demoViewName");
+
+      if (demoViewName) {
         this._demoTab.addContent(new XMLView({
           viewName: demoViewName
         }));
       } else {
         this._demoTab.addContent(new MessageStrip({
-          text:"Demo view not configured.",
-  				type:"Error",
-  				showIcon: true,
-  				showCloseButton: false
+          text: "Demo view not configured.",
+          type: "Error",
+          showIcon: true,
+          showCloseButton: false
         }));
       }
     },
 
-    _addSourceTabContent: function(){
-      // Add source tab content
-      const oSourceFiles = this.getProperty("sourceFiles");
-      if (oSourceFiles && oSourceFiles.length){
-        // Create tab bar for multiple source code files
-        const oCodeTabs = new IconTabBar({
-          expanded: true,
-          expandable: false
-        });
+    _addSourceTabContent: function() {
 
-        // Add each source code file to its own tab
-        oSourceFiles.forEach((sourceFile) => {
-          var newTab = new IconTabFilter({
-            text: sourceFile.title,
-          });
-          newTab.addContent(new SourceCodeViewer({
-            sourceFile: sourceFile.file,
-            hljsLanguage: this._getSourceFileType(sourceFile.file)
-          }));
-          oCodeTabs.addItem(newTab);
-        });
+      // Get all file names in demo folder
+      var that = this;
+      const sDemoFolder = this._getDemoFilePath();
+      $.ajax({
+        url: sDemoFolder,
+        success: function(data) {
+          // Split text file of files at new line
+          const aFiles = data.split("\n");
 
-        // Add code tabs to source tab
-        this._sourceTab.addContent(oCodeTabs);
-      } else {
-        this._sourceTab.addContent(new MessageStrip({
-          text:"Source files not configured.",
-  				type:"Error",
-  				showIcon: true,
-  				showCloseButton: false
-        }));
-      }
+          // Add source tab content
+          if (aFiles && aFiles.length) {
+            // Create tab bar for multiple source code files
+            const oCodeTabs = new IconTabBar({
+              expanded: true,
+              expandable: false
+            });
+
+            // Add each source code file to its own tab
+            aFiles.forEach((sourceFile) => {
+              var sLanguage = that._getSourceFileType(sourceFile);
+              // Ingore markdown files
+              if (sLanguage !== "md"){
+                // Create tab for this file
+                var newTab = new IconTabFilter({
+                  text: sourceFile
+                });
+
+                // Add source code viewer to tab
+                newTab.addContent(new SourceCodeViewer({
+                  sourceFile: sDemoFolder + sourceFile,
+                  hljsLanguage: sLanguage
+                }));
+
+                // Add tab to code tabs
+                oCodeTabs.addItem(newTab);
+              }
+            });
+
+            // Add code tabs to source tab
+            that._sourceTab.addContent(oCodeTabs);
+          }
+        }
+      });
+    },
+
+    _getDemoFilePath: function() {
+      return "webapp/demo/" +
+        this.getProperty("groupId") + "/" +
+        this.getProperty("demoId") + "/";
     },
 
     _getSourceFileType(sFileName) {

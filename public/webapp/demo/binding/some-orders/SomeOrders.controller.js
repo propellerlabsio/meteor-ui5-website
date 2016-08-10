@@ -7,7 +7,7 @@ sap.ui.define([
 ], function(Controller, Filter, FilterOperator, MeteorModel, formatter) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5.demo.binding.SomeOrders", {
+  var CController = Controller.extend("meteor-ui5.demo.binding.some-orders.SomeOrders", {
 
     formatter: formatter,
 
@@ -33,7 +33,7 @@ sap.ui.define([
         value1: 'France'
       })
 
-      // Bind table to some orders via filters 
+      // Bind table to some orders via filters
       this.byId("OrdersTable").bindItems({
         path: "/Orders",
         template: this.byId("OrdersItem").clone(),

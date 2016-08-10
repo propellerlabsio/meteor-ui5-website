@@ -1,0 +1,83 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core">
+
+    <!-- Table for showing employees -->
+    <Table id="EmployeesTable" items="{/Employees}" visible="true" fixedLayout="false">
+        <!-- Header toolbar with title and button -->
+        <headerToolbar>
+            <OverflowToolbar>
+                <Title text="Employees" level="H2"/>
+                <ToolbarSpacer></ToolbarSpacer>
+                <!--  Add the View Settings button -->
+                <Button icon="sap-icon://sort" press="onSortButtonPressed"/>
+                <Button icon="sap-icon://filter" press="onFilterButtonPressed"/>
+            </OverflowToolbar>
+        </headerToolbar>
+
+        <!-- Info tool bar for displaying active filter criteria -->
+        <infoToolbar>
+            <Toolbar id="EmployeesFilterBar" active="true" visible="false" press="[onViewSettingsButtonPressed, views.control.EmployeesTableSettings]">
+                <Label id="EmployeesFilterLabel" text="?"/>
+            </Toolbar>
+        </infoToolbar>
+
+        <!-- Table columns -->
+        <columns>
+            <Column width="50px"></Column>
+            <Column>
+                <Text text="Name"/>
+            </Column>
+            <Column>
+                <Text text="Title"/>
+            </Column>
+            <Column>
+                <Text text="Country"/>
+            </Column>
+            <Column>
+                <core:Icon src="sap-icon://phone"/>
+            </Column>
+        </columns>
+
+        <!-- Define what is in each row -->
+        <ColumnListItem >
+            <cells>
+                <Image height="50px" src="{path: 'Photo', formatter: '.formatter.dataUrlForMsImage'}"/>
+                <ObjectIdentifier title="{LastName}, {FirstName}" text="{EmployeeID}"/>
+                <Text text="{Title}"/>
+                <Text text="{Country}"/>
+                <Text text="{Extension}"/>
+            </cells>
+        </ColumnListItem>
+
+        <!-- Dependents not rendered until expressly requested -->
+        <dependents>
+            <!-- View settings dialog for filter/sort options -->
+            <ViewSettingsDialog id="ViewSettingsDialog" confirm="onConfirmViewSettings">
+                <!-- Fields we can sort by -->
+                <sortItems>
+                    <ViewSettingsItem text="First name" key="FirstName" selected="true"/>
+                    <ViewSettingsItem text="Last name" key="LastName"/>
+                    <ViewSettingsItem text="Title" key="Title"/>
+                    <ViewSettingsItem text="Country" key="Country"/>
+                </sortItems>
+
+                <!-- Fields we can filter by -->
+                <filterItems>
+                    <ViewSettingsFilterItem text="Country" key="Country" multiSelect="true">
+                        <items>
+                            <ViewSettingsItem text="U.S.A." key="USA"/>
+                            <ViewSettingsItem text="United Kingdom" key="UK"/>
+                        </items>
+                    </ViewSettingsFilterItem>
+                    <ViewSettingsFilterItem text="Title" key="Title" multiSelect="true">
+                        <items>
+                            <ViewSettingsItem text="Sales Representative" key="Sales Representative"/>
+                            <ViewSettingsItem text="Inside Sales Coordinator" key="Inside Sales Coordinator"/>
+                            <ViewSettingsItem text="Sales Manager" key="Sales Manager"/>
+                            <ViewSettingsItem text="Vice President, Sales" key="Vice President, Sales"/>
+                        </items>
+                      </ViewSettingsFilterItem>
+                </filterItems>
+            </ViewSettingsDialog>
+        </dependents>
+    </Table>
+</core:FragmentDefinition>

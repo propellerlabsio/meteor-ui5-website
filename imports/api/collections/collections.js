@@ -16,6 +16,7 @@ export const demos = new SafeCollection('Demos');
 
 // Publish
 if (Meteor.isServer) {
+
   // Publish demos
   Meteor.publish('demos', () => {
     return demos.find()

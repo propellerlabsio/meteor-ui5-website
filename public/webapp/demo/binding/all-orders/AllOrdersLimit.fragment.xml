@@ -1,0 +1,11 @@
+<core:FragmentDefinition xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m">
+
+  <MessageStrip text="No filters have been applied but the results have been limited to 50 documents via model setting iSizeLimit."
+      showIcon="true"
+      showCloseButton="false"
+      class="sapUiSmallMarginBottom">
+  </MessageStrip>
+
+</core:FragmentDefinition>

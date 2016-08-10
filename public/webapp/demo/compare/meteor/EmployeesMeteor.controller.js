@@ -8,7 +8,7 @@ sap.ui.define([
 ], function(Controller, MeteorModel, Filter, FilterOperator, Sorter, formatter) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5.demo.compare.EmployeesMeteor", {
+  var CController = Controller.extend("meteor-ui5.demo.compare.meteor.EmployeesMeteor", {
 
     formatter: formatter,
 
