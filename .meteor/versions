@@ -50,6 +50,7 @@ npm-mongo@1.5.45
 observe-sequence@1.0.12
 ordered-dict@1.0.8
 promise@0.8.3
+propellerlabsio:meteor-ui5@0.1.0
 random@1.0.10
 reactive-var@1.0.10
 reload@1.1.10

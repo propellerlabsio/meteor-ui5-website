@@ -32,7 +32,7 @@
         },
         "models": {
             "": {
-                "type": "meteor-ui5-mongo.MeteorMongoModel"
+                "type": "meteor-ui5-mongo.model.mongo.Model"
             }
         },
         "resources": {

@@ -21,3 +21,4 @@ dburles:mongo-collection-instances
 cfs:http-methods
 http@1.2.8
 reywood:publish-composite
+propellerlabsio:meteor-ui5
