@@ -2,15 +2,18 @@
    xmlns:mvc="sap.ui.core.mvc"
    xmlns:meteor-ui5="meteor-ui5.control"
     xmlns:html="http://www.w3.org/1999/xhtml"
+    xmlns:l="sap.ui.layout"
     xmlns:u="sap.ui.unified"
-    xmlns="sap.m">
-<u:Shell>
-
+    xmlns="sap.m"
+    class="viewPadding">
+    <u:Shell
+      id="myShell"
+      icon="{/logo}">
   			<u:headItems>
   				<u:ShellHeadItem
   					tooltip="Configuration"
   					icon="sap-icon://menu2"
-  					press="handlePressConfiguration" />
+  					press="onhandlePressConfiguration" />
   				<u:ShellHeadItem
   					tooltip="Home"
   					icon="sap-icon://home"
@@ -27,17 +30,17 @@
   				<u:ShellHeadUserItem
   					image="sap-icon://person-placeholder"
   					username="Karl Mustermann"
-  					press="handleUserItemPressed" />
+  					press="onhandleUserItemPressed" />
   			</u:user>
   			<u:search>
   				<SearchField
   					search="handleSearchPressed"/>
   			</u:search>
   			<u:paneContent>
-  				<Text text="Lorem ipsum" />
+  				<Text text="Lorem ipsum2" />
   			</u:paneContent>
 
-  <Page id="Welcome" title="Welcome" class="sapUiStdPage sapUiTinyMarginBegin">
+  <Page id="Welcome" title="Welcome" class="sapUiStdPage">
     <content>
 
       <!-- "Fork me on Github" ribbon -->
