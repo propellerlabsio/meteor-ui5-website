@@ -4,12 +4,12 @@ sap.ui.define([
   "sap/m/IconTabFilter",
   "sap/m/Text",
   "sap/m/MessageStrip",
-  "meteor-ui5/control/SourceCodeViewer",
-  "meteor-ui5/control/MarkdownViewer",
+  "website/control/SourceCodeViewer",
+  "website/control/MarkdownViewer",
   "sap/ui/core/mvc/XMLView"
 ], function(Control, IconTabBar, IconTabFilter, Text, MessageStrip, SourceCodeViewer, MarkdownViewer, XMLView) {
   "use strict";
-  return Control.extend("meteor-ui5.control.DemoViewer", {
+  return Control.extend("website.control.DemoViewer", {
     metadata: {
       properties: {
         groupId: {
@@ -131,7 +131,7 @@ sap.ui.define([
     _addDemoTabContent: function() {
       // Add demo tab content
       const demoViewName =
-        "meteor-ui5.demo." +
+        "website.demo." +
         this.getProperty("groupId") + "." +
         this.getProperty("demoId") + "." +
         this.getProperty("demoViewName");

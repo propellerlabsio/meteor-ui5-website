@@ -7,7 +7,7 @@ sap.ui.define([
 ], function(Controller, JSONModel, Filter, FilterOperator, GroupHeaderListItem) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5.controller.MasterDemos", {
+  var CController = Controller.extend("website.controller.MasterDemos", {
 
     onInit: function() {
       this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);

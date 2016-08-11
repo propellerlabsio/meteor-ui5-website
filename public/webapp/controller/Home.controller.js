@@ -4,7 +4,7 @@ sap.ui.define([
 ], function(Controller, JSONModel) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5.controller.Home", {
+  var CController = Controller.extend("website.controller.Home", {
 
     onInit: function() {
 

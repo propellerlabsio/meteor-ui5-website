@@ -1,7 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
-    xmlns:meteor-ui5="meteor-ui5.control"
+    xmlns:website="website.control"
     xmlns="sap.m"
-    controllerName="meteor-ui5.controller.Demo">
+    controllerName="website.controller.Demo">
 
   <Page title="Introduction"
       class="sapUiStdPage">

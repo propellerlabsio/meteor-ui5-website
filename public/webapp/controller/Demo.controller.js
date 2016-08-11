@@ -4,7 +4,7 @@ sap.ui.define([
 ], function(Controller, JSONModel) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5.controller.Demo", {
+  var CController = Controller.extend("website.controller.Demo", {
 
     onInit: function() {
       this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);

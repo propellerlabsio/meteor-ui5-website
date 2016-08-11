@@ -1,14 +1,14 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
-  'meteor-ui5-mongo/MeteorMongoModel',
+  'meteor-ui5/model/mongo/Model',
   'sap/ui/model/Filter',
   'sap/ui/model/FilterOperator',
   'sap/ui/model/Sorter',
-  'meteor-ui5/model/formatter'
+  'website/model/formatter'
 ], function(Controller, MeteorModel, Filter, FilterOperator, Sorter, formatter) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5.demo.compare.meteor.EmployeesMeteor", {
+  var CController = Controller.extend("website.demo.compare.meteor.EmployeesMeteor", {
 
     formatter: formatter,
 
