@@ -1,56 +1,70 @@
-<mvc:View controllerName="meteor-ui5.controller.Home" xmlns:core="sap.ui.core"
-   xmlns:mvc="sap.ui.core.mvc"
-   xmlns:meteor-ui5="meteor-ui5.control"
+<mvc:View controllerName="meteor-ui5.controller.Home"
+    xmlns:core="sap.ui.core"
+    xmlns:l="sap.ui.layout"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:meteor-ui5="meteor-ui5.control"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns="sap.m">
-  <Page id="Welcome" title="Welcome" class="sapUiStdPage">
+  <Page id="Welcome"
+      title="Welcome"
+      class="sapUiStdPage">
     <content>
 
       <!-- "Fork me on Github" ribbon -->
       <html:a href="https://github.com/propellerlabsio/meteor-ui5">
-        <html:img
-          style="position: absolute; top: 0; right: 0; border: 0; z-index: 5;"
-          src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"
-          alt="Fork me on GitHub"
-          data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png"/></html:a>
+        <html:img style="position: absolute; top: 0; right: 0; border: 0; z-index: 5;"
+            src="https://camo.githubusercontent.com/a6677b08c955af8400f44c6298f40e7d19cc5b2d/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677261795f3664366436642e706e67"
+            alt="Fork me on GitHub"
+            data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" /></html:a>
 
       <VBox>
-        <Text class="sapUiResponsiveMargin" text="Meteor-Ui5 brings to together two powerful open source javascript web frameworks and allows you to use them together:"/>
-        <HBox justityContent="SpaceAround">
+        <!-- Intro text -->
+        <Text class="sapUiResponsiveMargin"
+            text="Meteor-Ui5 brings to together two powerful open source javascript web frameworks and allows you to use them together:" />
 
-            <!-- <Panel> -->
-              <HBox justifyContent="SpaceAround">
-                <Image src="/art/logos/meteor.png" width="128px"></Image>
-                <FormattedText class="sapUiResponsiveMargin" htmlText='&lt;strong&gt;Meteor summary&lt;/strong&gt;
+        <!-- Meteor + UI5 summary row     -->
+        <l:Grid hSpacing="2" defaultSpan="L6 M6 S10">
+
+          <!-- Meteor summary intro -->
+          <HBox>
+            <Image src="/art/logos/meteor.png"
+                width="128px"></Image>
+            <FormattedText class="sapUiResponsiveMargin"
+                htmlText='&lt;strong&gt;Meteor summary&lt;/strong&gt;
 			            &lt;ul&gt;&lt;li&gt;Full-stack JavaScript platform for developing modern web and mobile applications&lt;/li&gt;&lt;li&gt;data on the wire&lt;/li&gt;
-                  &lt;li&gt; &lt;/li&gt;&lt;/ul&gt;'/>
-              </HBox>
-            <!-- </Panel> -->
-            <HBox justifyContent="SpaceAround">
-             <Image src="/art/logos/openui5.png" width="128px"></Image>
-             <FormattedText class="sapUiResponsiveMargin" htmlText='&lt;strong&gt;Openui5 summary&lt;/strong&gt;
-               &lt;ul&gt;&lt;li&gt;More than 200 feature-rich Ui controls&lt;/li&gt;&lt;li&gt;Consistent User Experience&lt;/li&gt;
-               &lt;li&gt;Responsive Across Browsers and Devices&lt;/li&gt;&lt;li&gt; &lt;/li&gt;&lt;/ul&gt;'/>
+                  &lt;li&gt; &lt;/li&gt;&lt;/ul&gt;' />
+            <layoutData><l:SplitterLayoutData size="30%" resizable="false"/></layoutData>
           </HBox>
-        </HBox>
+
+          <!-- UI5 summary intro -->
+          <HBox>
+            <Image src="/art/logos/openui5.png"
+                width="128px"></Image>
+            <FormattedText class="sapUiResponsiveMargin"
+                htmlText='&lt;strong&gt;Openui5 summary&lt;/strong&gt;
+               &lt;ul&gt;&lt;li&gt;More than 200 feature-rich Ui controls&lt;/li&gt;&lt;li&gt;Consistent User Experience&lt;/li&gt;
+               &lt;li&gt;Responsive Across Browsers and Devices&lt;/li&gt;&lt;li&gt; &lt;/li&gt;&lt;/ul&gt;' />
+          </HBox>
+        </l:Grid>
+
+        <!-- Site area launch tiles -->
         <HBox justifyContent="SpaceAround">
 
-          <GenericTile press="onTiledemosPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Demos">
-            <!-- subheader="Subtitle" press="press">
-          <tileContent>
-          <TileContent unit="EUR" footer="Current Quarter">
-          <content>
-          <ImageContent src="art/logos/json.png"/>
-          </content>
-          </TileContent>
-          </tileContent> -->
-          </GenericTile>
+          <GenericTile press="onTiledemosPress"
+              class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+              header="Demos" />
 
-          <GenericTile press="onTiletutorialPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Tutorial"></GenericTile>
+          <GenericTile press="onTiletutorialPress"
+              class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+              header="Tutorial"></GenericTile>
 
-          <GenericTile press="onTiledocsPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Docs"></GenericTile>
+          <GenericTile press="onTiledocsPress"
+              class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+              header="Docs"></GenericTile>
 
-          <GenericTile press="onTilerepositoryPress" class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout" header="Repository"></GenericTile>
+          <GenericTile press="onTilerepositoryPress"
+              class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+              header="Repository"></GenericTile>
 
         </HBox>
       </VBox>
@@ -60,11 +74,15 @@
     <!-- Footer toolbar -->
     <footer>
       <Toolbar>
-        <Button text="Meteor ({viewModel>/meteorRelease})" press="onPressGotoMeteor" icon="/art/logos/meteor.png"/>
+        <Button text="Meteor ({viewModel>/meteorRelease})"
+            press="onPressGotoMeteor"
+            icon="/art/logos/meteor.png" />
         <ToolbarSpacer/>
-        <Text text="Built With"/>
+        <Text text="Built With" />
         <ToolbarSpacer/>
-        <Button text="OpenUI5 ({viewModel>/ui5Version})" press="onPressGotoUi5" icon="/art/logos/openui5.png"/>
+        <Button text="OpenUI5 ({viewModel>/ui5Version})"
+            press="onPressGotoUi5"
+            icon="/art/logos/openui5.png" />
       </Toolbar>
     </footer>
   </Page>
