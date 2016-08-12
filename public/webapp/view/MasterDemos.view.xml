@@ -1,32 +1,37 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
-    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns="sap.m"
-    xmlns:tnt="sap.tnt"
     controllerName="meteor-ui5.controller.MasterDemos">
   <Page id="master"
       title="Demos"
       icon="sap-icon://action"
-      class="sapUiStdPage"
       showNavButton="true"
-      navButtonPress="onPressBack">
+      navButtonPress="onPressBack"
+      class="sapUiStdPage">
+    <subHeader>
+      <Toolbar>
+        <SearchField search="onSearch" />
+      </Toolbar>
+    </subHeader>
     <content>
-
-      <tnt:NavigationList id="demostList"
-          items="{/Demos}">
-        <tnt:NavigationListItem id="demoGroupItem"
-            expanded="{= ${viewState>/groupId} === ${groupId} }"
-            select="onGroupSelect"
-            icon="{icon}"
-            text="{title}"
-            items="{demos}">
-          <tnt:NavigationListItem id="demoItem"
-              select="onDemoSelect"
-              class="{= (${viewState>/demoId} === ${demoId}) ? 'navListItemSelected' : '' }"
-              text="{title}">
-          </tnt:NavigationListItem>
-        </tnt:NavigationListItem>
-      </tnt:NavigationList>
-
+      <List id="demosList"
+          itemPress="onDemoSelect"
+          items="{
+      			path: '/Demos',
+      			sorter: {
+      				path: 'groupId',
+      				descending: false,
+      				group: true
+      			},
+      			groupHeaderFactory: '.getGroupHeader'
+      		}"
+          mode="SingleSelectMaster">
+        <items>
+          <StandardListItem
+              title="{title}"
+              type="Active"
+              selected="{= (${viewState>/demoId} === ${_id})}" />
+        </items>
+      </List>
     </content>
   </Page>
 </mvc:View>

@@ -1,46 +1,43 @@
 [{
+  "_id": "all-orders",
   "groupId": "binding",
-  "title": "Binding",
-  "icon": "sap-icon://chain-link",
-  "demos": [{
-    "demoId": "all-orders",
-    "title": "All Orders",
-    "infoFile": "AllOrders.md",
-    "demoViewName": "AllOrders"
-  }, {
-    "demoId": "some-orders",
-    "title": "Some Orders",
-    "infoFile": "SomeOrders.md",
-    "demoViewName": "SomeOrders"
-  }, {
-    "demoId": "one-order",
-    "title": "One Order",
-    "infoFile": "OneOrder.md",
-    "demoViewName": "OneOrder"
-  }, {
-    "demoId": "property-lookup",
-    "title": "Property Lookup",
-    "infoFile": "PropertyLookup.md",
-    "demoViewName": "PropertyLookup"
-  }]
+  "title": "All Orders",
+  "infoFile": "AllOrders.md",
+  "demoViewName": "AllOrders"
 }, {
+  "_id": "some-orders",
+  "groupId": "binding",
+  "title": "Some Orders",
+  "infoFile": "SomeOrders.md",
+  "demoViewName": "SomeOrders"
+}, {
+  "_id": "one-order",
+  "groupId": "binding",
+  "title": "One Order",
+  "infoFile": "OneOrder.md",
+  "demoViewName": "OneOrder"
+}, {
+  "_id": "property-lookup",
+  "groupId": "binding",
+  "title": "Property Lookup",
+  "infoFile": "PropertyLookup.md",
+  "demoViewName": "PropertyLookup"
+}, {
+  "_id": "meteor",
   "groupId": "compare",
-  "title": "Compare UI5 Models",
-  "icon": "sap-icon://compare",
-  "demos": [{
-    "demoId": "meteor",
-    "title": "Meteor Model",
-    "infoFile": "EmployeesMeteor.md",
-    "demoViewName": "EmployeesMeteor"
-  }, {
-    "demoId": "json",
-    "title": "JSON Model",
-    "infoFile": "EmployeesJson.md",
-    "demoViewName": "EmployeesJson"
-  }, {
-    "demoId": "odata",
-    "title": "OData Model",
-    "infoFile": "EmployeesOData.md",
-    "demoViewName": "EmployeesOData"
-  }]
+  "title": "Meteor Model",
+  "infoFile": "EmployeesMeteor.md",
+  "demoViewName": "EmployeesMeteor"
+}, {
+  "_id": "json",
+  "groupId": "compare",
+  "title": "JSON Model",
+  "infoFile": "EmployeesJson.md",
+  "demoViewName": "EmployeesJson"
+}, {
+  "_id": "odata",
+  "groupId": "compare",
+  "title": "OData Model",
+  "infoFile": "EmployeesOData.md",
+  "demoViewName": "EmployeesOData"
 }]
