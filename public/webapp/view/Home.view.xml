@@ -17,13 +17,15 @@
             alt="Fork me on GitHub"
             data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_gray_6d6d6d.png" /></html:a>
 
+      <!-- Rows -->
       <VBox>
         <!-- Intro text -->
         <Text class="sapUiResponsiveMargin"
             text="Meteor-Ui5 brings to together two powerful open source javascript web frameworks and allows you to use them together:" />
 
         <!-- Meteor + UI5 summary row     -->
-        <l:Grid hSpacing="2" defaultSpan="L6 M6 S10">
+        <l:Grid hSpacing="2"
+            defaultSpan="L6 M6 S10">
 
           <!-- Meteor summary intro -->
           <HBox>
@@ -33,7 +35,10 @@
                 htmlText='&lt;strong&gt;Meteor summary&lt;/strong&gt;
 			            &lt;ul&gt;&lt;li&gt;Full-stack JavaScript platform for developing modern web and mobile applications&lt;/li&gt;&lt;li&gt;data on the wire&lt;/li&gt;
                   &lt;li&gt; &lt;/li&gt;&lt;/ul&gt;' />
-            <layoutData><l:SplitterLayoutData size="30%" resizable="false"/></layoutData>
+            <layoutData>
+              <l:SplitterLayoutData size="30%"
+                  resizable="false" />
+            </layoutData>
           </HBox>
 
           <!-- UI5 summary intro -->
@@ -47,25 +52,29 @@
           </HBox>
         </l:Grid>
 
-        <!-- Site area launch tiles -->
-        <HBox justifyContent="SpaceAround">
+        <!-- Meteor UI5 diagram -->
+        <FlexBox justifyContent="Center">
+          <Image src="art/MeteorUI5Diagram.png"
+              densityAware="false" />
+        </FlexBox>
 
-          <GenericTile press="onTiledemosPress"
-              class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
+        <!-- Site area launch tiles -->
+        <HBox>
+          <StandardTile press="onTiledemosPress"
+              icon="sap-icon://play"
               header="Demos" />
 
-          <GenericTile press="onTiletutorialPress"
-              class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-              header="Tutorial"></GenericTile>
+          <StandardTile press="onTiletutorialPress"
+              icon="sap-icon://e-learning"
+              header="Tutorial" />
 
-          <GenericTile press="onTiledocsPress"
-              class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-              header="Docs"></GenericTile>
+          <StandardTile press="onTiledocsPress"
+              icon="sap-icon://course-book"
+              header="Docs" />
 
-          <GenericTile press="onTilerepositoryPress"
-              class="sapUiTinyMarginBegin sapUiTinyMarginTop tileLayout"
-              header="Repository"></GenericTile>
-
+          <StandardTile press="onTilerepositoryPress"
+              icon="sap-icon://source-code"
+              header="Repository" />
         </HBox>
       </VBox>
 
