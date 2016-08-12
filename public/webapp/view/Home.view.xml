@@ -5,8 +5,8 @@
     xmlns:meteor-ui5="meteor-ui5.control"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns="sap.m">
-  <Page id="Welcome"
-      title="Welcome"
+  <Page id="Home"
+      title="Meteor-UI5"
       class="sapUiStdPage">
     <content>
 
@@ -20,8 +20,9 @@
       <!-- Rows -->
       <VBox>
         <!-- Intro text -->
-        <Text class="sapUiResponsiveMargin"
-            text="Meteor-Ui5 brings to together two powerful open source javascript web frameworks and allows you to use them together:" />
+        <meteor-ui5:MarkdownViewer
+          class="sapUiResponsiveMargin"
+          markdownFile="/webapp/docs/MeteorUI5Intro.md"/>
 
         <!-- Meteor + UI5 summary row     -->
         <l:Grid hSpacing="2"
@@ -31,24 +32,16 @@
           <HBox>
             <Image src="/art/logos/meteor.png"
                 width="128px"></Image>
-            <FormattedText class="sapUiResponsiveMargin"
-                htmlText='&lt;strong&gt;Meteor summary&lt;/strong&gt;
-			            &lt;ul&gt;&lt;li&gt;Full-stack JavaScript platform for developing modern web and mobile applications&lt;/li&gt;&lt;li&gt;data on the wire&lt;/li&gt;
-                  &lt;li&gt; &lt;/li&gt;&lt;/ul&gt;' />
-            <layoutData>
-              <l:SplitterLayoutData size="30%"
-                  resizable="false" />
-            </layoutData>
+            <meteor-ui5:MarkdownViewer
+              markdownFile="/webapp/docs/MeteorSummary.md"/>
           </HBox>
 
           <!-- UI5 summary intro -->
           <HBox>
             <Image src="/art/logos/openui5.png"
                 width="128px"></Image>
-            <FormattedText class="sapUiResponsiveMargin"
-                htmlText='&lt;strong&gt;Openui5 summary&lt;/strong&gt;
-               &lt;ul&gt;&lt;li&gt;More than 200 feature-rich Ui controls&lt;/li&gt;&lt;li&gt;Consistent User Experience&lt;/li&gt;
-               &lt;li&gt;Responsive Across Browsers and Devices&lt;/li&gt;&lt;li&gt; &lt;/li&gt;&lt;/ul&gt;' />
+            <meteor-ui5:MarkdownViewer
+              markdownFile="/webapp/docs/OpenUI5Summary.md"/>
           </HBox>
         </l:Grid>
 
@@ -58,24 +51,6 @@
               densityAware="false" />
         </FlexBox>
 
-        <!-- Site area launch tiles -->
-        <HBox>
-          <StandardTile press="onTiledemosPress"
-              icon="sap-icon://play"
-              header="Demos" />
-
-          <StandardTile press="onTiletutorialPress"
-              icon="sap-icon://e-learning"
-              header="Tutorial" />
-
-          <StandardTile press="onTiledocsPress"
-              icon="sap-icon://course-book"
-              header="Docs" />
-
-          <StandardTile press="onTilerepositoryPress"
-              icon="sap-icon://source-code"
-              header="Repository" />
-        </HBox>
       </VBox>
 
     </content>

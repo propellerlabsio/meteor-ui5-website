@@ -27,23 +27,6 @@ sap.ui.define([
 
     },
 
-    onTiledemosPress: function(oEvent) {
-      // Navigate to target route
-      this._oRouter.navTo("demos");
-    },
-    onTiletutorialPress: function(oEvent) {
-      // Navigate to target route
-      this._oRouter.navTo("tutorial");
-    },
-    onTiledocsPress: function(oEvent) {
-      // Navigate to target route
-      this._oRouter.navTo("docs");
-    },
-    onTilerepositoryPress: function(oEvent) {
-      // Navigate to target route
-      this._oRouter.navTo("repository");
-    }
-  
   });
 
   return CController;

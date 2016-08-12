@@ -68,10 +68,6 @@
                 "pattern": "docs",
                 "name": "docs",
                 "target": ["master", "docs"]
-            }, {
-                "pattern": "repository",
-                "name": "repository",
-                "target": ["master", "repository"]
             }],
             "targets": {
                 "master": {
@@ -113,13 +109,6 @@
                     "controlAggregation": "detailPages",
                     "viewLevel": "1",
                     "transition": "flip"
-                },
-                "repository": {
-                    "viewName": "Repository",
-                    "controlAggregation": "detailPages",
-                    "viewLevel": "1",
-                    "transition": "flip"
-
                 }
             }
         }

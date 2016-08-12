@@ -16,9 +16,6 @@ sap.ui.define([
     _onRoutePatternMatched: function(oEvent) {
       // Store current route name and view state model
       this._sRouteName = oEvent.mParameters.name;
-
-      // Show home icon in shell on all routes except "home"
-      this.byId("shellHomeItem").setVisible(this._sRouteName !== "home");
     },
 
     handlePressHome: function(){
