@@ -2,44 +2,7 @@
    xmlns:mvc="sap.ui.core.mvc"
    xmlns:meteor-ui5="meteor-ui5.control"
     xmlns:html="http://www.w3.org/1999/xhtml"
-    xmlns:l="sap.ui.layout"
-    xmlns:u="sap.ui.unified"
-    xmlns="sap.m"
-    class="viewPadding">
-    <u:Shell
-      id="myShell"
-      icon="{/logo}">
-  			<u:headItems>
-  				<u:ShellHeadItem
-  					tooltip="Configuration"
-  					icon="sap-icon://menu2"
-  					press="onhandlePressConfiguration" />
-  				<u:ShellHeadItem
-  					tooltip="Home"
-  					icon="sap-icon://home"
-  					visible="false"
-  					press="handlePressHome" />
-  			</u:headItems>
-  			<u:headEndItems>
-  				<u:ShellHeadItem
-  					icon="sap-icon://log"
-  					tooltip="Logoff"
-  					press="handleLogoffPress" />
-  			</u:headEndItems>
-  			<u:user>
-  				<u:ShellHeadUserItem
-  					image="sap-icon://person-placeholder"
-  					username="Karl Mustermann"
-  					press="onhandleUserItemPressed" />
-  			</u:user>
-  			<u:search>
-  				<SearchField
-  					search="handleSearchPressed"/>
-  			</u:search>
-  			<u:paneContent>
-  				<Text text="Lorem ipsum2" />
-  			</u:paneContent>
-
+    xmlns="sap.m">
   <Page id="Welcome" title="Welcome" class="sapUiStdPage">
     <content>
 
@@ -53,18 +16,18 @@
 
       <VBox>
         <Text class="sapUiResponsiveMargin" text="Meteor-Ui5 brings to together two powerful open source javascript web frameworks and allows you to use them together:"/>
-        <HBox justifyContent="SpaceAround">
+        <HBox justityContent="SpaceAround">
 
             <!-- <Panel> -->
               <HBox justifyContent="SpaceAround">
-                <Image src="/art/logos/meteor.png" width="150px"></Image>
+                <Image src="/art/logos/meteor.png" width="128px"></Image>
                 <FormattedText class="sapUiResponsiveMargin" htmlText='&lt;strong&gt;Meteor summary&lt;/strong&gt;
-			            &lt;ul&gt;&lt;li&gt;Full-stack JavaScript platform for developing model web and mobile applications&lt;/li&gt;&lt;li&gt;data on the wire&lt;/li&gt;
+			            &lt;ul&gt;&lt;li&gt;Full-stack JavaScript platform for developing modern web and mobile applications&lt;/li&gt;&lt;li&gt;data on the wire&lt;/li&gt;
                   &lt;li&gt; &lt;/li&gt;&lt;/ul&gt;'/>
               </HBox>
             <!-- </Panel> -->
             <HBox justifyContent="SpaceAround">
-             <Image src="/art/logos/openui5.png" width="150px"></Image>
+             <Image src="/art/logos/openui5.png" width="128px"></Image>
              <FormattedText class="sapUiResponsiveMargin" htmlText='&lt;strong&gt;Openui5 summary&lt;/strong&gt;
                &lt;ul&gt;&lt;li&gt;More than 200 feature-rich Ui controls&lt;/li&gt;&lt;li&gt;Consistent User Experience&lt;/li&gt;
                &lt;li&gt;Responsive Across Browsers and Devices&lt;/li&gt;&lt;li&gt; &lt;/li&gt;&lt;/ul&gt;'/>
@@ -105,5 +68,4 @@
       </Toolbar>
     </footer>
   </Page>
-</u:Shell>
 </mvc:View>
