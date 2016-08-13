@@ -17,8 +17,7 @@ es5-shim@4.6.13                # ECMAScript 5 compatibility for older browsers.
 ecmascript@0.5.7              # Enable ECMAScript2015+ syntax in app code
 
 static-html@1.1.11
-dburles:mongo-collection-instances
 cfs:http-methods
 http@1.2.8
 reywood:publish-composite
-propellerlabsio:meteor-ui5
+propellerlabsio:meteor-ui5@0.1.0
