@@ -1,16 +1,17 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
-	'sap/ui/model/json/JSONModel'
+  'sap/ui/model/json/JSONModel'
 ], function(Controller, JSONModel) {
   "use strict";
 
   var CController = Controller.extend("website.controller.Home", {
 
     onInit: function() {
+      this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 
       var oViewModel = new JSONModel({
-		    meteorRelease: Meteor.release.split('@')[1],
-		    ui5Version: sap.ui.version,
+        meteorRelease: Meteor.release.split('@')[1],
+        ui5Version: sap.ui.version,
       });
       this.getView().setModel(oViewModel, "viewModel");
     },
@@ -23,10 +24,10 @@ sap.ui.define([
     onPressGotoMeteor: function() {
       var win = window.open('https://www.meteor.com/', '_blank');
       win.focus();
+
     },
 
   });
-
 
   return CController;
 

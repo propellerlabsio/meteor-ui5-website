@@ -1,4 +1,27 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc"
-    xmlns="sap.m">
+<mvc:View
+  controllerName="website.controller.App"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns:l="sap.ui.layout"
+  xmlns:u="sap.ui.unified"
+  xmlns="sap.m"
+  class="viewPadding">
+  <u:Shell
+    id="websiteShell"
+    icon="/art/logos/meteor-ui5.png">
+      <u:headItems>
+        <u:ShellHeadItem
+          id="shellHomeItem"
+          tooltip="Home"
+          icon="sap-icon://home"
+          visible="true"
+          press="handlePressHome" />
+      </u:headItems>
+      <u:user>
+        <u:ShellHeadUserItem
+          image="sap-icon://person-placeholder"
+          username="Sign-in / Join"
+          press="onhandleUserItemPressed" />
+      </u:user>
   <SplitApp id="SplitApp"></SplitApp>
+</u:Shell>
 </mvc:View>

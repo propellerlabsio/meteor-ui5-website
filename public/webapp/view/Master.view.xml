@@ -1,14 +1,30 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1" xmlns="sap.m" controllerName="website.controller.Master">
-    <Page id="master" title="Meteor UI5" icon="sap-icon://action" class="sapUiStdPage">
-        <content>
-            <List id="masterList" itemPress="onItemPress" mode="SingleSelectMaster">
-                <items>
-                    <StandardListItem id="home" title="Introduction" type="Active" custom:to="home"/>
-                    <StandardListItem id="demos" title="Demos" type="Navigation" custom:to="demos"/>
-                    <StandardListItem id="tutorial" title="Tutorial" type="Navigation" custom:to="tutorial"/>
-                    <StandardListItem id="docs" title="Docs" type="Navigation" custom:to="docs"/>
-                </items>
-            </List>
-        </content>
-    </Page>
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    xmlns="sap.m"
+    controllerName="website.controller.Master">
+  <Page id="master"
+      title="Menu"
+      icon="sap-icon://action"
+      class="sapUiStdPage">
+    <content>
+      <List id="masterList"
+          itemPress="onItemPress"
+          mode="SingleSelectMaster">
+        <items>
+          <StandardListItem id="demos"
+              title="Demos"
+              type="Navigation"
+              custom:to="demos" />
+          <StandardListItem id="tutorial"
+              title="Tutorial"
+              type="Active"
+              custom:to="tutorial" />
+          <StandardListItem id="docs"
+              title="Docs"
+              type="Active"
+              custom:to="docs" />
+        </items>
+      </List>
+    </content>
+  </Page>
 </mvc:View>
