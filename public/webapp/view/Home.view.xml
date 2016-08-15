@@ -29,23 +29,26 @@
             defaultSpan="L6 M6 S10">
 
           <!-- Meteor summary intro -->
-          <HBox>
-            <Image src="/art/logos/meteor.png"
-                width="128px"></Image>
+          <HBox alignItems="Center">
+            <Image src="/art/logos/meteor-full.png"
+                width="80px"></Image>
             <meteor-ui5:MarkdownViewer
               markdownFile="/webapp/docs/MeteorSummary.md"/>
           </HBox>
 
           <!-- UI5 summary intro -->
-          <HBox>
-            <Image src="/art/logos/openui5.png"
-                width="128px"></Image>
+          <HBox alignItems="Center">
+            <Image src="/art/logos/openui5-full.png"
+                width="80px"></Image>
             <meteor-ui5:MarkdownViewer
               markdownFile="/webapp/docs/OpenUI5Summary.md"/>
           </HBox>
         </l:Grid>
 
         <!-- Meteor UI5 diagram -->
+        <meteor-ui5:MarkdownViewer
+          class="sapUiResponsiveMargin"
+          markdownText="# Components"/>
         <FlexBox justifyContent="Center">
           <Image src="art/MeteorUI5Diagram.png"
               densityAware="false" />
@@ -59,14 +62,12 @@
     <footer>
       <Toolbar>
         <Button text="Meteor ({viewModel>/meteorRelease})"
-            press="onPressGotoMeteor"
-            icon="/art/logos/meteor.png" />
+            press="onPressGotoMeteor" />
         <ToolbarSpacer/>
-        <Text text="Built With" />
+        <Text text="© PropellerLabs.io - 2016" />
         <ToolbarSpacer/>
         <Button text="OpenUI5 ({viewModel>/ui5Version})"
-            press="onPressGotoUi5"
-            icon="/art/logos/openui5.png" />
+            press="onPressGotoUi5" />
       </Toolbar>
     </footer>
   </Page>

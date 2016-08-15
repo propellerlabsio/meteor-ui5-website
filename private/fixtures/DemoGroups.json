@@ -1,7 +1,10 @@
 [{
   "_id": "binding",
-  "title": "Binding examples"
+  "title": "Binding"
 }, {
   "_id": "compare",
   "title": "Compare UI5 models"
+},{
+  "_id": "filter",
+  "title": "Filtering"
 }]

@@ -7,7 +7,7 @@ sap.ui.define([
 ], function(Controller, Filter, FilterOperator, MeteorModel, formatter) {
   "use strict";
 
-  var CController = Controller.extend("website.demo.binding.some-orders.SomeOrders", {
+  var CController = Controller.extend("website.demo.filter.some-orders.SomeOrders", {
 
     formatter: formatter,
 

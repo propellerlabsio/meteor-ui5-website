@@ -11,12 +11,13 @@ sap.ui.define([
 
     onInit: function() {
 
+      // Subscribe to orders
+      this._subscription = Meteor.subscribe('ordersWithCustomers');
+      
       // Create Meteor model
       var oModel = new MeteorModel();
       this.getView().setModel(oModel);
 
-      // Subscribe to orders
-      this._subscription = Meteor.subscribe('ordersWithCustomers');
     },
 
     onExit: function(){

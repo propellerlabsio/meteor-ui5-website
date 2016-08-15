@@ -6,7 +6,7 @@
   "demoViewName": "AllOrders"
 }, {
   "_id": "some-orders",
-  "groupId": "binding",
+  "groupId": "filter",
   "title": "Some Orders",
   "infoFile": "SomeOrders.md",
   "demoViewName": "SomeOrders"
