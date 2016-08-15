@@ -1,6 +1,6 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    controllerName="website.controller.MasterDemos">
+    controllerName="webapp.controller.MasterDemos">
   <Page id="master"
       title="Demos"
       icon="sap-icon://action"

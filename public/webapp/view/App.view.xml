@@ -1,12 +1,12 @@
 <mvc:View
-  controllerName="website.controller.App"
+  controllerName="webapp.controller.App"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns:l="sap.ui.layout"
   xmlns:u="sap.ui.unified"
   xmlns="sap.m"
   class="viewPadding">
   <u:Shell
-    id="websiteShell"
+    id="webappShell"
     icon="/art/logos/meteor-ui5.png">
       <u:headItems>
         <u:ShellHeadItem

@@ -3,7 +3,7 @@
 			], function(Controller) {
 			"use strict";
 
-			var CController = Controller.extend("website.controller.Master", {
+			var CController = Controller.extend("webapp.controller.Master", {
 
 				onInit: function(){
 					this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);

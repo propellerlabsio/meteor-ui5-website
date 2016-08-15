@@ -2,7 +2,7 @@
     "_version": "1.1.0",
     "sap.app": {
         "_version": "1.1.0",
-        "id": "website",
+        "id": "webapp",
         "type": "application",
         "title": "UI5 Meteor Website",
         "description": "Docs, demos and tutorials for the Meteor UI5 package.",
@@ -23,7 +23,7 @@
     },
     "sap.ui5": {
         "_version": "1.1.0",
-        "rootView": "website.view.App",
+        "rootView": "webapp.view.App",
         "dependencies": {
             "minUI5Version": "1.30",
             "libs": {
@@ -44,7 +44,7 @@
             "config": {
                 "routerClass": "sap.m.routing.Router",
                 "viewType": "XML",
-                "viewPath": "website.view",
+                "viewPath": "webapp.view",
                 "controlId": "SplitApp",
                 "clearTarget": false
             },

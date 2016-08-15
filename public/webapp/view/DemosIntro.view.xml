@@ -1,7 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
-    xmlns:website="website.control"
+    xmlns:webapp="webapp.control"
     xmlns="sap.m"
-    controllerName="website.controller.Demo">
+    controllerName="webapp.controller.Demo">
 
   <Page title="Introduction"
       class="sapUiStdPage">

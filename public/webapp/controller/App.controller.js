@@ -4,7 +4,7 @@ sap.ui.define([
 ], function(Controller, MessageBox) {
   "use strict";
 
-  var CController = Controller.extend("website.controller.App", {
+  var CController = Controller.extend("webapp.controller.App", {
 
     onInit: function() {
       // Set up route handling

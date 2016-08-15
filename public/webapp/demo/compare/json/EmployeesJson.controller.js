@@ -4,11 +4,11 @@ sap.ui.define([
   'sap/ui/model/Filter',
   'sap/ui/model/FilterOperator',
   'sap/ui/model/Sorter',
-  'website/model/formatter'
+  'webapp/model/formatter'
 ], function(Controller, JSONModel, Filter, FilterOperator, Sorter, formatter) {
   "use strict";
 
-  var CController = Controller.extend("website.demo.compare.json.EmployeesJson", {
+  var CController = Controller.extend("webapp.demo.compare.json.EmployeesJson", {
 
     formatter: formatter,
 

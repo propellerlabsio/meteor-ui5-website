@@ -19,7 +19,7 @@
 					data-sap-ui-preload="async"
 					data-sap-ui-xx-bindingSyntax="complex"
 					data-sap-ui-resourceroots='{
-						 "website": "/webapp/",
+						 "webapp": "/webapp/",
              "meteor-ui5": "/packages/propellerlabsio_meteor-ui5/"
 		   	}'>
 	</script>
@@ -30,8 +30,8 @@
 			// Create component deliberately (ie not automatically) so we can give
 			// the component an id which can be used in sap.ui.getCore().getComponent()
 			var oComponent = sap.ui.getCore().createComponent({
-				name: "website",
-				id: "website",
+				name: "webapp",
+				id: "webapp",
 				height: "100%"
 			});
 

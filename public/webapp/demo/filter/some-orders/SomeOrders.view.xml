@@ -1,7 +1,7 @@
 <mvc:View xmlns:core="sap.ui.core"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    controllerName="website.demo.filter.some-orders.SomeOrders">
+    controllerName="webapp.demo.filter.some-orders.SomeOrders">
 
     <!-- List some orders in table -->
     <Table id="OrdersTable">
@@ -17,12 +17,12 @@
 
         <!-- Columns -->
         <columns>
-            <core:Fragment fragmentName="website.demo.binding.OrdersTableColumns"
+            <core:Fragment fragmentName="webapp.demo.binding.OrdersTableColumns"
                 type="XML" />
         </columns>
 
         <!-- Item contents -->
-        <core:Fragment fragmentName="website.demo.binding.OrdersTableItem"
+        <core:Fragment fragmentName="webapp.demo.binding.OrdersTableItem"
             type="XML" />
     </Table>
 

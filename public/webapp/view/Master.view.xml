@@ -1,7 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
     xmlns="sap.m"
-    controllerName="website.controller.Master">
+    controllerName="webapp.controller.Master">
   <Page id="master"
       title="Menu"
       icon="sap-icon://action"

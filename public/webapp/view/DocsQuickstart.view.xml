@@ -1,5 +1,5 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
-  xmlns:meteor-ui5="website.control"
+  xmlns:meteor-ui5="webapp.control"
   xmlns="sap.m">
     <Page id="DocsQuickstart" title="Quickstart" class="sapUiStdPage">
         <content>

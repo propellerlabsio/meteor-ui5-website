@@ -5,9 +5,9 @@ sap.ui.define([
 ], function(jQuery, Control, HTML) {
   "use strict";
 
-  jQuery.sap.require('website.lib.remarkable');
+  jQuery.sap.require('webapp.lib.remarkable');
 
-  return Control.extend("website.control.MarkdownViewer", {
+  return Control.extend("webapp.control.MarkdownViewer", {
     metadata: {
       properties: {
         markdownFile: {

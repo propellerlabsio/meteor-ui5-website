@@ -4,11 +4,11 @@ sap.ui.define([
   'sap/ui/model/Filter',
   'sap/ui/model/FilterOperator',
   'sap/ui/model/Sorter',
-  'website/model/formatter'
+  'webapp/model/formatter'
 ], function(Controller, MeteorModel, Filter, FilterOperator, Sorter, formatter) {
   "use strict";
 
-  var CController = Controller.extend("website.demo.compare.meteor.EmployeesMeteor", {
+  var CController = Controller.extend("webapp.demo.compare.meteor.EmployeesMeteor", {
 
     formatter: formatter,
 
