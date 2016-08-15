@@ -8,6 +8,8 @@ This guide will show you how to create an app that uses Meteor and UI5 in the mi
 1. Create a folder called `public`.
 1. In `public`, create a sub-folder called `webapp` for your UI5 code.
 1. Add the `meteor-ui5` package to your meteor project with `meteor add propellerlabsio:meteor-ui5`.
+1. Remove Blaze with `meteor remove blaze-html-templates`.		
+1. Add static-html support with `meteor add static-html`.
 1. Create a file in the `client` folder called `index.html` file with the following contents:
 
 ### `client/index.html`
