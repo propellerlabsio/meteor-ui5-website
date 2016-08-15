@@ -3,26 +3,24 @@
     xmlns="sap.m"
     controllerName="website.controller.Master">
   <Page id="master"
-      title="Menu"
+      title="Docs"
+      showNavButton="true"
+      navButtonPress="onPressBack"
       icon="sap-icon://action"
       class="sapUiStdPage">
     <content>
-      <List id="masterList"
+      <List id="masterListDocs"
           itemPress="onItemPress"
           mode="SingleSelectMaster">
         <items>
-          <StandardListItem id="demos"
-              title="Demos"
-              type="Navigation"
-              custom:to="demos" />
-          <StandardListItem id="tutorial"
-              title="Tutorial"
+          <StandardListItem id="quickstart"
+              title="Quickstart Guide"
               type="Active"
-              custom:to="tutorial" />
-          <StandardListItem id="docs"
-              title="Docs"
-              type="Navigation"
-              custom:to="docs" />
+              custom:to="docsQuickstart" />
+          <StandardListItem id="api-docs"
+              title="API docs"
+              type="Active"
+              custom:to="docsApi" />
         </items>
       </List>
     </content>

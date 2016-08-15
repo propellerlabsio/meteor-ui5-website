@@ -67,7 +67,15 @@
             }, {
                 "pattern": "docs",
                 "name": "docs",
-                "target": ["master", "docs"]
+                "target": ["masterDocs", "docs"]
+            }, {
+                "pattern": "docs/api",
+                "name": "docsApi",
+                "target": ["masterDocs", "docsApi"]
+            }, {
+                "pattern": "docs/quickstart",
+                "name": "docsQuickstart",
+                "target": ["masterDocs", "docsQuickstart"]
             }],
             "targets": {
                 "master": {
@@ -77,6 +85,11 @@
                 },
                 "masterDemos": {
                     "viewName": "MasterDemos",
+                    "controlAggregation": "masterPages",
+                    "viewLevel": "2"
+                },
+                "masterDocs": {
+                    "viewName": "MasterDocs",
                     "controlAggregation": "masterPages",
                     "viewLevel": "2"
                 },
@@ -94,6 +107,18 @@
                 },
                 "docs": {
                   "viewName": "Docs",
+                  "controlAggregation": "detailPages",
+                  "viewLevel": "2",
+                  "transition": "flip"
+                },
+                "docsApi": {
+                  "viewName": "DocsApi",
+                  "controlAggregation": "detailPages",
+                  "viewLevel": "2",
+                  "transition": "flip"
+                },
+                "docsQuickstart": {
+                  "viewName": "DocsQuickstart",
                   "controlAggregation": "detailPages",
                   "viewLevel": "2",
                   "transition": "flip"

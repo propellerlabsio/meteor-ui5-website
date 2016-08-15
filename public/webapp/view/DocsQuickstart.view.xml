@@ -1,0 +1,12 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+  xmlns:meteor-ui5="website.control"
+  xmlns="sap.m">
+    <Page id="DocsQuickstart" title="Quickstart" class="sapUiStdPage">
+        <content>
+          <!-- Quickstart Guide -->
+          <meteor-ui5:MarkdownViewer
+            class="sapUiResponsiveMargin"
+            markdownFile="/webapp/docs/Quickstart.md"/>
+        </content>
+    </Page>
+</mvc:View>
