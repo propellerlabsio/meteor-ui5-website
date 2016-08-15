@@ -6,9 +6,9 @@ This is the roadmap for the Meteor UI5 website:
 
 ### Next up
 
+1. Add basic route-based filtering to demos to support Binding and Filtering links in the Quickstart guide.
 1. Build tutorial around ToDo's - seems to be industry standard simple demo/tutorial app.
 1. Add intro page (Chhunly)
-1. Rework as unified shell app (Chhunly)
 
 ### v0.1
 
