@@ -45,12 +45,30 @@ sap.ui.define([
       var oList = oEvent.getSource();
       var oDemoItem = oList.getSelectedItem();
       var oItemData = oDemoItem.getBindingContext().getObject();
+      var oModel = this.getView().getModel("viewState");
 
       // Nav to demo selected
       this._oRouter.navTo("demo", {
         groupId: oItemData.groupId,
-        demoId: oItemData._id
+        demoId: oItemData._id,
+        "query": {
+          "groupId": oModel.getProperty("/query/groupId")
+        }
       });
+    },
+
+    onFilterSelected: function(oEvent){
+        var oItemSelected = oEvent.getParameters().item;
+        var sGroupId = oItemSelected.getBindingContext().getObject()._id;
+        var oModel = this.getView().getModel("viewState");
+
+        this._oRouter.navTo(this._sRouteName, {
+          "groupId": oModel.getProperty("/groupId"),
+          "demoId": oModel.getProperty("/demoId"),
+          "query": {
+            "groupId": sGroupId
+          }
+        });
     },
 
     onSearch: function(oEvent) {
@@ -79,12 +97,28 @@ sap.ui.define([
     _onRoutePatternMatched: function(oEvent) {
       // Store current route name and view state model
       this._sRouteName = oEvent.mParameters.name;
+      var oArguments = oEvent.getParameter("arguments");
+      var oModel = this.getView().getModel("viewState");
 
       // Store which is the currently selected demo in our viewModel
       if (this._sRouteName === "demo") {
-        var oModel = this.getView().getModel("viewState");
-        var oArguments = oEvent.getParameters().arguments;
+        oModel.setProperty("/groupId", oArguments.groupId);
         oModel.setProperty("/demoId", oArguments.demoId);
+      }
+
+      // Handle filtering of demos list based on optional query parameter
+      if (this._sRouteName === "demo" || this._sRouteName === "demos") {
+        var oQuery = oArguments["?query"];
+        oModel.setProperty("/query", oQuery);
+        var aFilters = [];
+        if (oQuery && oQuery.groupId) {
+          aFilters.push(new Filter({
+            path: "groupId",
+            operator: FilterOperator.EQ,
+            value1: oQuery.groupId
+          }));
+        }
+        this.byId("demosList").getBinding("items").filter(aFilters);
       }
     }
   });

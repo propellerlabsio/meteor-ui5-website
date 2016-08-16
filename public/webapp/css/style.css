@@ -3,6 +3,19 @@
     margin-top: 0px !important;
 }
 
+/*Remove browser scrollbars */
+body {
+ overflow-y: hidden;
+ overflow-x: hidden;
+}
+
+
+/*Set image size to not exceed to available area*/
+.imageToFit {
+  max-width:100%;
+  max-height:100%;
+}
+
 /*Set font (copied from SAP theme)*/
 .markdown {
   font-family: Arial,Helvetica,sans-serif;

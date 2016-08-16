@@ -50,8 +50,10 @@
           class="sapUiResponsiveMargin"
           markdownText="# Components"/>
         <FlexBox justifyContent="Center">
-          <Image src="art/MeteorUI5Diagram.png"
-              densityAware="false" />
+          <Image
+              class="sapUiResponsiveMargin imageToFit"
+              src="art/MeteorUI5Diagram.png"
+              densityAware="true" />
         </FlexBox>
 
       </VBox>

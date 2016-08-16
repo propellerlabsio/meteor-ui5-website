@@ -53,11 +53,11 @@
                 "name": "home",
                 "target": ["master", "home"]
             }, {
-                "pattern": "demos",
+                "pattern": "demos:?query:",
                 "name": "demos",
                 "target": ["masterDemos", "demosIntro"]
             }, {
-                "pattern": "demo/{groupId}/{demoId}",
+                "pattern": "demo/{groupId}/{demoId}:?query:",
                 "name": "demo",
                 "target": ["masterDemos", "demo"]
             }, {
