@@ -7,12 +7,27 @@
       showNavButton="true"
       navButtonPress="onPressBack"
       class="sapUiStdPage">
+    <headerContent>
+
+      <!-- Filter menu button -->
+      <MenuButton icon="sap-icon://filter">
+          <menu>
+              <Menu itemSelected="onFilterSelected" items="{/DemoGroups}">
+                  <MenuItem text="{title}"/>
+              </Menu>
+          </menu>
+      </MenuButton>
+    </headerContent>
     <subHeader>
+
+      <!-- Search field -->
       <Toolbar>
         <SearchField search="onSearch" />
       </Toolbar>
     </subHeader>
     <content>
+
+      <!-- List of demos -->
       <List id="demosList"
           itemPress="onDemoSelect"
           items="{
@@ -26,8 +41,8 @@
       		}"
           mode="SingleSelectMaster">
         <items>
-          <StandardListItem
-              title="{title}"
+          <!-- Item in demos list -->
+          <StandardListItem title="{title}"
               type="Active"
               selected="{= (${viewState>/demoId} === ${_id})}" />
         </items>
