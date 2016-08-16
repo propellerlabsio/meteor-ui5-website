@@ -40,6 +40,15 @@ sap.ui.define([
       });
     },
 
+    onClearFilterPress: function(){
+        // Nav to same route, with same parameters but no filter applied
+      var oModel = this.getView().getModel("viewState");
+      this._oRouter.navTo(this._sRouteName, {
+        groupId: oModel.getProperty("/groupId"),
+        demoId: oModel.getProperty("/demoId"),
+      });
+    },
+
     onDemoSelect: function(oEvent) {
       // Get demo data for selected item
       var oList = oEvent.getSource();
@@ -47,13 +56,11 @@ sap.ui.define([
       var oItemData = oDemoItem.getBindingContext().getObject();
       var oModel = this.getView().getModel("viewState");
 
-      // Nav to demo selected
+      // Nav to demo selected, preserving query parameters
       this._oRouter.navTo("demo", {
         groupId: oItemData.groupId,
         demoId: oItemData._id,
-        "query": {
-          "groupId": oModel.getProperty("/query/groupId")
-        }
+        "query": oModel.getProperty("/query")
       });
     },
 

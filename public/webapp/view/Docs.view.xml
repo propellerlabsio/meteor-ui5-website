@@ -1,8 +1,5 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
   xmlns="sap.m">
     <Page id="Docs" title="Docs" class="sapUiStdPage">
-        <content>
-            <Text text="Docs coming soon..."/>
-        </content>
     </Page>
 </mvc:View>

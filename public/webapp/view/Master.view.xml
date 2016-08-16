@@ -22,7 +22,7 @@
           <StandardListItem id="docs"
               title="Docs"
               type="Navigation"
-              custom:to="docs" />
+              custom:to="docsQuickstart" />
         </items>
       </List>
     </content>

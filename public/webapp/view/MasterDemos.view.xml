@@ -10,12 +10,21 @@
     <headerContent>
 
       <!-- Filter menu button -->
-      <MenuButton icon="sap-icon://filter">
-          <menu>
-              <Menu itemSelected="onFilterSelected" items="{/DemoGroups}">
-                  <MenuItem text="{title}"/>
-              </Menu>
-          </menu>
+      <Button
+          icon="sap-icon://clear-filter"
+          visible="{= (${viewState>/query/groupId} !== undefined)}"
+          type="Emphasized"
+          press="onClearFilterPress"/>
+      <MenuButton
+          icon="sap-icon://filter"
+          visible="{= (${viewState>/query/groupId} === undefined)}"
+          buttonMode="Regular">
+        <menu>
+          <Menu itemSelected="onFilterSelected"
+              items="{/DemoGroups}">
+            <MenuItem text="{title}" />
+          </Menu>
+        </menu>
       </MenuButton>
     </headerContent>
     <subHeader>

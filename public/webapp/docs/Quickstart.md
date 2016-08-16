@@ -51,4 +51,4 @@ This guide will show you how to create an app that uses Meteor and UI5 in the mi
 1. Create your UI5 user interface code in the `public/webapp` folder in the normal manner. Adjust the above `index.html` file to load your component or main view.
 1. In your manifest, Component or view controller, create or set a model of type  `meteor-ui5.model.mongo.Model` with no arguments.  This will give you access to any collection that is available on the client.
 1. In your UI5 views, you can bind to any Meteor collection using the following syntax:
-`/<MongoCollectionName><(DocumentId)>/<PropertyPath>`.  Refer to the [Binding](/#/demo/binding/) and [Filtering](/#/demo/filter) demos for examples.
+`/<MongoCollectionName><(DocumentId)>/<PropertyPath>`.  Refer to the [Binding](/#/demos?groupId=binding) and [Filtering](/#/demos?groupId=filter) demos for examples.
