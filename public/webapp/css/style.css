@@ -62,7 +62,6 @@ body {
   margin-bottom: .25em;
 }
 
-
 /*Style block quotes with identation and left border*/
 .markdown blockquote {
   margin-top: 10px;
@@ -83,6 +82,14 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-top: 1em;
+    background-color: white;
+}
+
+/*Table contents are too cramped*/
+.markdown td {
+  line-height: 135%;
+  margin-bottom: .25em;
+  border-top:  1px solid #eee;
 }
 
 /* Table content padding */

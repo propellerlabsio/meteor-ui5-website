@@ -31,7 +31,8 @@
           <!-- Meteor summary intro -->
           <HBox alignItems="Center">
             <Image src="/art/logos/meteor-full.png"
-                width="80px"></Image>
+                press="onPressGotoMeteor"
+                width="100px"></Image>
             <meteor-ui5:MarkdownViewer
               markdownFile="/webapp/docs/MeteorSummary.md"/>
           </HBox>
@@ -39,7 +40,8 @@
           <!-- UI5 summary intro -->
           <HBox alignItems="Center">
             <Image src="/art/logos/openui5-full.png"
-                width="80px"></Image>
+                press="onPressGotoUi5"
+                width="100px"></Image>
             <meteor-ui5:MarkdownViewer
               markdownFile="/webapp/docs/OpenUI5Summary.md"/>
           </HBox>
