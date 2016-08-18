@@ -41,11 +41,6 @@ if (Meteor.isServer) {
     return employees.find();
   });
 
-  // Publish orders
-  Meteor.publish('orders', () => {
-    return orders.find();
-  });
-
   // Publish  orders and associated customers
   Meteor.publishComposite('ordersWithCustomers', {
     find: function() {

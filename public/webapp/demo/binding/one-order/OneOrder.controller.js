@@ -16,7 +16,7 @@ sap.ui.define([
       this.getView().setModel(oModel);
 
       // Subscribe to orders
-      this._subscription = Meteor.subscribe('orders');
+      this._subscription = Meteor.subscribe('ordersWithCustomers');
     },
 
     onExit: function(){
