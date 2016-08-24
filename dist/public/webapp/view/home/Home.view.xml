@@ -22,7 +22,7 @@
         <!-- Intro text -->
         <meteor-ui5:MarkdownViewer
           class="sapUiResponsiveMargin"
-          markdownFile="/webapp/docs/MeteorUI5Intro.md"/>
+          markdownFile="webapp/view/home/MeteorUI5Intro.md"/>
 
         <!-- Meteor + UI5 summary row     -->
         <l:Grid hSpacing="2"
@@ -34,7 +34,7 @@
                 press="onPressGotoMeteor"
                 width="100px"></Image>
             <meteor-ui5:MarkdownViewer
-              markdownFile="/webapp/docs/MeteorSummary.md"/>
+              markdownFile="webapp/view/home/MeteorSummary.md"/>
           </HBox>
 
           <!-- UI5 summary intro -->
@@ -43,18 +43,18 @@
                 press="onPressGotoUi5"
                 width="100px"></Image>
             <meteor-ui5:MarkdownViewer
-              markdownFile="/webapp/docs/OpenUI5Summary.md"/>
+              markdownFile="webapp/view/home/OpenUI5Summary.md"/>
           </HBox>
         </l:Grid>
 
-        <!-- Meteor UI5 diagram -->
+        <!-- Meteor UI5 Packages -->
         <meteor-ui5:MarkdownViewer
           class="sapUiResponsiveMargin"
-          markdownText="# Components"/>
+          markdownText="# Packages"/>
         <FlexBox justifyContent="Center">
           <Image
               class="sapUiResponsiveMargin imageToFit"
-              src="art/MeteorUI5Diagram.png"
+              src="art/PackagesDiagram.png"
               densityAware="true" />
         </FlexBox>
 

@@ -94,7 +94,7 @@
                     "viewLevel": "2"
                 },
                 "home": {
-                    "viewName": "Home",
+                    "viewName": "home/Home",
                     "controlAggregation": "detailPages",
                     "viewLevel": "1",
                     "transition": "flip"

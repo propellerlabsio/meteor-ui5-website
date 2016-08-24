@@ -1,14 +1,19 @@
 # Meteor UI5 Website
 
+## Project folder structure
+| Path | Purpose |
+| ---- | ------- |
+| `dist` | The website.  All `meteor` commands should be run in this folder. Note we don't build the JavaScript in this folder from source but instead rely on the meteor build tool. We have the website in this separate `dist` folder so we don't have to bundle source art assets with the distribution when we deploy it to the web server.  This structure will also allow us to incorporate grunt tasks into the build or distribution process at a later time. |
+| `src` | All source files used that go through some process before arriving in the `dist` folder. |
+| `src/art` | Native artwork source files from which `.png` files and other images are produced. |
+
 ## Roadmap
 
 This is the roadmap for the Meteor UI5 website:
 
 ### Next up
 
-1. Add basic route-based filtering to demos to support Binding and Filtering links in the Quickstart guide.
 1. Build tutorial around ToDo's - seems to be industry standard simple demo/tutorial app.
-1. Add intro page (Chhunly)
 
 ### v0.1
 
