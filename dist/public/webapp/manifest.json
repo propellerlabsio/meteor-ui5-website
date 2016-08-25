@@ -55,7 +55,7 @@
             }, {
                 "pattern": "demos:?query:",
                 "name": "demos",
-                "target": ["masterDemos", "demosIntro"]
+                "target": ["masterDemos", "demos"]
             }, {
                 "pattern": "demo/{groupId}/{demoId}:?query:",
                 "name": "demo",
@@ -63,7 +63,11 @@
             }, {
                 "pattern": "tutorial",
                 "name": "tutorial",
-                "target": ["master", "tutorial"]
+                "target": ["masterTutorial", "tutorial"]
+            }, {
+                "pattern": "tutorial/quickstart",
+                "name": "tutorialQuickstart",
+                "target": ["masterTutorial", "docsQuickstart"]
             }, {
                 "pattern": "docs",
                 "name": "docs",
@@ -84,12 +88,17 @@
                     "viewLevel": "1"
                 },
                 "masterDemos": {
-                    "viewName": "demos/MasterDemos",
+                    "viewName": "demos/Master",
+                    "controlAggregation": "masterPages",
+                    "viewLevel": "2"
+                },
+                "masterTutorial": {
+                    "viewName": "tutorial/Master",
                     "controlAggregation": "masterPages",
                     "viewLevel": "2"
                 },
                 "masterDocs": {
-                    "viewName": "docs/MasterDocs",
+                    "viewName": "docs/Master",
                     "controlAggregation": "masterPages",
                     "viewLevel": "2"
                 },
@@ -99,14 +108,20 @@
                     "viewLevel": "1",
                     "transition": "flip"
                 },
-                "demosIntro": {
-                    "viewName": "demos/Demos",
+                "demos": {
+                    "viewName": "demos/Introduction",
+                    "controlAggregation": "detailPages",
+                    "viewLevel": "2",
+                    "transition": "flip"
+                },
+                "demo": {
+                    "viewName": "demos/Demo",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"
                 },
                 "docs": {
-                  "viewName": "docs/Docs",
+                  "viewName": "docs/Introduction",
                   "controlAggregation": "detailPages",
                   "viewLevel": "2",
                   "transition": "flip"
@@ -123,16 +138,10 @@
                   "viewLevel": "2",
                   "transition": "flip"
                 },
-                "demo": {
-                    "viewName": "demos/Demo",
+                "tutorial": {
+                    "viewName": "tutorial/Introduction",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
-                    "transition": "flip"
-                },
-                "tutorial": {
-                    "viewName": "Tutorial",
-                    "controlAggregation": "detailPages",
-                    "viewLevel": "1",
                     "transition": "flip"
                 }
             }

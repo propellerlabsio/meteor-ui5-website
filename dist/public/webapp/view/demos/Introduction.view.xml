@@ -7,7 +7,7 @@
       class="sapUiStdPage">
       <custom:MarkdownViewer
         class="sapUiResponsiveMargin"
-        markdownFile="webapp/view/demos/DemosIntroduction.md"/>
+        markdownFile="webapp/view/demos/Introduction.md"/>
   </Page>
 
 </mvc:View>
