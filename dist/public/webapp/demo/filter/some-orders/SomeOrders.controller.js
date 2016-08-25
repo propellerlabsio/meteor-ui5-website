@@ -2,7 +2,7 @@ sap.ui.define([
   'sap/ui/core/mvc/Controller',
   'sap/ui/model/Filter',
   'sap/ui/model/FilterOperator',
-  'meteor-ui5/model/mongo/Model',
+  'meteor-ui5-mongo/model/Model',
   'webapp/model/formatter'
 ], function(Controller, Filter, FilterOperator, MeteorModel, formatter) {
   "use strict";

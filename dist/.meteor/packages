@@ -20,4 +20,5 @@ static-html@1.1.11
 cfs:http-methods
 http@1.2.8
 reywood:publish-composite
-propellerlabsio:meteor-ui5@0.1.0
+propellerlabsio:meteor-ui5-debug
+propellerlabsio:meteor-ui5-mongo

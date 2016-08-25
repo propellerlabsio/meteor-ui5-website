@@ -1,6 +1,6 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
-  'meteor-ui5/model/mongo/Model',
+  'meteor-ui5-mongo/model/Model',
   'sap/ui/model/Filter',
   'sap/ui/model/FilterOperator',
   'sap/ui/model/Sorter',
