@@ -1,0 +1,25 @@
+[{
+  "tutorial": "mongo",
+  "step": "01",
+  "title": "Views"
+},{
+  "tutorial": "mongo",
+  "step": "02",
+  "title": "Collections"
+},{
+  "tutorial": "mongo",
+  "step": "03",
+  "title": "Create"
+},{
+  "tutorial": "mongo",
+  "step": "04",
+  "title": "Update"
+},{
+  "tutorial": "mongo",
+  "step": "05",
+  "title": "Delete"
+},{
+  "tutorial": "mongo",
+  "step": "06",
+  "title": "UI-State"
+}]

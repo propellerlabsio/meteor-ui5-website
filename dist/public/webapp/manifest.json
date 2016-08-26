@@ -69,6 +69,10 @@
                 "name": "tutorialQuickstart",
                 "target": ["masterTutorial", "docsQuickstart"]
             }, {
+                "pattern": "tutorial/{tutorial}/step/{step}",
+                "name": "tutorialStep",
+                "target": ["masterTutorial", "tutorialStep"]
+            }, {
                 "pattern": "docs",
                 "name": "docs",
                 "target": ["masterDocs", "docs"]
@@ -127,19 +131,25 @@
                   "transition": "flip"
                 },
                 "docsApi": {
-                  "viewName": "docs/DocsApi",
+                  "viewName": "docs/Api",
                   "controlAggregation": "detailPages",
                   "viewLevel": "2",
                   "transition": "flip"
                 },
                 "docsQuickstart": {
-                  "viewName": "docs/DocsQuickstart",
+                  "viewName": "docs/Quickstart",
                   "controlAggregation": "detailPages",
                   "viewLevel": "2",
                   "transition": "flip"
                 },
                 "tutorial": {
                     "viewName": "tutorial/Introduction",
+                    "controlAggregation": "detailPages",
+                    "viewLevel": "2",
+                    "transition": "flip"
+                },
+                "tutorialStep": {
+                    "viewName": "tutorial/Step",
                     "controlAggregation": "detailPages",
                     "viewLevel": "2",
                     "transition": "flip"

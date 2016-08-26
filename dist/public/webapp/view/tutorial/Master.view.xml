@@ -1,7 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-    controllerName="webapp.controller.MasterTutorial">
+    controllerName="webapp.controller.tutorial.Master">
   <Page id="master"
       title="Tutorial"
       icon="sap-icon://action"
@@ -10,9 +10,9 @@
       class="sapUiStdPage">
     <content>
 
-      <!-- List of tutorial steps -->
-      <List id="demosList"
-          itemPress="onItemPress"
+      <!-- List of tutorial fixed pages -->
+      <List id="tutorialsListFixed"
+          itemPress="onFixedItemPress"
           mode="SingleSelectMaster">
         <items>
           <StandardListItem id="introduction"
@@ -23,32 +23,28 @@
               title="Quickstart"
               type="Active"
               custom:to="tutorialQuickstart" />
-          <StandardListItem id="step01"
-              title="01 - Views"
-              type="Active"
-              custom:to="tutorialStep01" />
-          <StandardListItem id="step02"
-              title="02 - Collections"
-              type="Active"
-              custom:to="tutorialStep02" />
-          <StandardListItem id="step03"
-              title="03 - Create"
-              type="Active"
-              custom:to="tutorialStep03" />
-          <StandardListItem id="step04"
-              title="04 - Update"
-              type="Active"
-              custom:to="tutorialStep04" />
-          <StandardListItem id="step05"
-              title="05 - Delete"
-              type="Active"
-              custom:to="tutorialStep05" />
-          <StandardListItem id="step06"
-              title="06 - UI State"
-              type="Active"
-              custom:to="tutorialStep06" />
         </items>
       </List>
+
+      <!-- List of tutorial steps from database -->
+      <List id="tutorialsListSteps"
+          itemPress="onStepPress"
+          items="{
+      			path: '/Tutorials',
+      			sorter: {
+      				path: 'step',
+      				descending: false
+      			}
+      		}"
+          mode="SingleSelectMaster">
+        <items>
+          <!-- Item in demos list -->
+          <StandardListItem title="{step}: {title}"
+              type="Active"
+              selected="{= (${viewState>/demoId} === ${_id})}" />
+        </items>
+      </List>
+
     </content>
   </Page>
 </mvc:View>

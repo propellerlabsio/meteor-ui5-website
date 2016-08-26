@@ -1,0 +1,22 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+    xmlns:custom="webapp.control"
+    xmlns="sap.m"
+    controllerName="webapp.controller.tutorial.Step">
+
+  <Page id="compareModel"
+      binding="{viewState>/}"
+      title="{viewState>title}"
+      class="sapUiStdPage">
+      <!-- GitHub-Mark-64px.png -->
+    <headerContent>
+			<Button press="onPressShowSourceOnGithub" icon="art/logos/GitHub-Mark-32px.png" tooltip="View source on Github." />
+		</headerContent>
+    <content>
+
+      <!-- Step instructions -->
+      <custom:MarkdownViewer
+        class="sapUiResponsiveMargin"
+        markdownFile="/docs/tutorial/{viewState>step}-{viewState>title}.md" />
+    </content>
+  </Page>
+</mvc:View>

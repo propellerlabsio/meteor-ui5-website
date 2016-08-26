@@ -6,7 +6,7 @@
           <!-- Quickstart Guide -->
           <meteor-ui5:MarkdownViewer
             class="sapUiResponsiveMargin"
-            markdownFile="/webapp/docs/Quickstart.md"/>
+            markdownFile="docs/Quickstart.md"/>
         </content>
     </Page>
 </mvc:View>

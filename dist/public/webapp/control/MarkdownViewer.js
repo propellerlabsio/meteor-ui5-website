@@ -29,18 +29,27 @@ sap.ui.define([
     init: function() {
       this._oHTML = new HTML();
       this.setAggregation("_html", this._oHTML);
-      this.setBusy(true);
     },
 
     onBeforeRendering: function() {
-      // Only load once - these are static markdown files / texts
-      if (this._bMarkdownLoaded) {
-        return;
-      }
 
       // Get values/references we need
       const sMarkdownText = this.getProperty("markdownText");
       const sMarkdownFile = this.getProperty("markdownFile");
+      const sRequestedMarkdown = sMarkdownText || sMarkdownFile;
+
+      if (!sMarkdownText && !sMarkdownFile) {
+        // Nothing to load
+        this._oHTML.setContent();
+        return;
+      } else if (this._sLoadedMarkdown === sRequestedMarkdown) {
+        // Already loaded
+        return;
+      }
+
+      // Remember what we are loading so we don't try to load it again
+      this.setBusy(true);
+      this._sLoadedMarkdown = sRequestedMarkdown;
 
       // Instantiate new remarkable instance with syntax highlighting
       // provided by Highlight.js
@@ -78,16 +87,22 @@ sap.ui.define([
         // Load code into dom element
         this._oHTML.setContent(md.render(sMarkdownText));
         this.setBusy(false);
-        this._bMarkdownLoaded = true;
       } else {
         // Use jquery to load code from url in markdownFile property
         const that = this;
         jQuery.get(sMarkdownFile, function(data) {
+          if (data.substring(0, 15) === "<!DOCTYPE html>") {
+            // Equivalent of 404 - not found.  Meteor returns the whole client
+            // html.  Since this may be a subscription/timing issue, dont'
+            // treat it as an error.  Message will appear only in debug mode.
+            jQuery.sap.log.warning("Unable to load markdown file: " + sMarkdownFile );
+            return;
+          }
+
           // Load code into dom element
           that._oHTML.setContent(md.render(data));
 
           that.setBusy(false);
-          that._bMarkdownLoaded = true;
         }, "text");
       }
     },

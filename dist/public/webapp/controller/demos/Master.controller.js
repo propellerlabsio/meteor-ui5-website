@@ -7,7 +7,7 @@ sap.ui.define([
 ], function(Controller, JSONModel, Filter, FilterOperator, GroupHeaderListItem) {
   "use strict";
 
-  var CController = Controller.extend("webapp.controller.MasterDemos", {
+  var CController = Controller.extend("webapp.controller.demos.Master", {
 
     onInit: function() {
       this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);

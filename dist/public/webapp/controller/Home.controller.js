@@ -24,7 +24,6 @@ sap.ui.define([
     onPressGotoMeteor: function() {
       var win = window.open('https://www.meteor.com/', '_blank');
       win.focus();
-
     },
 
   });
