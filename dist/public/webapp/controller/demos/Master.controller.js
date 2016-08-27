@@ -20,12 +20,6 @@ sap.ui.define([
       // Set up route handling
       this._oRouter.attachRoutePatternMatched(this._onRoutePatternMatched, this);
 
-      // Subscribe to all demos TODO test bookmarked link to demo page
-      this._subscription = Meteor.subscribe("demos"); // , this._loadDemoForCurrentRoute.bind(this));
-    },
-
-    onExit: function() {
-      this._subscription.stop();
     },
 
     onPressBack: function() {

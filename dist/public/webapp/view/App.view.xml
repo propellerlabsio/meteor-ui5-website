@@ -1,10 +1,8 @@
 <mvc:View
   controllerName="webapp.controller.App"
   xmlns:mvc="sap.ui.core.mvc"
-  xmlns:l="sap.ui.layout"
   xmlns:u="sap.ui.unified"
-  xmlns="sap.m"
-  class="viewPadding">
+  xmlns="sap.m">
   <u:Shell
     id="webappShell"
     icon="/art/logos/meteor-ui5.png">

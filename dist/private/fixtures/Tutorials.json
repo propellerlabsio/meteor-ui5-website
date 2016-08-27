@@ -1,5 +1,9 @@
 [{
   "tutorial": "mongo",
+  "step": "00",
+  "title": "Introduction"
+},{
+  "tutorial": "mongo",
   "step": "01",
   "title": "Views"
 },{

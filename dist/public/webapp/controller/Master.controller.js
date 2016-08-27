@@ -28,7 +28,15 @@
 					})
 
 					// Navigate to target route
-					this._oRouter.navTo(sNavTo);
+					if (sNavTo === 'tutorial'){
+						this._oRouter.navTo(sNavTo,{
+							tutorial: 'mongo',
+							step: '00'
+						});
+
+					} else {
+						this._oRouter.navTo(sNavTo);
+					}
 				},
 
 				_onRoutePatterMatched(oEvent){

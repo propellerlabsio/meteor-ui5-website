@@ -20,12 +20,6 @@ sap.ui.define([
       // Set up route handling
       this._oRouter.attachRoutePatternMatched(this._onRoutePatternMatched, this);
 
-      // Subscribe to all tutorials TODO test bookmarked link to tutorial page
-      this._subscription = Meteor.subscribe("tutorials");
-    },
-
-    onExit: function() {
-      this._subscription.stop();
     },
 
     onPressBack: function() {
@@ -57,7 +51,7 @@ sap.ui.define([
       var oModel = this.getView().getModel("viewState");
 
       // Nav to demo selected, preserving query parameters
-      this._oRouter.navTo("tutorialStep", {
+      this._oRouter.navTo("tutorial", {
         tutorial: oItemData.tutorial,
         step: oItemData.step
       });

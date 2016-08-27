@@ -10,22 +10,6 @@
       class="sapUiStdPage">
     <content>
 
-      <!-- List of tutorial fixed pages -->
-      <List id="tutorialsListFixed"
-          itemPress="onFixedItemPress"
-          mode="SingleSelectMaster">
-        <items>
-          <StandardListItem id="introduction"
-              title="Introduction"
-              type="Active"
-              custom:to="tutorial" />
-          <StandardListItem id="quickstart"
-              title="Quickstart"
-              type="Active"
-              custom:to="tutorialQuickstart" />
-        </items>
-      </List>
-
       <!-- List of tutorial steps from database -->
       <List id="tutorialsListSteps"
           itemPress="onStepPress"
@@ -39,9 +23,15 @@
           mode="SingleSelectMaster">
         <items>
           <!-- Item in demos list -->
-          <StandardListItem title="{step}: {title}"
+          <ObjectListItem
               type="Active"
-              selected="{= (${viewState>/demoId} === ${_id})}" />
+              intro="{= (${step} !== '00') ? 'Step ' + ${step} : ''}"
+              title="{title}"
+              selected="{= (${viewState>/demoId} === ${_id})}">
+              <attributes>
+
+              </attributes>
+          </ObjectListItem>
         </items>
       </List>
 

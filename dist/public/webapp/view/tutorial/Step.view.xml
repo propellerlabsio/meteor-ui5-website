@@ -7,10 +7,6 @@
       binding="{viewState>/}"
       title="{viewState>title}"
       class="sapUiStdPage">
-      <!-- GitHub-Mark-64px.png -->
-    <headerContent>
-			<Button press="onPressShowSourceOnGithub" icon="art/logos/GitHub-Mark-32px.png" tooltip="View source on Github." />
-		</headerContent>
     <content>
 
       <!-- Step instructions -->
@@ -18,5 +14,27 @@
         class="sapUiResponsiveMargin"
         markdownFile="/docs/tutorial/{viewState>step}-{viewState>title}.md" />
     </content>
+    <footer>
+      <Toolbar>
+            <Button
+              press="onPressPreviousStep"
+              icon="sap-icon://navigation-left-arrow"
+              text="Previous"/>
+            <ToolbarSpacer />
+			     <Button
+             press="onPressShowSourceOnGithub"
+             icon="art/icons/GitHub-Mark-Light-32px.png"
+             iconFirst="false"
+             text="View source"
+             iconDensityAware="false"
+             tooltip="View source on Github." />
+            <ToolbarSpacer />
+            <Button
+              type="Emphasized"
+              press="onPressNextStep"
+              icon="sap-icon://navigation-right-arrow"
+              text="Next"/>
+      </Toolbar>
+    </footer>
   </Page>
 </mvc:View>

@@ -61,16 +61,8 @@
                 "name": "demo",
                 "target": ["masterDemos", "demo"]
             }, {
-                "pattern": "tutorial",
-                "name": "tutorial",
-                "target": ["masterTutorial", "tutorial"]
-            }, {
-                "pattern": "tutorial/quickstart",
-                "name": "tutorialQuickstart",
-                "target": ["masterTutorial", "docsQuickstart"]
-            }, {
                 "pattern": "tutorial/{tutorial}/step/{step}",
-                "name": "tutorialStep",
+                "name": "tutorial",
                 "target": ["masterTutorial", "tutorialStep"]
             }, {
                 "pattern": "docs",

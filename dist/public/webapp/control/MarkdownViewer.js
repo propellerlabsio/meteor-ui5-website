@@ -85,7 +85,7 @@ sap.ui.define([
       // If markdown code provided, load it into dom element directly
       if (sMarkdownText) {
         // Load code into dom element
-        this._oHTML.setContent(md.render(sMarkdownText));
+        this._oHTML.setContent("<div>" + md.render(sMarkdownText) + "</div>");
         this.setBusy(false);
       } else {
         // Use jquery to load code from url in markdownFile property
@@ -100,7 +100,7 @@ sap.ui.define([
           }
 
           // Load code into dom element
-          that._oHTML.setContent(md.render(data));
+          that._oHTML.setContent("<div>" + md.render(data) + "</div>");
 
           that.setBusy(false);
         }, "text");
