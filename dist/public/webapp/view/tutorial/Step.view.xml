@@ -18,22 +18,19 @@
       <Toolbar>
             <Button
               press="onPressPreviousStep"
-              icon="sap-icon://navigation-left-arrow"
-              text="Previous"/>
+              icon="sap-icon://navigation-left-arrow"/>
             <ToolbarSpacer />
 			     <Button
              press="onPressShowSourceOnGithub"
              icon="art/icons/GitHub-Mark-Light-32px.png"
              iconFirst="false"
-             text="View source"
              iconDensityAware="false"
              tooltip="View source on Github." />
             <ToolbarSpacer />
             <Button
               type="Emphasized"
               press="onPressNextStep"
-              icon="sap-icon://navigation-right-arrow"
-              text="Next"/>
+              icon="sap-icon://navigation-right-arrow"/>
       </Toolbar>
     </footer>
   </Page>
