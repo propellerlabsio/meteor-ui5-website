@@ -7,7 +7,7 @@ You can view the full source code for any step on Github by pressing the ![Githu
 Whilst it's not required that you have Meteor or UI5 experience, this tutorial doesn't seek to teach you either of those technologies.  We will link you to other resources for learning more about Meteor or UI5 at the end of the tutorial.
 
 ## Creating a project.
-Before continuing, please use the [Quickstart guide](/#/docs/quickstart) to create a new Meteor-UI5 project for this tutorial.
+Before continuing, please use the [Quickstart guide](/#/docs/quickstart) to create a new Meteor-UI5 project for this tutorial.  Make sure you test it per the instructions in the guide.
 
 ## Next
-When you have created your project, you can proceed to [Step 1](/#/tutorial/mongo/step/01).
+When you have created and tested your project, you can proceed to [Step 1](/#/tutorial/mongo/step/01) where we'll start to add some real functionality to our project.
