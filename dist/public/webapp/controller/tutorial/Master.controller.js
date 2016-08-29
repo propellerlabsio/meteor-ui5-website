@@ -4,12 +4,12 @@ sap.ui.define([
   'sap/ui/model/Filter',
   'sap/ui/model/FilterOperator',
   'sap/m/GroupHeaderListItem',
-], function(Controller, JSONModel, Filter, FilterOperator, GroupHeaderListItem) {
+], function (Controller, JSONModel, Filter, FilterOperator, GroupHeaderListItem) {
   "use strict";
 
   var CController = Controller.extend("webapp.controller.tutorial.Master", {
 
-    onInit: function() {
+    onInit: function () {
       this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 
       // Set up local model for view state
@@ -22,42 +22,25 @@ sap.ui.define([
 
     },
 
-    onPressBack: function() {
-      this._oRouter.navTo("home");
+    onPressBack: function () {
+      window.history.back();
     },
 
-		onFixedItemPress: function(oEvent) {
-		  // Get custom data from list item
-		  const aCustomData = oEvent.getParameter("listItem").getCustomData();
-		  let sNavTo;
-		  aCustomData.forEach((data) => {
-		    const value = data.getValue();
-		    switch (data.getKey()) {
-		      case "to":
-		        sNavTo = value;
-		        break;
-		    }
-		  })
-
-		  // Navigate to target route
-		  this._oRouter.navTo(sNavTo);
-		},
-
-  onStepPress: function(oEvent) {
+    onStepPress: function (oEvent) {
       // Get tutorial data for selected item
       var oList = oEvent.getSource();
       var oItem = oList.getSelectedItem();
       var oItemData = oItem.getBindingContext().getObject();
       var oModel = this.getView().getModel("viewState");
 
-      // Nav to demo selected, preserving query parameters
+      // Nav to selected step
       this._oRouter.navTo("tutorial", {
         tutorial: oItemData.tutorial,
         step: oItemData.step
-      });
+      }, true);
     },
 
-    _onRoutePatternMatched: function(oEvent) {
+    _onRoutePatternMatched: function (oEvent) {
       // Store current route name and view state model
       this._sRouteName = oEvent.mParameters.name;
       var oArguments = oEvent.getParameter("arguments");

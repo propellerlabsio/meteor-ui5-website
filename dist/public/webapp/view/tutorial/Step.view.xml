@@ -13,12 +13,15 @@
       <custom:MarkdownViewer
         class="sapUiResponsiveMargin"
         markdownFile="/docs/tutorial/{viewState>step}-{viewState>title}.md" />
+        <Text text=""/> 
     </content>
     <footer>
       <Toolbar>
             <Button
               press="onPressPreviousStep"
-              icon="sap-icon://navigation-left-arrow"/>
+              enabled="{= ${viewState>step} !== '00'}"
+              icon="sap-icon://navigation-left-arrow"
+              tooltip="Go to previous step"/>
             <ToolbarSpacer />
 			     <Button
              press="onPressShowSourceOnGithub"
@@ -30,7 +33,9 @@
             <Button
               type="Emphasized"
               press="onPressNextStep"
-              icon="sap-icon://navigation-right-arrow"/>
+              enabled="{= !${viewState>isLastStep} }"
+              icon="sap-icon://navigation-right-arrow"
+              tooltip="Go to next step"/>
       </Toolbar>
     </footer>
   </Page>

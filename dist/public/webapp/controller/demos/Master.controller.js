@@ -23,7 +23,7 @@ sap.ui.define([
     },
 
     onPressBack: function() {
-      this._oRouter.navTo("home");
+      window.history.back();
     },
 
     getGroupHeader: function(oGroup) {

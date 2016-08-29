@@ -78,7 +78,10 @@ sap.ui.getCore().attachInit(function() {
     }).placeAt("content");
 });
 ```
-In here we define what should happen when UI5 is initialized.  We've replaced our simple 'Hello World' message with the view we created earlier.  When you run your app you should now see this page:
+In here we define what should happen when UI5 is initialized.  We've replaced our simple 'Hello World' message with the view we created earlier.  
+
+## Testing
+When you run your app you should now see this page:
 
 ![Step 01 Completed](/docs/tutorial/01-Views.png "Step 01 Completed")
 

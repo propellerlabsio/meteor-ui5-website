@@ -27,7 +27,7 @@
               type="Active"
               intro="{= (${step} !== '00') ? 'Step ' + ${step} : ''}"
               title="{title}"
-              selected="{= (${viewState>/demoId} === ${_id})}">
+              selected="{= (${viewState>/step} === ${step})}">
               <attributes>
 
               </attributes>

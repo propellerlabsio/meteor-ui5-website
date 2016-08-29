@@ -27,6 +27,38 @@ sap.ui.define([
       win.focus();
     },
 
+    onPressNextStep: function(){
+      // Nav to next step
+      var oCurrentStep = this.getView().getModel("viewState").getProperty("/");
+      var iCurrentStepNumber = parseInt(oCurrentStep.step);
+      var iNextStepNumber = iCurrentStepNumber + 1;
+      var sNextStepNumber = iNextStepNumber.toString();
+      if (sNextStepNumber.length === 1){
+        sNextStepNumber = "0" + sNextStepNumber;
+      }
+
+      this._oRouter.navTo("tutorial", {
+        tutorial: oCurrentStep.tutorial,
+        step: sNextStepNumber 
+      });
+    },
+
+    onPressPreviousStep: function(){
+      // Nav to previous step
+      var oCurrentStep = this.getView().getModel("viewState").getProperty("/");
+      var iCurrentStepNumber = parseInt(oCurrentStep.step);
+      var iPreviousStepNumber = iCurrentStepNumber - 1;
+      var sPreviousStepNumber = iPreviousStepNumber.toString();
+      if (sPreviousStepNumber.length === 1){
+        sPreviousStepNumber = "0" + sPreviousStepNumber;
+      }
+
+      this._oRouter.navTo("tutorial", {
+        tutorial: oCurrentStep.tutorial,
+        step: sPreviousStepNumber 
+      });
+    },
+
     _onRoutePatternMatched: function(oEvent) {
       // Store current route name and view state model
       this._sRouteName = oEvent.mParameters.name;
@@ -40,8 +72,11 @@ sap.ui.define([
     },
 
     _loadStepForCurrentRoute(sTutorial, sStep) {
+
+      var oTutorials = Mongo.Collection.get("Tutorials");
+
       // Get tutorial step
-      var oStep = Mongo.Collection.get("Tutorials").findOne({
+      var oStep = oTutorials.findOne({
         tutorial: sTutorial,
         step: sStep
       });
@@ -53,6 +88,14 @@ sap.ui.define([
       // Store in view model for view property binding
       const oModel = this.getView().getModel("viewState");
       oModel.setProperty("/", oStep);
+
+      // Store the total number of steps in the view model
+      var iCount = oTutorials.find({tutorial: sTutorial}).count();
+      var bIsLastStep = false;
+      if (iCount - 1 === parseInt(oStep.step)){
+        bIsLastStep = true;
+      }
+      oModel.setProperty("/isLastStep", bIsLastStep);
     }
 
   });
