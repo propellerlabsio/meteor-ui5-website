@@ -2,7 +2,7 @@
 In the [previous step](/#/tutorial/mongo/step/00) you should have created a new project.  Now we will add a simple UI5 view to it with some fixed example data.
 
 ## View
-Create a file called `Tasks.view.xml` in the `client/webapp` folder with the following contents:
+Create a file called `Tasks.view.xml` in the `public/webapp` folder with the following contents:
 ```xml
 <mvc:View controllerName="webapp.Tasks"
 				height="100%"
@@ -33,7 +33,7 @@ This view is a simple page with a list.  The items in the list are bound to some
 
 ## View controller
 Now create a file called `Tasks.controller.js` in the `client/webapp` folder with the following contents:
-```js 
+```js
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
   'sap/ui/model/json/JSONModel'
