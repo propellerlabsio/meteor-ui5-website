@@ -9,6 +9,11 @@ body {
  overflow-x: hidden;
 }
 
+/* Fix offset content problem using sap.m.Shell with Unified Shell per 
+http://stackoverflow.com/questions/39176722/how-to-use-sap-m-shell-together-with-sap-ui-unified-shell-without-artifacts/39202071#39202071 */
+body {
+ margin: 0px;
+}
 
 /*Set image size to not exceed to available area*/
 img {
