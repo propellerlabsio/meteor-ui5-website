@@ -64,7 +64,7 @@ This guide will show you how to set up a new Meteor UI5 project.
 ## Next steps
 
 ### Beginners
-If you are not familiar with both Meteor and UI5, we recommend that you complete the [Meteor-UI5 Tutorial](/#/tutorial) which will guide you through the steps to create a simple app.
+If you are not familiar with both Meteor and UI5, we recommend that you complete the [Meteor-UI5 Tutorial](/#/tutorial/mongo/step/00) which will guide you through the steps to create a simple app.
 
 ### Experts
 If you are already familiar with both Meteor and UI5, you can proceed to build your app as follows:
