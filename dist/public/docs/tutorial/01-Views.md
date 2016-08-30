@@ -32,7 +32,7 @@ Create a file called `Tasks.view.xml` in the `public/webapp` folder with the fol
 This view is a simple page with a list.  The items in the list are bound to something called `/Tasks` which we will define below.
 
 ## View controller
-Now create a file called `Tasks.controller.js` in the `client/webapp` folder with the following contents:
+Now create a file called `Tasks.controller.js` in the `public/webapp` folder with the following contents:
 ```js
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
