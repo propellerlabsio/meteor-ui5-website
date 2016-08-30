@@ -19,7 +19,7 @@ There isn't much to this file yet but we will add to it later.
 Create a file in your `server` folder called `main.js` with the following contents:
 ```js
 import { tasks } from '../imports/api/tasks.js';
-```js
+```
 
 ## Import the collection on the client
 Insert the following code at the top of your `client/main.js` file:

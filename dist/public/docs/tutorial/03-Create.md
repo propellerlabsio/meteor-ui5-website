@@ -15,14 +15,23 @@ Add a new toolbar to the existing List with an input field in the `webapp/Tasks.
       </headerToolbar>
 ```
 
+## Get a reference to the Tasks collection
+In the `webapp/Tasks.controller.js` file, create a reference to the `Tasks` collection and store it in an instance attribute just above the `onInit` method:
+```js
+  oTasks: Mongo.Collection.get("Tasks"),
+
+  onInit: function() {
+```
+We will reuse this reference in this and future steps so we don't have to repeat the `Mongo.Collection.get()` call in several places.
+
 ## Add task code
-Add the `onAddTask` method to the `webapp/Tasks.controller.js` file as follows:
+Add the `onAddTask` method to the same file as follows:
 ```js
     },
 
     onAddTask: function(oEvent){
         var oInput = oEvent.getSource();
-        Mongo.Collection.get("Tasks").insert({
+        this.oTasks.insert({
             text: oInput.getValue(),
             createdAt: new Date()
         });
