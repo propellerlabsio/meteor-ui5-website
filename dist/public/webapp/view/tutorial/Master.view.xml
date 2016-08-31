@@ -1,0 +1,40 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+    controllerName="webapp.controller.tutorial.Master">
+  <Page id="master"
+      title="Tutorial"
+      icon="sap-icon://action"
+      showNavButton="true"
+      navButtonPress="onPressBack"
+      class="sapUiStdPage">
+    <content>
+
+      <!-- List of tutorial steps from database -->
+      <List id="tutorialsListSteps"
+          itemPress="onStepPress"
+          items="{
+      			path: '/Tutorials',
+      			sorter: {
+      				path: 'step',
+      				descending: false
+      			}
+      		}"
+          mode="SingleSelectMaster">
+        <items>
+          <!-- Item in demos list -->
+          <ObjectListItem
+              type="Active"
+              intro="{= (${step} !== '00') ? 'Step ' + ${step} : ''}"
+              title="{title}"
+              selected="{= (${viewState>/step} === ${step})}">
+              <attributes>
+
+              </attributes>
+          </ObjectListItem>
+        </items>
+      </List>
+
+    </content>
+  </Page>
+</mvc:View>

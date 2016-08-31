@@ -1,13 +1,12 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
     xmlns:custom="webapp.control"
-    xmlns="sap.m"
-    controllerName="webapp.controller.Demo">
+    xmlns="sap.m">
 
   <Page title="Introduction"
       class="sapUiStdPage">
       <custom:MarkdownViewer
         class="sapUiResponsiveMargin"
-        markdownFile="webapp/view/demos/DemosIntroduction.md"/>
+        markdownFile="webapp/view/demos/Introduction.md"/>
   </Page>
 
 </mvc:View>

@@ -14,13 +14,19 @@ export const shippers = new SafeCollection('Shippers');
 export const suppliers = new SafeCollection('Suppliers');
 export const demos = new SafeCollection('Demos');
 export const demoGroups = new SafeCollection('DemoGroups');
+export const tutorials = new SafeCollection('Tutorials');
 
 // Publish
 if (Meteor.isServer) {
 
+  // Publish tutorials
+  Meteor.publish('tutorials', () => {
+    return tutorials.find();
+  });
+
   // Publish demo groups
   Meteor.publish('demoGroups', () => {
-    return demoGroups.find()
+    return demoGroups.find();
   });
 
   // Publish demos and associated groups

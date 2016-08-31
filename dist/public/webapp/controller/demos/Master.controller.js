@@ -7,7 +7,7 @@ sap.ui.define([
 ], function(Controller, JSONModel, Filter, FilterOperator, GroupHeaderListItem) {
   "use strict";
 
-  var CController = Controller.extend("webapp.controller.MasterDemos", {
+  var CController = Controller.extend("webapp.controller.demos.Master", {
 
     onInit: function() {
       this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);
@@ -20,16 +20,10 @@ sap.ui.define([
       // Set up route handling
       this._oRouter.attachRoutePatternMatched(this._onRoutePatternMatched, this);
 
-      // Subscribe to all demos TODO test bookmarked link to demo page
-      this._subscription = Meteor.subscribe("demos"); // , this._loadDemoForCurrentRoute.bind(this));
-    },
-
-    onExit: function() {
-      this._subscription.stop();
     },
 
     onPressBack: function() {
-      this._oRouter.navTo("home");
+      window.history.back();
     },
 
     getGroupHeader: function(oGroup) {

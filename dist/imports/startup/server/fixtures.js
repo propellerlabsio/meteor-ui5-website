@@ -12,7 +12,8 @@ import {
   orders,
   products,
   shippers,
-  suppliers
+  suppliers,
+  tutorials
 } from '../../api/collections/collections.js';
 
 
@@ -26,7 +27,8 @@ Meteor.startup(() => {
   loadFileIntoEmptyCollection('fixtures/Products.json', products, "ProductID");
 
   // Always reload the following files on server startup (they are small and
-  // quickly loaded and frequently changing)
+  // quickly loaded and may be frequently changing)
+  loadFileReplaceCollection('fixtures/Tutorials.json', tutorials);
   loadFileReplaceCollection('fixtures/Demos.json', demos);
   loadFileReplaceCollection('fixtures/DemoGroups.json', demoGroups);
 

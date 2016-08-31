@@ -1,7 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
     xmlns:webapp="webapp.control"
     xmlns="sap.m"
-    controllerName="webapp.controller.Demo">
+    controllerName="webapp.controller.demos.Demo">
 
   <Page id="compareModel"
       binding="{viewState>/Demo}"

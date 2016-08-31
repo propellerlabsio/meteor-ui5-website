@@ -1,0 +1,42 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc"
+    xmlns:custom="webapp.control"
+    xmlns="sap.m"
+    controllerName="webapp.controller.tutorial.Step">
+
+  <Page id="compareModel"
+      binding="{viewState>/}"
+      title="{viewState>title}"
+      class="sapUiStdPage">
+    <content>
+
+      <!-- Step instructions -->
+      <custom:MarkdownViewer
+        class="sapUiResponsiveMargin"
+        markdownFile="/docs/tutorial/{viewState>step}-{viewState>title}.md" />
+        <Text text=""/> 
+    </content>
+    <footer>
+      <Toolbar>
+            <Button
+              press="onPressPreviousStep"
+              enabled="{= ${viewState>step} !== '00'}"
+              icon="sap-icon://navigation-left-arrow"
+              tooltip="Go to previous step"/>
+            <ToolbarSpacer />
+			     <Button
+             press="onPressShowSourceOnGithub"
+             icon="art/icons/GitHub-Mark-Light-32px.png"
+             iconFirst="false"
+             iconDensityAware="false"
+             tooltip="View source on Github." />
+            <ToolbarSpacer />
+            <Button
+              type="Emphasized"
+              press="onPressNextStep"
+              enabled="{= !${viewState>isLastStep} }"
+              icon="sap-icon://navigation-right-arrow"
+              tooltip="Go to next step"/>
+      </Toolbar>
+    </footer>
+  </Page>
+</mvc:View>
