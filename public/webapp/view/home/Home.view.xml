@@ -66,12 +66,14 @@
     <footer>
       <Toolbar>
         <Button text="Meteor ({viewModel>/meteorRelease})"
-            press="onPressGotoMeteor" />
+            press="onPressGotoMeteor" 
+            class="sapUiHideOnPhone"/>
         <ToolbarSpacer/>
         <Text text="© PropellerLabs.io - 2016" />
         <ToolbarSpacer/>
         <Button text="OpenUI5 ({viewModel>/ui5Version})"
-            press="onPressGotoUi5" />
+            press="onPressGotoUi5"
+            class="sapUiHideOnPhone" />
       </Toolbar>
     </footer>
   </Page>
