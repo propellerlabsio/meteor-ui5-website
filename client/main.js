@@ -21,6 +21,9 @@ sap.ui.getCore().attachInit(function() {
   renderAppIfAllReady();
 });
 
+/**
+ * If everything is ready, render app.
+ */
 function renderAppIfAllReady(){
   // Only continue if everything is ready.
   if (!tutorialsReady || !demosReady || ! ui5Ready){
@@ -44,3 +47,4 @@ function renderAppIfAllReady(){
 
 
 }
+

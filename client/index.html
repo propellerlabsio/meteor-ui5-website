@@ -2,6 +2,7 @@
 	<meta http-equiv="X-UA-Compatible"
 					content="IE=edge" />
 	<meta charset="UTF-8">
+	<meta name="viewport" content="minimal-ui, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">  
 	<title>meteor-ui5 Demo App</title>
 
 	<!-- Highlight.js -->
@@ -11,7 +12,7 @@
 
 	<!-- Bootstrap UI5  -->
 	<script id="sap-ui-bootstrap"
-					src="/lib/openui5-runtime-1.38/resources/sap-ui-core.js"
+					src="https://openui5.hana.ondemand.com/1.38.4/resources/sap-ui-core.js"
 					data-sap-ui-bindingSyntax="complex"
 					data-sap-ui-theme="sap_bluecrystal"
 					data-sap-ui-libs="sap.m,sap.ui.core"
@@ -25,7 +26,12 @@
 	</script>
 </head>
 
-<body>
-	<div class="sapUiBody"
-					id="content"></div>
+<body class="sapUiBody" id="content">
+
+    <!--Loading screen code from http://openui5.blogspot.com/2014/04/splash-screen.html?m=1-->
+		<div id="splash-screen">
+			<div class="splash-screen-text">Loading...</div>
+			<div class="splash-screen-circle-outer"></div>
+			<div class="splash-screen-circle-inner"></div>
+		</div>
 </body>
