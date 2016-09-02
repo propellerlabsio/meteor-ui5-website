@@ -1,8 +1,8 @@
 <mvc:View
   xmlns:core="sap.ui.core"
   xmlns:mvc="sap.ui.core.mvc"
-  controllerName="webapp.demo.compare.json.EmployeesJson">
+  controllerName="meteor-ui5-website.demo.compare.json.EmployeesJson">
 
-    <core:Fragment fragmentName="webapp.demo.compare.json.EmployeesTable" type="XML"/>
+    <core:Fragment fragmentName="meteor-ui5-website.demo.compare.json.EmployeesTable" type="XML"/>
 
 </mvc:View>

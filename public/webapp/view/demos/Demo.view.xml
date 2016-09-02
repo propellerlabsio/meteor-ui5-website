@@ -1,7 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
-    xmlns:webapp="webapp.control"
+    xmlns:meteor-ui5-website="meteor-ui5-website.control"
     xmlns="sap.m"
-    controllerName="webapp.controller.demos.Demo">
+    controllerName="meteor-ui5-website.controller.demos.Demo">
 
   <Page id="compareModel"
       binding="{viewState>/Demo}"
@@ -9,7 +9,7 @@
       class="sapUiStdPage">
     <content>
 
-      <webapp:DemoViewer groupId="{viewState>groupId}"
+      <meteor-ui5-website:DemoViewer groupId="{viewState>groupId}"
           demoId="{viewState>_id}"
           infoFile="{viewState>infoFile}"
           demoViewName="{viewState>demoViewName}" />

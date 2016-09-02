@@ -4,11 +4,11 @@ sap.ui.define([
   'sap/ui/model/Filter',
   'sap/ui/model/FilterOperator',
   'sap/ui/model/Sorter',
-  'webapp/model/formatter'
+  'meteor-ui5-website/model/formatter'
 ], function(Controller, ODataModel, Filter, FilterOperator, Sorter, formatter) {
   "use strict";
 
-  var CController = Controller.extend("webapp.demo.compare.odata.EmployeesOData", {
+  var CController = Controller.extend("meteor-ui5-website.demo.compare.odata.EmployeesOData", {
 
     formatter: formatter,
 

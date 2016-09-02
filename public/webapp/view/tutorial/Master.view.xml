@@ -1,7 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
     xmlns:custom="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
-    controllerName="webapp.controller.tutorial.Master">
+    controllerName="meteor-ui5-website.controller.tutorial.Master">
   <Page id="master"
       title="Tutorial"
       icon="sap-icon://action"

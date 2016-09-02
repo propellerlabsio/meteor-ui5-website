@@ -30,18 +30,10 @@ function renderAppIfAllReady(){
     return;
   }
 
-	// Create component deliberately (ie not automatically) so we can give
-	// the component an id which can be used in sap.ui.getCore().getComponent()
-	var oComponent = sap.ui.getCore().createComponent({
-		name: "webapp",
-		id: "webapp",
-		height: "100%"
-	});
-
 	// Create component container for our component and mount it to the dom
 	new sap.m.Shell({
 		app: new sap.ui.core.ComponentContainer({
-			component: oComponent
+			name: 'meteor-ui5-website'
 		})
 	}).placeAt("content");
 

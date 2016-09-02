@@ -4,7 +4,7 @@ sap.ui.define([
 ], function(Controller, MessageBox) {
   "use strict";
 
-  var CController = Controller.extend("webapp.controller.App", {
+  var CController = Controller.extend("meteor-ui5-website.controller.App", {
 
     onInit: function() {
       // Set up route handling

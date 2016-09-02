@@ -1,6 +1,6 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    controllerName="webapp.controller.demos.Master">
+    controllerName="meteor-ui5-website.controller.demos.Master">
   <Page id="master"
       title="Demos"
       icon="sap-icon://action"

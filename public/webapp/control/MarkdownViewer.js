@@ -5,9 +5,9 @@ sap.ui.define([
 ], function(jQuery, Control, HTML) {
   "use strict";
 
-  jQuery.sap.require('webapp.lib.remarkable');
+  jQuery.sap.require('meteor-ui5-website.lib.remarkable');
 
-  return Control.extend("webapp.control.MarkdownViewer", {
+  return Control.extend("meteor-ui5-website.control.MarkdownViewer", {
     metadata: {
       properties: {
         markdownFile: {
