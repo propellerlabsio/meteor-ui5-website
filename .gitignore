@@ -1,2 +1,4 @@
 node_modules/
+.deploy/node_modules/
 packages/
+public/webapp/Component-preload.js

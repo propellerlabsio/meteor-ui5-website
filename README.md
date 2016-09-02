@@ -6,6 +6,29 @@ This is the code for the [Meteor UI5 Website](http://meteor-ui5.propellerlabs.io
 * Accounts UI (under construction)
 * Apollo Model (Planned)
 
+## Cloning
+Clone this repo with `git clone https://github.com/propellerlabsio/meteor-ui5-website.git`
+
+## Running
+1. Change to the project root directory and run `meteor`.
+2. Visit [http://localhost:3000](http://localhost:3000) in your browser.
+
+## Contributing
+
+
+## Deploying
+
+### Build Component-preload.js
+This file will speed up access to the website when it exists in the `public/webapp` folder.  Note: this file is not desirable for development and should:
+1. never been added to any commit, and
+2. deleted immediately after deployment if you continue to develop in the same branch.
+
+A gulp script has been created to automate creation of this file.  `cd` to the `.deploy` folder and enter `npm run-script build`.
+
+### Deploying to Scalingo
+1. Confirm you have a public `ssh` key configured on your computer and added to your [Scalingo account](https://my.scalingo.com/keys).  
+2. Confirm you have Scalingo configured as a remote by entering `git remote --v` in the project root folder.
+3. From the project root, enter `git push scalingo`.
 
 ## Roadmap
 

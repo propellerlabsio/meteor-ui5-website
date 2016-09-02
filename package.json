@@ -1,10 +1,14 @@
 {
-  "name": "meteor-ui5-experimental",
+  "name": "meteor-ui5-website",
   "private": true,
   "scripts": {
     "start": "meteor run"
   },
   "dependencies": {
     "meteor-node-stubs": "~0.2.0"
+  },
+  "devDependencies": {
+    "//": "Babel preset required by .deploy/gulpfile.js.  Only works if installed in project root.  Do not remove.", 
+    "babel-preset-es2015": "^6.14.0" 
   }
 }
