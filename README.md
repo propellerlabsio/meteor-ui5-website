@@ -1,5 +1,5 @@
 # Meteor UI5 Website
-This is the code for the [Meteor UI5 Website](http://meteor-ui5.propellerlabs.io), a website for demonstrating and documenting various Meteor UI5 packages.  The packages themselves are published in separate repositories:
+This is the code for the [Meteor UI5 Website](http://meteor-ui5.propellerlabs.com), a website for demonstrating and documenting various Meteor UI5 packages.  The packages themselves are published in separate repositories:
 * [Mongo Model](https://github.com/propellerlabsio/meteor-ui5-mongo)
 * [Debug Helper](https://github.com/propellerlabsio/meteor-ui5-debug)
 * [Tutorial (Source)](https://github.com/propellerlabsio/meteor-ui5-mongo-tutorial)
