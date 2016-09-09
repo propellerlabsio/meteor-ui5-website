@@ -6,7 +6,7 @@ Add the `mode` and `selectionChange` attributes to the list in `webapp/Tasks.vie
 ```xml
   <!-- Tasks list -->
   <List id="TaskList"
-        items="{
+          items="{
     path: '/Tasks',
     sorter: {
       path: 'createdAt',
