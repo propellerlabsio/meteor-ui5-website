@@ -5,7 +5,8 @@ In the [previous step](/#/tutorial/mongo/step/03) we added a way for the user to
 Add the `mode` and `selectionChange` attributes to the list in `webapp/Tasks.view.xml` as follows:
 ```xml
   <!-- Tasks list -->
-  <List items="{
+  <List id="TaskList"
+          items="{
     path: '/Tasks',
     sorter: {
       path: 'createdAt',
