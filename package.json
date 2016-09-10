@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "build": "grunt openui5_preload"
+    "build": "grunt build"
   },
   "dependencies": {
     "meteor-node-stubs": "~0.2.0"
@@ -15,6 +15,6 @@
     "grunt-contrib-clean": "^1.0.0",
     "grunt-contrib-copy": "^1.0.0",
     "grunt-contrib-jshint": "git+https://github.com/riichard/grunt-contrib-jshint.git",
-    "grunt-openui5": "^0.9.0"
+    "grunt-openui5": "^0.10.0"
   }
 }

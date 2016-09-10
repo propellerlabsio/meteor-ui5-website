@@ -27,30 +27,31 @@ module.exports = function (grunt) {
         }]
       }
     },    
-    openui5_preload: {
-      component: {
-        options: {
-          resources: {
-            cwd: 'temp/webapp',
-            prefix: 'webapp',
-            src: [
-              '**/*.js',
-              // '**/*.js.map',
-              // '**/*.fragment.html',
-              // '**/*.fragment.json',
-              // '**/*.fragment.xml',
-              // '**/*.view.html',
-              // '**/*.view.json',
-              // '**/*.view.xml',
-              // '**/*.properties'
-            ],
-            dest: 'dist'
-          },
-          compress: true
+    // openui5_preload: {
+    //   component: {
+    //     options: {
+    //       resources: {
+    //         cwd: 'temp/webapp',
+    //         prefix: 'webapp'
+    //       }
+    //     },
+    //     components: 'webapp'
+    //   }
+    // }
+  openui5_preload: {
+
+    component: {
+      options: {
+        resources: {
+          cwd: 'temp/webapp',
+          prefix: 'webapp'
         },
-        components: 'webapp'
-      }
+        dest: 'dist'
+      },
+      components: 'webapp'
     }
+
+  }
   });
 
   // Load grunt plugin tasks from pre-installed npm packages
