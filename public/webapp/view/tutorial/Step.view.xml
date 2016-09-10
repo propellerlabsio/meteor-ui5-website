@@ -1,7 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
-    xmlns:custom="webapp.control"
+    xmlns:custom="meteor-ui5-website.control"
     xmlns="sap.m"
-    controllerName="webapp.controller.tutorial.Step">
+    controllerName="meteor-ui5-website.controller.tutorial.Step">
 
   <Page id="compareModel"
       binding="{viewState>/}"

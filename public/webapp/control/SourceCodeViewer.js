@@ -4,7 +4,7 @@ sap.ui.define([
 ], function(jQuery, Control) {
   "use strict";
 
-  return Control.extend("webapp.control.SourceCodeViewer", {
+  return Control.extend("meteor-ui5-website.control.SourceCodeViewer", {
     metadata: {
       properties: {
         sourceFile: {

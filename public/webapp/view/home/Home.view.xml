@@ -1,8 +1,8 @@
-<mvc:View controllerName="webapp.controller.Home"
+<mvc:View controllerName="meteor-ui5-website.controller.Home"
     xmlns:core="sap.ui.core"
     xmlns:l="sap.ui.layout"
     xmlns:mvc="sap.ui.core.mvc"
-    xmlns:meteor-ui5="webapp.control"
+    xmlns:meteor-ui5="meteor-ui5-website.control"
     xmlns:html="http://www.w3.org/1999/xhtml"
     xmlns="sap.m">
   <Page id="Home"

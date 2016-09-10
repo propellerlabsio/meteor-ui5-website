@@ -1,5 +1,5 @@
 {
-  "name": "meteor-ui5-experimental",
+  "name": "meteor-ui5-website",
   "private": true,
   "scripts": {
     "start": "meteor run",

@@ -1,5 +1,5 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc"
-    xmlns:custom="webapp.control"
+    xmlns:custom="meteor-ui5-website.control"
     xmlns="sap.m">
 
   <Page title="Introduction"

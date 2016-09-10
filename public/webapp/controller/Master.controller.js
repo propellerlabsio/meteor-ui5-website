@@ -3,7 +3,7 @@ sap.ui.define([
 ], function (Controller) {
   "use strict";
 
-  var CController = Controller.extend("webapp.controller.Master", {
+  var CController = Controller.extend("meteor-ui5-website.controller.Master", {
 
     onInit: function () {
       this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);

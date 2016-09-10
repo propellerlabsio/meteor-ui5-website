@@ -1,11 +1,11 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
   'meteor-ui5-mongo/model/Model',
-  'webapp/model/formatter'
+  'meteor-ui5-website/model/formatter'
 ], function(Controller, MeteorModel, formatter) {
   "use strict";
 
-  var CController = Controller.extend("webapp.demo.binding.one-order.OneOrder", {
+  var CController = Controller.extend("meteor-ui5-website.demo.binding.one-order.OneOrder", {
 
     formatter: formatter,
 
