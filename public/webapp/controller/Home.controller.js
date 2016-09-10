@@ -26,6 +26,12 @@ sap.ui.define([
       win.focus();
     },
 
+    onPressGotoPropellerLabs: function() {
+      var win = window.open('http://www.propellerlabs.com/', '_blank');
+      win.focus();
+    },
+
+
   });
 
   return CController;

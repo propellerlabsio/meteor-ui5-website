@@ -69,7 +69,10 @@
             press="onPressGotoMeteor" 
             class="sapUiHideOnPhone"/>
         <ToolbarSpacer/>
-        <Link text="© Propeller Labs - 2016" target="_blank" href="http://propellerlabs.com" />
+        <Button text="© Propeller Labs" 
+          icon="art/logos/propeller-labs-white.png"
+          iconFirst="false"
+          press="onPressGotoPropellerLabs" />
         <ToolbarSpacer/>
         <Button text="OpenUI5 ({viewModel>/ui5Version})"
             press="onPressGotoUi5"
