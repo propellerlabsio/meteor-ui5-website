@@ -54,7 +54,7 @@
         <FlexBox justifyContent="Center">
           <Image
               class="sapUiResponsiveMargin imageToFit"
-              src="art/PackagesDiagram.png"
+              src="art/PackagesDiagram.svg"
               densityAware="true" />
         </FlexBox>
 

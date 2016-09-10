@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   version="1.2"
+   width="570.9024"
+   height="590.9024"
+   id="svg3651">
+  <defs
+     id="defs3653" />
+  <metadata
+     id="metadata3656">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-2.8886549,199.86525)"
+     id="layer1">
+    <rect
+       width="250"
+       height="570"
+       rx="10"
+       ry="8.1428576"
+       x="13.339844"
+       y="-189.41406"
+       id="meteor-box"
+       style="fill:#f2f2f2;fill-opacity:1;stroke:#4d4d4d;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <text
+       x="23.339844"
+       y="-169.41406"
+       id="meteor-title"
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+         x="23.339844"
+         y="-169.41406"
+         id="tspan4137">Meteor</tspan></text>
+    <g
+       transform="translate(-16.660156,-9.4140625)"
+       id="meteor-client">
+      <g
+         id="mini-mongo">
+        <rect
+           width="230"
+           height="130"
+           rx="10"
+           ry="10"
+           x="41.164062"
+           y="-109.41406"
+           id="rect3738"
+           style="fill:#ffffff;fill-opacity:1;stroke:#4d4d4d;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <text
+           x="110"
+           y="-40"
+           id="text3760"
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+             x="110"
+             y="-40"
+             id="tspan3762">Mini Mongo</tspan></text>
+      </g>
+      <text
+         x="40"
+         y="-130"
+         id="client-title"
+         xml:space="preserve"
+         style="font-size:16px;font-style:italic;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="40"
+           y="-130"
+           id="tspan4141">Client</tspan></text>
+      <g
+         id="apollo-client">
+        <rect
+           width="230"
+           height="130"
+           rx="10"
+           ry="10"
+           x="41.164062"
+           y="40.585941"
+           id="rect4173"
+           style="fill:#ffffff;fill-opacity:1;stroke:#4d4d4d;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <text
+           x="110"
+           y="110"
+           id="text4175"
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+             x="110"
+             y="110"
+             id="tspan4177">Apollo Client</tspan></text>
+      </g>
+    </g>
+    <path
+       d="m 23.339844,180.58594 229.999996,0"
+       id="client-server-divider"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <g
+       transform="translate(-16.660156,-9.4140625)"
+       id="meteor-server">
+      <text
+         x="40"
+         y="220"
+         id="server-title"
+         xml:space="preserve"
+         style="font-size:16px;font-style:italic;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="40"
+           y="220"
+           id="tspan4191">Server</tspan></text>
+      <g
+         id="meteor-ui5-debug">
+        <rect
+           width="230"
+           height="130"
+           rx="10"
+           ry="10"
+           x="41.164062"
+           y="240.58594"
+           id="rect4183"
+           style="fill:#bfbfff;fill-opacity:1;stroke:#4d4d4d;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+        <text
+           x="71.769531"
+           y="300"
+           id="text4185"
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+             x="71.769531"
+             y="300"
+             id="tspan4187">Connect handlers for</tspan></text>
+        <text
+           x="97.648438"
+           y="320"
+           id="text4196"
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+             x="97.648438"
+             y="320"
+             id="tspan4198">UI5 debugging</tspan></text>
+        <text
+           x="50"
+           y="260"
+           id="text4243"
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+             x="50"
+             y="260"
+             id="tspan4245">meteor-ui5-debug</tspan></text>
+      </g>
+    </g>
+    <rect
+       width="250"
+       height="570"
+       rx="10"
+       ry="8.1428576"
+       x="313.33984"
+       y="-189.41406"
+       id="open-ui5-box"
+       style="fill:#f2f2f2;fill-opacity:1;stroke:#4d4d4d;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <text
+       x="323.33984"
+       y="-169.41406"
+       id="text4276"
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+         x="323.33984"
+         y="-169.41406"
+         id="tspan4278">OpenUI5</tspan></text>
+    <text
+       x="323.33984"
+       y="-139.41406"
+       id="model-title"
+       xml:space="preserve"
+       style="font-size:16px;font-style:italic;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+         x="323.33984"
+         y="-139.41406"
+         id="tspan4282">Model</tspan></text>
+    <path
+       d="m 323.33984,180.58594 230,0"
+       id="model-control-divider"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <text
+       x="323.33984"
+       y="210.58594"
+       id="control-title"
+       xml:space="preserve"
+       style="font-size:16px;font-style:italic;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+         x="323.33984"
+         y="210.58594"
+         id="tspan4302">Control</tspan></text>
+    <g
+       transform="translate(-16.660156,-9.4140625)"
+       id="meteor-ui5-mongo">
+      <rect
+         width="230"
+         height="130"
+         rx="10"
+         ry="10"
+         x="340"
+         y="-110"
+         id="rect5374"
+         style="fill:#bfbfff;fill-opacity:1;stroke:#4d4d4d;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <text
+         x="358.19141"
+         y="-60.585941"
+         id="text5376"
+         xml:space="preserve"
+         style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="358.19141"
+           y="-60.585941"
+           id="tspan5378">Reactive data model for</tspan></text>
+      <text
+         x="348.83594"
+         y="-90.585938"
+         id="text5380"
+         xml:space="preserve"
+         style="font-size:16px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="348.83594"
+           y="-90.585938"
+           id="tspan5382">meteor-ui5-mongo</tspan></text>
+      <text
+         x="364.21484"
+         y="-40.585941"
+         id="text5384"
+         xml:space="preserve"
+         style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="364.21484"
+           y="-40.585941"
+           id="tspan5386">seamlessly connecting</tspan></text>
+      <text
+         x="362.18359"
+         y="-20.585939"
+         id="text5388"
+         xml:space="preserve"
+         style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="362.18359"
+           y="-20.585939"
+           id="tspan5390">Meteor collections with</tspan></text>
+      <text
+         x="406.91797"
+         y="-2.4999999e-06"
+         id="text5420"
+         xml:space="preserve"
+         style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="406.91797"
+           y="-2.4999999e-06"
+           id="tspan5422">UI5 controls</tspan></text>
+    </g>
+    <g
+       transform="translate(-16.660156,-9.4140625)"
+       id="meteor-ui5-apollo">
+      <rect
+         width="230"
+         height="130"
+         rx="10"
+         ry="10"
+         x="340"
+         y="39.999996"
+         id="rect5394"
+         style="fill:#bfbfff;fill-opacity:1;stroke:#4d4d4d;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3, 3;stroke-dashoffset:0" />
+      <text
+         x="416.66016"
+         y="89.414062"
+         id="text5396"
+         xml:space="preserve"
+         style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="416.66016"
+           y="89.414062"
+           id="tspan5398">Model for</tspan></text>
+      <text
+         x="348.83594"
+         y="59.414059"
+         id="text5400"
+         xml:space="preserve"
+         style="font-size:16px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="348.83594"
+           y="59.414059"
+           id="tspan5402">meteor-ui5-apollo</tspan></text>
+      <text
+         x="393.26172"
+         y="109.41406"
+         id="text5404"
+         xml:space="preserve"
+         style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="393.26172"
+           y="109.41406"
+           id="tspan5406">GraphQL based</tspan></text>
+      <text
+         x="412.74609"
+         y="129.41406"
+         id="text5408"
+         xml:space="preserve"
+         style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="412.74609"
+           y="129.41406"
+           id="tspan5410">data stack</tspan></text>
+      <text
+         x="490"
+         y="160"
+         id="text5412"
+         xml:space="preserve"
+         style="font-size:16px;font-style:italic;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="490"
+           y="160"
+           id="tspan5414">Planned</tspan></text>
+    </g>
+    <g
+       transform="translate(-16.660156,-9.4140625)"
+       id="meteor-ui5-accounts">
+      <rect
+         width="230"
+         height="130"
+         rx="10"
+         ry="10"
+         x="341.16406"
+         y="240.58594"
+         id="rect4294"
+         style="fill:#bfbfff;fill-opacity:1;stroke:#4d4d4d;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:3, 3;stroke-dashoffset:0" />
+      <text
+         x="367.72656"
+         y="290"
+         id="text4296"
+         xml:space="preserve"
+         style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="367.72656"
+           y="290"
+           id="tspan4298">Drop-in UI for sign-up,</tspan></text>
+      <text
+         x="350"
+         y="260"
+         id="text4308"
+         xml:space="preserve"
+         style="font-size:16px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="350"
+           y="260"
+           id="tspan4310">meteor-ui5-accounts</tspan></text>
+      <text
+         x="378.69531"
+         y="310"
+         id="text4331"
+         xml:space="preserve"
+         style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="378.69531"
+           y="310"
+           id="tspan4333">sign-in &amp; logout via</tspan></text>
+      <text
+         x="357.875"
+         y="330"
+         id="text4335"
+         xml:space="preserve"
+         style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="357.875"
+           y="330"
+           id="tspan4337">Meteor accounts system</tspan></text>
+      <text
+         x="400"
+         y="360"
+         id="text5416"
+         xml:space="preserve"
+         style="font-size:16px;font-style:italic;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
+           x="400"
+           y="360"
+           id="tspan5418">Under construction</tspan></text>
+    </g>
+    <path
+       d="m 254.67829,-52.17102 68.30433,0"
+       id="path5635"
+       style="fill:none;stroke:#000000;stroke-width:0.99821109px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    <path
+       d="m 254.67829,97.82898 68.30433,0"
+       id="path5637"
+       style="fill:none;stroke:#000000;stroke-width:0.99821109px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+  </g>
+</svg>
