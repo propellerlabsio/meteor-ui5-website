@@ -12,6 +12,14 @@ Add a toggle button to the toolbar right after the input field in `webapp/Tasks.
   </Toolbar>
 ```
 
+## Add id to TaskList
+In the same file, add the `id` attribute to the list so that we can reference it from the controller:
+```js
+  <!-- Tasks list -->
+  <List id="TaskList"
+    items="{
+```
+
 ## Add new imports to your view controller
 For this step, we will need to add the following modules:
 * JSON Model
