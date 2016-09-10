@@ -7,9 +7,9 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
-   version="1.2"
-   width="570.9024"
-   height="590.9024"
+   version="1.1"
+   width="581.02032"
+   height="591.6062"
    id="svg3651">
   <defs
      id="defs3653" />
@@ -26,25 +26,25 @@
     </rdf:RDF>
   </metadata>
   <g
-     transform="translate(-2.8886549,199.86525)"
+     transform="translate(0.51016396,200.5101)"
      id="layer1">
     <rect
-       width="250"
-       height="570"
-       rx="10"
-       ry="8.1428576"
-       x="13.339844"
-       y="-189.41406"
+       width="260.00003"
+       height="570.58588"
+       rx="10.400001"
+       ry="8.151227"
+       x="10"
+       y="-189.99994"
        id="meteor-box"
-       style="fill:#f2f2f2;fill-opacity:1;stroke:#4d4d4d;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+       style="fill:#f2f2f2;fill-opacity:1;stroke:#4d4d4d;stroke-width:1.02032793;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     <text
        x="23.339844"
-       y="-169.41406"
+       y="-167.41406"
        id="meteor-title"
        xml:space="preserve"
        style="font-size:16px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
          x="23.339844"
-         y="-169.41406"
+         y="-167.41406"
          id="tspan4137">Meteor</tspan></text>
     <g
        transform="translate(-16.660156,-9.4140625)"
@@ -158,22 +158,22 @@
       </g>
     </g>
     <rect
-       width="250"
-       height="570"
-       rx="10"
-       ry="8.1428576"
-       x="313.33984"
-       y="-189.41406"
+       width="260"
+       height="570.58588"
+       rx="10.4"
+       ry="8.151227"
+       x="310"
+       y="-189.99994"
        id="open-ui5-box"
-       style="fill:#f2f2f2;fill-opacity:1;stroke:#4d4d4d;stroke-width:1;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+       style="fill:#f2f2f2;fill-opacity:1;stroke:#4d4d4d;stroke-width:1.02032781;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     <text
        x="323.33984"
-       y="-169.41406"
+       y="-167.41406"
        id="text4276"
        xml:space="preserve"
        style="font-size:16px;font-style:normal;font-weight:bold;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"><tspan
          x="323.33984"
-         y="-169.41406"
+         y="-167.41406"
          id="tspan4278">OpenUI5</tspan></text>
     <text
        x="323.33984"
