@@ -27,20 +27,35 @@ module.exports = function (grunt) {
         }]
       }
     },
-    openui5_preload: {
 
+    openui5_preload: {
       component: {
         options: {
           resources: {
-            cwd: 'temp/webapp',
-            prefix: 'meteor-ui5-website'
+            cwd: 'temp/webapp', // this should point to the entry folder
+            prefix: 'meteor-ui5-website', // this should be your component namespace
+            src: [
+              // src patterns start within the "cwd"
+              '**/*.js',
+              '**/*.fragment.html',
+              '**/*.fragment.json',
+              '**/*.fragment.xml',
+              '**/*.view.html',
+              '**/*.view.json',
+              '**/*.view.xml',
+              '**/*.properties'
+            ],
           },
-          dest: 'public/webapp'
-        },
-        components: 'meteor-ui5-website'
-      }
 
+          // "dest" needs to be defined within "options" not "options.resources"
+          dest: 'public/webapp', // to put the file in the same folder
+
+          compress: true
+        },
+        components: true
+      }
     }
+
   });
 
   // Load grunt plugin tasks from pre-installed npm packages
