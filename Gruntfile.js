@@ -8,10 +8,10 @@ module.exports = function (grunt) {
       main: {
         files: [
           // makes all src relative to cwd
-          {expand: true, cwd: 'public/webapp/', src: ['**'], dest: 'temp/webapp'}
+          { expand: true, cwd: 'public/webapp/', src: ['**'], dest: 'temp/webapp' }
         ],
       },
-    },    
+    },
     babel: {
       options: {
         sourceMap: true,
@@ -26,32 +26,21 @@ module.exports = function (grunt) {
           // ext: '.js'
         }]
       }
-    },    
-    // openui5_preload: {
-    //   component: {
-    //     options: {
-    //       resources: {
-    //         cwd: 'temp/webapp',
-    //         prefix: 'webapp'
-    //       }
-    //     },
-    //     components: 'webapp'
-    //   }
-    // }
-  openui5_preload: {
+    },
+    openui5_preload: {
 
-    component: {
-      options: {
-        resources: {
-          cwd: 'temp/webapp',
-          prefix: 'webapp'
+      component: {
+        options: {
+          resources: {
+            cwd: 'temp/webapp',
+            prefix: 'meteor-ui5-website'
+          },
+          dest: 'public/webapp'
         },
-        dest: 'dist'
-      },
-      components: 'webapp'
-    }
+        components: 'meteor-ui5-website'
+      }
 
-  }
+    }
   });
 
   // Load grunt plugin tasks from pre-installed npm packages
@@ -62,9 +51,10 @@ module.exports = function (grunt) {
 
   // Our build script
   grunt.registerTask('build', [
-    'clean',          // clear temp folder
-    'copy',          // copy webapp to temp folder 
-    'babel',          // Transpile javascript files in temp overwriting 
-    'openui5_preload' // Build Component-preload.js in webapp from temp
+    'clean',            // clear temp folder
+    'copy',             // copy webapp to temp folder 
+    'babel',            // Transpile javascript files in temp overwriting 
+    'openui5_preload',  // Build Component-preload.js in webapp from temp
+    'clean'             // clear temp folder
   ]);
 }
