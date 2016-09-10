@@ -23,7 +23,9 @@ This file will speed up access to the website when it exists in the `public/weba
 1. never been added to any commit, and
 2. deleted immediately after deployment if you continue to develop in the same branch.
 
-A gulp script has been created to automate creation of this file.  `cd` to the `.deploy` folder and enter `npm run-script build`.
+A grunt task used to automatically create this file.  From the project folder:
+1. `npm install` 
+2. `npm run-script build`.
 
 ### Deploying to Scalingo
 1. Confirm you have a public `ssh` key configured on your computer and added to your [Scalingo account](https://my.scalingo.com/keys).  
