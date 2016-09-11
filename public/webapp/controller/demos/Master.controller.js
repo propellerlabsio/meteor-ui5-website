@@ -51,11 +51,12 @@ sap.ui.define([
       var oModel = this.getView().getModel("viewState");
 
       // Nav to demo selected, preserving query parameters
+      // TODO adjust route replace to be conditional when adding phone support
       this._oRouter.navTo("demo", {
         groupId: oItemData.groupId,
         demoId: oItemData._id,
         "query": oModel.getProperty("/query")
-      });
+      }, true);
     },
 
     onFilterSelected: function(oEvent){

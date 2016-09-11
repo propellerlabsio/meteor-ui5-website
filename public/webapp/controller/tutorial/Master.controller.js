@@ -34,6 +34,7 @@ sap.ui.define([
       var oModel = this.getView().getModel("viewState");
 
       // Nav to selected step
+      // TODO adjust route replace to be conditional when adding phone support
       this._oRouter.navTo("tutorial", {
         tutorial: oItemData.tutorial,
         step: oItemData.step

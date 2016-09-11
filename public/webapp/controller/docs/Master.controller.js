@@ -3,11 +3,15 @@ sap.ui.define([
 ], function (Controller) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5-website.controller.Master", {
+  var CController = Controller.extend("meteor-ui5-website.controller.docs.Master", {
 
     onInit: function () {
       this._oRouter = sap.ui.core.UIComponent.getRouterFor(this);
       this._oRouter.attachRoutePatternMatched(this._onRoutePatterMatched, this);
+    },
+
+    onPressBack: function () {
+      window.history.back();
     },
 
     onItemPress: function (oEvent) {
@@ -23,16 +27,8 @@ sap.ui.define([
         }
       })
 
-      // Navigate to target route
-      if (sNavTo === 'tutorial') {
-        this._oRouter.navTo(sNavTo, {
-          tutorial: 'mongo',
-          step: '00'
-        });
-
-      } else {
-        this._oRouter.navTo(sNavTo);
-      }
+      // TODO adjust route replace to be conditional when adding phone support
+      this._oRouter.navTo(sNavTo,{}, true);
     },
 
     _onRoutePatterMatched(oEvent) {
