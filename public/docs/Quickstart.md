@@ -1,6 +1,13 @@
 # Meteor-UI5 Quickstart Guide
 This guide will show you how to set up a new Meteor UI5 project.  
 
+## Prerequisites
+Before proceeding you need to have at least version 1.4 of Meteor installed on your machine.  
+* To install Meteor follow [these instructions](https://www.meteor.com/install).
+* To check which version of Meteor is installed, run `meteor --version`.
+* To upgrade your Meteor install, run `meteor update`.
+
+
 ## Creating your project
 1. Create a new folder for your project and change directory to it.
 1. Create a folder called `public` in your project directory.
