@@ -17,16 +17,4 @@ We bind the table to all of the orders in the collection as follows:
 </Table>
 ```
 
-#### Property binding
-
-Once the table has been bound, individual controls can be bound to collection properties in the usual UI5 manner, e.g. `{CustomerID}`, `{Freight}` etc.
-```xml
-<!-- Order Item -->
-<ColumnListItem id="OrdersItem">
-    <cells>
-        <Text text="{CustomerID}" />
-        <!-- Additional fields as required -->
-    </cells>
-</ColumnListItem>
-
-```
+**Note**: in most instances you will wish to use filtering to restrict the documents that are shown in the list.  See the filtering demo(s) for examples.

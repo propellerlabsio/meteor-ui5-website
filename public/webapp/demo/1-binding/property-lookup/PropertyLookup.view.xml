@@ -2,7 +2,7 @@
   xmlns:core="sap.ui.core"
   xmlns:mvc="sap.ui.core.mvc"
   xmlns="sap.m"
-  controllerName="meteor-ui5-website.demo.binding.property-lookup.PropertyLookup">
+  controllerName="meteor-ui5-website.demo.1-binding.property-lookup.PropertyLookup">
 
   <ObjectHeader title="Order {_id}"
       binding="{/Orders(10248)}"

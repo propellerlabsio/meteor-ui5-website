@@ -1,24 +1,28 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
-  'sap/ui/model/odata/ODataModel',
+  'meteor-ui5-mongo/model/Model',
   'sap/ui/model/Filter',
   'sap/ui/model/FilterOperator',
   'sap/ui/model/Sorter',
   'meteor-ui5-website/model/formatter'
-], function(Controller, ODataModel, Filter, FilterOperator, Sorter, formatter) {
+], function(Controller, MeteorModel, Filter, FilterOperator, Sorter, formatter) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5-website.demo.compare.odata.EmployeesOData", {
+  var CController = Controller.extend("meteor-ui5-website.demo.3-compare.meteor.EmployeesMeteor", {
 
     formatter: formatter,
 
     onInit: function() {
-      // Set up Odata model for Employees - will be populated via Northwind
-      // odata service.  We use a proxy due to CORS issues with service being
-      // at different URL.  Calls to URL '/oDataProxy' are redirected to
-      // http://services.odata.org/V2/Northwind/Northwind.svc
-      var oModel = new ODataModel('/oDataProxy');
+      // Create Meteor model
+      var oModel = new MeteorModel();
       this.getView().setModel(oModel);
+
+      // Subscribe to Employees data.
+      this._subscription = Meteor.subscribe('employees');
+    },
+
+    onExit: function(){
+      this._subscription.stop();
     },
 
     /**

@@ -5,7 +5,7 @@ sap.ui.define([
 ], function(Controller, MeteorModel, formatter) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5-website.demo.binding.property-lookup.PropertyLookup", {
+  var CController = Controller.extend("meteor-ui5-website.demo.1-binding.property-lookup.PropertyLookup", {
 
     formatter: formatter,
 

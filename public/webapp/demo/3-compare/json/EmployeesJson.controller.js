@@ -1,28 +1,21 @@
 sap.ui.define([
   'sap/ui/core/mvc/Controller',
-  'meteor-ui5-mongo/model/Model',
+  'sap/ui/model/json/JSONModel',
   'sap/ui/model/Filter',
   'sap/ui/model/FilterOperator',
   'sap/ui/model/Sorter',
   'meteor-ui5-website/model/formatter'
-], function(Controller, MeteorModel, Filter, FilterOperator, Sorter, formatter) {
+], function(Controller, JSONModel, Filter, FilterOperator, Sorter, formatter) {
   "use strict";
 
-  var CController = Controller.extend("meteor-ui5-website.demo.compare.meteor.EmployeesMeteor", {
+  var CController = Controller.extend("meteor-ui5-website.demo.3-compare.json.EmployeesJson", {
 
     formatter: formatter,
 
     onInit: function() {
-      // Create Meteor model
-      var oModel = new MeteorModel();
+      // Create a json model with data from a file and make it our view model
+      var oModel = new JSONModel('/webapp/demo/3-compare/json/Employees.json');
       this.getView().setModel(oModel);
-
-      // Subscribe to Employees data.
-      this._subscription = Meteor.subscribe('employees');
-    },
-
-    onExit: function(){
-      this._subscription.stop();
     },
 
     /**

@@ -1,42 +1,49 @@
 [{
-  "_id": "all-orders",
-  "groupId": "binding",
-  "title": "All Orders",
+  "_id": "document-list",
+  "groupId": "1-binding",
+  "sequence": 2,
+  "title": "Document List",
   "infoFile": "AllOrders.md",
   "demoViewName": "AllOrders"
 }, {
-  "_id": "some-orders",
-  "groupId": "filter",
-  "title": "Some Orders",
+  "_id": "some-documents",
+  "groupId": "2-filter",
+  "sequence": 1,
+  "title": "Document List",
   "infoFile": "SomeOrders.md",
   "demoViewName": "SomeOrders"
 }, {
-  "_id": "one-order",
-  "groupId": "binding",
-  "title": "One Order",
+  "_id": "document",
+  "groupId": "1-binding",
+  "sequence": 1,
+  "title": "Document and Properties",
   "infoFile": "OneOrder.md",
   "demoViewName": "OneOrder"
 }, {
   "_id": "property-lookup",
-  "groupId": "binding",
+  "groupId": "1-binding",
+  "sequence": 3,
   "title": "Property Lookup",
   "infoFile": "PropertyLookup.md",
   "demoViewName": "PropertyLookup"
 }, {
   "_id": "meteor",
-  "groupId": "compare",
+  "groupId": "3-compare",
+  "sequence": 1,
   "title": "Meteor Model",
   "infoFile": "EmployeesMeteor.md",
   "demoViewName": "EmployeesMeteor"
 }, {
   "_id": "json",
-  "groupId": "compare",
+  "groupId": "3-compare",
+  "sequence": 2,
   "title": "JSON Model",
   "infoFile": "EmployeesJson.md",
   "demoViewName": "EmployeesJson"
 }, {
   "_id": "odata",
-  "groupId": "compare",
+  "groupId": "3-compare",
+  "sequence": 3,
   "title": "OData Model",
   "infoFile": "EmployeesOData.md",
   "demoViewName": "EmployeesOData"

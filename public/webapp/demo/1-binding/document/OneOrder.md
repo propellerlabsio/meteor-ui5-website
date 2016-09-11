@@ -11,12 +11,25 @@ In this example we want a single, specific document. Documents in Mongo collecti
 
 ### This demo
 
-We bind to the single order in the view as follows:
+We bind to the single order document in the view as follows:
 ```xml
 <ObjectHeader binding="{/Orders(10248)}">
+</ObjectHeader>
+```
+
+#### Property binding
+
+Once the context has been bound, individual controls can be bound to document properties in the usual UI5 manner, e.g. `{CustomerID}`, `{Freight}` etc.
+
+```xml
+<!-- Order Item -->
+<ObjectHeader binding="{/Orders(10248)}">
   <attributes>
-    <ObjectAttribute title="Customer" text="{CustomerID}" />
-    <!-- Add additional ObjectHeader attributes as required. -->
+    <ObjectAttribute title="Customer"
+        text="{CustomerID}" />
+    <ObjectAttribute title="Country"
+        text="{ShipCountry}" />
   </attributes>
 </ObjectHeader>
+
 ```

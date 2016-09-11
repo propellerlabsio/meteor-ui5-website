@@ -41,11 +41,15 @@
           itemPress="onDemoSelect"
           items="{
       			path: '/Demos',
-      			sorter: {
+      			sorter: [{
       				path: 'groupId',
       				descending: false,
       				group: true
-      			},
+      			},{
+      				path: 'sequence',
+      				descending: false,
+      				group: false
+      			}],
       			groupHeaderFactory: '.getGroupHeader'
       		}"
           mode="SingleSelectMaster">
