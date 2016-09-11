@@ -14,7 +14,7 @@ sap.ui.define([
 
     onInit: function() {
       // Create a json model with data from a file and make it our view model
-      var oModel = new JSONModel('/meteor-ui5-website/demo/compare/json/Employees.json');
+      var oModel = new JSONModel('/webapp/demo/compare/json/Employees.json');
       this.getView().setModel(oModel);
     },
 
