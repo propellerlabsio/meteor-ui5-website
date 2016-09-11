@@ -16,10 +16,16 @@ this._subscription = Meteor.subscribe("tutorials", () =>{
 });
 
 // Render App when UI5 is ready
-sap.ui.getCore().attachInit(function() {
-  ui5Ready = true;
-  renderAppIfAllReady();
-});
+if (typeof sap !== 'undefined'){
+  sap.ui.getCore().attachInit(function() {
+    ui5Ready = true;
+    renderAppIfAllReady();
+  });
+} else {
+  $("#splash-screen").remove();
+  var errorTemplate = $("#errorTemplate").html();
+  $("body").append(errorTemplate);
+}
 
 /**
  * If everything is ready, render app.
