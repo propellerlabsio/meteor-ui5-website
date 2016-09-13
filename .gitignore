@@ -3,4 +3,3 @@ node_modules/
 packages/
 temp/
 dist/
-public/webapp/Component-preload.js

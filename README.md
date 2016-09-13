@@ -19,11 +19,13 @@ Clone this repo with `git clone https://github.com/propellerlabsio/meteor-ui5-we
 ## Deploying
 
 ### Build Component-preload.js
-This file will speed up access to the website when it exists in the `public/webapp` folder.  Note: this file is not desirable for development and should:
-1. never been added to any commit, and
-2. deleted immediately after deployment if you continue to develop in the same branch.
+This file will speed up access to the website when it exists in the `public/webapp` folder.  Note: this file is not desirable while developing and should be:
 
-A grunt task used to automatically create this file.  From the project folder:
+1. deleted in your developent branch while you are developing, and
+1. rebuilt using the below grunt task prior to deploying.
+
+To automatically create this file with grunt, run the following commands from the project root folder:
+
 1. `npm install` 
 2. `npm run-script build`.
 
