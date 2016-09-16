@@ -28,7 +28,7 @@ import '../imports/api/tasks.js';
 ```
 
 ## Adjust view to use Mongo collection
-Now we will swap out the JSON Model we created in the previous step with a Mongo Model to use the MongoDB collection.  Make the following changes to your `public/Tasks.controller.js`:
+Now we will swap out the JSON Model we created in the previous step with a Mongo Model to use the MongoDB collection.  Make the following changes to your `public/webapp/Tasks.controller.js`:
 
 ### Import the Mongo Model
 Change the imports at the top of the file to use the MongoModel instead of the JSON Model so that it looks like the following:
