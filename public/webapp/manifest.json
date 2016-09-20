@@ -38,6 +38,8 @@
         "resources": {
             "css": [{
                 "uri": "css/style.css"
+            },{
+                "uri": "css/highlight-atelier-seaside-light.css"
             }]
         },
         "routing": {
