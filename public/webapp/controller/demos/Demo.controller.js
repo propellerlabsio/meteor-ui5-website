@@ -17,6 +17,15 @@ sap.ui.define([
       // Set up route handling
       this._oRouter.attachRoutePatternMatched(this._onRoutePatternMatched, this);
 
+      // Subscribe to demos
+      this._subscription = Meteor.subscribe("demos", () =>{
+        this._loadDemoForCurrentRoute();
+      });
+
+    },
+
+    onExit: function() {
+      this._subscription.stop();
     },
 
     _onRoutePatternMatched: function(oEvent) {

@@ -17,6 +17,10 @@ sap.ui.define([
       // Set up route handling
       this._oRouter.attachRoutePatternMatched(this._onRoutePatternMatched, this);
 
+      // Subscribe to tutorials
+      this._subscription = Meteor.subscribe("tutorials", () => {
+        this._loadStepForCurrentRoute() 
+      });
     },
 
     onPressShowSourceOnGithub: function(){
@@ -68,17 +72,23 @@ sap.ui.define([
 
       // Set which view and source files to display in our view state model
       var oArguments = oEvent.getParameters().arguments;
-      this._loadStepForCurrentRoute(oArguments.tutorial, oArguments.step);
+      this._sTutorial = oArguments.tutorial;
+      this._sStep = oArguments.step;
+      this._loadStepForCurrentRoute();
     },
 
-    _loadStepForCurrentRoute(sTutorial, sStep) {
+    _loadStepForCurrentRoute() {
+      if (!this._sTutorial || !this._sStep){
+        // Don't have everything we need yet, try again later
+        return;
+      }
 
       var oTutorials = Mongo.Collection.get("Tutorials");
 
       // Get tutorial step
       var oStep = oTutorials.findOne({
-        tutorial: sTutorial,
-        step: sStep
+        tutorial: this._sTutorial,
+        step: this._sStep
       });
       if (!oStep){
         // Subscription may not be ready, try again later
@@ -90,7 +100,7 @@ sap.ui.define([
       oModel.setProperty("/", oStep);
 
       // Store the total number of steps in the view model
-      var iCount = oTutorials.find({tutorial: sTutorial}).count();
+      var iCount = oTutorials.find({tutorial: this._sTutorial}).count();
       var bIsLastStep = false;
       if (iCount - 1 === parseInt(oStep.step)){
         bIsLastStep = true;
