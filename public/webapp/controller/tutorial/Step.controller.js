@@ -23,6 +23,10 @@ sap.ui.define([
       });
     },
 
+    onExit: function() {
+      this._subscription.stop();
+    }, 
+
     onPressShowSourceOnGithub: function(){
       var stepData = this.getView().getModel("viewState").getProperty("/");
       var url = "https://github.com/propellerlabsio/meteor-ui5-mongo-tutorial/tree/" +
