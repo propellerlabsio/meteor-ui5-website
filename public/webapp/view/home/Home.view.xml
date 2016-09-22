@@ -22,7 +22,7 @@
         <!-- Intro text -->
         <meteor-ui5:MarkdownViewer
           class="sapUiResponsiveMargin"
-          markdownFile="webapp/view/home/MeteorUI5Intro.md"/>
+          markdownModule="meteor-ui5-website.view.home.MeteorUI5Intro"/>
 
         <!-- Meteor + UI5 summary row     -->
         <l:Grid hSpacing="2"
@@ -34,7 +34,7 @@
                 press="onPressGotoMeteor"
                 width="200px"></Image>
             <meteor-ui5:MarkdownViewer
-              markdownFile="webapp/view/home/MeteorSummary.md"/>
+              markdownModule="meteor-ui5-website.view.home.MeteorSummary"/>
           </HBox>
 
           <!-- UI5 summary intro -->
@@ -43,14 +43,14 @@
                 press="onPressGotoUi5"
                 width="100px"></Image>
             <meteor-ui5:MarkdownViewer
-              markdownFile="webapp/view/home/OpenUI5Summary.md"/>
+              markdownModule="meteor-ui5-website.view.home.OpenUI5Summary"/>
           </HBox>
         </l:Grid>
 
         <!-- Benefits text -->
         <meteor-ui5:MarkdownViewer
           class="sapUiResponsiveMargin"
-          markdownFile="webapp/view/home/MeteorUI5Benefits.md"/>
+          markdownModule="meteor-ui5-website.view.home.MeteorUI5Benefits"/>
 
         <!-- Meteor UI5 Packages -->
         <meteor-ui5:MarkdownViewer

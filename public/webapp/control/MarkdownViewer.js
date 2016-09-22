@@ -17,6 +17,9 @@ sap.ui.define([
         markdownText: {
           type: "string"
         },
+        markdownModule: {
+          type: "string"
+        },
       },
       aggregations: {
         _html: {
@@ -35,11 +38,12 @@ sap.ui.define([
     onBeforeRendering: function() {
 
       // Get values/references we need
-      const sMarkdownText = this.getProperty("markdownText");
+      let sMarkdownText = this.getProperty("markdownText");
       const sMarkdownFile = this.getProperty("markdownFile");
-      const sRequestedMarkdown = sMarkdownText || sMarkdownFile;
-
-      if (!sMarkdownText && !sMarkdownFile) {
+      const sMarkdownModule = this.getProperty("markdownModule");
+      const sRequestedMarkdown = sMarkdownText || sMarkdownFile || sMarkdownModule;
+      
+      if (!sMarkdownText && !sMarkdownFile && !sMarkdownModule) {
         // Nothing to load
         this._oHTML.setContent();
         return;
@@ -82,6 +86,18 @@ sap.ui.define([
           return ''; // use external default escaping
         }
       });
+
+      // If markdown module provided, load it into string.  Although "jQuery.sap.loadResource" is 
+      // not documented in the API jsdocs, it appears to be the only way to load a non-javascript or 
+      // non-XML module in such a way that it will get it from Component-preload.js if it is available
+      // there (and from the server if not).
+      if (sMarkdownModule) {
+        var modulePath =jQuery.sap.getModulePath(sMarkdownModule, ".md");
+        sMarkdownText = jQuery.sap.loadResource({
+          url: modulePath,
+          dataType: 'text'
+        });
+      }
 
       // If markdown code provided, load it into dom element directly
       if (sMarkdownText) {
