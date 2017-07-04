@@ -24,11 +24,11 @@ Before proceeding you need to have at least version 1.4 of Meteor installed on y
 | `server` | Any files in here will only run on the Meteor server. |
 
 ## Installing the Meteor UI5 package
-1. Remove Blaze with `meteor remove blaze-html-templates`.		
-1. Add static-html support with `meteor add static-html`.
-1. Add the [`meteor-ui5-debug`](https://github.com/propellerlabsio/meteor-ui5-debug) package to your meteor project with `meteor add propellerlabsio:meteor-ui5-debug`.
-1. Add the [`meteor-ui5-mongo`](https://github.com/propellerlabsio/meteor-ui5-mongo) package to your meteor project with `meteor add propellerlabsio:meteor-ui5-mongo`.
-1. Remove jQuery (we'll use the version Ui5 provides) with `meteor remove jquery`.
+1. Remove Blaze with `meteor remove blaze-html-templates`
+1. Add static-html support with `meteor add static-html`
+1. Add the [`meteor-ui5-debug`](https://github.com/propellerlabsio/meteor-ui5-debug) package to your meteor project with `meteor add propellerlabsio:meteor-ui5-debug`
+1. Add the [`meteor-ui5-mongo`](https://github.com/propellerlabsio/meteor-ui5-mongo) package to your meteor project with `meteor add propellerlabsio:meteor-ui5-mongo`
+1. Remove jQuery (we'll use the version Ui5 provides) with `meteor remove jquery` (this step is unnecessary in later versions of meteor.)
 
 ## Bootstraping UI5
 1. In the `client` folder, create a file called `index.html` with the following contents:
@@ -67,7 +67,9 @@ Before proceeding you need to have at least version 1.4 of Meteor installed on y
 
 ## Run your project
 1. From your project root directory, run `meteor`.
-1. Go to [http://localhost:3000](http://localhost:3000) in your browser and confirm you can see the "Hello World" message.
+1. The initial build will take some time.  You can monitor its progress in the console window.  When it is completed it will say something to the effect of `App running at: http://localhost:3000/`.
+1. Go to the address shown (e.g. [http://localhost:3000](http://localhost:3000)) in your browser and confirm you can see the "Hello World" message.
+1. If it doesn't work, retrace your steps and confirm everything was done correctly.  If the problem persists, please create a new issue at our [github repo](https://github.com/propellerlabsio/meteor-ui5-website/issues).  Meteor publishes frequent updates which may require us to make minor adjustments to this Quickstart guide.
 
 ## Next steps
 
