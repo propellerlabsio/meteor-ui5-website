@@ -32,7 +32,8 @@ To automatically create this file with grunt, run the following commands from th
 ### Deploying to Scalingo
 1. Confirm you have a public `ssh` key configured on your computer and added to your [Scalingo account](https://my.scalingo.com/keys).  
 2. Confirm you have Scalingo configured as a remote by entering `git remote --v` in the project root folder.
-3. From the project root, enter `git push scalingo`.
+3. If Scalingo isn't showing in the above, follow [these steps](https://my.scalingo.com/apps/meteor-ui5-website/code) to add it.
+4. From the project root, enter `git push scalingo`.
 
 ## Roadmap
 
