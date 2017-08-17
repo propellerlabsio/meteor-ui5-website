@@ -52,6 +52,31 @@ In the [previous step](/#/tutorial/mongo/step/06) we added a way for the user to
       }
     },
 ```
+## Add function and Sign out button to onInit 
+Call `hideOrShowTaskList` function and set sign out button to invisible when the app runs initially
+```js
+    onInit: function() {
+      // Show or Hide the Task list whether user loggs in or not
+      this.hideOrShowTaskList();
+
+      // Include our custom style sheet
+      jQuery.sap.includeStyleSheet("webapp/style.css");
+      // Instantiate Mongo Model
+      var oModel = new MongoModel();
+      this.getView().setModel(oModel);
+
+      // Our local view state model
+      var oViewState = {
+        showCompleted: true
+      };
+      var oViewModel = new JSONModel(oViewState);
+      this.getView().setModel(oViewModel, "ViewState");
+
+      // Set sign out button to invisible when the app runs initially
+      var oBtnSignOut = this.byId("idConfirmSignOut");
+      oBtnSignOut.setVisible(false);
+    },
+```
 ## Change the state of the buttons depending on whether the user is logged in or not
 ```js
    showOrHideAccountButtons: function(){
@@ -104,6 +129,37 @@ Use `Meteor.loginWithPassword(user, password, [callback])` method and call 2 fun
         }
       });
     },
+```
+## Current state of "show completed" the Task list based on user logs in
+Create variable `var oUser = Meteor.user()` to get user object and use `oUser._id` to print user Id
+```js
+    onPressShowCompleted: function(){
+      var oUser = Meteor.user();
+      // Get current state of "show completed" toggle button
+      var oViewState = this.getView().getModel('ViewState');
+      var bShowCompleted = oViewState.getProperty('/showCompleted');
+
+      // Build task filter according to current state
+      var aFilters = [];
+      if (!bShowCompleted){
+        aFilters.push(new Filter({
+          path: 'checked',
+          operator: FilterOperator.NE,
+          value1: true
+        }));
+      }
+      // if user logs in show the Task list against user id 
+      if (oUser._id){
+        aFilters.push(new Filter({
+          path: 'userId',
+          operator: FilterOperator.EQ,
+          value1: oUser._id
+        }));
+      }
+     // Set filter
+      var oTaskList = this.byId("TaskList");
+      oTaskList.getBinding('items').filter(aFilters);
+    }
 ```
 ## Store user Id against the tasks 
 ```js
