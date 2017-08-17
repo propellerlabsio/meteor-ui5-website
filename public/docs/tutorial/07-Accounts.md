@@ -41,6 +41,7 @@ In the [previous step](/#/tutorial/mongo/step/06) we added a way for the user to
   </Toolbar>
 ```
 ## Hide or Show the Task list whether user is logged in or not
+Add a function to hide or show the Task list in `webapp/Tasks.controller.js`
 ```js
     hideOrShowTaskList: function(){
       if (!Meteor.user()){
@@ -52,7 +53,7 @@ In the [previous step](/#/tutorial/mongo/step/06) we added a way for the user to
       }
     },
 ```
-## Add function and Sign out button to onInit 
+## Add function and set Sign out button to invisible to onInit 
 Call `hideOrShowTaskList` function and set sign out button to invisible when the app runs initially
 ```js
     onInit: function() {
@@ -93,7 +94,6 @@ Call `hideOrShowTaskList` function and set sign out button to invisible when the
     },
 ```
 ## Add a function to get input value from user registration form to your view controller 
-Add a function to get input value in `webapp/Tasks.controller.js`
 ```js
      getInputValues: function(){
       var oInputEmail = this.byId("inputEmail");
