@@ -92,7 +92,7 @@ Call `hideOrShowTaskList` function and set sign out button to invisible when the
       }
     },
 ```
-## Add a function to get input value from user to your view controller 
+## Add a function to get input value from user registration form to your view controller 
 Add a function to get input value in `webapp/Tasks.controller.js`
 ```js
      getInputValues: function(){
@@ -105,7 +105,7 @@ Add a function to get input value in `webapp/Tasks.controller.js`
   },
 ```
 ## Create a function to handle user logs in
-Use `Meteor.loginWithPassword(user, password, [callback])` method and call 2 functions of show or hide account buttons and filter the Task list from different places if log in has no error
+Use `Meteor.loginWithPassword(user, password, [callback])` method and call 2 functions of show or hide account buttons and filter the Task list from different places if there is no error
 ```js
     // Users can log in if they already created account
     onLogInAccount: function(){
@@ -130,7 +130,7 @@ Use `Meteor.loginWithPassword(user, password, [callback])` method and call 2 fun
       });
     },
 ```
-## Current state of "show completed" the Task list based on user logs in
+## Filter completed Task against user Id 
 Create variable `var oUser = Meteor.user()` to get user object and use `oUser._id` to print user Id
 ```js
     onPressShowCompleted: function(){
@@ -148,7 +148,7 @@ Create variable `var oUser = Meteor.user()` to get user object and use `oUser._i
           value1: true
         }));
       }
-      // if user logs in show the Task list against user id 
+      // if user logs in, show the Task list against user id 
       if (oUser._id){
         aFilters.push(new Filter({
           path: 'userId',
@@ -194,7 +194,7 @@ Add a filter to your view controller
     },
 ```  
 ## Create a function to handle creating user accounts
-Use `Accounts.createUser(options, [callback])` method and call 3 functions from different places 
+Use `Accounts.createUser(options, [callback])` method and call 3 functions to handle show or hide buttons and filter The Task list  
 ```js
    onCreateAccount: function(){
       var input = this.getInputValues();
