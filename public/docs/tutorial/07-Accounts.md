@@ -1,4 +1,4 @@
-# UI Accounts
+# Accounts
 
 In the [previous step](/#/tutorial/mongo/step/06) we added a way for the user to show or hide their completed tasks.  In this step, we'll add a way for them to create their accounts.
 
@@ -15,7 +15,7 @@ In the [previous step](/#/tutorial/mongo/step/06) we added a way for the user to
 		xmlns="sap.m">
 ```
 ## Add the registration form to the view 
- Add registration form to your view in `webapp/Tasks.view.xml`
+ Add registration form at the top of the page. Only show if user is logged in to your view in `webapp/Tasks.view.xml`
 ```xml
   	<!-- Login form -->
 	<form:SimpleForm editable="true" id="formId"
@@ -53,10 +53,6 @@ Add a function to hide or show the Task list in `webapp/Tasks.controller.js`
       }
     },
 ```
-## Testing
-If all is well, you should see the below when you run your app:
-### Log in
-![Step 07 Completed - Log In](/docs/tutorial/07-AccountsA.png "Step 07 Completed - Log In") 
 ## Add function and set Sign out button to invisible to onInit 
 Call `hideOrShowTaskList` function and set sign out button to invisible when the app runs initially
 ```js
@@ -107,6 +103,31 @@ Call `hideOrShowTaskList` function and set sign out button to invisible when the
         password: oInputPassword.getValue()
     }
   },
+```
+## Create a function to handle creating user accounts
+Use `Accounts.createUser(options, [callback])` method and call 3 functions to handle show or hide buttons and filter The Task list  
+```js
+   onCreateAccount: function(){
+      var input = this.getInputValues();
+      Accounts.createUser({ email: input.email, password: input.password }, (oError) => {
+        if (oError){
+          if (oError.message === "Email already exists. [403]") {
+            MessageBox.information("Email already exists. Please log in with your password");
+          } else if (oError.message === "Need to set a username or email [400]") {
+            MessageBox.information("Need to provide email address");
+          } else {
+            MessageBox.error('Error Create Account', {
+              details: oError.toString()
+            });
+          }
+        } else {
+          // call these functions to hide or show buttons and filter the Task list 
+          this.showOrHideAccountButtons();
+          this.hideOrShowTaskList();
+          this.onFilterTasks();
+        }
+      });
+    },
 ```
 ## Create a function to handle user logs in
 Use `Meteor.loginWithPassword(user, password, [callback])` method and call 2 functions of show or hide account buttons and filter the Task list from different places if there is no error
@@ -180,7 +201,7 @@ Create variable `var oUser = Meteor.user()` to get user object and use `oUser._i
       }
     },
 ```
-## Filter the Task list by user Id
+## Filter the tasks list by the currently signed in user
 Add a filter to your view controller
 ```js
    onFilterTasks: function(){
@@ -196,32 +217,17 @@ Add a filter to your view controller
         oList.getBinding('items').filter(aFilter);
       }
     },
-```  
-## Create a function to handle creating user accounts
-Use `Accounts.createUser(options, [callback])` method and call 3 functions to handle show or hide buttons and filter The Task list  
-```js
-   onCreateAccount: function(){
-      var input = this.getInputValues();
-      Accounts.createUser({ email: input.email, password: input.password }, (oError) => {
-        if (oError){
-          if (oError.message === "Email already exists. [403]") {
-            MessageBox.information("Email already exists. Please log in with your password");
-          } else if (oError.message === "Need to set a username or email [400]") {
-            MessageBox.information("Need to provide email address");
-          } else {
-            MessageBox.error('Error Create Account', {
-              details: oError.toString()
-            });
-          }
-        } else {
-          // call these functions to hide or show buttons and filter the Task list 
-          this.showOrHideAccountButtons();
-          this.hideOrShowTaskList();
-          this.onFilterTasks();
-        }
-      });
-    },
-```
+``` 
+## Testing
+
+If all is well, you should see the below when you run your app:
+### Log in
+Note, if you don't have any accounts yet. Please create new account
+![Step 07 Show - Log In](/docs/tutorial/07-AccountsA.png "Step 07 Show - Log In") 
+
+### Log in results 
+![Step 07 Show - Log in result](/docs/tutorial/07-AccountsB.png "Step 07 Show - Log in result")
+
 ## Create a function to handle user signs out
 Use `Meteor.logout([callback])` method to handle user log out and change state of the form and buttons whether user is logged in or not
 ```js
