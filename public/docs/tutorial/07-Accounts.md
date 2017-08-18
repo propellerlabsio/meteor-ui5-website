@@ -53,6 +53,10 @@ Add a function to hide or show the Task list in `webapp/Tasks.controller.js`
       }
     },
 ```
+## Testing
+If all is well, you should see the below when you run your app:
+### Log in
+![Step 07 Completed - Log In](/docs/tutorial/07-AccountsA.png "Step 07 Completed - Log In") 
 ## Add function and set Sign out button to invisible to onInit 
 Call `hideOrShowTaskList` function and set sign out button to invisible when the app runs initially
 ```js
@@ -130,7 +134,7 @@ Use `Meteor.loginWithPassword(user, password, [callback])` method and call 2 fun
       });
     },
 ```
-## Filter completed Task against user Id 
+## Filter show completed Task against user Id 
 Create variable `var oUser = Meteor.user()` to get user object and use `oUser._id` to print user Id
 ```js
     onPressShowCompleted: function(){
@@ -161,7 +165,7 @@ Create variable `var oUser = Meteor.user()` to get user object and use `oUser._i
       oTaskList.getBinding('items').filter(aFilters);
     }
 ```
-## Store user Id against the tasks 
+## When creating a task, store the user id of the whoever is logged in against the task 
 ```js
     onAddTask: function(oEvent){
       var oUser = Meteor.user();
