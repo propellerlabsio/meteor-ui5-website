@@ -88,17 +88,3 @@ If all is well, you should see the below when you run your app:
 ![Step 06 Completed - Toggle Off](/docs/tutorial/06-UI-StateB.png "Step 06 Completed - Toggle Off")
 
 Notice the new button on the right in the top toolbar.  Clicking on the button should show or hide the completed tasks.  Confirm that this is working before proceeding. 
-
-## Next
-Further tutorial steps are still being written.  In these steps we will cover:
-* Adding sign in/out with the standard Meteor Accounts packages and the `meteor-ui5-accounts` package.
-* Securing your app with Meteor server methods 
-* Securing your app with collection publications and subscriptions.
-
-Bookmark this page and check back soon for these new tutorial steps.  In the mean time, the following resources might be useful for learning more about Meteor and/or UI5:
-
-| Resource | Description |
-| -------- | ----------- |
-| [Meteor Guide](https://guide.meteor.com/) | Best-practice meteor guide.  Although targetted to the MDG supported view layers (Blaze, React and Angular) there is a wealth of information that will be applicable to your meteor-UI5 projects. |
-| [Meteor Docs](http://docs.meteor.com/) | API docs. See note re relevance above. |
-| [UI5 Development toolkit](https://openui5.hana.ondemand.com/#docs/guide/95d113be50ae40d5b0b562b84d715227.html) | If you are relatively new to UI5 then the Walkthrough Tutorial is an excellent resource and highly recommended.  Note that 99.9% of this tutorials is directly relevant to Meteor-UI5 projects however you should bootstrap UI5 and launch your app or view using the file structure outlined in the Quickstart guide. | 

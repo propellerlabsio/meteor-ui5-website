@@ -40,7 +40,7 @@ In the [previous step](/#/tutorial/mongo/step/06) we added a way for the user to
 		<Button id="idConfirmLogin" text="Log in" press="onLogInAccount"></Button>
   </Toolbar>
 ```
-## Hide or Show the Task list whether user is logged in or not
+## Hide or show the task list whether user is logged in or not
 Add a function to hide or show the Task list in `webapp/Tasks.controller.js`
 ```js
     hideOrShowTaskList: function(){
@@ -53,7 +53,7 @@ Add a function to hide or show the Task list in `webapp/Tasks.controller.js`
       }
     },
 ```
-## Add function and set Sign out button to invisible to onInit 
+## Add function and set sign out button to invisible to onInit 
 Call `hideOrShowTaskList` function and set sign out button to invisible when the app runs initially
 ```js
     onInit: function() {
@@ -155,7 +155,7 @@ Use `Meteor.loginWithPassword(user, password, [callback])` method and call 2 fun
       });
     },
 ```
-## Filter show completed Task against user Id 
+## Filter show completed task against user id 
 Create variable `var oUser = Meteor.user()` to get user object and use `oUser._id` to print user Id
 ```js
     onPressShowCompleted: function(){
@@ -218,16 +218,6 @@ Add a filter to your view controller
       }
     },
 ``` 
-## Testing
-
-If all is well, you should see the below when you run your app:
-### Log in
-Note, if you don't have any accounts yet. Please create new account
-![Step 07 Show - Log In](/docs/tutorial/07-AccountsA.png "Step 07 Show - Log In") 
-
-### Log in results 
-![Step 07 Show - Log in result](/docs/tutorial/07-AccountsB.png "Step 07 Show - Log in result")
-
 ## Create a function to handle user signs out
 Use `Meteor.logout([callback])` method to handle user log out and change state of the form and buttons whether user is logged in or not
 ```js
@@ -252,3 +242,25 @@ Use `Meteor.logout([callback])` method to handle user log out and change state o
       });
     }
 ```
+## Testing
+
+If all is well, you should see the below when you run your app:
+### Log in
+Note, if you don't have any accounts yet. Please create new account
+![Step 07 Show - Log In](/docs/tutorial/07-AccountsA.png "Step 07 Show - Log In") 
+
+### Log in results 
+![Step 07 Show - Log in result](/docs/tutorial/07-AccountsB.png "Step 07 Show - Log in result")
+
+## Next
+Further tutorial steps are still being written.  In these steps we will cover:
+* Securing your app with Meteor server methods 
+* Securing your app with collection publications and subscriptions.
+
+Bookmark this page and check back soon for these new tutorial steps.  In the mean time, the following resources might be useful for learning more about Meteor and/or UI5:
+
+| Resource | Description |
+| -------- | ----------- |
+| [Meteor Guide](https://guide.meteor.com/) | Best-practice meteor guide.  Although targetted to the MDG supported view layers (Blaze, React and Angular) there is a wealth of information that will be applicable to your meteor-UI5 projects. |
+| [Meteor Docs](http://docs.meteor.com/) | API docs. See note re relevance above. |
+| [UI5 Development toolkit](https://openui5.hana.ondemand.com/#docs/guide/95d113be50ae40d5b0b562b84d715227.html) | If you are relatively new to UI5 then the Walkthrough Tutorial is an excellent resource and highly recommended.  Note that 99.9% of this tutorials is directly relevant to Meteor-UI5 projects however you should bootstrap UI5 and launch your app or view using the file structure outlined in the Quickstart guide. |
