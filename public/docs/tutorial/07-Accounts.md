@@ -57,7 +57,7 @@ Add a function to hide or show the Task list in `webapp/Tasks.controller.js`
 Call `hideOrShowTaskList` function and set sign out button to invisible when the app runs initially
 ```js
     onInit: function() {
-      // Show or Hide the Task list whether user loggs in or not
+      // Show or hide the task list whether user is logged in or not
       this.hideOrShowTaskList();
 
       // Include our custom style sheet
@@ -121,7 +121,7 @@ Use `Accounts.createUser(options, [callback])` method and call 3 functions to ha
             });
           }
         } else {
-          // call these functions to hide or show buttons and filter the Task list 
+          // Call these functions to hide or show buttons and filter the task list 
           this.showOrHideAccountButtons();
           this.hideOrShowTaskList();
           this.onFilterTasks();
@@ -145,7 +145,7 @@ Use `Meteor.loginWithPassword(user, password, [callback])` method and call 2 fun
               details: oError.toString()
             });
           }
-          // call these functions if no error log in 
+          // Call these functions if no error log in 
         } else if (Meteor.user()){
           var oTasks = this.byId('TaskList');
           oTasks.setVisible(true);
@@ -173,7 +173,7 @@ Create variable `var oUser = Meteor.user()` to get user object and use `oUser._i
           value1: true
         }));
       }
-      // if user logs in, show the Task list against user id 
+      // If user logs in, show the task list against user id 
       if (oUser._id){
         aFilters.push(new Filter({
           path: 'userId',
@@ -228,7 +228,7 @@ Use `Meteor.logout([callback])` method to handle user log out and change state o
             details: oError.toString()
           })
         } else {
-          //change state of the form and buttons whether user logged in or not
+          // Change state of the form and buttons whether user logged in or not
           var oSimpleForm = this.byId("formId");
           oSimpleForm.setVisible(true);
           var oBtnSignOut = this.byId("idConfirmSignOut");
