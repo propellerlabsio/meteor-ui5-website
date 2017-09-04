@@ -201,6 +201,40 @@ Create variable `var oUser = Meteor.user()` to get user object and use `oUser._i
       }
     },
 ```
+## Add " Meteor.user() " to provent from user deleting task if whoever is not logged in 
+```js
+     onPressDeleteTask: function(oEvent){
+      if (Meteor.user()){
+        var oListItem = oEvent.getSource();
+        var oTaskData = oListItem.getBindingContext().getObject();
+
+        // Ask user to confirm delete
+        var that = this;
+        MessageBox.confirm("Permanently remove task?", {
+          onClose: function(oAction){
+            if (oAction === MessageBox.Action.OK){
+              // Remove the task
+              that.oTasks.remove(oTaskData._id);
+            }
+          }
+        });
+      }
+    },
+```
+## Add " Meter.user() " for the check to prevent from whoever is not logged in 
+```js
+     onSelectionChange: function(oEvent){
+      if (Meteor.user()){
+        var oListItem = oEvent.getParameters().listItem;
+        var oTaskData = oListItem.getBindingContext().getObject();
+
+        // Set the checked property in the database to match the current selection
+        this.oTasks.update(oTaskData._id, {
+          $set: { checked: oListItem.getSelected() },
+        });
+      }
+    },
+```
 ## Filter the tasks list by the currently signed in user
 Add a filter to your view controller
 ```js
