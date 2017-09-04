@@ -223,6 +223,44 @@ Create variable `var oUser = Meteor.user()` to get user object and use `oUser._i
     },
 ```
 
+## Add " Meteor.user() " to provent from user deleting task if whoever is not logged in 
+
+```js
+     onPressDeleteTask: function(oEvent){
+      if (Meteor.user()){
+        var oListItem = oEvent.getSource();
+        var oTaskData = oListItem.getBindingContext().getObject();
+
+        // Ask user to confirm delete
+        var that = this;
+        MessageBox.confirm("Permanently remove task?", {
+          onClose: function(oAction){
+            if (oAction === MessageBox.Action.OK){
+              // Remove the task
+              that.oTasks.remove(oTaskData._id);
+            }
+          }
+        });
+      }
+    },
+```
+
+## Add " Meter.user() " for the check to prevent from whoever is not logged in 
+
+```js
+     onSelectionChange: function(oEvent){
+      if (Meteor.user()){
+        var oListItem = oEvent.getParameters().listItem;
+        var oTaskData = oListItem.getBindingContext().getObject();
+
+        // Set the checked property in the database to match the current selection
+        this.oTasks.update(oTaskData._id, {
+          $set: { checked: oListItem.getSelected() },
+        });
+      }
+    },
+```
+
 ## Filter the tasks list by the currently signed in user
 
 Add a filter to your view controller
@@ -271,14 +309,18 @@ Use `Meteor.logout([callback])` method to handle user log out and change state o
 ## Testing
 
 If all is well, you should see the below when you run your app:
+
 ### Log in
+
 Note, if you don't have any accounts yet. Please create new account
 ![Step 07 Show - Log In](/docs/tutorial/07-AccountsA.png "Step 07 Show - Log In") 
 
 ### Log in results 
+
 ![Step 07 Show - Log in result](/docs/tutorial/07-AccountsB.png "Step 07 Show - Log in result")
 
 ## Next
+
 Further tutorial steps are still being written.  In these steps we will cover:
 * Securing your app with Meteor server methods 
 * Securing your app with collection publications and subscriptions.
