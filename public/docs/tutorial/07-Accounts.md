@@ -3,9 +3,13 @@
 In the [previous step](/#/tutorial/mongo/step/06) we added a way for the user to show or hide their completed tasks.  In this step, we'll add a way for them to create their accounts.
 
 ## Add accounts password package to your project directory 
- Go to your project folder and type `meteor add accounts-password`
-## Add SAPUI5 namespace to the view
- Add namespace `xmlns:form="sap.ui.layout.form` in `webapp/Tasks.view.xml`
+
+ Go to your project folder and enter `meteor add accounts-password`.
+
+## Add UI5 form namespace to the view
+
+ Add namespace `xmlns:form="sap.ui.layout.form` in `webapp/Tasks.view.xml`:
+
 ```xml
   <mvc:View controllerName="webapp.Tasks"
 		height="100%"
@@ -15,34 +19,47 @@ In the [previous step](/#/tutorial/mongo/step/06) we added a way for the user to
 		xmlns="sap.m">
 ```
 ## Add the registration form to the view 
- Add registration form at the top of the page. Only show if user is logged in to your view in `webapp/Tasks.view.xml`
+
+In the same file, add a user registration and login form at the top of the content section. 
+
 ```xml
-  	<!-- Login form -->
-	<form:SimpleForm editable="true" id="formId"
-        maxContainerCols="2"
-        layout="ResponsiveGridLayout"
-        labelSpanL="4"
-        labelSpanM="4"
-        emptySpanL="4"
-        emptySpanM="4">
-        <Label text="Email"/>
-        <Input id="inputEmail" type="Email"/>
-        <Label text="Password"/>
-        <Input id="inputPassword" type="Password"/>
-    </form:SimpleForm>
+  <content>
+      <!-- Login form -->
+    <form:SimpleForm editable="true" id="formId"
+          maxContainerCols="2"
+          layout="ResponsiveGridLayout"
+          labelSpanL="4"
+          labelSpanM="4"
+          emptySpanL="4"
+          emptySpanM="4">
+          <Label text="Email"/>
+          <Input id="inputEmail" type="Email"/>
+          <Label text="Password"/>
+          <Input id="inputPassword" type="Password"/>
+      </form:SimpleForm>
 ```
 ## Add account buttons to the view
+
+In the same file, below the form you just added, add a toolbar with buttons to handle different user account actions:
 ```xml
-   <Toolbar>
-		<ToolbarSpacer/>
-		<Button id="idConfirmSignOut" text="Sign out" press="onSignOutAccount"></Button>
-		<Button id="idConfirmCreate" text="Create account" press="onCreateAccount"></Button>
-		<Button id="idConfirmLogin" text="Log in" press="onLogInAccount"></Button>
+  </form:SimpleForm>
+
+  <!-- User accounts toolbar -->
+  <Toolbar>
+    <ToolbarSpacer/>
+    <Button id="idConfirmSignOut" text="Sign out" press="onSignOutAccount"></Button>
+    <Button id="idConfirmCreate" text="Create account" press="onCreateAccount"></Button>
+    <Button id="idConfirmLogin" text="Log in" press="onLogInAccount"></Button>
   </Toolbar>
 ```
-## Hide or show the task list whether user is logged in or not
-Add a function to hide or show the Task list in `webapp/Tasks.controller.js`
+
+## Dynamically hide or show the task list 
+
+In `webapp/Tasks.controller.js`, add a function to hide or show the Task list depending on whether a user is logged in or not:
+
 ```js
+    },
+
     hideOrShowTaskList: function(){
       if (!Meteor.user()){
         var oTasks = this.byId('TaskList');
@@ -52,33 +69,27 @@ Add a function to hide or show the Task list in `webapp/Tasks.controller.js`
         oTasks.setVisible(true);
       }
     },
+
+    getTaskTextAsHtml: function(bChecked, sText){
 ```
-## Add function and set sign out button to invisible to onInit 
-Call `hideOrShowTaskList` function and set sign out button to invisible when the app runs initially
+
+## Add code to initialize the task list and user toolbar state
+
+In the same file, at the bottom of the `onInit` method, add code to initialize the state of the new toolbar and the task list.
+
 ```js
-    onInit: function() {
-      // Show or hide the task list whether user is logged in or not
+      // Show or hide the task list depending on whether a user is logged in or not
       this.hideOrShowTaskList();
-
-      // Include our custom style sheet
-      jQuery.sap.includeStyleSheet("webapp/style.css");
-      // Instantiate Mongo Model
-      var oModel = new MongoModel();
-      this.getView().setModel(oModel);
-
-      // Our local view state model
-      var oViewState = {
-        showCompleted: true
-      };
-      var oViewModel = new JSONModel(oViewState);
-      this.getView().setModel(oViewModel, "ViewState");
 
       // Set sign out button to invisible when the app runs initially
       var oBtnSignOut = this.byId("idConfirmSignOut");
       oBtnSignOut.setVisible(false);
     },
 ```
+
 ## Change the state of the buttons depending on whether the user is logged in or not
+
+
 ```js
    showOrHideAccountButtons: function(){
       if (Meteor.user()){
@@ -93,7 +104,9 @@ Call `hideOrShowTaskList` function and set sign out button to invisible when the
       }
     },
 ```
+
 ## Add a function to get input value from user registration form to your view controller 
+
 ```js
      getInputValues: function(){
       var oInputEmail = this.byId("inputEmail");
@@ -105,6 +118,7 @@ Call `hideOrShowTaskList` function and set sign out button to invisible when the
   },
 ```
 ## Create a function to handle creating user accounts
+
 Use `Accounts.createUser(options, [callback])` method and call 3 functions to handle show or hide buttons and filter The Task list  
 ```js
    onCreateAccount: function(){
@@ -130,7 +144,9 @@ Use `Accounts.createUser(options, [callback])` method and call 3 functions to ha
     },
 ```
 ## Create a function to handle user logs in
+
 Use `Meteor.loginWithPassword(user, password, [callback])` method and call 2 functions of show or hide account buttons and filter the Task list from different places if there is no error
+
 ```js
     // Users can log in if they already created account
     onLogInAccount: function(){
@@ -155,8 +171,11 @@ Use `Meteor.loginWithPassword(user, password, [callback])` method and call 2 fun
       });
     },
 ```
+
 ## Filter show completed task against user id 
+
 Create variable `var oUser = Meteor.user()` to get user object and use `oUser._id` to print user Id
+
 ```js
     onPressShowCompleted: function(){
       var oUser = Meteor.user();
@@ -186,7 +205,9 @@ Create variable `var oUser = Meteor.user()` to get user object and use `oUser._i
       oTaskList.getBinding('items').filter(aFilters);
     }
 ```
+
 ## When creating a task, store the user id of the whoever is logged in against the task 
+
 ```js
     onAddTask: function(oEvent){
       var oUser = Meteor.user();
@@ -201,8 +222,11 @@ Create variable `var oUser = Meteor.user()` to get user object and use `oUser._i
       }
     },
 ```
+
 ## Filter the tasks list by the currently signed in user
+
 Add a filter to your view controller
+
 ```js
    onFilterTasks: function(){
       var oUser = Meteor.user();
@@ -219,7 +243,9 @@ Add a filter to your view controller
     },
 ``` 
 ## Create a function to handle user signs out
+
 Use `Meteor.logout([callback])` method to handle user log out and change state of the form and buttons whether user is logged in or not
+
 ```js
     onSignOutAccount: function(){
       Meteor.logout((oError) => {
