@@ -119,7 +119,7 @@ In the same file, at the bottom of the `onInit` method, add code to initialize t
 ```
 ## Create a function to handle creating user accounts
 
-Use `Accounts.createUser(options, [callback])` method and call 3 functions to handle show or hide buttons and filter The Task list  
+To add that function go to `webapp/Tasks.controller.js` file and call 3 functions to handle showing or hiding buttons and task list
 ```js
    onCreateAccount: function(){
       var input = this.getInputValues();
@@ -145,7 +145,7 @@ Use `Accounts.createUser(options, [callback])` method and call 3 functions to ha
 ```
 ## Create a function to handle user logs in
 
-Use `Meteor.loginWithPassword(user, password, [callback])` method and call 2 functions of show or hide account buttons and filter the Task list from different places if there is no error
+In the same file create a function to handle user logs in and call 2 functions of showing  or hiding account buttons and filter the task list if user is logged 
 
 ```js
     // Users can log in if they already created account
@@ -172,25 +172,14 @@ Use `Meteor.loginWithPassword(user, password, [callback])` method and call 2 fun
     },
 ```
 
-## Filter show completed task against user id 
+## Filter completing task against user id 
 
-Create variable `var oUser = Meteor.user()` to get user object and use `oUser._id` to print user Id
+To filter the completing task go to `webapp/Tasks.controller.js` file. On the top of `onPressShowCompleted` function add 
 
 ```js
-    onPressShowCompleted: function(){
+    // Create variable to store user objects 
       var oUser = Meteor.user();
-      // Get current state of "show completed" toggle button
-      var oViewState = this.getView().getModel('ViewState');
-      var bShowCompleted = oViewState.getProperty('/showCompleted');
 
-      // Build task filter according to current state
-      var aFilters = [];
-      if (!bShowCompleted){
-        aFilters.push(new Filter({
-          path: 'checked',
-          operator: FilterOperator.NE,
-          value1: true
-        }));
       }
       // If user logs in, show the task list against user id 
       if (oUser._id){
@@ -203,7 +192,7 @@ Create variable `var oUser = Meteor.user()` to get user object and use `oUser._i
      // Set filter
       var oTaskList = this.byId("TaskList");
       oTaskList.getBinding('items').filter(aFilters);
-    }
+    },
 ```
 
 ## When creating a task, store the user id of the whoever is logged in against the task 
@@ -215,8 +204,6 @@ Create variable `var oUser = Meteor.user()` to get user object and use `oUser._i
         var oInput = oEvent.getSource();
         this.oTasks.insert({
           userId: oUser._id,
-          text: oInput.getValue(),
-          createdAt: new Date()
         });
         oInput.setValue();
       }
