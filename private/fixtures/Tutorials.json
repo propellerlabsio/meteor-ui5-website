@@ -26,4 +26,8 @@
   "tutorial": "mongo",
   "step": "06",
   "title": "UI-State"
+},{
+  "tutorial": "mongo",
+  "step": "07",
+  "title": "Accounts"
 }]
