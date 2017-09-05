@@ -87,8 +87,8 @@ In the same file, at the bottom of the `onInit` method, add code to initialize t
     },
 ```
 
-## Change the state of the buttons depending on whether the user is logged in or not
-
+## Change the state of the buttons based on whether the user is logged in or not
+To add this function go to `webapp/Tasks.controller.js` file and add the codes below
 
 ```js
    showOrHideAccountButtons: function(){
@@ -105,9 +105,14 @@ In the same file, at the bottom of the `onInit` method, add code to initialize t
     },
 ```
 
-## Add a function to get input value from user registration form to your view controller 
+## Create a function to get input value from input field
+
+To create this function go to `webapp/Tasks.controller.js` file and place the codes below
 
 ```js
+        return sText;
+      }
+    },
      getInputValues: function(){
       var oInputEmail = this.byId("inputEmail");
       var oInputPassword = this.byId("inputPassword");
@@ -117,9 +122,10 @@ In the same file, at the bottom of the `onInit` method, add code to initialize t
     }
   },
 ```
-## Create a function to handle creating user accounts
+## Create a function to handle creating accounts
 
-To add that function go to `webapp/Tasks.controller.js` file and call 3 functions to handle showing or hiding buttons and task list
+In `webapp/Tasks.controller.js` file create a function as below and add three functions at the end to handle showing or hiding buttons and task list
+
 ```js
    onCreateAccount: function(){
       var input = this.getInputValues();
@@ -145,9 +151,10 @@ To add that function go to `webapp/Tasks.controller.js` file and call 3 function
 ```
 ## Create a function to handle user logs in
 
-In the same file create a function to handle user logs in and call 2 functions of showing  or hiding account buttons and filter the task list if user is logged 
+In `webapp/Tasks.controller.js` file create a function as below and add codes to handle showing or hiding and filtering the task 
 
 ```js
+
     // Users can log in if they already created account
     onLogInAccount: function(){
       Meteor.loginWithPassword(input.email, input.password, (oError) => {
@@ -172,14 +179,16 @@ In the same file create a function to handle user logs in and call 2 functions o
     },
 ```
 
-## Filter completing task against user id 
+## Show the completed tasks against user Id 
 
-To filter the completing task go to `webapp/Tasks.controller.js` file. On the top of `onPressShowCompleted` function add 
+In `webapp/Tasks.controller.js` file. On the top of `onPressShowCompleted` function add the codes to filter the task 
 
 ```js
     // Create variable to store user objects 
       var oUser = Meteor.user();
 
+           value1: true
+        }));
       }
       // If user logs in, show the task list against user id 
       if (oUser._id){
@@ -195,13 +204,13 @@ To filter the completing task go to `webapp/Tasks.controller.js` file. On the to
     },
 ```
 
-## When creating a task, store the user id of the whoever is logged in against the task 
-
+## Store user id of the whoever is logged in againsts the task
+In `webapp/Tasks.controller.js` file add the codes to `onAddTask` function to store user id against the task
 ```js
-    onAddTask: function(oEvent){
+    {
       var oUser = Meteor.user();
       if (oUser._id){
-        var oInput = oEvent.getSource();
+
         this.oTasks.insert({
           userId: oUser._id,
         });
@@ -210,47 +219,33 @@ To filter the completing task go to `webapp/Tasks.controller.js` file. On the to
     },
 ```
 
-## Add " Meteor.user() " to provent from user deleting task if whoever is not logged in 
-
+## Users can delete tasks if they are logged it
+Go to your `webapp/Tasks.controller.js` file and in `onPressDeleteTask` function add codes below
 ```js
-     onPressDeleteTask: function(oEvent){
-      if (Meteor.user()){
-        var oListItem = oEvent.getSource();
-        var oTaskData = oListItem.getBindingContext().getObject();
+   {
 
-        // Ask user to confirm delete
-        var that = this;
-        MessageBox.confirm("Permanently remove task?", {
-          onClose: function(oAction){
-            if (oAction === MessageBox.Action.OK){
-              // Remove the task
-              that.oTasks.remove(oTaskData._id);
-            }
-          }
-        });
+      if (Meteor.user()){
+
+        var oListItem = oEvent.getSource();
       }
     },
 ```
 
-## Add " Meter.user() " for the check to prevent from whoever is not logged in 
-
+## Whoever is logged in, he or she can check the completed tasks  
+Go to your `webapp/Tasks.controller.js` file and in `onSelectionChange` function add codes below 
 ```js
-     onSelectionChange: function(oEvent){
-      if (Meteor.user()){
-        var oListItem = oEvent.getParameters().listItem;
-        var oTaskData = oListItem.getBindingContext().getObject();
+     {
 
-        // Set the checked property in the database to match the current selection
-        this.oTasks.update(oTaskData._id, {
-          $set: { checked: oListItem.getSelected() },
-        });
+      if (Meteor.user()){
+
+        var oListItem = oEvent.getParameters().listItem;
       }
     },
 ```
 
 ## Filter the tasks list by the currently signed in user
 
-Add a filter to your view controller
+Add a filter to your view controller in `webapp/Tasks.controller.js` file 
 
 ```js
    onFilterTasks: function(){
@@ -269,7 +264,7 @@ Add a filter to your view controller
 ``` 
 ## Create a function to handle user signs out
 
-Use `Meteor.logout([callback])` method to handle user log out and change state of the form and buttons whether user is logged in or not
+ In `webapp/Tasks.controller.js` file  create a function to handle log out as codes below
 
 ```js
     onSignOutAccount: function(){
