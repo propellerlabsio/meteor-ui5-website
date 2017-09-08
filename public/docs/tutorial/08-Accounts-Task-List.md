@@ -1,57 +1,6 @@
-# Accounts
+# Accounts-Task-List
 
-In the [previous step](/#/tutorial/mongo/step/06) we added a way for the user to show or hide their completed tasks.  In this step, we'll add a way for them to create their accounts.
-
-## Add accounts password package to your project directory 
-
- Go to your project folder and enter `meteor add accounts-password`.
-
-## Add UI5 form namespace to the view
-
- Add namespace `xmlns:form="sap.ui.layout.form` in `webapp/Tasks.view.xml`:
-
-```xml
-  <mvc:View controllerName="webapp.Tasks"
-		height="100%"
-		xmlns:mvc="sap.ui.core.mvc"
-        xmlns:form="sap.ui.layout.form"
-		xmlns:l="sap.ui.layout"
-		xmlns="sap.m">
-```
-## Add the registration form to the view 
-
-In the same file, add a user registration and login form at the top of the content section. 
-
-```xml
-  <content>
-      <!-- Login form -->
-    <form:SimpleForm editable="true" id="formId"
-          maxContainerCols="2"
-          layout="ResponsiveGridLayout"
-          labelSpanL="4"
-          labelSpanM="4"
-          emptySpanL="4"
-          emptySpanM="4">
-          <Label text="Email"/>
-          <Input id="inputEmail" type="Email"/>
-          <Label text="Password"/>
-          <Input id="inputPassword" type="Password"/>
-      </form:SimpleForm>
-```
-## Add account buttons to the view
-
-In the same file, below the form you just added, add a toolbar with buttons to handle different user account actions:
-```xml
-  </form:SimpleForm>
-
-  <!-- User accounts toolbar -->
-  <Toolbar>
-    <ToolbarSpacer/>
-    <Button id="idConfirmSignOut" text="Sign out" press="onSignOutAccount"></Button>
-    <Button id="idConfirmCreate" text="Create account" press="onCreateAccount"></Button>
-    <Button id="idConfirmLogin" text="Log in" press="onLogInAccount"></Button>
-  </Toolbar>
-```
+In the [previous step](/#/tutorial/mongo/step/07) we add a way for them to create and log in/out to account.  In this step, we'll add a way for them to show or hide button and filter task list against user id.
 
 ## Dynamically hide or show the task list 
 
@@ -105,39 +54,11 @@ To add this function go to `webapp/Tasks.controller.js` file and add the codes b
     },
 ```
 
-## Create a function to get input value from input field
+## Hide or show button and filter task list when user is created account
 
-To create this function go to `webapp/Tasks.controller.js` file and place the codes below
-
-```js
-        return sText;
-      }
-    },
-     getInputValues: function(){
-      var oInputEmail = this.byId("inputEmail");
-      var oInputPassword = this.byId("inputPassword");
-      return {
-        email: oInputEmail.getValue(),
-        password: oInputPassword.getValue()
-    }
-  },
-```
-## Create a function to handle creating accounts
-
-In `webapp/Tasks.controller.js` file create a function as below and add three functions at the end to handle showing or hiding buttons and task list
+In `webapp/Tasks.controller.js` place the codes to on create account function as below 
 
 ```js
-   onCreateAccount: function(){
-      var input = this.getInputValues();
-      Accounts.createUser({ email: input.email, password: input.password }, (oError) => {
-        if (oError){
-          if (oError.message === "Email already exists. [403]") {
-            MessageBox.information("Email already exists. Please log in with your password");
-          } else if (oError.message === "Need to set a username or email [400]") {
-            MessageBox.information("Need to provide email address");
-          } else {
-            MessageBox.error('Error Create Account', {
-              details: oError.toString()
             });
           }
         } else {
@@ -149,26 +70,15 @@ In `webapp/Tasks.controller.js` file create a function as below and add three fu
       });
     },
 ```
-## Create a function to handle user logs in
+## Show or hide button and show the task list against user id when user is logged in
 
-In `webapp/Tasks.controller.js` file create a function as below and add codes to handle showing or hiding and filtering the task 
+In `webapp/Tasks.controller.js` file add codes to handle showing or hiding and filtering the task when user is logged in
 
 ```js
-
-    // Users can log in if they already created account
-    onLogInAccount: function(){
-      Meteor.loginWithPassword(input.email, input.password, (oError) => {
-        if(oError){
-          if(oError.message === "User not found [403]"){
-            MessageBox.information("User not found. Please check your entries or create new account");
-          } else if (oError.message === "Incorrect password [403]"){
-            MessageBox.information("Incorrect password. Please try again");
-          } else {
-            MessageBox.error('Error Log In', {
               details: oError.toString()
             });
           }
-          // Call these functions if no error log in 
+          // Call these functions to show task list by user id and hide or show button if no error log in 
         } else if (Meteor.user()){
           var oTasks = this.byId('TaskList');
           oTasks.setVisible(true);
@@ -204,7 +114,7 @@ In `webapp/Tasks.controller.js` file. On the top of `onPressShowCompleted` funct
     },
 ```
 
-## Store user id of the whoever is logged in againsts the task
+## Store user id of the whoever is logged in againsts the task when adding tasks
 In `webapp/Tasks.controller.js` file add the codes to `onAddTask` function to store user id against the task
 ```js
     {
@@ -262,15 +172,12 @@ Add a filter to your view controller in `webapp/Tasks.controller.js` file
       }
     },
 ``` 
-## Create a function to handle user signs out
+## Change state of the form and buttons whether user logged in or not
 
  In `webapp/Tasks.controller.js` file  create a function to handle log out as codes below
 
 ```js
-    onSignOutAccount: function(){
-      Meteor.logout((oError) => {
-        if (oError){
-          MessageBox.error("Error Logout", {
+  
             details: oError.toString()
           })
         } else {
@@ -295,11 +202,11 @@ If all is well, you should see the below when you run your app:
 ### Log in
 
 Note, if you don't have any accounts yet. Please create new account
-![Step 07 Show - Log In](/docs/tutorial/07-AccountsA.png "Step 07 Show - Log In") 
+![Step 07 Show - Task form](/docs/tutorial/07-AccountsA.png "Step 07 Show - Task form") 
 
 ### Log in results 
 
-![Step 07 Show - Log in result](/docs/tutorial/07-AccountsB.png "Step 07 Show - Log in result")
+![Step 07 Show - Task form  result](/docs/tutorial/07-AccountsB.png "Step 07 Show - Task form result")
 
 ## Next
 
