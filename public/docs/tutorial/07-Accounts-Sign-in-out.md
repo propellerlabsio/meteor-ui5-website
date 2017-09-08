@@ -128,3 +128,11 @@ In `webapp/Tasks.controller.js` file create a function as below and add codes to
       });
     }
 ```
+## Testing
+
+If all is well, you should see the below when you run your app:
+
+### Sign in
+
+Note, if you don't have any accounts yet. Please create new account
+![Step 07 Show - Sign in](/docs/tutorial/07-Accounts-Sign-in-outA.png "Step 07 Show - Sign in") 
