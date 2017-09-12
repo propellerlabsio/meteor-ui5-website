@@ -26,4 +26,12 @@
   "tutorial": "mongo",
   "step": "06",
   "title": "UI-State"
+},{
+  "tutorial": "mongo",
+  "step": "07",
+  "title": "Accounts-Sign-in-out"
+},{
+  "tutorial": "mongo",
+  "step": "08",
+  "title": "Accounts-Task-List"
 }]
