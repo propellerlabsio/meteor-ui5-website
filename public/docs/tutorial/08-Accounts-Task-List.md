@@ -54,7 +54,7 @@ To add this function go to `webapp/Tasks.controller.js` file and add the codes b
     },
 ```
 
-## Hide or show button and filter task list when user is created account
+## Hide or show button and filter task list when account is created
 
 In `webapp/Tasks.controller.js` place the codes to on create account function as below 
 
@@ -114,7 +114,7 @@ In `webapp/Tasks.controller.js` file. On the top of `onPressShowCompleted` funct
     },
 ```
 
-## Store user id of the whoever is logged in againsts the task when adding tasks
+## Store user id of the whoever is logged in againsts the task when adding new tasks
 In `webapp/Tasks.controller.js` file add the codes to `onAddTask` function to store user id against the task
 ```js
     {
@@ -129,7 +129,7 @@ In `webapp/Tasks.controller.js` file add the codes to `onAddTask` function to st
     },
 ```
 
-## Users can delete tasks if they are logged it
+## Users can delete tasks if they are logged in
 Go to your `webapp/Tasks.controller.js` file and in `onPressDeleteTask` function add codes below
 ```js
    {
@@ -141,7 +141,7 @@ Go to your `webapp/Tasks.controller.js` file and in `onPressDeleteTask` function
     },
 ```
 
-## Whoever is logged in, he or she can check the completed tasks  
+## Whoever is logged in, he or she can check his or her completed tasks  
 Go to your `webapp/Tasks.controller.js` file and in `onSelectionChange` function add codes below 
 ```js
      {
@@ -172,7 +172,7 @@ Add a filter to your view controller in `webapp/Tasks.controller.js` file
       }
     },
 ``` 
-## Change state of the form and buttons whether user logged in or not
+## Change state of the form and buttons whether user is logged in or not
 
  In `webapp/Tasks.controller.js` file  create a function to handle log out as codes below
 
